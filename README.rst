@@ -33,8 +33,18 @@ When you are ready you can deploy your system use::
     $ nixops create ./logical.nix ./physical.nix  --name project.x-truder.net
     $ NIX_PATH=<PATH_TO_NIX> nixops deploy -d project.x-truder.net
 
-Private data (password, certificates,...):
-------------------------------------------
+Passwords:
+----------
+
+You can prehash system passwords using command like::
+
+    $ mkpasswd -m sha-512 $(pass offlinehacker@offline) $(openssl rand -base64 16 | tr -d '+=' | head -c 16)
+
+In nix you can set `passwordFile`, for more info please reffer to my home
+system configuration.
+
+Private data (passwords (that you can't prehash), certificates):
+----------------------------------------------------------------
 
 For private data i use `git-encrypt <https://github.com/shadowhand/git-encrypt>`.
 You simply create repo and do::
