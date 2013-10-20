@@ -20,6 +20,10 @@ create a new repository, and then include this repository with git subtree::
     $ git remote add -f x-truder.net https://www.github.com/offlinehacker/x-truder.net.git
     $ git subtree add --prefix x-truder.net x-truder.net master --squash
 
+To push changes back::
+
+    $ git subtree push --prefix=x-truder.net x-truder.net master
+
 Then create `logical.nix` and `physical.nix` files where you specify logical
 and physical configuration of your network. For example configurations look at
 `my home system configurations
@@ -46,7 +50,7 @@ system configuration.
 Private data (passwords (that you can't prehash), certificates):
 ----------------------------------------------------------------
 
-For private data i use `git-encrypt <https://github.com/shadowhand/git-encrypt>`.
+For private data i use `git-encrypt <https://github.com/shadowhand/git-encrypt>`_.
 You simply create repo and do::
 
     $ gitcrypt init
