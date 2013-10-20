@@ -23,7 +23,8 @@ with pkgs.lib;
   # - I only have one root password, but i'm not gona ever give it to u, if
   #   you are sudo you are root anyway so why should i bother
   users.extraUsers.root.openssh.authorizedKeys.keys = [ (builtins.readFile ../keys/id_rsa.pub) ];
-  users.extraUsers.root.passwordFile = pkgs.writeText "pass" "$6$ExruaSVhjryLcFrA$dlDPiMq3JOwu6XICK9AHwevF/67lG0kvQCHTm75wxMkNkMsDcvSm1S5JVSST87nzx5sP1J/ha35gDpeB30qRc."
+  users.extraUsers.root.password = null;
+  users.extraUsers.root.passwordFile = toString (pkgs.writeText "pass" "$6$ExruaSVhjryLcFrA$dlDPiMq3JOwu6XICK9AHwevF/67lG0kvQCHTm75wxMkNkMsDcvSm1S5JVSST87nzx5sP1J/ha35gDpeB30qRc.");
 
   # You are not allowed to manage users manually
   users.mutableUsers = false;
