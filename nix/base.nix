@@ -56,6 +56,7 @@ with pkgs.lib;
     screen
     vim
     openssl
+    nmap
     fuse
   ];
 }
