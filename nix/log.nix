@@ -1,7 +1,5 @@
 { config, pkgs, ... }:
 {
-  services.logstash.enable = true;
-
   services.logstash.inputConfig = ''
     # Read from journal
     pipe {
