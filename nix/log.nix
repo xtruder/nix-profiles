@@ -23,7 +23,9 @@
       "NOTICE", 5, "INFO", 6, "DEBUG", 7
     '';
   in ''
-    if "processed" not in [tags] {
+    if "processed" in [tags] {
+      noop {}
+    } else {
       if [type] == "syslog" {
         # Keep only relevant systemd fields
         # http://www.freedesktop.org/software/systemd/man/systemd.journal-fields.html
@@ -134,7 +136,7 @@
       # Add cords to geoip to be usable by kibana
       if "geoip" in [tags] {
         mutate {
-          add_field => [ "coords", "%[geoip][longitude]}", "tmplat", "%{[geoip][latitude]}" ]
+          add_field => [ "coords", "%{[geoip][longitude]}", "tmplat", "%{[geoip][latitude]}" ]
           merge => [ "coords", "tmplat" ]
           convert => [ "coords", "float" ]
           remove => [ "tmplat" ]
