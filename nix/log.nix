@@ -24,8 +24,6 @@
     '';
   in ''
     if "processed" not in [tags] {
-      mutate { add_tag => "processed" }
-
       if [type] == "syslog" {
         # Keep only relevant systemd fields
         # http://www.freedesktop.org/software/systemd/man/systemd.journal-fields.html
