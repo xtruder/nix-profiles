@@ -31,7 +31,8 @@
           whitelist_names => [
             "type", "@timestamp", "@version",
             "MESSAGE", "PRIORITY", "SYSLOG_FACILITY",
-            "_HOSTNAME", "_PID", "_UID", "_GID", "_EXE", "_CMDLINE", "_SYSTEMD_UNIT"
+            "_HOSTNAME", "_PID", "_UID", "_GID", "_EXE", "_CMDLINE", "_SYSTEMD_UNIT",
+            "CODE_FILE", "CODE_FUNCTION", "CODE_LINE"
           ]
         }
 
@@ -74,6 +75,9 @@
           rename => [ "_GID", "[proc][gid]" ]
           rename => [ "_EXE", "[proc][exe]" ]
           rename => [ "_CMDLINE", "[proc][cmdline]" ]
+          rename => [ "CODE_FILE", "[proc][file]" ]
+          rename => [ "CODE_FUNCTION", "[proc][function]" ]
+          rename => [ "CODE_LINE", "[proc][line]" ]
 
           convert => [ "priority", "integer" ]
           convert => [ "[proc][pid]", "integer" ]
@@ -134,7 +138,8 @@
       # Add cords to geoip to be usable by kibana
       if "geoip" in [tags] {
         mutate {
-          add_field => [ "coords", "%{[geoip][longitude]}", "tmplat", "%{[geoip][latitude]}" ]
+          add_field => [ "coords", "%{[geoip][longitude]}" ] 
+          add_field => [ "tmplat", "%{[geoip][latitude]}" ]
           merge => [ "coords", "tmplat" ]
           convert => [ "coords", "float" ]
           remove => [ "tmplat" ]
