@@ -16,6 +16,10 @@ with pkgs.lib;
   services.openssh.enable = true;
   services.openssh.gatewayPorts = "yes";
 
+  # Enable ntp
+  services.ntp.enable = true;
+  services.ntp.servers = [ "ntp1.arnes.si" "ntp2.arnes.si" ];
+
   # Enable sudo
   security.sudo.enable = true;
 
