@@ -14,14 +14,30 @@ nginx: {
         gzip_disable "msie6";
     '';
 
+    proxy_defaults = ''
+        proxy_set_header        Host $host;
+        proxy_set_header        X-Forwarded-Server $host;
+        proxy_set_header        X-Real-IP $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header        X-Forwarded-Proto $scheme;
+
+        client_max_body_size    10m;
+        client_body_buffer_size 128k;
+        proxy_connect_timeout   60s;
+        proxy_send_timeout      90s;
+        proxy_read_timeout      90s;
+        proxy_buffering         off;
+        proxy_temp_file_write_size 64k;
+    '';
+
     # Add required cors headers, place this in location section
     cors =
     let
       corsHeaders = ''
-        add_header 'Access-Control-Allow-Origin' '*';
-        add_header 'Access-Control-Allow-Credentials' 'true';
-        add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, OPTIONS';
-        add_header 'Access-Control-Allow-Headers' 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,userid';
+        more_set_headers 'Access-Control-Allow-Origin: *';
+        more_set_headers 'Access-Control-Allow-Credentials: true';
+        more_set_headers 'Access-Control-Allow-Methods: GET, POST, PUT, OPTIONS';
+        more_set_headers 'Access-Control-Allow-Headers: DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,userid';
       '';
     in ''
         if ($request_method = 'OPTIONS') {
@@ -31,9 +47,9 @@ nginx: {
             # Tell client that this pre-flight info is valid for 20 days
             #
 
-            add_header 'Access-Control-Max-Age' 1728000;
-            add_header 'Content-Type' 'text/plain charset=UTF-8';
-            add_header 'Content-Length' 0;
+            more_set_headers 'Access-Control-Max-Age: 1728000';
+            more_set_headers 'Content-Type: text/plain charset=UTF-8';
+            more_set_headers 'Content-Length: 0';
 
             return 204;
         }

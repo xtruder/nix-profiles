@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
-
+  with pkgs.lib;
 {
   require = [
     <nixos/modules/profiles/all-hardware.nix>
