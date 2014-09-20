@@ -36,6 +36,7 @@ in {
   systemd.services.autoupdate = {
     description = "Auto update docker container";
     script = update_script;
+    restartIfChanged = false;
     path = [ pkgs.nix ];
     after = [ "network.target" ];
     wantedBy = ["multi-user.target"];
