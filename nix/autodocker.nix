@@ -49,4 +49,6 @@ in {
     };
     wantedBy = ["autoupdate.service"];
   };
+
+  nix.gc.automatic = true;
 }
