@@ -57,15 +57,4 @@ changes to your git server. When you want to decrypt data you simply::
 Building iso image:
 -------------------
 
-    $ NIXOS_CONFIG=$(pwd)/iso.nix nix-build '<nixos>' -A config.system.build.isoImage --argstr system x86_64-linux 
-
-Building container:
--------------------
-
-    $ NIXOS_CONFIG=$(pwd)/container.nix nix-build '<nixos>' -A config.system.build.tarball --argstr system x86_64-linux
-
-Building docker auto updatable container:
------------------------------------------
-
-    $ NIXOS_CONFIG=$(pwd)/autodocker.nix nix-build '<nixpkgs/nixos>' -A config.system.build.dockerImage -I nixpkgs=$HOME/nix/workdirs/master 
-    $ cat result/tarball/nixos-system-x86_64-linux.tar.xz | docker import - nixos-autoconfig
+    $ NIXOS_CONFIG=$(pwd)/iso.nix nix-build '<nixos>' -A config.system.build.isoImage --argstr system x86_64-linux
