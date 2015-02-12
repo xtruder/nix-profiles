@@ -12,7 +12,6 @@ DATABASES = {
         'ENGINE': '${cfg.dbEngine}',
         'NAME': '${cfg.dbBase}',
         'USER': '${cfg.dbUser}',
-        'PASSWORD': '${cfg.dbPass}',
         'HOST': '${cfg.dbHost}',
         'PORT': '${cfg.dbPort}',
         'OPTIONS': {
@@ -23,6 +22,10 @@ DATABASES = {
 
 # No trailing slash!
 SENTRY_URL_PREFIX = '${cfg.url}'
+${optionalString (cfg.prefix!="") ''
+FORCE_SCRIPT_NAME = '${cfg.prefix}'
+STATIC_URL = '${cfg.prefix}/_static/'
+''}
 
 # SENTRY_KEY is a unique randomly generated secret key for your server, and it
 # acts as a signing token
@@ -92,6 +95,13 @@ in {
         '';
       };
 
+      prefix = mkOption {
+        default = "";
+        description = ''
+          Url prefix on which sentry will run
+        '';
+      };
+
       dbCreateUser = mkOption {
         default = true;
         description = ''
@@ -124,13 +134,6 @@ in {
         default = "sentry";
         description = ''
           Database user
-        '';
-      };
-
-      dbPass= mkOption {
-        default = "sentry";
-        description = ''
-          Database password
         '';
       };
 
@@ -211,13 +214,12 @@ in {
       '';
       serviceConfig.User = "sentry";
       serviceConfig.Group = "sentry";
+      serviceConfig.PermissionsStartOnly = true;
       preStart = ''
         if ! test -e "${dbDir}/db-created"; then
           ${ if cfg.dbCreateUser then ''
             ${pkgs.postgresql}/bin/createuser --no-superuser --no-createdb --no-createrole ${cfg.dbUser} || true
-            ${pkgs.postgresql}/bin/dropdb -E utf-8 ${cfg.dbBase} || true
-            ${pkgs.postgresql}/bin/createdb --owner ${cfg.dbUser} ${cfg.dbBase}
-            ${pkgs.postgresql}/bin/psql -d ${cfg.dbBase} -c "ALTER USER ${cfg.dbUser} WITH PASSWORD '${cfg.dbPass}';"
+            ${pkgs.postgresql}/bin/createdb -E utf-8 --owner ${cfg.dbUser} ${cfg.dbBase} || true
          '' else "" }
 
           # populate DB
@@ -238,5 +240,11 @@ in {
     };
 
     users.extraGroups.sentry.gid = 12346;
+
+    environment.systemPackages = [ cfg.package ];
+
+    services.sentry.package = (import ./packages.nix {}).sentry;
+
+    services.postgresql.enable = mkDefault true;
   };
 }
