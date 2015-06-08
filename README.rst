@@ -2,13 +2,7 @@
 X-Truder.net
 ============
 
-Common configuration for x-truder networks
-
-Structure:
-----------
-
-- Nix folder contains common nix modules for systems deployed with nixops
-- Keys folder contains public keys used in deployment
+Library of common nix profiles used in various deployments.
 
 Creating nixos deployment:
 --------------------------
@@ -39,22 +33,3 @@ You can prehash system passwords using command like::
 
 In nix you can set `hashedPassword`, for more info please reffer to my home
 system configuration.
-
-Private data (passwords (that you can't prehash), certificates):
-----------------------------------------------------------------
-
-For private data i use `git-encrypt <https://github.com/shadowhand/git-encrypt>`_.
-You simply create repo and do::
-
-    $ gitcrypt init
-
-and provide password and salt. Data will automaticly be encrypted when you push
-changes to your git server. When you want to decrypt data you simply::
-
-    $ gitcrypt init
-    $ git reset --hard HEAD
-
-Building iso image:
--------------------
-
-    $ NIXOS_CONFIG=$(pwd)/iso.nix nix-build '<nixos>' -A config.system.build.isoImage --argstr system x86_64-linux

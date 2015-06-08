@@ -15,11 +15,13 @@ let
         curl -L ${package} > $dir/pkg.nixpkg
         nix-install-package $dir/pkg.nixpkg --non-interactive -p $dir/profile
         newlink=$(readlink -e $dir/profile)
+        [ -n $newlink] && exit 1
         echo "Latest profile: $newlink"
         if [ "$oldlink" != "$newlink" ]; then
           nix-install-package $dir/pkg.nixpkg --non-interactive -p ${cfg.profile}
         else
           echo "Already updated"
+          exit 0
         fi
         if [ "$oldlink" != "$newlink" ] || [ ! -f ${cfg.profile}.latest ]; then
           echo "Updating profile link"

@@ -15,6 +15,25 @@ in {
         type = types.attrs;
       };
 
+      upstreams = mkOption {
+        description = "Nginx upstreams.";
+        apply = u: pkgs.writeText "nginx-upstreams.config" (
+          concatStringsSep "\n" (mapAttrsToList (name: val: ''
+            upstream ${name} {
+              ${concatMapStringsSep "\n" (s: "server ${s};") val.servers}
+            }
+          '') u)
+        );
+        type = types.attrsOf types.optionSet;
+        options = [{
+          servers = mkOption {
+            description = "List of servers.";
+            apply = unique;
+            type = types.listOf types.str;
+          };
+        }];
+      };
+
       corsAllowOrigin = mkOption {
         default = "*";
         description = "Allowed origin for cors.";
@@ -31,7 +50,7 @@ in {
 
   config = {
     profiles.nginx.snippets = {
-      logging = ''
+      syslog = ''
         syslog daemon nginx;
       '';
 
@@ -51,6 +70,7 @@ in {
 
       proxy = ''
         proxy_set_header        Host $host;
+        proxy_set_header        X-Forwarded-Host $host;
         proxy_set_header        X-Forwarded-Server $host;
         proxy_set_header        X-Real-IP $remote_addr;
         proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -63,6 +83,16 @@ in {
         proxy_read_timeout      90s;
         proxy_buffering         off;
         proxy_temp_file_write_size 64k;
+      '';
+
+      ws = ''
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
       '';
 
       logjson = ''
@@ -123,6 +153,8 @@ in {
                 ${corsHeaders}
             }
         '';
+
+        extraServers = mkDefault "";
     };
 
     services.nginx.package = pkgs.nginx.override { syslog = true; };

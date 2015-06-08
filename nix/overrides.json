@@ -1,6 +1,0 @@
-{
-  "*": {
-    "setuptools": {"append_deps": ["pytest[test]"]},
-    "sure": {"append_deps": ["nose[test]", "mock[test]", "six"]}
-  }
-}
