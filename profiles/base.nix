@@ -57,7 +57,7 @@ with lib;
   # Yes please
   nixpkgs.config.allowUnfree = true;
 
-  networking.domain = config.attributes.projectName;
+  networking.domain = mkDefault config.attributes.projectName;
 
   services.openssh.enable = true;
 }

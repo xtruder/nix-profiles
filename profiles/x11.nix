@@ -7,7 +7,7 @@ with pkgs.lib;
     enable = mkEnableOption "Whether to enable x11 server profile.";
   };
 
-  config = mkIf config.profiles.x11.enable {
+  config = {
     services.xserver = {
       enable = true;
       autorun = true;

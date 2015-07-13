@@ -15,10 +15,10 @@ in {
       jenkins.enable = true;
       jenkins.port = 8033;
       jenkinsSlave.enable = true;
-      sinopia.enable = mkDefault true;
+      #sinopia.enable = mkDefault true;
     };
 
-    users.extraUsers.jenkins.extraGroups = mkIf config.services.docker.enable [ "users" "docker" ];
+    users.extraUsers.jenkins.extraGroups = mkIf config.virtualisation.docker.enable [ "users" "docker" ];
     systemd.services.jenkins.serviceConfig.TimeoutStartSec = "6min";
     systemd.services.jenkins.environment.GIT_SSL_CAINFO =
       ''/etc/ssl/certs/ca-bundle.crt'';
@@ -26,7 +26,7 @@ in {
 
     profiles.nginx.upstreams = {
       jenkins = { servers = [ "127.0.0.1:8033"]; };
-      sinopia = { servers = [ "127.0.0.1:${toString config.services.sinopia.port}"]; };
+      #sinopia = { servers = [ "127.0.0.1:${toString config.services.sinopia.port}"]; };
     };
 
     profiles.nginx.snippets.ci = ''
@@ -36,11 +36,11 @@ in {
       }
     '';
 
-    profiles.nginx.snippets.sinopia = ''
-      location / {
-        proxy_pass http://sinopia;
-        include ${config.profiles.nginx.snippets.proxy};
-      }
-    '';
+    #profiles.nginx.snippets.sinopia = ''
+      #location / {
+        #proxy_pass http://sinopia;
+        #include ${config.profiles.nginx.snippets.proxy};
+      #}
+    #'';
   };
 }

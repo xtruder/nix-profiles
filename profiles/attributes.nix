@@ -45,6 +45,12 @@
       type = types.str;
     };
 
+    domain = mkOption {
+      description = "Project domain";
+      default = config.attributes.projectName;
+      type = types.str;
+    };
+
     recoveryKey = mkOption {
       description = "SSH recovery key";
       default = "";

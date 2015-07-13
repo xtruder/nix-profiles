@@ -12,7 +12,6 @@ with lib;
       consul = {
         enable = true;
         webUi = mkIf config.attributes.tags.master true;
-        joinNodes = config.attributes.clusterNodes;
         interface = {
           advertise = "eth0";
           bind = "eth0";
@@ -28,18 +27,9 @@ with lib;
               inherit (c) name script interval;
             }) s.checks);
           }) config.attributes.services);
+          retry_join = config.attributes.clusterNodes;
         };
-        alerts = {
-          enable = config.attributes.tags.alerting;
-          package = overrideDerivation pkgs.consul-alerts (p:{
-            src = pkgs.fetchFromGitHub {
-              owner = "offlinehacker";
-              repo = "consul-alerts";
-              rev = "hipchat";
-              sha256 = "19x1acdnd8c1vwagjb499wmilpvbfgn5n6wvy74dlk8qv29cjvb9";
-            };
-          });
-        };
+        alerts.enable = config.attributes.tags.alerting;
       };
     };
 

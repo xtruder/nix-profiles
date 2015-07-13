@@ -8,6 +8,14 @@ let
 in {
   options = {
     profiles.nginx = {
+      enable = mkEnableOption "Whether to enable nginx profile.";
+
+      config = mkOption {
+        description = "Nginx config.";
+        default = "";
+        type = types.lines;
+      };
+
       snippets = mkOption {
         description = "Nginx config snippets.";
         apply = snippets:
@@ -32,6 +40,7 @@ in {
             type = types.listOf types.str;
           };
         }];
+        default = {};
       };
 
       corsAllowOrigin = mkOption {
@@ -49,9 +58,26 @@ in {
   };
 
   config = {
+    services.nginx = {
+      enable = true;
+      config = ''
+        events {
+          worker_connections 1024;
+        }
+
+        http {
+          include ${config.profiles.nginx.snippets.http};
+          include ${config.profiles.nginx.upstreams};
+
+          ${cfg.config}
+        }
+      '';
+    };
+
     profiles.nginx.snippets = {
       syslog = ''
-        syslog daemon nginx;
+        error_log syslog:server=unix:/var/log;
+        access_log syslog:server=unix:/var/log;
       '';
 
       http = ''
@@ -156,7 +182,5 @@ in {
 
         extraServers = mkDefault "";
     };
-
-    services.nginx.package = pkgs.nginx.override { syslog = true; };
   };
 }

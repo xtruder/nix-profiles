@@ -20,7 +20,7 @@ let
         {{if $proxy.port }} listen {{$proxy.port}}; {{end}}
         server_name {{$proxy.host}};
 
-        {{if $proxy.ssl   }}
+        {{if $proxy.ssl}}
         ssl_certificate           /etc/ssl/localcerts/{{$proxy.sslCrt}};
         ssl_certificate_key       /etc/ssl/localcerts/{{$proxy.sslKey}};
 
@@ -30,6 +30,11 @@ let
         ssl_ciphers HIGH:!aNULL:!eNULL:!EXPORT:!CAMELLIA:!DES:!MD5:!PSK:!RC4;
         ssl_prefer_server_ciphers on;
         {{ end }}
+
+        {{if $proxy.auth}}
+        auth_basic "Restricted";
+        auth_basic_user_file      /etc/nginx/.htpasswd;
+        {{end}}
 
         {{if $proxy.path }}
         {{range $path := $proxy.path}}
@@ -128,6 +133,10 @@ in {
     systemd.services.confd.serviceConfig.Restart = "on-failure";
     systemd.services.confd.preStart = ''
       ${pkgs.goPackages.confd}/bin/confd -onetime -config-file /etc/confd/conf.d/kubernetes.toml
+    '';
+
+    profiles.nginx.config = ''
+      include /var/lib/kubernetes/nginx.conf;
     '';
   };
 }
