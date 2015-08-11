@@ -60,4 +60,8 @@ with lib;
   networking.domain = mkDefault config.attributes.projectName;
 
   services.openssh.enable = true;
+
+  services.journald.extraConfig = ''
+    SystemMaxUse=256M
+  '';
 }

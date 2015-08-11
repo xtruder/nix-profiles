@@ -2,9 +2,22 @@
 
 with lib;
 
-{
+let
+  cfg = config.profiles.consul;
+
+in {
   options.profiles.consul = {
     enable = mkEnableOption "Whether to enable consul profile.";
+
+    join = mkOption {
+      description = "List of nodes to join";
+      default = [];
+    };
+
+    upstreamDns = mkOption {
+      description = "Upstream dns server.";
+      default = config.attribute.nameservers;
+    };
   };
 
   config = {
@@ -12,35 +25,40 @@ with lib;
       consul = {
         enable = true;
         webUi = mkIf config.attributes.tags.master true;
-        interface = {
-          advertise = "eth0";
-          bind = "eth0";
-        };
         dropPrivileges = false;
         extraConfig = {
+          advertise_addr = config.attributes.privateIPv4;
+          bind_addr = config.attributes.privateIPv4;
+          addresses = {
+            dns = config.attributes.privateIPv4;
+            http = config.attributes.privateIPv4;
+          };
+          ports = {
+            dns = 53;
+          };
           server = if config.attributes.tags.master then true else false;
           bootstrap = if config.attributes.tags.master then true else false;
           services = attrValues (mapAttrs (n: s: {
             inherit (s) name port;
             address = s.host;
             checks = attrValues (mapAttrs (n: c: {
+              notes = c.name;
               inherit (c) name script interval;
             }) s.checks);
           }) config.attributes.services);
-          retry_join = config.attributes.clusterNodes;
+          retry_join = cfg.join;
+          recursors = [cfg.upstreamDns];
+          domain = config.networking.domain;
         };
-        alerts.enable = config.attributes.tags.alerting;
+        alerts.listenAddr = "0.0.0.0:9000";
+        alerts.enable = config.attributes.tags.master;
       };
     };
 
-    profiles.nginx.snippets.consul = ''
-      location /ui {
-        proxy_pass http://127.0.0.1:8500;
-      }
-
-      location /v1 {
-        proxy_pass http://127.0.0.1:8500;
-      }
-    '';
+    attributes.services.consul = mkIf config.attributes.tags.master {
+      host = config.attributes.privateIPv4;
+      port = 8500;
+      proxy.enable = true;
+    };
   };
 }

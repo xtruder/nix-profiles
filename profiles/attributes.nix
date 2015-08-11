@@ -39,6 +39,12 @@
       type = types.str;
     };
 
+    nameservers = mkOption {
+      description = "List of nameservers.";
+      default = ["8.8.8.8" "8.8.4.4"];
+      type = types.listOf types.str;
+    };
+
     projectName = mkOption {
       description = "Name of the project";
       default = "dummy-project";
@@ -81,15 +87,18 @@
             default = null;
           };
 
-          checkService = mkOption {
-            description = "Name of the service to check if it is running.";
-            type = types.str;
-            default = "";
+          proxy = {
+            enable = mkOption {
+              description = "whether to enable http proxy to service.";
+              default = false;
+              type = types.bool;
+            };
           };
 
           checks = mkOption {
             description = "Definitions for service checks.";
             type = types.attrsOf types.optionSet;
+            default = {};
             options = [({name, config, ...}: {
               options = {
                 name = mkOption {
@@ -119,5 +128,7 @@
   config = {
     # This is default recovery key for all the servers
     attributes.recoveryKey = mkDefault "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFjCcU9GXilOB4cnuw1FkAgn1skXz3MrucFmDowU6kZr recovery@x-truder.net";
+
+    networking.nameservers = mkDefault config.attributes.nameservers;
   };
 }

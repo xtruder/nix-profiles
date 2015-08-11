@@ -24,11 +24,6 @@ in {
       ''/etc/ssl/certs/ca-bundle.crt'';
     systemd.services.jenkins.path = [ pkgs.docker ];
 
-    profiles.nginx.upstreams = {
-      jenkins = { servers = [ "127.0.0.1:8033"]; };
-      #sinopia = { servers = [ "127.0.0.1:${toString config.services.sinopia.port}"]; };
-    };
-
     profiles.nginx.snippets.ci = ''
       location / {
         proxy_pass http://jenkins;

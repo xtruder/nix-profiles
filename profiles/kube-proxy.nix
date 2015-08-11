@@ -15,14 +15,23 @@ let
     {{$p := json $data.metadata.annotations.kubernetesReverseproxy }}
     {{range $proxy := $p.hosts}}
     {{if $proxy.host }}
+
+    {{ if $proxy.sslRewrite }}
+    server {
+      listen 80;
+      server_name {{$proxy.host}};
+      return 301 {{$proxy.sslRewrite}};
+    }
+    {{ end }}
+
     server {
 
-        {{if $proxy.port }} listen {{$proxy.port}}; {{end}}
+        listen {{ if $proxy.listenPort }}{{ $proxy.listenPort }}{{else}}{{ if $proxy.ssl }}443{{else}}80{{end}}{{end}};
         server_name {{$proxy.host}};
 
         {{if $proxy.ssl}}
-        ssl_certificate           /etc/ssl/localcerts/{{$proxy.sslCrt}};
-        ssl_certificate_key       /etc/ssl/localcerts/{{$proxy.sslKey}};
+        ssl_certificate           /run/secrets/{{$proxy.sslCrt}};
+        ssl_certificate_key       /run/secrets/{{$proxy.sslKey}};
 
         ssl on;
         ssl_session_cache  builtin:1000  shared:SSL:10m;
@@ -33,7 +42,7 @@ let
 
         {{if $proxy.auth}}
         auth_basic "Restricted";
-        auth_basic_user_file      /etc/nginx/.htpasswd;
+        auth_basic_user_file      /run/secrets/{{$proxy.htpasswd}};
         {{end}}
 
         {{if $proxy.path }}

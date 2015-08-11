@@ -143,12 +143,6 @@ with lib;
 
     };
 
-    profiles.nginx.upstreams = {
-      ripple-data-api = { servers = ["localhost:5993"]; };
-      rippled = { servers = ["localhost:5006"]; };
-      ripple-rest = { servers = ["localhost:5990"]; };
-    };
-
     profiles.nginx.snippets.ripple = ''
       location / {
         include ${config.profiles.nginx.snippets.ws};

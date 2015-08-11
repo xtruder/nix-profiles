@@ -26,23 +26,31 @@ in {
       };
 
       influxdb = {
+        enable = mkOption {
+          description = "Whether to enable influxdb.";
+          type = types.bool;
+          default = config.attributes.tags.storage;
+        };
+
         db = mkOption {
           description = "Influxdb database.";
           type = types.str;
           default = "stats";
         };
-      };
+     };
 
-      grafana.prefix = mkOption {
-        description = "URL prefix for grafana.";
-        type = types.str;
-        default = "/grafana";
-      };
+      grafana = {
+        enable = mkOption {
+          description = "Whether to enable grafana.";
+          type = types.bool;
+          default = config.attributes.tags.master;
+        };
 
-      seyren.prefix = mkOption {
-        description = "URL prefix for seyren.";
-        type = types.str;
-        default = "/seyren";
+        domain = mkOption {
+          description = "Grafana domain.";
+          type = types.str;
+          default = "grafana.${config.networking.domain}";
+        };
       };
     };
   };
@@ -86,7 +94,8 @@ in {
       };
 
       influxdb = {
-        enable = mkDefault true;
+        enable = cfg.influxdb.enable;
+        bindAddress = config.attributes.privateIPv4;
         inputPluginsConfig = ''
           [input_plugins.graphite]
           enabled = true
@@ -95,17 +104,8 @@ in {
         '';
       };
 
-      grafana = {
-        enable = true;
-        rootUrl = "%(protocol)s://%(domain)s:%(http_port)s${cfg.grafana.prefix}";
-      };
-
-      statsd = {
-        enable = mkDefault true;
-        backends = [ "graphite" ];
-        graphiteHost = cfg.graphite.host;
-        graphitePort = cfg.graphite.port;
-      };
+      grafana.enable = cfg.grafana.enable;
+      grafana.addr = config.attributes.privateIPv4;
 
       collectd = {
         enable = mkDefault true;
@@ -152,32 +152,22 @@ in {
       };
     };
 
-    systemd.services.influxdb.postStart = ''
-      export PORT=${toString config.services.influxdb.apiPort}
-      export PATH=${pkgs.curl}/bin:$PATH
-
-      # Add stats database
-      curl -s -o /dev/null  -X POST "http://localhost:$PORT/db?u=root&p=root" \
-        -d '{"name": "stats"}' || true
-    '';
-
-    profiles.nginx.upstreams = {
-      grafana = { servers = [ "127.0.0.1:3000"]; };
-      seyren = { servers = [ "127.0.0.1:8081" ]; };
-      graphite-api = { servers = [ "127.0.0.1:8082" ]; };
+    attributes.services.grafana = mkIf cfg.grafana.enable {
+      host = config.attributes.privateIPv4;
+      port = config.services.grafana.port;
+      proxy.enable = true;
     };
 
-    profiles.nginx.snippets.monitoring = ''
-      location ${cfg.grafana.prefix} {
-        proxy_pass http://grafana;
-        include ${config.profiles.nginx.snippets.proxy};
-        rewrite ${cfg.grafana.prefix}(.*) $1  break;
-      }
+    attributes.services.influxdb-api = mkIf cfg.influxdb.enable {
+      host = config.attributes.privateIPv4;
+      port = config.services.influxdb.apiPort;
+      proxy.enable = true;
+    };
 
-      location ${cfg.seyren.prefix} {
-        proxy_pass http://seyren;
-        rewrite ${cfg.seyren.prefix}(.*) /$1  break;
-      }
-    '';
+    attributes.services.influxdb = mkIf cfg.influxdb.enable {
+      host = config.attributes.privateIPv4;
+      port = config.services.influxdb.adminPort;
+      proxy.enable = true;
+    };
   };
 }

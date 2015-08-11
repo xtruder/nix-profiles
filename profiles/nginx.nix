@@ -16,31 +16,25 @@ in {
         type = types.lines;
       };
 
+      proxy = {
+        enable = mkOption {
+          description = "Whether to enable proxy for defined services.";
+          default = false;
+          type = types.bool;
+        };
+
+        domain = mkOption {
+          description = "Nginx proxy domain suffix.";
+          default = config.attributes.domain;
+          type = types.str;
+        };
+      };
+
       snippets = mkOption {
         description = "Nginx config snippets.";
         apply = snippets:
           mapAttrs (n: s: pkgs.writeText "nginx-${n}.config" s) snippets;
         type = types.attrs;
-      };
-
-      upstreams = mkOption {
-        description = "Nginx upstreams.";
-        apply = u: pkgs.writeText "nginx-upstreams.config" (
-          concatStringsSep "\n" (mapAttrsToList (name: val: ''
-            upstream ${name} {
-              ${concatMapStringsSep "\n" (s: "server ${s};") val.servers}
-            }
-          '') u)
-        );
-        type = types.attrsOf types.optionSet;
-        options = [{
-          servers = mkOption {
-            description = "List of servers.";
-            apply = unique;
-            type = types.listOf types.str;
-          };
-        }];
-        default = {};
       };
 
       corsAllowOrigin = mkOption {
@@ -67,7 +61,18 @@ in {
 
         http {
           include ${config.profiles.nginx.snippets.http};
-          include ${config.profiles.nginx.upstreams};
+
+          ${concatStrings (mapAttrsToList (n: svc: ''
+          server {
+            listen ${config.attributes.privateIPv4}:80;
+            server_name ${svc.name}.${cfg.proxy.domain};
+
+            location / {
+              include ${config.profiles.nginx.snippets.proxy};
+              proxy_pass http://${svc.host}:${toString svc.port};
+            }
+          }
+          '') (filterAttrs (n: v: v.proxy.enable) config.attributes.services))}
 
           ${cfg.config}
         }

@@ -12,6 +12,8 @@
   ./kubernetes.nix
   ./kube-proxy.nix
   ./kube-logging.nix
+  ./kube-vpn.nix
   ./dummy.nix
   ./x11.nix
+  ./etcd.nix
 ]
