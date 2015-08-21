@@ -28,7 +28,7 @@ in {
 
     dns = mkOption {
       description = "Kubernetes dns server";
-      default = "kubernetes.${cfg.searchDomain}";
+      default = "10.244.1.1";
     };
 
     certPath = mkOption {

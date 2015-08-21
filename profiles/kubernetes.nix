@@ -121,11 +121,6 @@ in {
           (optionals cfg.master ["master"]) ++
           (optionals cfg.node ["node"]);
 
-        # If running a master join all compute nodes
-        controllerManager.machines =
-          map (n: n.config.attributes.privateIPv4)
-          (filter (n: n.config.attributes.tags.compute) (attrValues nodes));
-
         apiserver = {
           address = "0.0.0.0";
           publicAddress = cfg.network.ipAddress;
