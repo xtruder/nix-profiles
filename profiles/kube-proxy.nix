@@ -95,7 +95,7 @@ let
             proxy_set_header Connection "upgrade";
             {{ end }}
 
-            proxy_pass http://{{$data.spec.portalIP}}:{{$proxy.port}};
+            proxy_pass http://{{$data.spec.clusterIP}}:{{$proxy.port}};
         }
         {{ end }}
 
@@ -141,7 +141,7 @@ in {
 
     systemd.services.confd.serviceConfig.Restart = "on-failure";
     systemd.services.confd.preStart = ''
-      ${pkgs.goPackages.confd}/bin/confd -onetime -config-file /etc/confd/conf.d/kubernetes.toml
+      ${pkgs.confd}/bin/confd -onetime -config-file /etc/confd/conf.d/kubernetes.toml
     '';
 
     profiles.nginx.config = ''

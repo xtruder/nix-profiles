@@ -129,6 +129,6 @@
     # This is default recovery key for all the servers
     attributes.recoveryKey = mkDefault "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFjCcU9GXilOB4cnuw1FkAgn1skXz3MrucFmDowU6kZr recovery@x-truder.net";
 
-    networking.nameservers = mkDefault config.attributes.nameservers;
+    #networking.nameservers = mkDefault config.attributes.nameservers;
   };
 }

@@ -62,7 +62,7 @@ in {
     };
 
     systemd.services.confd.preStart = ''
-      ${pkgs.goPackages.confd}/bin/confd -onetime -config-file /etc/confd/conf.d/fluentd.toml
+      ${pkgs.confd}/bin/confd -onetime -config-file /etc/confd/conf.d/fluentd.toml
     '';
 
     services.fluentd = {

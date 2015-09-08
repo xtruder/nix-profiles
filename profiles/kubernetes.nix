@@ -99,9 +99,9 @@ in {
       firewall = {
         allowedTCPPortRanges = [{from = 10000; to = 65535;}];
         extraCommands = ''
-          iptables -A nixos-fw -p udp --dport 53 -i kbr -j nixos-fw-accept
-          iptables -A nixos-fw -p tcp --dport 53 -i kbr -j nixos-fw-accept
-          iptables -A nixos-fw -p tcp --dport 6443 -i kbr -j nixos-fw-accept
+          iptables -A nixos-fw -p udp --dport 53 -i kbr -m comment --comment "allow skydns on kubernetes network"  -j nixos-fw-accept
+          iptables -A nixos-fw -p tcp --dport 53 -i kbr -m comment --comment "allow skydns on kubernetes network"  -j nixos-fw-accept
+          iptables -A nixos-fw -p tcp --dport 6443 -i kbr -m comment --comment "allow kubernetes on kubernetes network"  -j nixos-fw-accept
         '';
       };
     };
@@ -126,6 +126,7 @@ in {
           publicAddress = cfg.network.ipAddress;
           tokenAuth = cfg.tokens;
           portalNet = cfg.network.servicesSubnet;
+          admissionControl = ["NamespaceLifecycle" "NamespaceExists" "LimitRanger" "SecurityContextDeny" "ServiceAccount" "ResourceQuota"];
         };
 
         kubelet = {
@@ -143,6 +144,11 @@ in {
       skydns.nameservers =
         map (v: v + ":53") config.attributes.nameservers;
     };
+
+    systemd.services.kubelet.serviceConfig.Restart = "always";
+    systemd.services.kubelet.serviceConfig.RestartSec = "5s";
+    systemd.services.docker.serviceConfig.Restart = "always";
+    systemd.services.docker.serviceConfig.RestartSec = "5s";
 
     virtualisation.docker.extraOptions =
       ''--iptables=false --ip-masq=false -b ${cfg.network.interface} --log-level="warn"'';

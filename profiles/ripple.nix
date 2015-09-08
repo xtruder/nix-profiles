@@ -60,10 +60,6 @@ with lib;
         };
       };
 
-      rippleDataApi = {
-        enable = true;
-      };
-
       rippleRest = {
         enable = true;
         debug = true;
@@ -81,8 +77,6 @@ with lib;
         #];
       #};
     };
-
-    systemd.services.ripple-data-api.serviceConfig.PartOf = ["rippled.service"];
 
     attributes.services.rippled = let
       checkRipple = cmd: match: check:
@@ -110,19 +104,19 @@ with lib;
       };
     };
 
-    attributes.services.ripple-data-api = {
-      port = 5993;
-      checks = {
-        active_api = {
-          script = "/var/run/current-system/sw/bin/systemctl is-active ripple-data-api";
-          interval = "10s";
-        };
-        active_importer = {
-          script = "/var/run/current-system/sw/bin/systemctl is-active ripple-data-importer";
-          interval = "10s";
-        };
-      };
-    };
+    #attributes.services.ripple-data-api = {
+      #port = 5993;
+      #checks = {
+        #active_api = {
+          #script = "/var/run/current-system/sw/bin/systemctl is-active ripple-data-api";
+          #interval = "10s";
+        #};
+        #active_importer = {
+          #script = "/var/run/current-system/sw/bin/systemctl is-active ripple-data-importer";
+          #interval = "10s";
+        #};
+      #};
+    #};
 
     attributes.services.ripple-rest = {
       port = 5990;
@@ -146,17 +140,12 @@ with lib;
     profiles.nginx.snippets.ripple = ''
       location / {
         include ${config.profiles.nginx.snippets.ws};
-        proxy_pass http://rippled;
-      }
-
-      location /api {
-        include ${config.profiles.nginx.snippets.proxy};
-        proxy_pass http://ripple-data-api;
+        proxy_pass http://localhost:5006;
       }
 
       location /v1 {
         include ${config.profiles.nginx.snippets.proxy};
-        proxy_pass http://ripple-rest;
+        proxy_pass http://localhost:5990;
       }
     '';
   };

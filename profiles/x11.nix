@@ -1,13 +1,15 @@
-{ config, pkgs, ... }:
+{ config, lib, ... }:
 
-with pkgs.lib;
+with lib;
 
-{
+let
+  cfg = config.profiles.x11;
+in {
   options.profiles.x11 = {
     enable = mkEnableOption "Whether to enable x11 server profile.";
   };
 
-  config = {
+  config = mkIf cfg.enable {
     services.xserver = {
       enable = true;
       autorun = true;

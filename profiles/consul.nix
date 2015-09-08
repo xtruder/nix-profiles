@@ -50,8 +50,11 @@ in {
           recursors = [cfg.upstreamDns];
           domain = config.networking.domain;
         };
-        alerts.listenAddr = "0.0.0.0:9000";
-        alerts.enable = config.attributes.tags.master;
+        alerts = {
+          listenAddr = "0.0.0.0:9000";
+          enable = config.attributes.tags.master;
+          consulAddr = config.attributes.privateIPv4 + ":8500";
+        };
       };
     };
 

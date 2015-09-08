@@ -103,7 +103,7 @@ in {
     '';
     systemd.services.ovsconfig = {
       wantedBy = [ "multi-user.target" ];
-      after = [ "ovsMonitorIpsec.service" "network.target" ];
+      after = [ "vswitchd.service" "ovs-monitor-ipsec.service" ];
       serviceConfig.Type = "oneshot";
       script = ''
         export PATH=/var/run/current-system/sw/bin:$PATH
