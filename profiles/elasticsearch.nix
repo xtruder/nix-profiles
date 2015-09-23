@@ -9,7 +9,7 @@ in {
     enable = mkOption {
       description = "Whether to enable elasticsearch.";
       type = types.bool;
-      default = config.attributes.tags.storage;
+      default = false;
     };
 
     keystore = {
@@ -35,14 +35,21 @@ in {
         type = types.path;
       };
     };
+
+    kibana = {
+      enable = mkOption {
+        description = "Wheter to enable kibana.";
+        type = types.bool;
+        default = config.attributes.tags.master;
+      };
+    };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf cfg.enable (mkMerge [{
     services = {
       elasticsearch.enable = mkDefault true;
       elasticsearch.host = "0.0.0.0";
-      elasticsearch.plugins = mkIf (config.attributes.tags.master) [
-        pkgs.elasticsearchPlugins.elasticsearch_kopf
+      elasticsearch.plugins = [
         pkgs.elasticsearchPlugins.search_guard
       ];
       elasticsearch.cluster_name = config.attributes.projectName;
@@ -65,6 +72,17 @@ in {
         #searchguard.ssl.transport.node.encforce_hostname_verification: true
         #searchguard.ssl.transport.node.encforce_hostname_verification.resolve_host_name: true
 
-    };
-  };
+      };
+    }
+    (mkIf cfg.kibana.enable {
+      services.kibana.enable = true;
+      services.kibana.host = config.attributes.privateIPv4;
+
+      attributes.services.kibana = {
+        host = config.attributes.privateIPv4;
+        port = 5601;
+        proxy.enable = true;
+      };
+    })
+  ]);
 }

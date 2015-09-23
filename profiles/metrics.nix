@@ -12,6 +12,12 @@ in {
       enable = mkEnableOption "Whether to enable monitoring profile.";
 
       graphite = {
+        enable = mkOption {
+          description = "Whether to enable grapite api.";
+          type = types.bool;
+          default = false;
+        };
+
         host = mkOption {
           description = "Host for graphite.";
           type = types.str;
@@ -29,7 +35,7 @@ in {
         enable = mkOption {
           description = "Whether to enable influxdb.";
           type = types.bool;
-          default = config.attributes.tags.storage;
+          default = false;
         };
 
         db = mkOption {
@@ -43,7 +49,7 @@ in {
         enable = mkOption {
           description = "Whether to enable grafana.";
           type = types.bool;
-          default = config.attributes.tags.master;
+          default = false;
         };
 
         domain = mkOption {
@@ -61,7 +67,7 @@ in {
     ];
 
     services = {
-      graphite = mkIf attrs.tags.master {
+      graphite = mkIf cfg.graphite.enable {
         api = {
           enable = mkDefault true;
           host = "0.0.0.0";

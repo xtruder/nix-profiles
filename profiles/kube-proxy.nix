@@ -145,7 +145,7 @@ in {
     '';
 
     profiles.nginx.config = ''
-      include /var/lib/kubernetes/nginx.conf;
+      include /var/lib/kubernetes/ngin*.conf;
     '';
   };
 }

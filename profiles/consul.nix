@@ -52,7 +52,7 @@ in {
         };
         alerts = {
           listenAddr = "0.0.0.0:9000";
-          enable = config.attributes.tags.master;
+          enable = config.attributes.tags.alerting;
           consulAddr = config.attributes.privateIPv4 + ":8500";
         };
       };

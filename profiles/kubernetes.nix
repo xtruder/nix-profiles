@@ -135,7 +135,7 @@ in {
           clusterDomain = config.attributes.domain;
         };
 
-        reverseProxy.enable = true;
+        reverseProxy.enable = mkDefault true;
         logging.enable = true;
       };
 
