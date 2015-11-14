@@ -40,7 +40,7 @@ in {
       enable = mkOption {
         description = "Wheter to enable kibana.";
         type = types.bool;
-        default = config.attributes.tags.master;
+        default = elem "master" config.attributes.tags;
       };
     };
   };

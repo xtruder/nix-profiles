@@ -49,10 +49,15 @@ with lib;
     openssl
     nmap
     tcpdump
+    sysdig
+    wget
+    lsof
+    hdparm
   ];
 
   # Basic additional kernel modules
-  boot.kernelModules = [ "atkbd" "tun" "fuse"  ];
+  boot.kernelModules = [ "atkbd" "tun" "fuse" "overlay" ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.sysdig ];
 
   # Yes please
   nixpkgs.config.allowUnfree = true;
@@ -64,4 +69,6 @@ with lib;
   services.journald.extraConfig = ''
     SystemMaxUse=256M
   '';
+
+  nix.binaryCachePublicKeys = ["hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=" ];
 }

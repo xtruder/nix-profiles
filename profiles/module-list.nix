@@ -2,6 +2,8 @@
   ./base.nix
   ./attributes.nix
   ./metrics.nix
+  ./onfailure.nix
+  ./collectd.nix
   ./logging.nix
   ./nginx.nix
   ./consul.nix

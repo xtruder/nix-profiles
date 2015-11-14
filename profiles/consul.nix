@@ -11,20 +11,28 @@ in {
 
     join = mkOption {
       description = "List of nodes to join";
-      default = [];
+      default = mkDefault config.attributes.clusterNodes;
+    };
+
+    alerts = mkOption {
+      description = "Whether to enable consul alerts";
+      default = elem "master" config.attributes.tags;
     };
 
     upstreamDns = mkOption {
       description = "Upstream dns server.";
-      default = config.attribute.nameservers;
+      default = config.attributes.nameservers;
     };
   };
 
-  config = {
-    services = mkIf config.profiles.consul.enable {
+  config = mkIf config.profiles.consul.enable {
+    systemd.services.consul.serviceConfig.Restart = "always";
+    systemd.services.consul.serviceConfig.RestartSec = "30s";
+
+    services = {
       consul = {
         enable = true;
-        webUi = mkIf config.attributes.tags.master true;
+        webUi = mkDefault (elem "master" config.attributes.tags);
         dropPrivileges = false;
         extraConfig = {
           advertise_addr = config.attributes.privateIPv4;
@@ -36,8 +44,8 @@ in {
           ports = {
             dns = 53;
           };
-          server = if config.attributes.tags.master then true else false;
-          bootstrap = if config.attributes.tags.master then true else false;
+          server = if (elem "master" config.attributes.tags) then true else false;
+          bootstrap = if (elem "leader" config.attributes.tags) then true else false;
           services = attrValues (mapAttrs (n: s: {
             inherit (s) name port;
             address = s.host;
@@ -52,13 +60,13 @@ in {
         };
         alerts = {
           listenAddr = "0.0.0.0:9000";
-          enable = config.attributes.tags.alerting;
+          enable = true;
           consulAddr = config.attributes.privateIPv4 + ":8500";
         };
       };
     };
 
-    attributes.services.consul = mkIf config.attributes.tags.master {
+    attributes.services.consul = mkIf (elem "master" config.attributes.tags) {
       host = config.attributes.privateIPv4;
       port = 8500;
       proxy.enable = true;

@@ -11,13 +11,13 @@ in {
 
     master = mkOption {
       description = "Wheter node is master";
-      default = config.attributes.tags.master;
+      default = pkgs.lib.elem "master" config.attributes.tags;
       type = types.bool;
     };
 
     node = mkOption {
       description = "Wheter node is a compute node";
-      default = config.attributes.tags.compute;
+      default = pkgs.lib.elem "compute" config.attributes.tags;
       type = types.bool;
     };
 
@@ -40,6 +40,20 @@ in {
         default = "";
       };
     };
+
+    #influxdb = {
+      #host = mkOption {
+        #description = "influxdb host for cadvisor";
+        #type = types.str;
+        #default = "localhost";
+      #};
+
+      #port = mkOption {
+        #description = "influxdb port for cadvisor";
+        #type = types.int;
+        #default =
+      #};
+    #};
 
     network = {
       interface = mkOption {
@@ -127,15 +141,16 @@ in {
           tokenAuth = cfg.tokens;
           portalNet = cfg.network.servicesSubnet;
           admissionControl = ["NamespaceLifecycle" "NamespaceExists" "LimitRanger" "SecurityContextDeny" "ServiceAccount" "ResourceQuota"];
+          allowPrivileged = true;
         };
 
         kubelet = {
-          hostname = config.attributes.privateIPv4;
+          address = mkDefault config.attributes.privateIPv4;
+          hostname = mkDefault config.attributes.privateIPv4;
           clusterDns = cfg.network.ipAddress;
           clusterDomain = config.attributes.domain;
         };
 
-        reverseProxy.enable = mkDefault true;
         logging.enable = true;
       };
 
@@ -143,15 +158,58 @@ in {
       skydns.domain = cfg.network.domain;
       skydns.nameservers =
         map (v: v + ":53") config.attributes.nameservers;
+
+      heapster.enable = cfg.master;
+      heapster.source = "kubernetes:http://" + config.services.kubernetes.proxy.master + "?useServiceAccount=false&auth=&insecure=true";
+      heapster.sink = "influxdb:http://localhost:8086";
     };
 
-    systemd.services.kubelet.serviceConfig.Restart = "always";
-    systemd.services.kubelet.serviceConfig.RestartSec = "5s";
-    systemd.services.docker.serviceConfig.Restart = "always";
-    systemd.services.docker.serviceConfig.RestartSec = "5s";
+    systemd.services.skydns.serviceConfig = {
+      Restart = "always";
+      RestartSec = "30s";
+      OOMScoreAdjust = -500;
+    };
+    systemd.services.kubelet.serviceConfig = {
+      Restart = "always";
+      RestartSec = "30s";
+      OOMScoreAdjust = -500;
+    };
+    systemd.services.kube-apiserver.serviceConfig = {
+      Restart = "always";
+      RestartSec = "30s";
+      OOMScoreAdjust = -500;
+    };
+    systemd.services.kube-controller-manager.serviceConfig = {
+      Restart = "always";
+      RestartSec = "30s";
+      OOMScoreAdjust = -500;
+    };
+    systemd.services.kube-scheduler.serviceConfig = {
+      Restart = "always";
+      RestartSec = "30s";
+      OOMScoreAdjust = -500;
+    };
+    systemd.services.docker.serviceConfig = {
+      Restart = "always";
+      RestartSec = "30s";
+    };
+
+    systemd.services.docker-gc = {
+      description = "Garbage collect docker images";
+      wantedBy = [ "multi-user.target" ];
+      after = ["docker.service"];
+      startAt = "*-*-* 00:00:00";
+      serviceConfig.Restart = "no";
+      serviceConfig.User    = "root";
+      script = ''
+        ${pkgs.docker-gc}/bin/docker-gc
+      '';
+    };
 
     virtualisation.docker.extraOptions =
       ''--iptables=false --ip-masq=false -b ${cfg.network.interface} --log-level="warn"'';
+
+    virtualisation.docker.storageDriver = mkDefault "overlay";
 
     attributes.services.kubernetes = {
       host = cfg.network.ipAddress;
@@ -170,7 +228,7 @@ in {
           interval = "10s";
         };
       }
-      (mkIf config.attributes.tags.master {
+      (mkIf cfg.master {
         kube-apiserver = {
           script = "/var/run/current-system/sw/bin/systemctl is-active kube-apiserver";
           interval = "10s";

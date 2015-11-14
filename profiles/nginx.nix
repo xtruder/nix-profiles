@@ -65,7 +65,7 @@ in {
           ${concatStrings (mapAttrsToList (n: svc: ''
           server {
             listen ${config.attributes.privateIPv4}:80;
-            server_name ${svc.name}.${cfg.proxy.domain};
+            server_name ${svc.name}.service.${cfg.proxy.domain};
 
             location / {
               include ${config.profiles.nginx.snippets.proxy};

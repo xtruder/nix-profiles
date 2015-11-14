@@ -41,7 +41,7 @@ with lib;
         nodeDb = {
           type = "rocksdb";
           onlineDelete = config.services.rippled.ledgerHistory;
-          advisoryDelete = true;
+          advisoryDelete = false;
           compression = true;
           path = "/var/lib/rippled2";
           extraOpts = ''
