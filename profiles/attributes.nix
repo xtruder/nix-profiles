@@ -1,4 +1,4 @@
-{ config, lib, nodes, ... }: with lib; {
+{ config, lib, ... }: with lib; {
   options.attributes = {
     tags = mkOption {
       description = "Tags associated with node";
@@ -8,9 +8,7 @@
 
     clusterNodes = mkOption {
       description = "List of nodes to cluster with";
-      default = attrNames (
-        filterAttrs (n: node: elem "cluster" node.config.attributes.tags) nodes
-      );
+      default = [];
       type = types.listOf types.str;
     };
 
@@ -34,7 +32,7 @@
 
     publicIPv4 = mkOption {
       description = "Public networking address.";
-      default = config.networking.publicIPv4;
+      default = "";
       type = types.str;
     };
 
