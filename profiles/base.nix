@@ -3,17 +3,10 @@
 with lib;
 
 {
-  # Select internationalisation properties.
-  i18n = {
-    consoleFont = mkDefault "lat9w-16";
-    consoleKeyMap = mkDefault "slovene";
-    defaultLocale = mkDefault "sl_SI.UTF-8";
-  };
-
   time.timeZone = mkDefault "Europe/Berlin";
 
   # You are not allowed to manage users manually
-  users.mutableUsers = false;
+  users.mutableUsers = mkDefault false;
 
   # clean tmp on boot
   boot.cleanTmpDir = mkDefault true;
@@ -39,21 +32,15 @@ with lib;
 
   # nix
   nix.binaryCaches = [ "http://cache.nixos.org/"  ];
-  nix.useChroot = true;
+  nix.useSandbox = true;
+  nix.distributedBuilds = true;
+  nix.package = mkDefault pkgs.nixUnstable;
 
   # Some basic packages, install other in your profile
-  environment.systemPackages = with pkgs; [
-    git
-    screen
-    vim
-    openssl
-    nmap
-    tcpdump
-    sysdig
-    wget
-    lsof
-    hdparm
-  ];
+  environment.systemPackages = let
+    sets = import ../packages/bundles.nix { inherit pkgs; };
+  in with sets; [ base sys ];
+  programs.bash.enableCompletion = true;
 
   # Basic additional kernel modules
   boot.kernelModules = [ "atkbd" "tun" "fuse" "overlay" ];

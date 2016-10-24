@@ -27,17 +27,26 @@ in {
       type = types.attrs;
     };
 
-    registry = {
-      url = mkOption {
-        description = "Docker registry url.";
-        type = types.str;
-        default = "";
-      };
+    registries = mkOption {
+      type = types.listOf types.optionSet;
+      description = "Attribute set of docker registries";
+      options = {
+        url = mkOption {
+          description = "Docker registry url";
+          type = types.str;
+        };
 
-      auth = mkOption {
-        description = "Docekr registry auth.";
-        type = types.str;
-        default = "";
+        email = mkOption {
+          description = "Docker registry email";
+          type = types.str;
+          default = "";
+        };
+
+        auth = mkOption {
+          description = "Docekr registry auth.";
+          type = types.str;
+          default = "";
+        };
       };
     };
 
@@ -122,14 +131,10 @@ in {
 
     services = {
       kubernetes = {
-        dockerCfg = mkIf (cfg.registry.url != "" && cfg.registry.auth != "") ''
-          {
-            "${cfg.registry.url}": {
-              "auth": "${cfg.registry.auth}",
-              "email": ""
-            }
-          }
-        '';
+        dockerCfg = builtins.toJSON (listToAttrs (map (registry: nameValuePair registry.url {
+          email = registry.email;
+          auth = registry.auth;
+        }) cfg.registries));
         etcdServers = ["${config.attributes.privateIPv4}:4001"];
         roles =
           (optionals cfg.master ["master"]) ++
@@ -150,8 +155,6 @@ in {
           clusterDns = cfg.network.ipAddress;
           clusterDomain = config.attributes.domain;
         };
-
-        logging.enable = true;
       };
 
       skydns.address = cfg.network.ipAddress + ":53";
@@ -209,39 +212,12 @@ in {
     virtualisation.docker.extraOptions =
       ''--iptables=false --ip-masq=false -b ${cfg.network.interface} --log-level="warn"'';
 
-    virtualisation.docker.storageDriver = mkDefault "overlay";
+    virtualisation.docker.storageDriver = "overlay";
 
     attributes.services.kubernetes = {
       host = cfg.network.ipAddress;
       port = 8080;
-      checks = mkMerge [{
-        kubelet = {
-          script = "/var/run/current-system/sw/bin/systemctl is-active kubelet";
-          interval = "10s";
-        };
-        kube-proxy = {
-          script = "/var/run/current-system/sw/bin/systemctl is-active kube-proxy";
-          interval = "10s";
-        };
-        skydns = {
-          script = "/var/run/current-system/sw/bin/systemctl is-active skydns";
-          interval = "10s";
-        };
-      }
-      (mkIf cfg.master {
-        kube-apiserver = {
-          script = "/var/run/current-system/sw/bin/systemctl is-active kube-apiserver";
-          interval = "10s";
-        };
-        kube-controller-manager = {
-          script = "/var/run/current-system/sw/bin/systemctl is-active kube-controller-manager";
-          interval = "10s";
-        };
-        kube-scheduler = {
-          script = "/var/run/current-system/sw/bin/systemctl is-active kube-scheduler";
-          interval = "10s";
-        };
-      })];
+      checkFailure = ["etcd" "kubelet" "skydns" "kube-controller-manager" "kube-apiserver" "kube-scheduler" "kube-proxy"];
     };
   };
 }

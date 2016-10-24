@@ -60,6 +60,59 @@
       type = types.str;
     };
 
+    smtp = {
+      host = mkOption {
+        description = "SMTP host for sending emails";
+        default = "smtp.gmail.com";
+        type = types.str;
+      };
+
+      port = mkOption {
+        description = "Port to use for smtp";
+        default = 587;
+        type = types.int;
+      };
+
+      username = mkOption {
+        description = "SMTP username";
+        type = types.str;
+      };
+
+      password = mkOption {
+        description = "SMTP password";
+        type = types.str;
+        default = "";
+      };
+    };
+
+    emailFrom = mkOption {
+      description = "Email to send mails from";
+      type = types.str;
+      default = "admin@x-truder.net";
+    };
+
+    admins = mkOption {
+      description = "List of admins";
+      type = types.listOf types.optionSet;
+      options = {
+        email = mkOption {
+          description = "Admin email";
+          type = types.str;
+        };
+
+        notify = mkOption {
+          description = "Whether to notify admin about events on the server";
+          type = types.bool;
+          default = true;
+        };
+
+        key = mkOption {
+          description = "Admin ssh key";
+          type = types.str;
+        };
+      };
+    };
+
     checks = mkOption {
       description = "System wide checks.";
       type = types.attrsOf types.optionSet;
@@ -105,6 +158,12 @@
               default = false;
               type = types.bool;
             };
+          };
+
+          checkFailure = mkOption {
+            description = "List of services to check for failure";
+            default = [];
+            type = types.listOf types.str;
           };
 
           checks = mkOption {

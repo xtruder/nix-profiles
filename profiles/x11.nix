@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 with lib;
 
@@ -10,19 +10,26 @@ in {
   };
 
   config = mkIf cfg.enable {
+    fonts.fonts = [ pkgs.cantarell_fonts pkgs.powerline-fonts pkgs.ttf_bitstream_vera ];
+
+    services.compton.enable = true;
+    services.compton.extraOptions = ''
+      opacity-rule = [
+        "0:_NET_WM_STATE@:32a *= '_NET_WM_STATE_HIDDEN'",
+        "80:class_g = 'i3bar' && !_NET_WM_STATE@:32a"
+      ];
+    '';
+
     services.xserver = {
       enable = true;
       autorun = true;
       exportConfiguration = true;
 
-      layout = "si";
+      layout = "en";
 
-      windowManager.i3.enable = true;
-      windowManager.default = "i3";
       displayManager.slim.enable = true;
     };
 
-    networking.networkmanager.enable = true;
+    environment.systemPackages = with pkgs; [ xorg.xauth xorg.xev xsel xfontsel ];
   };
-
 }

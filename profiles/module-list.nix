@@ -1,21 +1,17 @@
 [
   ./base.nix
   ./attributes.nix
-  ./metrics.nix
   ./onfailure.nix
   ./collectd.nix
-  ./logging.nix
-  ./nginx.nix
-  ./consul.nix
-  ./ripple.nix
-  ./elasticsearch.nix
-  ./vswitch.nix
-  ./ci.nix
   ./kubernetes.nix
-  ./kube-proxy.nix
-  ./kube-logging.nix
-  ./kube-vpn.nix
   ./dummy.nix
+  ./desktop.nix
   ./x11.nix
+  ./i3.nix
+  ./gtk.nix
   ./etcd.nix
+  ./dev.nix
+  ./dnscrypt.nix
+  ./terminal.nix
+  ./system.nix
 ]

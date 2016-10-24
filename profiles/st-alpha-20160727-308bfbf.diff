@@ -1,0 +1,157 @@
+diff --git a/config.mk b/config.mk
+index 81e3e47..005b1c6 100644
+--- a/config.mk
++++ b/config.mk
+@@ -14,7 +14,7 @@ X11LIB = /usr/X11R6/lib
+ INCS = -I. -I/usr/include -I${X11INC} \
+        `pkg-config --cflags fontconfig` \
+        `pkg-config --cflags freetype2`
+-LIBS = -L/usr/lib -lc -L${X11LIB} -lm -lrt -lX11 -lutil -lXft \
++LIBS = -L/usr/lib -lc -L${X11LIB} -lm -lrt -lX11 -lutil -lXext -lXft -lXrender\
+        `pkg-config --libs fontconfig`  \
+        `pkg-config --libs freetype2`
+
+diff --git a/st.c b/st.c
+index 2594c65..f9ba75b 100644
+--- a/st.c
++++ b/st.c
+@@ -61,6 +61,7 @@ char *argv0;
+ #define XK_ANY_MOD    UINT_MAX
+ #define XK_NO_MOD     0
+ #define XK_SWITCH_MOD (1<<13)
++#define OPAQUE 0Xff
+
+ /* macros */
+ #define MIN(a, b)		((a) < (b) ? (a) : (b))
+@@ -81,6 +82,8 @@ char *argv0;
+ 				(t1.tv_nsec-t2.tv_nsec)/1E6)
+ #define MODBIT(x, set, bit)	((set) ? ((x) |= (bit)) : ((x) &= ~(bit)))
+
++#define USE_ARGB (alpha != OPAQUE && opt_embed == NULL)
++
+ #define TRUECOLOR(r,g,b)	(1 << 24 | (r) << 16 | (g) << 8 | (b))
+ #define IS_TRUECOL(x)		(1 << 24 & (x))
+ #define TRUERED(x)		(((x) & 0xff0000) >> 8)
+@@ -268,6 +271,7 @@ typedef struct {
+ 	int w, h; /* window width and height */
+ 	int ch; /* char height */
+ 	int cw; /* char width  */
++	int depth; /*  bit depth */
+ 	char state; /* focus, redraw, visible */
+ 	int cursor; /* cursor style */
+ } XWindow;
+@@ -3137,7 +3141,7 @@ xresize(int col, int row)
+
+ 	XFreePixmap(xw.dpy, xw.buf);
+ 	xw.buf = XCreatePixmap(xw.dpy, xw.win, xw.w, xw.h,
+-			DefaultDepth(xw.dpy, xw.scr));
++			xw.depth);
+ 	XftDrawChange(xw.draw, xw.buf);
+ 	xclear(0, 0, xw.w, xw.h);
+ }
+@@ -3191,6 +3195,14 @@ xloadcols(void)
+ 			else
+ 				die("Could not allocate color %d\n", i);
+ 		}
++
++	/* set alpha value of bg color */
++	if (USE_ARGB) {
++		dc.col[defaultbg].color.alpha = (0xffff * alpha) / OPAQUE; //0xcccc;
++		dc.col[defaultbg].pixel &= 0x00111111;
++		dc.col[defaultbg].pixel |= alpha << 24; // 0xcc000000;
++	}
++
+ 	loaded = 1;
+ }
+
+@@ -3212,6 +3224,16 @@ xsetcolorname(int x, const char *name)
+ 	return 0;
+ }
+
++void
++xtermclear(int col1, int row1, int col2, int row2) {
++	XftDrawRect(xw.draw,
++			&dc.col[IS_SET(MODE_REVERSE) ? defaultfg : defaultbg],
++			borderpx + col1 * xw.cw,
++			borderpx + row1 * xw.ch,
++			(col2-col1+1) * xw.cw,
++			(row2-row1+1) * xw.ch);
++}
++
+ /*
+  * Absolute coordinates.
+  */
+@@ -3443,7 +3465,38 @@ xinit(void)
+ 	if (!(xw.dpy = XOpenDisplay(NULL)))
+ 		die("Can't open display\n");
+ 	xw.scr = XDefaultScreen(xw.dpy);
+-	xw.vis = XDefaultVisual(xw.dpy, xw.scr);
++	xw.depth = (USE_ARGB) ? 32: XDefaultDepth(xw.dpy, xw.scr);
++	if (! USE_ARGB)
++		xw.vis = XDefaultVisual(xw.dpy, xw.scr);
++	else {
++		XVisualInfo *vis;
++		XRenderPictFormat *fmt;
++		int nvi;
++		int i;
++
++		XVisualInfo tpl = {
++			.screen = xw.scr,
++			.depth = 32,
++			.class = TrueColor
++		};
++
++		vis = XGetVisualInfo(xw.dpy, VisualScreenMask | VisualDepthMask | VisualClassMask, &tpl, &nvi);
++		xw.vis = NULL;
++		for(i = 0; i < nvi; i ++) {
++			fmt = XRenderFindVisualFormat(xw.dpy, vis[i].visual);
++			if (fmt->type == PictTypeDirect && fmt->direct.alphaMask) {
++				xw.vis = vis[i].visual;
++				break;
++			}
++		}
++
++		XFree(vis);
++
++		if (! xw.vis) {
++			fprintf(stderr, "Couldn't find ARGB visual.\n");
++			exit(1);
++		}
++	}
+
+ 	/* font */
+ 	if (!FcInit())
+@@ -3453,7 +3506,10 @@ xinit(void)
+ 	xloadfonts(usedfont, 0);
+
+ 	/* colors */
+-	xw.cmap = XDefaultColormap(xw.dpy, xw.scr);
++	if (! USE_ARGB)
++		xw.cmap = XDefaultColormap(xw.dpy, xw.scr);
++	else
++		xw.cmap = XCreateColormap(xw.dpy, XRootWindow(xw.dpy, xw.scr), xw.vis, None);
+ 	xloadcols();
+
+ 	/* adjust fixed window geometry */
+@@ -3476,16 +3532,17 @@ xinit(void)
+ 	if (!(opt_embed && (parent = strtol(opt_embed, NULL, 0))))
+ 		parent = XRootWindow(xw.dpy, xw.scr);
+ 	xw.win = XCreateWindow(xw.dpy, parent, xw.l, xw.t,
+-			xw.w, xw.h, 0, XDefaultDepth(xw.dpy, xw.scr), InputOutput,
++			xw.w, xw.h, 0, xw.depth, InputOutput,
+ 			xw.vis, CWBackPixel | CWBorderPixel | CWBitGravity
+ 			| CWEventMask | CWColormap, &xw.attrs);
+
+ 	memset(&gcvalues, 0, sizeof(gcvalues));
+ 	gcvalues.graphics_exposures = False;
+-	dc.gc = XCreateGC(xw.dpy, parent, GCGraphicsExposures,
++	xw.buf = XCreatePixmap(xw.dpy, xw.win, xw.w, xw.h, xw.depth);
++	dc.gc = XCreateGC(xw.dpy,
++			(USE_ARGB)? xw.buf: parent,
++			GCGraphicsExposures,
+ 			&gcvalues);
+-	xw.buf = XCreatePixmap(xw.dpy, xw.win, xw.w, xw.h,
+-			DefaultDepth(xw.dpy, xw.scr));
+ 	XSetForeground(xw.dpy, dc.gc, dc.col[defaultbg].pixel);
+ 	XFillRectangle(xw.dpy, xw.buf, dc.gc, 0, 0, xw.w, xw.h);
+

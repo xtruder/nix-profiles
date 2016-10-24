@@ -3,6 +3,6 @@
 {
   config = {
     virtualisation.docker.extraOptions = "-s overlay";
-    boot.kernelModules = [ "overlay" ];
+    boot.kernelModules = ["overlay"];
   };
 }
