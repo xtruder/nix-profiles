@@ -1,3 +1,31 @@
+* `attributes.admins`:
+
+  List of admins
+
+  **Default:** "..."
+  **Example:** ...
+
+* `attributes.admins.*.email`:
+
+  Admin email
+
+  **Default:** "..."
+  **Example:** ...
+
+* `attributes.admins.*.key`:
+
+  Admin ssh key
+
+  **Default:** "..."
+  **Example:** ...
+
+* `attributes.admins.*.notify`:
+
+  Whether to notify admin about events on the server
+
+  **Default:** true
+  **Example:** ...
+
 * `attributes.checks`:
 
   System wide checks.
@@ -24,6 +52,13 @@
   Project domain
 
   **Default:** "dummy-project"
+  **Example:** ...
+
+* `attributes.emailFrom`:
+
+  Email to send mails from
+
+  **Default:** "admin@x-truder.net"
   **Example:** ...
 
 * `attributes.nameservers`:
@@ -82,6 +117,13 @@
   **Default:** {}
   **Example:** ...
 
+* `attributes.services.<name>.checkFailure`:
+
+  List of services to check for failure
+
+  **Default:** []
+  **Example:** ...
+
 * `attributes.services.<name>.checks`:
 
   Definitions for service checks.
@@ -138,6 +180,34 @@
   **Default:** false
   **Example:** ...
 
+* `attributes.smtp.host`:
+
+  SMTP host for sending emails
+
+  **Default:** "smtp.gmail.com"
+  **Example:** ...
+
+* `attributes.smtp.password`:
+
+  SMTP password
+
+  **Default:** ""
+  **Example:** ...
+
+* `attributes.smtp.port`:
+
+  Port to use for smtp
+
+  **Default:** 587
+  **Example:** ...
+
+* `attributes.smtp.username`:
+
+  SMTP username
+
+  **Default:** "..."
+  **Example:** ...
+
 * `attributes.tags`:
 
   Tags associated with node
@@ -145,81 +215,32 @@
   **Default:** []
   **Example:** ...
 
-* `profiles.ci.enable`:
+* `attributes.terminal`:
 
-  Whether to enable Whether to enable jenkins profile..
+  Terminal to use
 
-  **Default:** false
-  **Example:** true
-
-* `profiles.consul.alerts`:
-
-  Whether to enable consul alerts
-
-  **Default:** false
+  **Default:** "/nix/store/p950is4bmnr2fn65g7gm02ph29bbq5gh-st-0.7/bin/st -c \"sucklessterm\" -e /nix/store/0zfb79bwh8riq9j7chwm8vxw5k042a3j-tmux-2.3/bin/tmux"
   **Example:** ...
 
-* `profiles.consul.enable`:
+* `profiles.desktop.enable`:
 
-  Whether to enable Whether to enable consul profile..
-
-  **Default:** false
-  **Example:** true
-
-* `profiles.consul.join`:
-
-  List of nodes to join
-
-  **Default:** {"_type":"override","content":[],"priority":1000}
-  **Example:** ...
-
-* `profiles.consul.upstreamDns`:
-
-  Upstream dns server.
-
-  **Default:** ["8.8.8.8","8.8.4.4"]
-  **Example:** ...
-
-* `profiles.elasticsearch.enable`:
-
-  Whether to enable elasticsearch.
+  Whether to enable desktop profile.
 
   **Default:** false
   **Example:** ...
 
-* `profiles.elasticsearch.keystore.password`:
+* `profiles.dev.enable`:
 
-  Secret password for keystore
-
-  **Default:** "..."
-  **Example:** ...
-
-* `profiles.elasticsearch.keystore.path`:
-
-  Path for keystore
-
-  **Default:** "..."
-  **Example:** ...
-
-* `profiles.elasticsearch.kibana.enable`:
-
-  Wheter to enable kibana.
+  Whether to enable development profile
 
   **Default:** false
   **Example:** ...
 
-* `profiles.elasticsearch.truststore.password`:
+* `profiles.dnscrypt.enable`:
 
-  Secret password for keystore
+  Whether to enable dnscrypt profile.
 
-  **Default:** "..."
-  **Example:** ...
-
-* `profiles.elasticsearch.truststore.path`:
-
-  Path to trustore
-
-  **Default:** "..."
+  **Default:** false
   **Example:** ...
 
 * `profiles.etcd.discovery`:
@@ -236,60 +257,46 @@
   **Default:** false
   **Example:** true
 
-* `profiles.kube-vpn.certPath`:
+* `profiles.gtk.enable`:
 
-  Path to server cert file.
-
-  **Default:** "..."
-  **Example:** ...
-
-* `profiles.kube-vpn.dhPath`:
-
-  Path to dh12 parameters
-
-  **Default:** "/run/secrets/dh1024.pem"
-  **Example:** ...
-
-* `profiles.kube-vpn.dns`:
-
-  Kubernetes dns server
-
-  **Default:** "10.244.1.1"
-  **Example:** ...
-
-* `profiles.kube-vpn.enable`:
-
-  Whether to enable enable kubernese vpn access.
+  Whether to enable gtk profile
 
   **Default:** false
-  **Example:** true
-
-* `profiles.kube-vpn.interface`:
-
-  Vpn interface to create.
-
-  **Default:** "kbr-vpn"
   **Example:** ...
 
-* `profiles.kube-vpn.searchDomain`:
+* `profiles.i3.background`:
 
-  Domain to search
+  Background image to use
 
-  **Default:** "dummy-project"
+  **Default:** "szkzdvg2lu5x.png"
   **Example:** ...
 
-* `profiles.kube-vpn.serviceRoute`:
+* `profiles.i3.enable`:
 
-  Route to access kubernetes services
+  Whether to enable i3 profile.
 
-  **Default:** "10.255.1.0 255.255.255.0 10.244.1.1"
+  **Default:** false
   **Example:** ...
 
-* `profiles.kube-vpn.vpnSubnet`:
+* `profiles.i3.primaryMonitor`:
 
-  Subnet for VPN.
+  Identifier of the primary monitor
 
-  **Default:** "10.244.100.1 255.255.0.0 10.244.100.1 10.244.100.255"
+  **Default:** "eDP1"
+  **Example:** ...
+
+* `profiles.i3.secondaryMonitor`:
+
+  Identifier of the secondary monitor
+
+  **Default:** "HDMI1"
+  **Example:** ...
+
+* `profiles.i3.terminal`:
+
+  Command to start terminal
+
+  **Default:** "/nix/store/p950is4bmnr2fn65g7gm02ph29bbq5gh-st-0.7/bin/st -c \"sucklessterm\" -e /nix/store/0zfb79bwh8riq9j7chwm8vxw5k042a3j-tmux-2.3/bin/tmux"
   **Example:** ...
 
 * `profiles.kubernetes.enable`:
@@ -355,18 +362,32 @@
   **Default:** false
   **Example:** ...
 
-* `profiles.kubernetes.registry.auth`:
+* `profiles.kubernetes.registries`:
+
+  Attribute set of docker registries
+
+  **Default:** "..."
+  **Example:** ...
+
+* `profiles.kubernetes.registries.*.auth`:
 
   Docekr registry auth.
 
   **Default:** ""
   **Example:** ...
 
-* `profiles.kubernetes.registry.url`:
+* `profiles.kubernetes.registries.*.email`:
 
-  Docker registry url.
+  Docker registry email
 
   **Default:** ""
+  **Example:** ...
+
+* `profiles.kubernetes.registries.*.url`:
+
+  Docker registry url
+
+  **Default:** "..."
   **Example:** ...
 
 * `profiles.kubernetes.tokens`:
@@ -374,132 +395,6 @@
   Attribute set of username and passwords
 
   **Default:** {}
-  **Example:** ...
-
-* `profiles.logstash.elasticsearch.bind_host`:
-
-  Host for elasticsearch.
-
-  **Default:** "127.0.0.1"
-  **Example:** ...
-
-* `profiles.logstash.elasticsearch.bind_port`:
-
-  Port for elasticsearch.
-
-  **Default:** 9400
-  **Example:** ...
-
-* `profiles.logstash.elasticsearch.cluster_name`:
-
-  Elasticsearch cluster name.
-
-  **Default:** "dummy-project"
-  **Example:** ...
-
-* `profiles.logstash.elasticsearch.keystore`:
-
-  Keystore for logstash in JKS format
-
-  **Default:** "..."
-  **Example:** ...
-
-* `profiles.logstash.enable`:
-
-  Whether to enable Whether to enable logstash master profile..
-
-  **Default:** false
-  **Example:** true
-
-* `profiles.logstash.prefix`:
-
-  Kibana nginx prefix.
-
-  **Default:** "/kibana"
-  **Example:** ...
-
-* `profiles.metrics.bosun.emailTo`:
-
-  List of addresses to send email to
-
-  **Default:** []
-  **Example:** ...
-
-* `profiles.metrics.bosun.enable`:
-
-  Whether to enable bosun
-
-  **Default:** true
-  **Example:** ...
-
-* `profiles.metrics.bosun.influxHost`:
-
-  Influxdb host
-
-  **Default:** "localhost:8086"
-  **Example:** ...
-
-* `profiles.metrics.bosun.smtp.emailFrom`:
-
-  Smtp email address
-
-  **Default:** "..."
-  **Example:** ...
-
-* `profiles.metrics.bosun.smtp.host`:
-
-  Smtp host
-
-  **Default:** "smtp.gmail.com:587"
-  **Example:** ...
-
-* `profiles.metrics.bosun.smtp.password`:
-
-  Password for smtp server
-
-  **Default:** "..."
-  **Example:** ...
-
-* `profiles.metrics.bosun.smtp.username`:
-
-  Username for smtp server
-
-  **Default:** "..."
-  **Example:** ...
-
-* `profiles.metrics.enable`:
-
-  Whether to enable Whether to enable monitoring profile..
-
-  **Default:** false
-  **Example:** true
-
-* `profiles.metrics.grafana.domain`:
-
-  Grafana domain.
-
-  **Default:** "grafana.dummy-project"
-  **Example:** ...
-
-* `profiles.metrics.grafana.enable`:
-
-  Whether to enable grafana.
-
-  **Default:** true
-  **Example:** ...
-
-* `profiles.metrics.influxdb.db`:
-
-  Influxdb database.
-
-  **Default:** "stats"
-  **Example:** ...
-
-* `profiles.metrics.influxdb.enable`:
-
-  Whether to enable influxdb.
-
-  **Default:** true
   **Example:** ...
 
 * `profiles.monitoring.collectd.enable`:
@@ -542,160 +437,6 @@
   List of services to monitor.
 
   **Default:** []
-  **Example:** ...
-
-* `profiles.nginx.config`:
-
-  Nginx config.
-
-  **Default:** ""
-  **Example:** ...
-
-* `profiles.nginx.corsAllowHeaders`:
-
-  List of allowed headers for cors.
-
-  **Default:** []
-  **Example:** ...
-
-* `profiles.nginx.corsAllowOrigin`:
-
-  Allowed origin for cors.
-
-  **Default:** "*"
-  **Example:** ...
-
-* `profiles.nginx.enable`:
-
-  Whether to enable Whether to enable nginx profile..
-
-  **Default:** false
-  **Example:** true
-
-* `profiles.nginx.proxy.domain`:
-
-  Nginx proxy domain suffix.
-
-  **Default:** "dummy-project"
-  **Example:** ...
-
-* `profiles.nginx.proxy.enable`:
-
-  Whether to enable proxy for defined services.
-
-  **Default:** false
-  **Example:** ...
-
-* `profiles.nginx.snippets`:
-
-  Nginx config snippets.
-
-  **Default:** "..."
-  **Example:** ...
-
-* `profiles.ripple.enable`:
-
-  Whether to enable Whether to enable ripple profile..
-
-  **Default:** false
-  **Example:** true
-
-* `profiles.vswitch.enable`:
-
-  Whether to enable Whether to enable vswitch profile..
-
-  **Default:** false
-  **Example:** true
-
-* `profiles.vswitch.interfaces`:
-
-  Attribute set of local interfaces.
-
-  **Default:** "..."
-  **Example:** ...
-
-* `profiles.vswitch.interfaces.<name>.bridgeTo`:
-
-  Bridge to interface.
-
-  **Default:** ""
-  **Example:** ...
-
-* `profiles.vswitch.interfaces.<name>.interface`:
-
-  Name of the internal tun interface.
-
-  **Default:** "tun-"
-  **Example:** ...
-
-* `profiles.vswitch.interfaces.<name>.networks`:
-
-  List of networks that interface is connected to.
-
-  **Default:** []
-  **Example:** [{"remote":"node0","subnet":"10.244.2.1/24"}]
-
-* `profiles.vswitch.interfaces.<name>.networks.*.remote`:
-
-  Name of the remote.
-
-  **Default:** "..."
-  **Example:** ...
-
-* `profiles.vswitch.interfaces.<name>.networks.*.subnet`:
-
-  Subnet ip.
-
-  **Default:** "..."
-  **Example:** ...
-
-* `profiles.vswitch.interfaces.<name>.port`:
-
-  OpenVswitch port if of interface.
-
-  **Default:** "..."
-  **Example:** ...
-
-* `profiles.vswitch.interfaces.<name>.subnet`:
-
-  Interface subnet.
-
-  **Default:** "..."
-  **Example:** ...
-
-* `profiles.vswitch.remotes`:
-
-  Attribute set of vswitch networks.
-
-  **Default:** "..."
-  **Example:** ...
-
-* `profiles.vswitch.remotes.<name>.name`:
-
-  Name of the remote
-
-  **Default:** ""
-  **Example:** ...
-
-* `profiles.vswitch.remotes.<name>.port`:
-
-  OpenVswitch port id.
-
-  **Default:** "..."
-  **Example:** ...
-
-* `profiles.vswitch.remotes.<name>.psk`:
-
-  IPSec pre shared key for a connection.
-
-  **Default:** "..."
-  **Example:** ...
-
-* `profiles.vswitch.remotes.<name>.remoteIp`:
-
-  Node remote ip.
-
-  **Default:** "..."
   **Example:** ...
 
 * `profiles.x11.enable`:
