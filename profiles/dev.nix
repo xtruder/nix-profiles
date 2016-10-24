@@ -15,11 +15,12 @@ in {
 
   config = mkIf cfg.enable {
     # docker
-    virtualisation.docker.enable = true;
+    virtualisation.docker.enable = mkDefault true;
     virtualisation.docker.storageDriver = mkDefault "overlay";
+    networking.firewall.checkReversePath = mkDefault "loose";
 
     # virtualbox
-    #virtualisation.virtualbox.host.enable = true;
-    #nixpkgs.config.virtualbox.enableExtensionPack = true;
+    virtualisation.virtualbox.host.enable = mkDefault true;
+    #nixpkgs.config.virtualbox.enableExtensionPack = mkDefault true;
   };
 }
