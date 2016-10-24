@@ -1,9 +1,15 @@
-{ config, lib, ... }: with lib; {
+{ config, lib, pkgs, ... }: with lib; {
   options.attributes = {
     tags = mkOption {
       description = "Tags associated with node";
       default = [];
       type = types.listOf types.str;
+    };
+
+    terminal = mkOption {
+      description = "Terminal to use";
+      type = types.str;
+      default = ''${pkgs.st}/bin/st -c "sucklessterm" -e ${pkgs.tmux}/bin/tmux'';
     };
 
     clusterNodes = mkOption {

@@ -12,6 +12,5 @@
   ./etcd.nix
   ./dev.nix
   ./dnscrypt.nix
-  ./terminal.nix
   ./system.nix
 ]
