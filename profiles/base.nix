@@ -31,7 +31,7 @@ with lib;
   '';
 
   # nix
-  nix.binaryCaches = [ "http://cache.nixos.org/"  ];
+  nix.binaryCaches = [ "https://cache.nixos.org/"  ];
   nix.useSandbox = true;
   nix.distributedBuilds = true;
   nix.package = mkDefault pkgs.nixUnstable;
