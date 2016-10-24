@@ -27,7 +27,7 @@ in with pkgs.lib; {
 
     buildCommand = ''
       mkdir -p $out
-      cp ${builtins.toFile "options.json" (concatMapStringsSep "\n" (v: ''
+      cp ${pkgs.writeText "options.json" (concatMapStringsSep "\n" (v: ''
         * `${v.name}`:
 
           ${v.value.description or "No description"}
