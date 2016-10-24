@@ -1,5 +1,6 @@
 let
-  pkgs = import <nixpkgs> {};
+  pkgs = import <nixpkgs> ({ config = import ./packages; });
+
   profiles = import ./profiles/module-list.nix;
   options = (import <nixpkgs/nixos/lib/eval-config.nix> {
     modules = profiles;
@@ -22,6 +23,8 @@ let
   prefixes = ["profiles" "attributes"];
 
 in with pkgs.lib; {
+  inherit profiles;
+
   options = pkgs.stdenv.mkDerivation {
     name = "options-json";
 
@@ -48,6 +51,7 @@ in with pkgs.lib; {
     meta.description = "List of NixOS options in JSON format";
   };
 
-  markdownOptions = ''
-  '';
+  packages = import ./packages;
+
+  environments = import ./environments.nix { inherit pkgs; };
 }
