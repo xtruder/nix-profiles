@@ -37,17 +37,15 @@ with lib;
   nix.package = mkDefault pkgs.nixUnstable;
 
   # Some basic packages, install other in your profile
-  environment.systemPackages = let
-    sets = import ../packages/bundles.nix { inherit pkgs; };
-  in with sets; [ base sys ];
+  environment.systemPackages = with pkgs.bundles; [base sys];
+
   programs.bash.enableCompletion = true;
 
   # Basic additional kernel modules
   boot.kernelModules = [ "atkbd" "tun" "fuse" "overlay" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.sysdig ];
 
-  # Yes please
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = import ../packages;
 
   networking.domain = mkDefault config.attributes.projectName;
 
