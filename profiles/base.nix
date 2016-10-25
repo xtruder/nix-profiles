@@ -37,7 +37,7 @@ with lib;
   nix.package = mkDefault pkgs.nixUnstable;
 
   # Some basic packages, install other in your profile
-  environment.systemPackages = with pkgs.bundles; [base sys];
+  environment.systemPackages = with pkgs.bundle; [base sys];
 
   programs.bash.enableCompletion = true;
 

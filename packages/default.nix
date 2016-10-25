@@ -15,6 +15,6 @@
   st.conf = builtins.readFile ./st.conf;
 
   packageOverrides = pkgs: {
-    bundles = import ./bundles.nix { inherit pkgs; };
+    bundle = import ./bundles.nix { inherit pkgs; };
   };
 }
