@@ -88,7 +88,7 @@ rec {
       #!${pkgs.bash}/bin/bash -e
 
       BACKUP_SET=$(cat ${prefix}/.snap/${config.name}/set 2>/dev/null || echo "snap")
-      LAST_SNAPSHOT_INDEX=$(cat ${prefix}/.snap/${config.name}/$BACKUP_SET-idx || echo 0)
+      LAST_SNAPSHOT_INDEX=$(cat ${prefix}/.snap/${config.name}/$BACKUP_SET-idx || echo -1)
       LAST_SNAPSHOT_NAME=$BACKUP_SET-$LAST_SNAPSHOT_INDEX
       SNAPSHOT_PATH=${prefix}/.snap/${config.name}/$LAST_SNAPSHOT_NAME
 
