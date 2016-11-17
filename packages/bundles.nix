@@ -37,7 +37,6 @@
       less
       openssh
       openssl
-      python
       jq
       zsh
       git-crypt
@@ -54,6 +53,7 @@
       hexedit
       imagemagick
       nmap
+      #python
     ];
     ignoreCollisions = true;
   };
@@ -89,7 +89,6 @@
       libnfc
       mfcuk
       mfoc
-      masscan
       msf
       perlPackages.ImageExifTool
     ];
@@ -110,7 +109,6 @@
       gzrt # gzip recovery
 
       # networking
-      nmap
       ncftp
       curl_unix_socket
       socat
@@ -187,11 +185,21 @@
   dev = pkgs.buildEnv {
     name = "pkgs-dev";
     paths = with pkgs; [
+      gnumake
+      gcc
+
       # networking
       ngrok
 
+      # docker
       docker
-      pythonPackages.docker_compose
+
+      # docs
+      (python.withPackages (ps: [
+        ps.docker_compose
+        ps.sphinx
+        ps.sphinxcontrib-blockdiag
+      ]))
     ];
     ignoreCollisions = true;
   };
@@ -283,6 +291,23 @@
     paths = with pkgs; [
       androidsdk
       apktool
+    ];
+  };
+
+  node = pkgs.buildEnv {
+    name = "node-env";
+    paths = with pkgs; with nodePackages_6_x; with vimPlugins; [
+      nodejs-7_x
+      flow
+
+      vim-jsdoc
+    ];
+  };
+
+  python2 = pkgs.buildEnv {
+    name = "python-env";
+    paths = with pkgs.pythonPackages; [
+      pythonFull
     ];
   };
 }

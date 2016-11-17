@@ -153,7 +153,7 @@ rec {
   shellContainer = mkMerge [defaultOpts ({name, config, ...}: {
     packages = [pkgsStdenv];
     mounts = [
-      "${pkgsStdenv}:/home/${user}/.nix-profile"
+      "${pkgs.buildEnv {name = "packages"; paths = config.packages;}}:/home/${user}/.nix-profile"
       "$HOME/Dotfiles2:/home/${user}/Dotfiles"
       "${prefix}/${config.envName}/${name}:/home/${user}"
     ];

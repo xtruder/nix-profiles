@@ -55,5 +55,7 @@ with lib;
     SystemMaxUse=256M
   '';
 
+  services.dnsmasq.enable = true;
+
   nix.binaryCachePublicKeys = ["hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=" ];
 }

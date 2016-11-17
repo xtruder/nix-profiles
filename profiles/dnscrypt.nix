@@ -14,13 +14,14 @@ in {
     };
   };
 
-  config = mkIf cfg.enable (mkMerge [{
+  config = mkIf cfg.enable {
     # dnscrypt proxy
     services.dnscrypt-proxy = {
       enable = true;
       resolverName = "dnscrypt.eu-dk";
+      localPort = 6666;
     };
-  } (mkIf config.networking.networkmanager.enable {
-    networking.networkmanager.insertNameservers = ["127.0.0.1"];
-  })]);
+
+    services.dnsmasq.servers = ["127.0.0.0#6666"];
+  };
 }

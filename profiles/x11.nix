@@ -27,9 +27,12 @@ in {
 
       layout = "en";
 
+      desktopManager.xterm.enable = false;
       displayManager.slim.enable = true;
     };
 
     environment.systemPackages = with pkgs; [ xorg.xauth xorg.xev xsel xfontsel ];
+
+    environment.sessionVariables.LD_LIBRARY_PATH = mkForce [];
   };
 }

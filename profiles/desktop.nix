@@ -64,6 +64,10 @@ in {
 
     # Enable network manager on laptops
     networking.networkmanager.enable = mkDefault (elem "laptop" config.attributes.tags);
+    networking.networkmanager.insertNameservers = ["127.0.0.1"];
+
+    # Enable dnscrypt on laptops
+    profiles.dnscrypt.enable = mkDefault (elem "laptop" config.attributes.tags);
 
     environment.systemPackages = [ pkgs.alsaUtils pkgs.pavucontrol ];
   };

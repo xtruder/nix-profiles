@@ -3,6 +3,7 @@
 {
   config = {
     virtualisation.docker.extraOptions = "-s overlay";
-    boot.kernelModules = ["overlay"];
+    BOOT.kernelModules = ["overlay"];
+    networking.firewall.checkReversePath = "loose";
   };
 }

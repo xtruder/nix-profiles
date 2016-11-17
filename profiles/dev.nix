@@ -16,7 +16,7 @@ in {
   config = mkIf cfg.enable {
     # docker
     virtualisation.docker.enable = mkDefault true;
-    virtualisation.docker.storageDriver = mkDefault "overlay";
+    virtualisation.docker.storageDriver = mkDefault "overlay2";
     networking.firewall.checkReversePath = mkDefault "loose";
 
     # virtualbox

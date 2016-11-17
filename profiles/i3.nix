@@ -305,8 +305,9 @@ in {
         '';
         serviceConfig.ExecStart = "${pkgs.i3lock-color}/bin/i3lock-color 0 -i /tmp/screen_locked.png --insidevercolor=ffffff22 --insidewrongcolor=C6666655 --insidecolor=ffffff22 --ringvercolor=09343Fff  --ringwrongcolor=09343Fff --ringcolor=262626ff --textcolor=ffffffff --linecolor=1B465100 --keyhlcolor=1B4651ff --bshlcolor=1B4651ff";
         serviceConfig.Type = "forking";
+        serviceConfig.User = "offlinehacker";
       };
 
-    environment.systemPackages = with pkgs; [i3status];
+    environment.systemPackages = with pkgs; [i3status acpi];
   };
 }
