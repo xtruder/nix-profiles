@@ -16,7 +16,6 @@
       gnused
       gawk
       stdenv
-      cacert
       ncurses
       file
       tree
@@ -141,7 +140,6 @@
       # distro tools
       cdrkit
       unetbootin
-      winusb
 
       # cloud storage
       dropbox
@@ -301,6 +299,7 @@
       flow
 
       vim-jsdoc
+      vim-flow
     ];
   };
 
