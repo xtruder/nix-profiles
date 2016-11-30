@@ -281,6 +281,18 @@
       golint
       gocode
       gotags
+      glide
+      vimPlugins.vim-go
+    ];
+  };
+
+  kubernetes = pkgs.buildEnv {
+    name = "pkgs-kubernetes";
+    paths = with pkgs; [
+      kubernetes
+      kops
+      minikube
+      docker-machine-kvm
     ];
   };
 
