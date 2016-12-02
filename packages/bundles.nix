@@ -198,6 +198,9 @@
         ps.sphinx
         ps.sphinxcontrib-blockdiag
       ]))
+
+      # webterm
+      gotty
     ];
     ignoreCollisions = true;
   };
