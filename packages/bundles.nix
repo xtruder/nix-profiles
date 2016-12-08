@@ -31,7 +31,6 @@
       which
       readline
       git
-      bash
       diffutils
       less
       openssh
@@ -119,6 +118,7 @@
       docker
       kubernetes
       awscli
+      google-cloud-sdk
 
       # database
       sqlite
@@ -199,8 +199,7 @@
         ps.sphinxcontrib-blockdiag
       ]))
 
-      # webterm
-      gotty
+      hipchat
     ];
     ignoreCollisions = true;
   };
