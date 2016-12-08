@@ -54,6 +54,4 @@ in with pkgs.lib; {
   packages = import ./packages;
 
   environments = import ./environments.nix { inherit pkgs; };
-
-  profiles = import ./profiles/module-list.nix;
 }
