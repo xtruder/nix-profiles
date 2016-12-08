@@ -28,7 +28,7 @@ in {
     terminal = mkOption {
       description = "Command to start terminal";
       type = types.str;
-      default = config.attributes.terminal;
+      default = config.attributes.termCommand;
     };
 
     background = mkOption {
@@ -137,6 +137,9 @@ in {
         bindsym $mod+Shift+8 move container to workspace 8
         bindsym $mod+Shift+9 move container to workspace 9
         bindsym $mod+Shift+0 move container to workspace 10
+
+        # set sticky on window
+        bindsym $mod+Shift+s sticky toggle
 
         # reload the configuration file
         bindsym $mod+Shift+c reload

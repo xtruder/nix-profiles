@@ -9,7 +9,13 @@
     terminal = mkOption {
       description = "Terminal to use";
       type = types.str;
-      default = ''${pkgs.st}/bin/st -c "sucklessterm" -e ${pkgs.tmux}/bin/tmux'';
+      default = ''${pkgs.st}/bin/st'';
+    };
+
+    termCommand = mkOption {
+      description = "Default command to run for terminal";
+      type = types.str;
+      default = ''${config.attributes.terminal} -c "sucklessterm" -e ${pkgs.tmux}/bin/tmux'';
     };
 
     clusterNodes = mkOption {
@@ -205,6 +211,8 @@
   config = {
     # This is default recovery key for all the servers
     attributes.recoveryKey = mkDefault "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDaE19d8gInLMqM6m35aiPaf1P+3K1aR+k1WSogyhsYHM6heAvOguB88ECHghDPsKn4lb4ab5OuI9hpek5gE1sBzTdd5QgSPd175F47W8NpBzujQIOrQ2mkhTmrMA3k4z9RYYrIrooHqxdZ+4H5Gxxm5ydkfrmOHxj0Tl6nE50SdQWPl++1AvXD6BzUhbptuKGOFIrPnatmFwG2GAffPKltQKi42unrpo5ajb5S7R3bofzhL7y3A/4KKRo2q+VBA9ZAZ9oELDdn7tkq0JlzM7kG241rG1QUbvvwQFJMtrLKdW17bdNyn8CuFWlPEFyX2+ybn74CusV5zYWZnNJwUf67 jakahudoklin@x-truder.net";
+
+    environment.variables.TERMINAL = config.attributes.terminal;
 
     #networking.nameservers = mkDefault config.attributes.nameservers;
   };

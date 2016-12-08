@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 with lib;
 
 let
-  cfg = config.profiles.dev;
+  cfg = config.profiles.virtualbox;
 in {
-  options.profiles.dev = {
+  options.profiles.virtualbox = {
     enable = mkOption {
       description = "Whether to enable development profile";
       default = false;
@@ -21,14 +21,10 @@ in {
 
     # virtualbox
     virtualisation.virtualbox.host.enable = mkDefault true;
-    #nixpkgs.config.virtualbox.enableExtensionPack = true;
+    nixpkgs.config.virtualbox.enableExtensionPack = true;
 
-    # libvirt
-    virtualisation.libvirtd.enable = mkDefault true;
-    environment.systemPackages = [pkgs.virtmanager];
-
-    #services.dnsmasq.extraConfig = optionalString (elem "master" config.attributes.tags) ''
-    #  dhcp-range=vboxnet0,192.168.56.101,192.168.56.254,4h
-    #'';
+    services.dnsmasq.extraConfig = optionalString (elem "master" config.attributes.tags) ''
+      dhcp-range=vboxnet0,192.168.56.101,192.168.56.254,4h
+    '';
   };
 }

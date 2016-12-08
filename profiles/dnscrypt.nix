@@ -22,6 +22,6 @@ in {
       localPort = 6666;
     };
 
-    services.dnsmasq.servers = ["127.0.0.0#6666"];
+    services.dnsmasq.servers = ["127.0.0.1#6666"];
   };
 }

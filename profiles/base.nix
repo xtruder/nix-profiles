@@ -15,7 +15,7 @@ with lib;
   users.extraUsers.root.openssh.authorizedKeys.keys = [
     config.attributes.recoveryKey
   ];
-  users.extraUsers.root.shell = mkOverride 50 "${pkgs.bash}/bin/bash";
+  users.extraUsers.root.shell = mkOverride 50 "${pkgs.bashInteractive}/bin/bash";
 
   # Create /bin/bash symlink
   system.activationScripts.binbash = stringAfter [ "binsh" ]
@@ -28,6 +28,7 @@ with lib;
   # Add me as localhost
   networking.extraHosts = ''
     127.0.0.1 ${config.networking.hostName}.${config.networking.domain}
+    ::1 ${config.networking.hostName}.${config.networking.domain}
   '';
 
   # nix
@@ -56,6 +57,16 @@ with lib;
   '';
 
   services.dnsmasq.enable = true;
+  services.dnsmasq.extraConfig = optionalString (elem "laptop" config.attributes.tags) ''
+    no-resolv # prevent dnsmasq from leaking dns request
+  '';
+
+  users.defaultUserShell = pkgs.bashInteractive;
 
   nix.binaryCachePublicKeys = ["hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=" ];
+
+  # tmux
+  programs.tmux.enable = true;
+  programs.tmux.newSession = true;
+  programs.tmux.extraTmuxConf = builtins.readFile ./tmux.conf;
 }

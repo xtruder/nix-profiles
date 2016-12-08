@@ -13,4 +13,5 @@
   ./dev.nix
   ./dnscrypt.nix
   ./system.nix
+  ./headless.nix
 ]
