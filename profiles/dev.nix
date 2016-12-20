@@ -130,7 +130,5 @@ in {
         email = jakahudoklin@gmail.com
         name = Jaka Hudoklin
     '';
-
-    programs.npm.enable = true;
   };
 }
