@@ -69,6 +69,14 @@ in {
     # Enable dnscrypt on laptops
     profiles.dnscrypt.enable = mkDefault (elem "laptop" config.attributes.tags);
 
-    environment.systemPackages = [ pkgs.alsaUtils pkgs.pavucontrol ];
+    # Allow to add users
+    users.mutableUsers = true;
+
+    environment.systemPackages = with pkgs; [
+      alsaUtils
+      pavucontrol
+      chromium
+      xpra
+    ];
   };
 }

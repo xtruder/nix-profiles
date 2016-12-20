@@ -69,4 +69,17 @@ with lib;
   programs.tmux.enable = true;
   programs.tmux.newSession = true;
   programs.tmux.extraTmuxConf = builtins.readFile ./tmux.conf;
+  programs.tmux.terminal = "screen-256color";
+
+  # chromium
+  programs.chromium.enable = true;
+  programs.chromium.defaultSearchProviderSearchURL =
+    "https://encrypted.google.com/search?q={searchTerms}&{google:RLZ}{google:originalQueryForSuggestion}{google:assistedQueryStats}{google:searchFieldtrialParameter}{google:searchClient}{google:sourceId}{google:instantExtendedEnabledParameter}ie={inputEncoding}";
+  programs.chromium.defaultSearchProviderSuggestURL =
+    "https://encrypted.google.com/complete/search?output=chrome&q={searchTerms}";
+  programs.chromium.extensions = [
+    "chlffgpmiacpedhhbkiomidkjlcfhogd" # pushbullet
+    "mbniclmhobmnbdlbpiphghaielnnpgdp" # lightshot
+    "gcbommkclmclpchllfjekcdonpmejbdp" # https everywhere
+  ];
 }

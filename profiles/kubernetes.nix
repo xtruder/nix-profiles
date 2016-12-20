@@ -23,6 +23,9 @@ in {
     virtualisation.docker.extraOptions = "--iptables=false --ip-masq=false -b cbr0";
     networking.bridges.cbr0.interfaces = [];
     networking.interfaces.cbr0 = {};
+    networking.firewall.trustedInterfaces = ["cbr0"];
+    networking.nat.internalInterfaces = ["cbr0"];
+    networking.nat.externalInterface = "+";
 
     #systemd.services.convoy = {
     #  wantedBy = ["multi-user.target"];
@@ -30,7 +33,5 @@ in {
     #  path = [pkgs.utillinux pkgs.e2fsprogs];
     #  serviceConfig.ExecStart = "${pkgs.convoy}/bin/convoy daemon --drivers devicemapper --driver-opts dm.datadev=/dev/loop7 --driver-opts dm.metadatadev=/dev/loop8";
     #};
-
-    environment.systemPackages = [pkgs.convoy];
   };
 }
