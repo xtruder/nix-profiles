@@ -21,7 +21,7 @@ in {
 
     # virtualbox
     virtualisation.virtualbox.host.enable = mkDefault true;
-    #nixpkgs.config.virtualbox.enableExtensionPack = true;
+    nixpkgs.config.virtualbox.enableExtensionPack = true;
 
     # libvirt
     virtualisation.libvirtd.enable = mkDefault true;
