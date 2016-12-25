@@ -176,7 +176,7 @@ in {
 
         # Start passmenu
         bindsym $mod+p exec --no-startup-id ${pkgs.pass}/bin/passmenu
-        bindsym $mod+Shift+p exec --no-startup-id ${pkgs.pass}/bin/passmenu
+        bindsym $mod+Shift+p exec --no-startup-id ${pkgs.pass}/bin/passmenu --type
 
         # Monitor mode
         mode "monitor_select" {
