@@ -174,6 +174,10 @@ in {
         # start dmenu (a program launcher)
         bindsym $mod+d exec --no-startup-id ${pkgs.i3}/bin/i3-dmenu-desktop --dmenu="${pkgs.dmenu}/bin/dmenu -i"
 
+        # Start passmenu
+        bindsym $mod+p exec --no-startup-id ${pkgs.pass}/bin/passmenu
+        bindsym $mod+Shift+p exec --no-startup-id ${pkgs.pass}/bin/passmenu
+
         # Monitor mode
         mode "monitor_select" {
 
