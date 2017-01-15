@@ -24,6 +24,7 @@ in {
     #'';
 
     programs.npm.enable = true;
+    programs.adb.enable = true;
 
     environment.etc.gitconfig.text = ''
       [core]
