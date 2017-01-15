@@ -72,6 +72,10 @@ in {
     # Allow to add users
     users.mutableUsers = true;
 
+    # virtualbox
+    virtualisation.virtualbox.host.enable = mkDefault true;
+    nixpkgs.config.virtualbox.enableExtensionPack = true;
+
     environment.systemPackages = with pkgs; [
       alsaUtils
       pavucontrol
