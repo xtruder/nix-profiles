@@ -123,5 +123,11 @@ in {
         email = jakahudoklin@gmail.com
         name = Jaka Hudoklin
     '';
+
+    programs.chromium.extensions = [
+      "pfdhoblngboilpfeibdedpjgfnlcodoo" # websocket tool
+      "fhbjgbiflinjbdggehcddcbncdddomop" # postman
+      "aicmkgpgakddgnaphhhpliifpcfhicfo" # postman interceptor
+    ];
   };
 }

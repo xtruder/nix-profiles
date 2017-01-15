@@ -78,6 +78,7 @@ with lib;
   programs.chromium.defaultSearchProviderSuggestURL =
     "https://encrypted.google.com/complete/search?output=chrome&q={searchTerms}";
   programs.chromium.extensions = [
+    "klbibkeccnjlkjkiokjodocebajanakg" # the great suspender
     "chlffgpmiacpedhhbkiomidkjlcfhogd" # pushbullet
     "mbniclmhobmnbdlbpiphghaielnnpgdp" # lightshot
     "gcbommkclmclpchllfjekcdonpmejbdp" # https everywhere
