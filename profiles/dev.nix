@@ -128,6 +128,7 @@ in {
       "pfdhoblngboilpfeibdedpjgfnlcodoo" # websocket tool
       "fhbjgbiflinjbdggehcddcbncdddomop" # postman
       "aicmkgpgakddgnaphhhpliifpcfhicfo" # postman interceptor
+      "ihlenndgcmojhcghmfjfneahoeklbjjh" # cvim
     ];
   };
 }
