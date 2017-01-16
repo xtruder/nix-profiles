@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.profiles.desktop;
+  cfg = config.profiles.work;
 
 in {
-  options.profiles.desktop = {
+  options.profiles.work = {
     enable = mkOption {
       description = ''
         Whether to enable work profile. Work profile is for all
