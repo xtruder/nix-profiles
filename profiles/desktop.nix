@@ -15,7 +15,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    profile.work.enable = mkDefault true;
+    profiles.work.enable = mkDefault true;
     profiles.x11.enable = mkDefault true;
 
     # dbus
