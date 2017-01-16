@@ -36,7 +36,6 @@ with lib;
   nix.binaryCaches = [ "https://cache.nixos.org/"  ];
   nix.useSandbox = true;
   nix.distributedBuilds = true;
-  nix.package = mkDefault pkgs.nixUnstable;
 
   # Some basic packages, install other in your profile
   environment.systemPackages = with pkgs.bundle; [base sys];
