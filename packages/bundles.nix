@@ -42,7 +42,6 @@
       oh-my-zsh
       autojump
       pythonPackages.dotfiles
-      vim_configurable
       nano
       pass
       netcat
@@ -59,6 +58,7 @@
   vim = pkgs.buildEnv {
     name = "pkgs-vim";
     paths = with pkgs.vimPlugins; [
+      (import ./vim.nix)
       vim-airline
       vim-airline-themes
       molokai
