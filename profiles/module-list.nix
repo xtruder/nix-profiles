@@ -1,5 +1,6 @@
 [
   ./base.nix
+  ./work.nix
   ./attributes.nix
   ./onfailure.nix
   ./collectd.nix

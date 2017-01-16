@@ -22,6 +22,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    profiles.work.enable = mkDefault true;
+
     systemd.services.gotty = {
       wantedBy = ["multi-user.target"];
       serviceConfig.ExecStart = "${pkgs.gotty}/bin/gotty -w -a 127.0.0.1 -p 8022 --config ${gottyConfig} /var/run/current-system/sw/bin/tmux attach";

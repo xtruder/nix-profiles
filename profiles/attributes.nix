@@ -54,9 +54,13 @@
       type = types.listOf types.str;
     };
 
+    name = mkOption {
+      description = "Name of the server";
+      type = types.str;
+    };
+
     projectName = mkOption {
       description = "Name of the project";
-      default = "dummy-project";
       type = types.str;
     };
 

@@ -1,9 +1,10 @@
 { config, lib, pkgs, ... }:
 
+
 with lib;
 
 {
-  time.timeZone = mkDefault "Europe/Berlin";
+  time.timeZone = mkDefault "Europe/Ljubljana";
 
   # You are not allowed to manage users manually
   users.mutableUsers = mkDefault false;
@@ -49,6 +50,7 @@ with lib;
   nixpkgs.config = import ../packages;
 
   networking.domain = mkDefault config.attributes.projectName;
+  networking.hostName = mkDefault config.attributes.name;
 
   services.openssh.enable = true;
 
@@ -63,24 +65,5 @@ with lib;
 
   users.defaultUserShell = pkgs.bashInteractive;
 
-  nix.binaryCachePublicKeys = ["hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=" ];
-
-  # tmux
-  programs.tmux.enable = true;
-  programs.tmux.newSession = true;
-  programs.tmux.extraTmuxConf = builtins.readFile ./tmux.conf;
-  programs.tmux.terminal = "screen-256color";
-
-  # chromium
-  programs.chromium.enable = true;
-  programs.chromium.defaultSearchProviderSearchURL =
-    "https://encrypted.google.com/search?q={searchTerms}&{google:RLZ}{google:originalQueryForSuggestion}{google:assistedQueryStats}{google:searchFieldtrialParameter}{google:searchClient}{google:sourceId}{google:instantExtendedEnabledParameter}ie={inputEncoding}";
-  programs.chromium.defaultSearchProviderSuggestURL =
-    "https://encrypted.google.com/complete/search?output=chrome&q={searchTerms}";
-  programs.chromium.extensions = [
-    "klbibkeccnjlkjkiokjodocebajanakg" # the great suspender
-    "chlffgpmiacpedhhbkiomidkjlcfhogd" # pushbullet
-    "mbniclmhobmnbdlbpiphghaielnnpgdp" # lightshot
-    "gcbommkclmclpchllfjekcdonpmejbdp" # https everywhere
-  ];
+  nix.binaryCachePublicKeys = [ "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=" ];
 }
