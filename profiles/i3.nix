@@ -6,6 +6,7 @@ let
   cfg = config.profiles.i3;
 
   i3Lock = pkgs.writeScript "i3-lock.sh" ''
+    #!${pkgs.bash}/bin/bash
     ${pkgs.scrot}/bin/scrot /tmp/screen_locked.png
     ${pkgs.imagemagick}/bin/convert /tmp/screen_locked.png -scale 10% -scale 1000% /tmp/screen_locked.png  
     ${pkgs.i3lock-color}/bin/i3lock-color 0 -i /tmp/screen_locked.png \
