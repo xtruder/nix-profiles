@@ -214,7 +214,7 @@
 
   config = {
     # This is default recovery key for all the servers
-    attributes.recoveryKey = mkDefault "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDaE19d8gInLMqM6m35aiPaf1P+3K1aR+k1WSogyhsYHM6heAvOguB88ECHghDPsKn4lb4ab5OuI9hpek5gE1sBzTdd5QgSPd175F47W8NpBzujQIOrQ2mkhTmrMA3k4z9RYYrIrooHqxdZ+4H5Gxxm5ydkfrmOHxj0Tl6nE50SdQWPl++1AvXD6BzUhbptuKGOFIrPnatmFwG2GAffPKltQKi42unrpo5ajb5S7R3bofzhL7y3A/4KKRo2q+VBA9ZAZ9oELDdn7tkq0JlzM7kG241rG1QUbvvwQFJMtrLKdW17bdNyn8CuFWlPEFyX2+ybn74CusV5zYWZnNJwUf67 jakahudoklin@x-truder.net";
+    attributes.recoveryKey = mkDefault "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzMleZRroo8Qbe7DxeU39fa2BJSJMSeRjFeYPueGns9p7IIZg2zffRs/qXDBU11KCeC4zSo3JQ3z4ZHPrvRDcWzcfCT7trZLv2VA1CklMy788leTQ0UC3g9/B0/LASUmEP0tNYZn3t5TlvlMK27UHaUM73CfUfWaBMVJL36AgYe406hldEHHYF/K/yR+Z5ZvSDX50QjGv7Ju1aWA2wCJfGYwsZiOUEeqgGLcrO/jB/gAhRP+xOh3VyTnlMDleCcGyklG/UKwOogs50zufwiWqpHTM8ZnH2I0kbVgsA3aUqvBjM/0wAhRbrzdGS4+C3fW73lT78CU46m3EEknRHeFRbi offlinehacker@fc7c600be6cd";
 
     environment.variables.TERMINAL = config.attributes.terminal;
 
