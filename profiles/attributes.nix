@@ -76,6 +76,11 @@
       type = types.str;
     };
 
+    hashedRootPassword = mkOption {
+      description = "root password";
+      type = types.str;
+    };
+
     smtp = {
       host = mkOption {
         description = "SMTP host for sending emails";
@@ -215,6 +220,7 @@
   config = {
     # This is default recovery key for all the servers
     attributes.recoveryKey = mkDefault "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzMleZRroo8Qbe7DxeU39fa2BJSJMSeRjFeYPueGns9p7IIZg2zffRs/qXDBU11KCeC4zSo3JQ3z4ZHPrvRDcWzcfCT7trZLv2VA1CklMy788leTQ0UC3g9/B0/LASUmEP0tNYZn3t5TlvlMK27UHaUM73CfUfWaBMVJL36AgYe406hldEHHYF/K/yR+Z5ZvSDX50QjGv7Ju1aWA2wCJfGYwsZiOUEeqgGLcrO/jB/gAhRP+xOh3VyTnlMDleCcGyklG/UKwOogs50zufwiWqpHTM8ZnH2I0kbVgsA3aUqvBjM/0wAhRbrzdGS4+C3fW73lT78CU46m3EEknRHeFRbi offlinehacker@fc7c600be6cd";
+    attributes.hashedRootPassword = mkDefault "$6$zqLu3YEG36cV$5bg5pZrO0.Kkl4KlumwRPxWVgR/iybm7mXPjvFigmWjGQ5o2/oxM/mBUO3ID.dvWRpUJAQHcj.C/tljQ7WgbH0";
 
     environment.variables.TERMINAL = config.attributes.terminal;
 

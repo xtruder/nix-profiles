@@ -65,6 +65,7 @@ with lib;
   users.defaultUserShell = pkgs.bashInteractive;
 
   nix.binaryCachePublicKeys = [ "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=" ];
+  users.users.root.initialHashedPassword = config.attributes.hashedRootPassword;
 
   # don't need containers by default
   boot.enableContainers = mkDefault false;
