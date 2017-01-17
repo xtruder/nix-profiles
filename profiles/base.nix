@@ -33,12 +33,12 @@ with lib;
   '';
 
   # nix
-  nix.binaryCaches = [ "https://cache.nixos.org/"  ];
+  nix.binaryCaches = [ "https://cache.nixos.org/" ];
   nix.useSandbox = true;
   nix.distributedBuilds = true;
 
   # Some basic packages, install other in your profile
-  environment.systemPackages = with pkgs.bundle; [base sys];
+  environment.systemPackages = with pkgs.bundle; [base sys vim];
 
   programs.bash.enableCompletion = true;
 
