@@ -101,7 +101,6 @@ set title
 
 " wrapping and line breaking
 set wrap
-set textwidth=79 " text width for auto word wrapping
 let &colorcolumn="80,".join(range(120,999),",")
 highlight ColorColumn ctermbg=235 guibg=#2c2d27
 
