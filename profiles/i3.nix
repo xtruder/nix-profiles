@@ -5,6 +5,22 @@ with lib;
 let
   cfg = config.profiles.i3;
 
+  i3Lock = pkgs.writeScript "i3-lock.sh" ''
+    ${pkgs.scrot}/bin/scrot /tmp/screen_locked.png
+    ${pkgs.imagemagick}/bin/convert /tmp/screen_locked.png -scale 10% -scale 1000% /tmp/screen_locked.png  
+    ${pkgs.i3lock-color}/bin/i3lock-color 0 -i /tmp/screen_locked.png \
+        --insidevercolor=ffffff22 \
+        --insidewrongcolor=C6666655 \
+        --insidecolor=ffffff22 \
+        --ringvercolor=09343Fff \
+        --ringwrongcolor=09343Fff \
+        --ringcolor=262626ff \
+        --textcolor=ffffffff \
+        --linecolor=1B465100 \
+        --keyhlcolor=1B4651ff \
+        --bshlcolor=1B4651ff
+  '';
+
 in {
   options.profiles.i3 = {
     enable = mkOption {
@@ -290,6 +306,9 @@ in {
         bindsym XF86AudioLowerVolume exec --no-startup-id ${pkgs.alsaUtils}/bin/amixer set Master 5%- && killall -SIGUSR1 i3status
         bindsym XF86AudioMute exec --no-startup-id ${pkgs.alsaUtils}/bin/amixer set Master 1+ toggle && killall -SIGUSR1 i3status
 
+        # lock
+        bindsym $mod+l exec --no-startup-id ${i3Lock}
+
         ${optionalString config.services.xserver.synaptics.enable ''
           bindsym XF86TouchpadToggle exec --no-startup-id ${pkgs.xorg.xf86inputsynaptics.out}/bin/synclient TouchpadOff=$(${pkgs.xorg.xf86inputsynaptics.out}/bin/synclient -l | grep -c 'TouchpadOff.*=.*0')
         ''}
@@ -300,17 +319,12 @@ in {
       { description = "Pre-Sleep i3 lock";
         wantedBy = [ "sleep.target" ];
         before = [ "sleep.target" ];
-        path = [ pkgs.imagemagick pkgs.scrot ];
         environment = {
           DISPLAY = ":0";
           USER = "offlinehacker";
           XAUTHORITY = "/home/offlinehacker/.Xauthority";
         };
-        preStart = ''
-          scrot /tmp/screen_locked.png
-          convert /tmp/screen_locked.png -scale 10% -scale 1000% /tmp/screen_locked.png
-        '';
-        serviceConfig.ExecStart = "${pkgs.i3lock-color}/bin/i3lock-color 0 -i /tmp/screen_locked.png --insidevercolor=ffffff22 --insidewrongcolor=C6666655 --insidecolor=ffffff22 --ringvercolor=09343Fff  --ringwrongcolor=09343Fff --ringcolor=262626ff --textcolor=ffffffff --linecolor=1B465100 --keyhlcolor=1B4651ff --bshlcolor=1B4651ff";
+        serviceConfig.ExecStart = i3Lock;
         serviceConfig.Type = "forking";
         serviceConfig.User = "offlinehacker";
       };
