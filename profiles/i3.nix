@@ -132,16 +132,16 @@ in {
         #bindsym $mod+d focus child
 
         # switch to workspace
-        bindsym $mod+1 workspace 1
-        bindsym $mod+2 workspace 2
-        bindsym $mod+3 workspace 3
-        bindsym $mod+4 workspace 4
-        bindsym $mod+5 workspace 5
-        bindsym $mod+6 workspace 6
-        bindsym $mod+7 workspace 7
-        bindsym $mod+8 workspace 8
-        bindsym $mod+9 workspace 9
-        bindsym $mod+0 workspace 10
+        bindsym $mod+1 workspace number 1
+        bindsym $mod+2 workspace number 2
+        bindsym $mod+3 workspace number 3
+        bindsym $mod+4 workspace number 4
+        bindsym $mod+5 workspace number 5
+        bindsym $mod+6 workspace number 6
+        bindsym $mod+7 workspace number 7
+        bindsym $mod+8 workspace number 8
+        bindsym $mod+9 workspace number 9
+        bindsym $mod+0 workspace number 10
 
         # move focused container to workspace
         bindsym $mod+Shift+1 move container to workspace 1
