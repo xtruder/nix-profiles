@@ -189,10 +189,10 @@ in {
         bindsym $mod+Shift+q kill
 
         # start rofi (a program launcher)
-        bindsym $mod+d exec --no-startup-id ${pkgs.xpraenv}/bin/i3-run ${pkgs.rofi}/bin/rofi -combi-modi window,drun -show combi -modi combi
+        bindsym $mod+d exec --no-startup-id ${pkgs.xpraenv}/bin/i3-run "${pkgs.rofi}/bin/rofi -combi-modi window,drun -show combi -modi combi"
 
         # start xpraenv
-        bindsym $mod+m exec --no-startup-id ${pkgs.xpraenv}/bin/xpraenv
+        bindsym $mod+n exec --no-startup-id ${pkgs.xpraenv}/bin/xpraenv
 
         # Start passmenu
         bindsym $mod+p exec --no-startup-id ${pkgs.rofi-pass}/bin/rofi-pass
