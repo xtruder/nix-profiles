@@ -188,12 +188,14 @@ in {
         # kill focused window
         bindsym $mod+Shift+q kill
 
-        # start dmenu (a program launcher)
-        bindsym $mod+d exec --no-startup-id ${pkgs.i3}/bin/i3-dmenu-desktop --dmenu="${pkgs.dmenu}/bin/dmenu -i"
+        # start rofi (a program launcher)
+        bindsym $mod+d exec --no-startup-id ${pkgs.xpraenv}/bin/i3-run ${pkgs.rofi}/bin/rofi -combi-modi window,drun -show combi -modi combi
+
+        # start xpraenv
+        bindsym $mod+m exec --no-startup-id ${pkgs.xpraenv}/bin/xpraenv
 
         # Start passmenu
-        bindsym $mod+p exec --no-startup-id ${pkgs.pass}/bin/passmenu
-        bindsym $mod+Shift+p exec --no-startup-id ${pkgs.pass}/bin/passmenu
+        bindsym $mod+p exec --no-startup-id ${pkgs.rofi-pass}/bin/rofi-pass
 
         # Monitor mode
         mode "monitor_select" {
@@ -330,6 +332,6 @@ in {
         serviceConfig.User = "offlinehacker";
       };
 
-    environment.systemPackages = with pkgs; [i3status acpi];
+    environment.systemPackages = with pkgs; [i3status acpi xpraenv];
   };
 }

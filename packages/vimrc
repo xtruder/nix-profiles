@@ -184,6 +184,9 @@ nnoremap <leader>Ar :right<cr>
 " toggle tagbar
 nmap <LEADER>tb :TagbarToggle<CR>
 
+" buffers
+nnoremap <F5> :buffers<CR>:buffer<Space>
+
 " html
 au Filetype html inoremap <C-space> <CR><up><end><CR>
 

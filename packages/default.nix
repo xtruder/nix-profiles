@@ -12,5 +12,6 @@
 
   packageOverrides = pkgs: {
     bundle = import ./bundles.nix { inherit pkgs; };
+    xpraenv = pkgs.callPackage ./xpraenv { };
   };
 }

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e
+
+PROVIDER=vbox
+
+source ./util.sh
+source ./$PROVIDER.sh
+
+# get current workspace name
+currentworkspace=$(i3::focusedworkspace | cut -d " " -f 2)
+
+if echo $currentworkspace | grep env; then
+    env=${currentworkspace#env/}
+    port=$(callprovider $PROVIDER get $env "port/xpra")
+    xpra::control $port start "/var/setuid-wrappers/sudo -u offlinehacker env \"PATH=/var/run/current-system/sw/bin\" $@"
+else
+    exec $@
+fi
