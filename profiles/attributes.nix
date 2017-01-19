@@ -9,13 +9,13 @@
     terminal = mkOption {
       description = "Terminal to use";
       type = types.str;
-      default = ''${pkgs.st}/bin/st'';
+      default = "st";
     };
 
     termCommand = mkOption {
       description = "Default command to run for terminal";
       type = types.str;
-      default = ''${config.attributes.terminal} -c "sucklessterm" -e ${pkgs.tmux}/bin/tmux'';
+      default = ''${config.attributes.terminal} -c "sucklessterm" -e tmux'';
     };
 
     clusterNodes = mkOption {

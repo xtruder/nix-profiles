@@ -52,6 +52,6 @@ in {
 
     networking.firewall.allowedTCPPorts = [ 10000 ];
 
-    environment.systemPackages = with pkgs; [rofi rofi-pass];
+    environment.systemPackages = with pkgs; [rofi rofi-pass st xterm];
   };
 }
