@@ -51,5 +51,7 @@ in {
     services.xserver.displayManager.slim.enable = false;
 
     networking.firewall.allowedTCPPorts = [ 10000 ];
+
+    environment.systemPackages = with pkgs; [rofi rofi-pass];
   };
 }
