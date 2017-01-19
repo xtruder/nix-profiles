@@ -14,7 +14,7 @@ currentworkspace=$(i3::focusedworkspace | cut -d " " -f 2)
 if echo $currentworkspace | grep env; then
     env=${currentworkspace#env/}
     port=$(callprovider $PROVIDER get $env "port/xpra")
-    xpra::control $port start "/var/setuid-wrappers/sudo -u offlinehacker env \"PATH=/var/run/current-system/sw/bin\" $1 $2 $2 $4 $5 $6 $7 $8 $9 $10"
+    xpra::control $port start "/var/setuid-wrappers/sudo -u offlinehacker env \"PATH=/var/run/current-system/sw/bin\" $1 $2 $3 $4 $5 $6 $7 $8 $9"
 else
     exec $@
 fi
