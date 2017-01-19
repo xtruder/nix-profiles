@@ -332,6 +332,6 @@ in {
         serviceConfig.User = "offlinehacker";
       };
 
-    environment.systemPackages = with pkgs; [i3status acpi xpraenv rofi rofi-pass i3 xterm];
+    environment.systemPackages = with pkgs; [i3status acpi xpraenv rofi rofi-pass st xterm];
   };
 }
