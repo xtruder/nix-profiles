@@ -5,8 +5,8 @@ set -e
 PROVIDER=vbox
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
 
-source ./$DIR/util.sh
-source ./$DIR/$PROVIDER.sh
+source $DIR/util.sh
+source $DIR/$PROVIDER.sh
 
 port::reserve() {
     port=$(port::findfree)
