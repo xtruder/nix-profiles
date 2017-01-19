@@ -183,7 +183,7 @@ in {
         bindsym $mod+r mode "resize"
 
         # start a terminal
-        bindsym $mod+Return exec ${cfg.terminal}
+        bindsym $mod+Return exec ${pkgs.xpraenv}/bin/i3-run ${cfg.terminal}
 
         # kill focused window
         bindsym $mod+Shift+q kill
