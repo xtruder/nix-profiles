@@ -315,6 +315,8 @@ in {
         ${optionalString config.services.xserver.synaptics.enable ''
           bindsym XF86TouchpadToggle exec --no-startup-id ${pkgs.xorg.xf86inputsynaptics.out}/bin/synclient TouchpadOff=$(${pkgs.xorg.xf86inputsynaptics.out}/bin/synclient -l | grep -c 'TouchpadOff.*=.*0')
         ''}
+
+        exec --no-startup-id dunst
       '';
     };
 
@@ -332,6 +334,6 @@ in {
         serviceConfig.User = "offlinehacker";
       };
 
-    environment.systemPackages = with pkgs; [i3status acpi xpraenv rofi rofi-pass st xterm];
+    environment.systemPackages = with pkgs; [i3status acpi xpraenv rofi rofi-pass st xterm dunst];
   };
 }
