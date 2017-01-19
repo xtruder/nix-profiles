@@ -144,16 +144,16 @@ in {
         bindsym $mod+0 workspace number 10
 
         # move focused container to workspace
-        bindsym $mod+Shift+1 move container to workspace 1
-        bindsym $mod+Shift+2 move container to workspace 2
-        bindsym $mod+Shift+3 move container to workspace 3
-        bindsym $mod+Shift+4 move container to workspace 4
-        bindsym $mod+Shift+5 move container to workspace 5
-        bindsym $mod+Shift+6 move container to workspace 6
-        bindsym $mod+Shift+7 move container to workspace 7
-        bindsym $mod+Shift+8 move container to workspace 8
-        bindsym $mod+Shift+9 move container to workspace 9
-        bindsym $mod+Shift+0 move container to workspace 10
+        bindsym $mod+Shift+1 move container to workspace number 1
+        bindsym $mod+Shift+2 move container to workspace number 2
+        bindsym $mod+Shift+3 move container to workspace number 3
+        bindsym $mod+Shift+4 move container to workspace number 4
+        bindsym $mod+Shift+5 move container to workspace number 5
+        bindsym $mod+Shift+6 move container to workspace number 6
+        bindsym $mod+Shift+7 move container to workspace number 7
+        bindsym $mod+Shift+8 move container to workspace number 8
+        bindsym $mod+Shift+9 move container to workspace number 9
+        bindsym $mod+Shift+0 move container to workspace number 10
 
         # set sticky on window
         bindsym $mod+Shift+s sticky toggle
