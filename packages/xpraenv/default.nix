@@ -9,7 +9,7 @@ stdenv.mkDerivation {
 
   buildInputs = [makeWrapper];
 
-  PREFIXPATH = stdenv.lib.makeSearchPath "bin" [i3 jq xpra coreutils gnugrep rofi];
+  PREFIXPATH = stdenv.lib.makeSearchPath "bin" [i3 jq xpra coreutils gnugrep rofi libnotify];
 
   installPhase = ''
     mkdir -p $out/{bin,libexec/xpraenv}

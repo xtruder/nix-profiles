@@ -60,3 +60,7 @@ removeprefix() {
 
     echo "${result[@]}"
 }
+
+notify() {
+    notify-send "env: $1" "$2" --icon=dialog-information
+}

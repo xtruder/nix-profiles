@@ -17,7 +17,7 @@ port::reserve() {
 }
 
 actionmenu() {
-    action=$(dmenu::ask "Choose action" "->attach ->stop ->run" )
+    action=$(dmenu::ask "Choose action" "->attach ->run ->save ->stop" )
 
     if [[ ${action} == "->attach"  ]]; then
         port=$(callprovider $PROVIDER get $1 "port/xpra")
@@ -27,6 +27,12 @@ actionmenu() {
         port=$(callprovider $PROVIDER get $1 "port/xpra")
         cmd=$(dmenu::ask "command:")
         xpra::control $port start "/var/setuid-wrappers/sudo -u offlinehacker env \"PATH=/var/run/current-system/sw/bin\" $cmd"
+    elif [[ ${action} == "->save" ]]; then
+        vbox::save $1
+        notify "$1" "state saved"
+    elif [[ ${action} == "->stop" ]]; then
+        vbox::shutdown $1
+        notify "$1" "stopped"
     fi
 }
 
@@ -43,4 +49,5 @@ else
     port::reserve $PROVIDER $vm "ssh" 22
     callprovider $PROVIDER set $vm "workspace" $(i3::focusedworkspace)
     callprovider $PROVIDER start $vm
+    notify "$vm" "started"
 fi

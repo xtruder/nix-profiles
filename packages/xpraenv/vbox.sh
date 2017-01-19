@@ -52,3 +52,11 @@ vbox::portforward() {
     VBoxManage modifyvm $(vbox::name $1) --natpf1 delete $2 || true 2>&1 >/dev/null
     VBoxManage modifyvm $(vbox::name $1) --natpf1 "$2,tcp,,$3,,$4" 2>&1 >/dev/null
 }
+
+vbox::save() {
+    VBoxManage controlvm $(vbox::name $1) savestate
+}
+
+vbox::stop() {
+    VBoxManage controlvm $(vbox::name $1) poweroff soft
+}
