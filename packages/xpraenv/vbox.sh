@@ -32,6 +32,12 @@ vbox::isrunning() {
     return $result
 }
 
+vbox::issuspended() {
+    VBoxManage showvminfo $(vbox::name $1) | grep  "paused" 2>&1 >/dev/null
+    result=$?
+    return $result
+}
+
 vbox::get() {
     data=$(VBoxManage getextradata $(vbox::name $1) $2)
 
@@ -59,4 +65,12 @@ vbox::save() {
 
 vbox::stop() {
     VBoxManage controlvm $(vbox::name $1) poweroff soft
+}
+
+vbox::suspend() {
+    VBoxManage controlvm $(vbox::name $1) pause
+}
+
+vbox::resume() {
+    VBoxManage controlvm $(vbox::name $1) resume
 }

@@ -17,7 +17,7 @@ port::reserve() {
 }
 
 actionmenu() {
-    action=$(dmenu::ask "Choose action" "->attach ->run ->save ->stop" )
+    action=$(dmenu::ask "Choose action" "->attach ->run ->save ->suspend/resume ->stop" )
 
     if [[ ${action} == "->attach"  ]]; then
         port=$(callprovider $PROVIDER get $1 "port/xpra")
@@ -33,6 +33,14 @@ actionmenu() {
     elif [[ ${action} == "->stop" ]]; then
         vbox::shutdown $1
         notify "$1" "stopped"
+    elif [[ ${action} == "->suspend/resume" ]]; then
+        if vbox::issuspended $1; then
+            vbox::resume $1
+            notify "$1" "resumed"
+        else
+            vbox::suspend $1
+            notify "$1" "suspended"
+        fi
     fi
 }
 
