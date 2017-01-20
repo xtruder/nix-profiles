@@ -52,6 +52,8 @@ fi
 
 if vbox::isrunning $vm; then
     actionmenu $vm
+elif vbox::issuspended $vm; then
+    actionmenu $vm
 else
     port=$(port::reserve $PROVIDER $vm "xpra" 10000)
     port::reserve $PROVIDER $vm "ssh" 22
