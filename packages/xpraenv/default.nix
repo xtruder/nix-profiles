@@ -1,4 +1,4 @@
-{ stdenv, i3, xpra, rofi, jq, gnugrep, coreutils, makeWrapper }:
+{ stdenv, i3, xpra, rofi, jq, gnugrep, coreutils, libnotify, makeWrapper }:
 
 stdenv.mkDerivation {
   name = "xpraenv";
