@@ -32,6 +32,5 @@ in {
     };
 
     environment.systemPackages = with pkgs; [ xorg.xauth xorg.xev xsel xfontsel ];
-    environment.sessionVariables.LD_LIBRARY_PATH = mkForce [];
   };
 }
