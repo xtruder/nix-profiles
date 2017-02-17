@@ -15,4 +15,5 @@
   ./dnscrypt.nix
   ./system.nix
   ./headless.nix
+  ./images/vbox.nix
 ]

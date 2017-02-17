@@ -1,0 +1,9 @@
+language: nix
+matrix:
+    include:
+        - os: linux
+          sudo: false
+          before_script:
+              - git clone -b unstable --depth=50 https://github.com/offlinehacker/nixpkgs
+          scripts:
+              - nix-build -I nixos-config=$PWD/configurations/dev.nix -A config.system.build.virtualBoxOVA $PWD/nixpkgs/nixos 
