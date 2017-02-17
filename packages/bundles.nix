@@ -72,6 +72,7 @@
       tagbar
       ctrlp
       editorconfig-vim
+      tabular
     ];
     ignoreCollisions = true;
   };
@@ -321,6 +322,13 @@
     name = "python-env";
     paths = with pkgs.pythonPackages; [
       pythonFull
+    ];
+  };
+
+  python3 = pkgs.buildEnv {
+    name = "python3-env";
+    paths = with pkgs; [
+      python3Full
     ];
   };
 }
