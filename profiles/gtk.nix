@@ -15,6 +15,7 @@ in {
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
+      gnome3.dconf
       lxappearance
       gnome-breeze
       breeze-icons
@@ -24,8 +25,8 @@ in {
       gcolor2
     ];
 
-    # Enable GTK applications to load SVG icons
     environment.variables = {
+      GIO_EXTRA_MODULES = [ "${pkgs.gnome3.dconf}/lib/gio/modules" ];
       GTK_DATA_PREFIX = "/run/current-system/sw";
       GST_PLUGIN_SYSTEM_PATH_1_0 =
         lib.makeSearchPath "/lib/gstreamer-1.0"
