@@ -27,6 +27,7 @@ in {
 
     # chromium
     programs.chromium.enable = true;
+    programs.chromium.homepageLocation = "https://encrypted.google.com";
     programs.chromium.defaultSearchProviderSearchURL =
       "https://encrypted.google.com/search?q={searchTerms}&{google:RLZ}{google:originalQueryForSuggestion}{google:assistedQueryStats}{google:searchFieldtrialParameter}{google:searchClient}{google:sourceId}{google:instantExtendedEnabledParameter}ie={inputEncoding}";
     programs.chromium.defaultSearchProviderSuggestURL =
