@@ -23,6 +23,7 @@ in {
     programs.tmux.newSession = true;
     programs.tmux.extraTmuxConf = builtins.readFile ./tmux.conf;
     programs.tmux.terminal = "screen-256color";
+    environment.systemPackages = [pkgs.xsel]; # copy
 
     # chromium
     programs.chromium.enable = true;
