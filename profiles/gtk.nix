@@ -17,7 +17,7 @@ in {
     environment.systemPackages = with pkgs; [
       lxappearance
       gnome-breeze
-      kde5.breeze-icons
+      breeze-icons
       gnome3.adwaita-icon-theme
       gtk_engines
       gtk-engine-murrine
