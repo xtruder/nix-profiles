@@ -1,7 +1,7 @@
 let
   pkgs = import <nixpkgs> ({ config = import ./packages; });
 
-  profiles = import ./profiles/module-list.nix;
+  profiles = import ./modules/module-list.nix;
   options = (import <nixpkgs/nixos/lib/eval-config.nix> {
     modules = profiles;
   }).options;
@@ -51,7 +51,6 @@ in with pkgs.lib; {
     meta.description = "List of NixOS options in JSON format";
   };
 
-  packages = import ./packages;
-
-  environments = import ./environments.nix { inherit pkgs; };
+  configurations.dev = import ./configurations/dev.nix;
+  configurations.sec = import ./configurations/sec.nix;
 }
