@@ -565,6 +565,11 @@ in
             options = [ "trans=virtio" "version=9p2000.L" "mode=0777" ];
             neededForBoot = true;
           };
+        "/nix" =
+          { fsType = "tmpfs";
+            options = [ "mode=0755" ];
+            neededForBoot = true;
+          };
       } // optionalAttrs (cfg.writableStore && cfg.writableStoreUseTmpfs)
       { "/nix/.rw-store" =
           { fsType = "tmpfs";
