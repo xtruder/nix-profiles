@@ -20,7 +20,7 @@ let
   // optionalAttrs (opt ? example) { example = substFunction opt.example; }
   // optionalAttrs (opt ? default) { default = substFunction opt.default; }
   // optionalAttrs (opt ? type) { type = substFunction opt.type; });
-  prefixes = ["profiles" "attributes"];
+  prefixes = ["profiles" "attributes" "roles"];
 
 in with pkgs.lib; {
   inherit profiles;

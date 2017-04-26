@@ -270,3 +270,143 @@
 
   **Default:** "Fusion"
   **Example:** ...
+
+* `roles.admin.enable`:
+
+  Whether to enable admin role.
+
+  **Default:** false
+  **Example:** true
+
+* `roles.anonymous.enable`:
+
+  Whether to enable anonymous role.
+
+  **Default:** false
+  **Example:** true
+
+* `roles.anonymous.routeTraffic`:
+
+  Whether route traffic through tor
+
+  **Default:** true
+  **Example:** ...
+
+* `roles.anonymous.whitelistAddresses`:
+
+  List of adddresses to whitelist
+
+  **Default:** ["127.0.0.0/8","10.0.0.0/8","172.16.0.0/12","192.168.0.0/16","0.0.0.0/8","100.64.0.0/10","169.254.0.0/16","192.0.0.0/24","192.0.2.0/24","192.88.99.0/24","198.18.0.0/15","198.51.100.0/24","203.0.113.0/24","224.0.0.0/3"]
+  **Example:** ...
+
+* `roles.desktop.enable`:
+
+  Whether to enable desktop role.
+
+  **Default:** false
+  **Example:** true
+
+* `roles.dev.android.enable`:
+
+  Whether to enable android development.
+
+  **Default:** false
+  **Example:** true
+
+* `roles.dev.enable`:
+
+  Whether to enable dev role.
+
+  **Default:** false
+  **Example:** true
+
+* `roles.dev.go.enable`:
+
+  Whether to enable go language.
+
+  **Default:** false
+  **Example:** true
+
+* `roles.dev.nix.enable`:
+
+  Whether to enable nix language.
+
+  **Default:** false
+  **Example:** true
+
+* `roles.dev.node.enable`:
+
+  Whether to enable node language.
+
+  **Default:** false
+  **Example:** true
+
+* `roles.dev.python.enable`:
+
+  Whether to enable python development.
+
+  **Default:** false
+  **Example:** true
+
+* `roles.headless.enable`:
+
+  Whether to enable development profile
+
+  **Default:** false
+  **Example:** ...
+
+* `roles.headless.mmap`:
+
+  Whether to use direct memory access for faster transport
+
+  **Default:** true
+  **Example:** ...
+
+* `roles.laptop.enable`:
+
+  Whether to enable laptop role.
+
+  **Default:** false
+  **Example:** true
+
+* `roles.multimedia.enable`:
+
+  Whether to enable multimedia role.
+
+  **Default:** false
+  **Example:** true
+
+* `roles.office.enable`:
+
+  Whether to enable office role.
+
+  **Default:** false
+  **Example:** true
+
+* `roles.pentest.enable`:
+
+  Whether to enable pentest role.
+
+  **Default:** false
+  **Example:** true
+
+* `roles.system.enable`:
+
+  Whether to enable system role.
+
+  **Default:** false
+  **Example:** true
+
+* `roles.vm.enable`:
+
+  Whether to enable vm role.
+
+  **Default:** false
+  **Example:** true
+
+* `roles.work.enable`:
+
+  Whether to enable work role.
+
+  **Default:** false
+  **Example:** true
