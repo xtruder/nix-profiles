@@ -1,4 +1,8 @@
-{ config, lib, pkgs, ... }: with lib; {
+{ config, lib, pkgs, ... }:
+
+with lib;
+  
+{
   options.attributes = {
     name = mkOption {
       description = "Name of the server";
@@ -78,7 +82,6 @@
       from = mkOption {
         description = "Email to send mails from";
         type = types.str;
-        default = "admin@${cfg.projectName}";
       };
     };
   };

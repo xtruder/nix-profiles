@@ -6,7 +6,7 @@ let
   cfg = config.profiles.x11;
 in {
   options.profiles.x11 = {
-    enable = mkEnableOption "Whether to enable x11 server profile.";
+    enable = mkEnableOption "x11 server profile";
 
     compositor = mkEnableOption "compositor";
 

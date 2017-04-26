@@ -12,7 +12,7 @@ let
 
 in {
   options.profiles.kubernetes = {
-    enable = mkEnableOption "Whether to enable kubernetes profile.";
+    enable = mkEnableOption "kubernetes profile";
   };
 
   config = mkIf cfg.enable {

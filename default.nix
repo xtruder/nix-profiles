@@ -1,5 +1,5 @@
 let
-  pkgs = import <nixpkgs> ({ config = import ./packages; });
+  pkgs = import <nixpkgs> {};
 
   profiles = import ./modules/module-list.nix;
   options = (import <nixpkgs/nixos/lib/eval-config.nix> {

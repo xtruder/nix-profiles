@@ -1,71 +1,29 @@
-* `attributes.admins`:
-
-  List of admins
-
-  **Default:** "..."
-  **Example:** ...
-
-* `attributes.admins.*.email`:
+* `attributes.admin.email`:
 
   Admin email
 
   **Default:** "..."
   **Example:** ...
 
-* `attributes.admins.*.key`:
+* `attributes.admin.fullname`:
 
-  Admin ssh key
+  Admin fullname
 
   **Default:** "..."
   **Example:** ...
 
-* `attributes.admins.*.notify`:
+* `attributes.cpu.cores`:
 
-  Whether to notify admin about events on the server
+  Number of CPU cores
 
-  **Default:** true
+  **Default:** "..."
   **Example:** ...
 
-* `attributes.checks`:
+* `attributes.name`:
 
-  System wide checks.
+  Name of the server
 
-  **Default:** {}
-  **Example:** ...
-
-* `attributes.checks.<name>.name`:
-
-  Service name.
-
-  **Default:** ""
-  **Example:** ...
-
-* `attributes.clusterNodes`:
-
-  List of nodes to cluster with
-
-  **Default:** []
-  **Example:** ...
-
-* `attributes.domain`:
-
-  Project domain
-
-  **Default:** "dummy-project"
-  **Example:** ...
-
-* `attributes.emailFrom`:
-
-  Email to send mails from
-
-  **Default:** "admin@x-truder.net"
-  **Example:** ...
-
-* `attributes.nameservers`:
-
-  List of nameservers.
-
-  **Default:** ["8.8.8.8","8.8.4.4"]
+  **Default:** "..."
   **Example:** ...
 
 * `attributes.privateIPv4`:
@@ -75,18 +33,11 @@
   **Default:** "127.0.0.1"
   **Example:** ...
 
-* `attributes.privateInterface`:
-
-  Interface for private network.
-
-  **Default:** "eth1"
-  **Example:** ...
-
 * `attributes.projectName`:
 
   Name of the project
 
-  **Default:** "dummy-project"
+  **Default:** "..."
   **Example:** ...
 
 * `attributes.publicIPv4`:
@@ -96,88 +47,25 @@
   **Default:** ""
   **Example:** ...
 
-* `attributes.publicInterface`:
-
-  Interface for public network.
-
-  **Default:** "eth0"
-  **Example:** ...
-
 * `attributes.recoveryKey`:
 
   SSH recovery key
 
-  **Default:** ""
+  **Default:** "..."
   **Example:** ...
 
-* `attributes.services`:
+* `attributes.recoveryPassword`:
 
-  Definition for service profiles.
-
-  **Default:** {}
-  **Example:** ...
-
-* `attributes.services.<name>.checkFailure`:
-
-  List of services to check for failure
-
-  **Default:** []
-  **Example:** ...
-
-* `attributes.services.<name>.checks`:
-
-  Definitions for service checks.
-
-  **Default:** {}
-  **Example:** ...
-
-* `attributes.services.<name>.checks.<name>.interval`:
-
-  Interval that script is run.
-
-  **Default:** "10m"
-  **Example:** ...
-
-* `attributes.services.<name>.checks.<name>.name`:
-
-  Check name.
-
-  **Default:** ""
-  **Example:** ...
-
-* `attributes.services.<name>.checks.<name>.script`:
-
-  Check script to run.
+  Recovery password
 
   **Default:** "..."
   **Example:** ...
 
-* `attributes.services.<name>.host`:
+* `attributes.smtp.from`:
 
-  Host where service listens.
+  Email to send mails from
 
-  **Default:** "127.0.0.1"
-  **Example:** ...
-
-* `attributes.services.<name>.name`:
-
-  Service name.
-
-  **Default:** ""
-  **Example:** ...
-
-* `attributes.services.<name>.port`:
-
-  Port Where service listens.
-
-  **Default:** null
-  **Example:** ...
-
-* `attributes.services.<name>.proxy.enable`:
-
-  whether to enable http proxy to service.
-
-  **Default:** false
+  **Default:** "..."
   **Example:** ...
 
 * `attributes.smtp.host`:
@@ -208,61 +96,12 @@
   **Default:** "..."
   **Example:** ...
 
-* `attributes.tags`:
+* `profiles.docker.enable`:
 
-  Tags associated with node
-
-  **Default:** []
-  **Example:** ...
-
-* `attributes.terminal`:
-
-  Terminal to use
-
-  **Default:** "/nix/store/p950is4bmnr2fn65g7gm02ph29bbq5gh-st-0.7/bin/st -c \"sucklessterm\" -e /nix/store/0zfb79bwh8riq9j7chwm8vxw5k042a3j-tmux-2.3/bin/tmux"
-  **Example:** ...
-
-* `profiles.desktop.enable`:
-
-  Whether to enable desktop profile.
-
-  **Default:** false
-  **Example:** ...
-
-* `profiles.dev.enable`:
-
-  Whether to enable development profile
-
-  **Default:** false
-  **Example:** ...
-
-* `profiles.dnscrypt.enable`:
-
-  Whether to enable dnscrypt profile.
-
-  **Default:** false
-  **Example:** ...
-
-* `profiles.etcd.discovery`:
-
-  Etcd discovery url.
-
-  **Default:** "..."
-  **Example:** ...
-
-* `profiles.etcd.enable`:
-
-  Whether to enable to enable etcd profile..
+  Whether to enable docker profile.
 
   **Default:** false
   **Example:** true
-
-* `profiles.gtk.enable`:
-
-  Whether to enable gtk profile
-
-  **Default:** false
-  **Example:** ...
 
 * `profiles.i3.background`:
 
@@ -296,152 +135,138 @@
 
   Command to start terminal
 
-  **Default:** "/nix/store/p950is4bmnr2fn65g7gm02ph29bbq5gh-st-0.7/bin/st -c \"sucklessterm\" -e /nix/store/0zfb79bwh8riq9j7chwm8vxw5k042a3j-tmux-2.3/bin/tmux"
+  **Default:** "st -c \"sucklessterm\" -e tmux attach"
   **Example:** ...
 
 * `profiles.kubernetes.enable`:
 
-  Whether to enable Whether to enable kubernetes profile..
+  Whether to enable kubernetes profile.
 
   **Default:** false
   **Example:** true
 
-* `profiles.kubernetes.master`:
+* `profiles.st.enable`:
 
-  Wheter node is master
-
-  **Default:** false
-  **Example:** ...
-
-* `profiles.kubernetes.network.domain`:
-
-  Kubernetes domain name for skydns.
-
-  **Default:** "dummy-project"
-  **Example:** ...
-
-* `profiles.kubernetes.network.interface`:
-
-  Kubernetes interface.
-
-  **Default:** "kbr"
-  **Example:** ...
-
-* `profiles.kubernetes.network.ipAddress`:
-
-  Ip address for kubernetes network.
-
-  **Default:** "10.244.1.1"
-  **Example:** ...
-
-* `profiles.kubernetes.network.prefixLength`:
-
-  Kubernetes network prefix length.
-
-  **Default:** 24
-  **Example:** ...
-
-* `profiles.kubernetes.network.servicesSubnet`:
-
-  Subnet for services.
-
-  **Default:** "10.255.1.0/24"
-  **Example:** ...
-
-* `profiles.kubernetes.network.subnet`:
-
-  Kubernetes network subnet.
-
-  **Default:** "10.244.0.0/16"
-  **Example:** ...
-
-* `profiles.kubernetes.node`:
-
-  Wheter node is a compute node
+  Whether to enable suckless terminal.
 
   **Default:** false
+  **Example:** true
+
+* `profiles.terminal.run`:
+
+  Command to run to start terminal
+
+  **Default:** "tmux attach"
   **Example:** ...
 
-* `profiles.kubernetes.registries`:
+* `profiles.terminal.term`:
 
-  Attribute set of docker registries
+  TERM to set
 
-  **Default:** "..."
+  **Default:** "secreen-256color"
   **Example:** ...
 
-* `profiles.kubernetes.registries.*.auth`:
+* `profiles.tmux.enable`:
 
-  Docekr registry auth.
+  Whether to enable tmux profile.
+
+  **Default:** false
+  **Example:** true
+
+* `profiles.vbox.enable`:
+
+  Whether to enable docker profile.
+
+  **Default:** false
+  **Example:** true
+
+* `profiles.wireshark.enable`:
+
+  Whether to enable wireshark profile.
+
+  **Default:** false
+  **Example:** true
+
+* `profiles.x11.Xresources`:
+
+  Additional xresources
 
   **Default:** ""
   **Example:** ...
 
-* `profiles.kubernetes.registries.*.email`:
+* `profiles.x11.compositor`:
 
-  Docker registry email
-
-  **Default:** ""
-  **Example:** ...
-
-* `profiles.kubernetes.registries.*.url`:
-
-  Docker registry url
-
-  **Default:** "..."
-  **Example:** ...
-
-* `profiles.kubernetes.tokens`:
-
-  Attribute set of username and passwords
-
-  **Default:** {}
-  **Example:** ...
-
-* `profiles.monitoring.collectd.enable`:
-
-  Whether to enable collectd profile.
+  Whether to enable compositor.
 
   **Default:** false
+  **Example:** true
+
+* `profiles.x11.cursorTheme`:
+
+  Cursor theme name
+
+  **Default:** "Numix"
   **Example:** ...
 
-* `profiles.monitoring.collectd.influxdbHost`:
+* `profiles.x11.displayManager`:
 
-  Influxdb host
-
-  **Default:** "localhost"
-  **Example:** ...
-
-* `profiles.monitoring.collectd.influxdbPort`:
-
-  Influxdb port
-
-  **Default:** 25826
-  **Example:** ...
-
-* `profiles.monitoring.onfailure.command`:
-
-  Command to execute on failure.
-
-  **Default:** ""
-  **Example:** ...
-
-* `profiles.monitoring.onfailure.enable`:
-
-  Whether to enable monitoring.
+  Whether to enable display manager.
 
   **Default:** false
-  **Example:** ...
-
-* `profiles.monitoring.onfailure.services`:
-
-  List of services to monitor.
-
-  **Default:** []
-  **Example:** ...
+  **Example:** true
 
 * `profiles.x11.enable`:
 
-  Whether to enable Whether to enable x11 server profile..
+  Whether to enable x11 server profile.
 
   **Default:** false
   **Example:** true
+
+* `profiles.x11.gtk2.settings`:
+
+  Extra settings for gtk2
+
+  **Default:** ""
+  **Example:** ...
+
+* `profiles.x11.gtk2.theme`:
+
+  GTK2 theme name
+
+  **Default:** "Clearlooks"
+  **Example:** ...
+
+* `profiles.x11.gtk3.settings`:
+
+  Extra settings for gtk3
+
+  **Default:** ""
+  **Example:** ...
+
+* `profiles.x11.gtk3.theme`:
+
+  GTK2 theme name
+
+  **Default:** "Clearlooks"
+  **Example:** ...
+
+* `profiles.x11.iconTheme`:
+
+  Icon theme name
+
+  **Default:** "Numix"
+  **Example:** ...
+
+* `profiles.x11.qt.settings`:
+
+  QT theme settings
+
+  **Default:** ""
+  **Example:** ...
+
+* `profiles.x11.qt.theme`:
+
+  QT theme name
+
+  **Default:** "Fusion"
+  **Example:** ...
