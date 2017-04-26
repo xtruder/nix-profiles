@@ -48,12 +48,6 @@ in {
             description = "Memory size for VM";
             default = 2048;
           };
-
-          smp = mkOption {
-            description = "Number of cores to use";
-            default = 4;
-            type = types.int;
-          };
         };
       }));
       default = {};
@@ -68,7 +62,6 @@ in {
           virtualisation = {
             qemu = {
               cpu = ["host" "+vmx"];
-              smp = env.smp;
               networkingOptions = [
                 "-device virtio-net,netdev=user.0"
                 "-netdev user,id=user.0,${concatMapStringsSep "," (p:
@@ -84,6 +77,8 @@ in {
             graphics = false;
             memorySize = env.memorySize;
             overrideFilesystems = false;
+            writableStore = true;
+            writableStoreUseTmpfs = false;
           };
 
           systemd.services.autoupdate = {
