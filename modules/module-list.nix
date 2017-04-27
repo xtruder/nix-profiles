@@ -16,6 +16,7 @@
 
   ./roles/base.nix
   ./roles/admin.nix
+  ./roles/server.nix
   ./roles/headless.nix
   ./roles/work.nix
   ./roles/multimedia.nix
