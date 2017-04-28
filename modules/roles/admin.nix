@@ -28,6 +28,7 @@ with lib;
       stunnel
 
       # cloud
+      kubernetes
       awscli
       google-cloud-sdk
 
