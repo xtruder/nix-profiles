@@ -19,7 +19,7 @@ in {
     services.kubernetes.roles = ["master" "node"];
     services.kubernetes.dns.port = 5555;
     #services.kubernetes.kubelet.volumePluginDir = volumePlugins;
-    services.dnsmasq.enable = true;
+    services.dnsmasq.enable = mkDefault true;
     services.dnsmasq.servers = ["/${config.services.kubernetes.dns.domain}/127.0.0.1#5555"];
     virtualisation.docker.extraOptions = "--iptables=false --ip-masq=false -b cbr0";
     networking.bridges.cbr0.interfaces = [];
