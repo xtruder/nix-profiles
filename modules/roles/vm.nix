@@ -9,5 +9,8 @@ with lib;
     roles.work.enable = true;
     roles.system.enable = true;
     roles.headless.enable = true;
+
+    # eth0 is by default external interface
+    networking.nat.externalInterface = mkDefault "eth0";
   };
 }

@@ -20,5 +20,8 @@ with lib;
 
     # enable suspend
     powerManagement.enable = mkDefault true;
+
+    # eth0 is by default external interface
+    networking.nat.externalInterface = mkDefault "eth0";
   };
 }

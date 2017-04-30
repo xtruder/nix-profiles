@@ -26,7 +26,6 @@ in {
     networking.interfaces.cbr0 = {};
     networking.firewall.trustedInterfaces = ["cbr0"];
     networking.nat.internalInterfaces = ["cbr0"];
-    networking.nat.externalInterface = "eth0";
 
     #systemd.services.convoy = {
     #  wantedBy = ["multi-user.target"];
