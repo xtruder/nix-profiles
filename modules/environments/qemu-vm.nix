@@ -323,7 +323,7 @@ in
         mkOption {
           type = types.int;
           description = "Number of cores to use";
-          default = 1;
+          default = 4;
         };
 
       networkingOptions =
