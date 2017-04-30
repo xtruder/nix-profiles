@@ -31,6 +31,7 @@ with lib;
       kubernetes
       awscli
       google-cloud-sdk
+      virtmanager
 
       # database
       sqlite
