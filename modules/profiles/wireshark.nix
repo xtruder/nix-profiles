@@ -8,6 +8,6 @@ with lib;
   config = mkIf config.profiles.wireshark.enable {
     programs.wireshark.enable = true;
 
-    users.groups.docker.members = ["${config.users.users.admin.name}"];    
+    users.groups.wireshark.members = ["${config.users.users.admin.name}"];    
   };
 }
