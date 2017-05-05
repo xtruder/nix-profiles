@@ -8,6 +8,7 @@ with lib;
   config = mkIf config.roles.system.enable {
     environment.systemPackages = with pkgs; [
       sysdig # System call analyzer
+      htop
 
       # fs
       parted
