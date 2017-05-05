@@ -30,6 +30,7 @@
   ./roles/dev/nix.nix
   ./roles/dev/python.nix
   ./roles/dev/go.nix
+  ./roles/dev/devops.nix
   ./roles/desktop.nix
   ./roles/vm.nix
   ./roles/system.nix
