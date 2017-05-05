@@ -13,6 +13,7 @@
   ./profiles/kubernetes.nix
   ./profiles/i3.nix
   ./profiles/wireshark.nix
+  ./profiles/libvirt.nix
 
   ./roles/base.nix
   ./roles/admin.nix
