@@ -14,13 +14,13 @@ in {
       vimPlugins.vim-nix
       dpkg
       nix-prefetch-scripts
-      nox
       bundix
     ];
 
     nix = {
       nixPath = ["nixpkgs=$HOME/projects/nixpkgs"];
       maxJobs = config.attributes.cpu.cores;
+      distributedBuilds = true;
     };
   };
 }
