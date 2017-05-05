@@ -45,6 +45,8 @@ with lib;
       # remote
       rdesktop
       gtkvnc
+
+      wireshark
     ];
   };
 }
