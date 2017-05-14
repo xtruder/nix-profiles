@@ -18,6 +18,9 @@ in {
       ec2_ami_tools
       ec2_api_tools
       google-cloud-sdk
+      terraform
+      kops
+      kops.out
     ];
   };
 }
