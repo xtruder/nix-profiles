@@ -238,18 +238,23 @@ in {
 
               order += "online_status"
               order += "disk /"
-              order += "battery 0"
+              ${optionalString config.roles.laptop.enable ''order += "battery 0"''}
               order += "load"
               order += "volume master"
+              ${optionalString (!config.roles.vm.enable) ''
               order += "tztime local"
               order += "tztime pst"
+              ''}
 
+              ${optionalString config.roles.laptop.enable ''
               battery 0 {
                       format = "%status %percentage %remaining"
                       low_threshold = 10
                       last_full_capacity = true
               }
+              ''}
 
+              ${optionalString (!config.roles.vm.enable) ''
               tztime local {
                       format = "%Y-%m-%d ⌚ %H:%M:%S"
               }
@@ -257,6 +262,7 @@ in {
                       format = "⌚ %H:%M"
                       timezone = "America/Los_Angeles"
               }
+              ''}
 
               load {
                       format = "↺ %1min"
