@@ -10,6 +10,12 @@ with lib;
     roles.work.enable = true;
     roles.system.enable = true;
 
+    profiles.x11.compositor = false;
+    services.xserver.displayManager.slim = {
+        defaultUser = "offlinehacker";
+        autoLogin = true;
+    };
+
     # eth0 is by default external interface
     networking.nat.externalInterface = mkDefault "eth0";
   };
