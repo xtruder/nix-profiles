@@ -3,9 +3,9 @@
 with lib;
 
 let
-  cfg = config.roles.qemu;
+  cfg = config.profiles.qemu;
 in {
-  options.roles.qemu = {
+  options.profiles.qemu = {
     enable = mkEnableOption "qemu profile";
   };
 
