@@ -61,7 +61,7 @@ in {
   config = mkIf cfg.enable {
     profiles.x11 = {
       enable = true;
-      compositor = true;
+      compositor = mkDefault true;
       displayManager = true;
     };
 
