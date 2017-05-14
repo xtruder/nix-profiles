@@ -17,7 +17,7 @@ with lib;
       conf = builtins.readFile ./st.conf;
     };
 
-    profiles.terminal.command = ''st -c "sucklessterm" -e ${config.profiles.terminal.run}'';
+    profiles.terminal.command = ''st -c "sucklessterm" -e '';
 
     environment.systemPackages = [pkgs.st];
   };
