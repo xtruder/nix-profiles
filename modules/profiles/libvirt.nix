@@ -3,7 +3,7 @@
 with lib;
 
 let
-  cfg = config.profiles.kubernetes;
+  cfg = config.profiles.libvirt;
 in {
   options.profiles.libvirt = {
     enable = mkEnableOption "libvirt profile";
