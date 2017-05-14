@@ -16,7 +16,13 @@ with lib;
         autoLogin = true;
     };
 
+    services.openssh.enable = true;
+
+    # security lies elsewhere
+    security.sudo.wheelNeedsPassword = false;
+
     # eth0 is by default external interface
     networking.nat.externalInterface = mkDefault "eth0";
+    networking.firewall.allowedTCPPorts = [ 22 ];
   };
 }
