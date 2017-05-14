@@ -1,7 +1,6 @@
 [
   ./attributes.nix
   ./terminal.nix
-  ./environments
 
   ./profiles/vim
   ./profiles/tmux

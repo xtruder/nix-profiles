@@ -22,98 +22,6 @@ let
         --bshlcolor=1B4651ff
   '';
 
-  util = pkgs.writeScript "util.sh" ''
-    #!${pkgs.bash}/bin/bash
-
-    PASSPREFIX=private/env
-    export XPRA_ALLOW_UNENCRYPTED_PASSWORDS=1
-    export XPRA_BATCH_DELAY=5
-    export XPRA_BATCH_MAX_DELAY=7
-    export XPRA_BATCH_MIN_DELAY=5
-
-    # gets password for environment
-    pass::get() {
-        ${pkgs.pass}/bin/pass $1
-    }
-
-    xpra::attach() {
-        password=$(pass::get $PASSPREFIX/$1)
-        port=$(systemd::getprop $1 "X-Port-xpra")
-        ${pkgs.xpra}/bin/xpra attach tcp:localhost:$port --encoding=rgb -z 0 --password-file=<(echo -n $password) --mmap=/dev/shm/shm-$1
-    }
-
-    xpra::control() {
-        password=$(pass::get $PASSPREFIX/$1)
-        port=$(systemd::getprop $1 "X-Port-xpra")
-        ${pkgs.xpra}/bin/xpra control --password-file=<(echo -n $password) tcp:localhost:$port $2 "$3"
-    }
-
-    i3::focusedworkspace() {
-        echo $(${pkgs.i3}/bin/i3-msg -t get_workspaces | ${pkgs.jq}/bin/jq -rc '.[] | select( .focused  ) | .name')
-    }
-
-    i3::focusednum() {
-        echo $(${pkgs.i3}/bin/i3-msg -t get_workspaces | ${pkgs.jq}/bin/jq -rc '.[] | select( .focused  ) | .num')
-    }
-
-    i3::lastworkspace() {
-        echo $(${pkgs.i3}/bin/i3-msg -t get_workspaces | ${pkgs.jq}/bin/jq -rc '.[-1] | .num')
-    }
-
-    i3::rename() {
-        focusedName=$(i3::focusedworkspace)
-        focusedNum=$(i3::focusednum)
-        ${pkgs.i3}/bin/i3-msg "rename workspace \"$focusedName\" to \"$focusedNum $1\""
-    }
-
-    dmenu::ask() {
-        echo $2 | tr " " "\n" | ${pkgs.rofi}/bin/rofi -dmenu -p "$1"
-    }
-
-    systemd::getprop() {
-      cat $(${pkgs.systemd}/bin/systemctl show -p FragmentPath --value env-$1) | ${pkgs.gnugrep}/bin/grep "$2" | ${pkgs.coreutils}/bin/cut -d "=" -f 2
-    }
-  '';
-
-  manageEnvironments = pkgs.writeScript "show-environemnts.sh" ''
-    #!${pkgs.bash}/bin/bash
-
-    . ${util}
-
-    env=$(dmenu::ask "environments" "${concatMapStringsSep " " (e: e.name) (attrValues config.environments)}")
-    action=$(dmenu::ask "action" "->attach ->start ->stop ->restart ->suspend ->resume")
-
-    if [ -z $env ]; then
-        exit 0
-    fi
-
-    if [[ $action == "->start" ]]; then
-        ${pkgs.systemd}/bin/systemctl start "env-$env"
-    elif [[ $action == "->stop" ]]; then
-        ${pkgs.systemd}/bin/systemctl stop "env-$env"
-    elif [[ $action == "->restart" ]]; then
-        ${pkgs.systemd}/bin/systemctl restart "env-$env"
-    elif [[ $action == "->attach" ]]; then
-        i3::rename "env/$env"
-        xpra::attach $env
-    fi
-  '';
-
-  i3Run = pkgs.writeScript "i3-run.sh" ''
-    #!${pkgs.bash}/bin/bash
-
-    . ${util}
-
-    currentworkspace=$(i3::focusedworkspace | cut -d " " -f 2)
-
-    if echo $currentworkspace | grep env; then
-        env=''${currentworkspace#env/}
-        xpra::control $env start "/run/wrappers/bin/sudo -u $1 env \"PATH=/var/run/current-system/sw/bin\" \"XDG_DATA_DIRS=/run/current-system/sw/share\" $2 $3 $4 $5 $6 $7 $8 $9"
-    else
-        exec ''${@:2}
-    fi
-  '';
-
 in {
   options.profiles.i3 = {
     enable = mkOption {
@@ -285,24 +193,16 @@ in {
         bindsym $mod+r mode "resize"
 
         # start a terminal
-        bindsym $mod+Return exec ${i3Run} offlinehacker ${cfg.terminal}
-        bindsym $mod+Shift+Return exec ${i3Run} deploy ${cfg.terminal}
+        bindsym $mod+Return exec ${config.profiles.terminal.command} ${config.profiles.terminal.run} 
 
         # kill focused window
         bindsym $mod+Shift+q kill
 
         # start rofi (a program launcher)
-        bindsym $mod+d exec --no-startup-id ${i3Run} offlinehacker rofi -combi-modi drun -show combi -modi combi
-        bindsym $mod+Shift+d exec --no-startup-id ${i3Run} deploy rofi -combi-modi drun -show combi -modi combi
-
-        # start xpraenv
-        bindsym $mod+n exec ${manageEnvironments}
+        bindsym $mod+d exec --no-startup-id rofi -combi-modi drun -show combi -modi combi
 
         # Start passmenu
-        bindsym $mod+p exec --no-startup-id ${i3Run} offlinehacker rofi-pass
-
-        # Start passmenu
-        bindsym $mod+Shift+p exec --no-startup-id ${i3Run} deploy rofi-pass
+        bindsym $mod+p exec --no-startup-id rofi-pass
 
         # Monitor mode
         mode "monitor_select" {
