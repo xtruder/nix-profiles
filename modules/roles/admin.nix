@@ -41,8 +41,10 @@ with lib;
       postgresql
       redis
       etcdctl
+      vault
 
       # remote
+      libvirt
       rdesktop
       gtkvnc
 
