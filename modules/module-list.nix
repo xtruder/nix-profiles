@@ -14,6 +14,7 @@
   ./profiles/i3.nix
   ./profiles/wireshark.nix
   ./profiles/libvirt.nix
+  ./profiles/qemu.nix
 
   ./roles/base.nix
   ./roles/admin.nix
