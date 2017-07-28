@@ -21,6 +21,10 @@ in {
       terraform
       kops
       kops.out
+      azure-cli
+      nixops
+      ansible
+      heketi
     ];
   };
 }
