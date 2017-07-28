@@ -119,9 +119,6 @@ in {
       # GTK3: add themes to search path
       XDG_DATA_DIRS = ["${config.system.path}/share"];
 
-      # Find the cursors
-      XCURSOR_PATH = ["${config.system.path}/share/icons"];
-
       # SVG loader for pixbuf (needed for GTK svg icon themes)
       GDK_PIXBUF_MODULE_FILE = "${pkgs.librsvg.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
 
