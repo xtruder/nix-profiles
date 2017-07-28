@@ -18,7 +18,7 @@ in {
     ];
 
     environment.variables = {
-      PATH = ["$HOME/projects/go"];
+      GOPATH = ["$HOME/projects/go"];
     };
   };
 }
