@@ -47,6 +47,7 @@ with lib;
       libvirt
       rdesktop
       gtkvnc
+      openvpn
 
       wireshark
     ];
