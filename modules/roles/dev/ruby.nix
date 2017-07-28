@@ -3,12 +3,13 @@
 with lib;
 
 let
-  cfg = config.dev.ruby;
+  cfg = config.roles.dev.ruby;
 in {
-  options.dev.ruby.enable = mkEnableOption "ruby development";
+  options.roles.dev.ruby.enable = mkEnableOption "ruby development";
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
+      bundix
       bundler
       ruby
     ];
