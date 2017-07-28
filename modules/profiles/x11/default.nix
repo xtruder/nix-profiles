@@ -87,7 +87,7 @@ in {
       autorun = true;
       exportConfiguration = true;
 
-      layout = "en";
+      layout = "us";
 
       desktopManager.xterm.enable = false;
       displayManager.slim.enable = mkDefault cfg.displayManager;
