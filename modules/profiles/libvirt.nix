@@ -25,5 +25,7 @@ in {
       # ignore virbr0 as libvirtd listens here
       except-interface=virbr0
     '';
+
+    boot.kernelParams = ["kvm.allow_unsafe_assigned_interrupts=1" "kvm.ignore_msrs=1" "kvm-intel.nested=1"];
   };
 }
