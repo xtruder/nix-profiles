@@ -18,6 +18,7 @@ with lib;
       ncdu # disk usage analizer
       unfs3
       encfs
+      smartmontools
 
       # devices
       pciutils
