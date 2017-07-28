@@ -147,6 +147,12 @@ in {
         vscode
         atom
 
+        # source code managment
+        gitAndTools.gitflow
+        gitAndTools.gitFull
+        gitAndTools.hub
+        git-crypt
+
         # required by tmux
         pkgs.xsel
       ];
