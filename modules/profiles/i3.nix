@@ -56,6 +56,12 @@ in {
         sha256 = "0lsrjsbwm5678an31282vp703gkzy1nin2l0v37g240zgxi3d5zq";
       };
     };
+
+    screenLock.enable = mkOption {
+      description = "Whether to enable screen locking";
+      default = true;
+      type = types.bool;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -318,7 +324,9 @@ in {
         bindsym XF86AudioMute exec --no-startup-id ${pkgs.alsaUtils}/bin/amixer set Master 1+ toggle && killall -SIGUSR1 i3status
 
         # lock
+        ${optionalString cfg.screenLock.enable ''
         bindsym $mod+l exec --no-startup-id ${i3Lock}
+        ''}
 
         ${optionalString config.services.xserver.synaptics.enable ''
           bindsym XF86TouchpadToggle exec --no-startup-id ${pkgs.xorg.xf86inputsynaptics.out}/bin/synclient TouchpadOff=$(${pkgs.xorg.xf86inputsynaptics.out}/bin/synclient -l | grep -c 'TouchpadOff.*=.*0')
