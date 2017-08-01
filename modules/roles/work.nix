@@ -117,7 +117,12 @@ with lib;
       taskwarrior
       pythonPackages.bugwarrior
 
+      # journaling
+      python27Packages.jrnl
+
       gnome3.dconf
+
+      pavucontrol
     ];
   };
 }
