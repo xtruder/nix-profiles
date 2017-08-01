@@ -19,6 +19,7 @@ with lib;
       unfs3
       encfs
       smartmontools
+      hdparm
 
       # devices
       pciutils
