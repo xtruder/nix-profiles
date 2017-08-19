@@ -79,6 +79,8 @@ in {
         ${pkgs.dunst}/bin/dunst &
         ${optionalString config.networking.networkmanager.enable "${pkgs.networkmanagerapplet}/bin/nm-applet &"}
         ${optionalString config.hardware.bluetooth.enable "${pkgs.blueman}/bin/blueman-applet &"}
+        ${optionalString config.services.udisks2.enable "${pkgs.udiskie}/bin/udiskie -t -A &"}
+        ${optionalString config.virtualisation.libvirtd.enable "${pkgs.virtmanager}/bin/virt-manager --spice-disable-auto-usbredir &"}
       '';
       configFile = pkgs.writeText "i3.cfg" ''
         set $mon_lap ${cfg.primaryMonitor}
