@@ -55,6 +55,7 @@ in {
       #*nat OUTPUT (For local redirection)
       iptables -t nat -A OUTPUT -d 10.192.0.0/10 -p tcp --syn -j REDIRECT --to-ports 9040
       iptables -t nat -A OUTPUT -p udp --dport 53 -j REDIRECT --to-ports 9053
+      iptables -t nat -A OUTPUT -p tcp --dport 53 -j REDIRECT --to-ports 9053
       iptables -t nat -A OUTPUT -m owner --uid-owner tor -j RETURN
       iptables -t nat -A OUTPUT -o lo -j RETURN
 
