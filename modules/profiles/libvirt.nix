@@ -16,6 +16,7 @@ in {
     #networking.nat.externalInterface = "eth0";
 
     users.groups.libvirtd.members = ["${config.users.users.admin.name}"];    
+    users.groups.spice.members = ["${config.users.users.admin.name}"];    
 
     virtualisation.libvirtd.qemuVerbatimConfig = ''
       nvram = ["${pkgs.OVMF}/FV/OVMF_CODE.fd:${pkgs.OVMF}/FV/OVMF_VARS.fd"]
@@ -27,5 +28,10 @@ in {
     '';
 
     boot.kernelParams = ["kvm.allow_unsafe_assigned_interrupts=1" "kvm.ignore_msrs=1" "kvm-intel.nested=1"];
+
+    services.udev.extraRules = ''
+      SUBSYSTEM=="usb", GROUP="spice", MODE="0660"
+      SUBSYSTEM=="usb_device", GROUP="spice", MODE="0660"
+    '';
   };
 }
