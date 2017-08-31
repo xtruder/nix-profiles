@@ -67,5 +67,11 @@ in {
       #redirect all other pre-routing and output to Tor
       iptables -t nat -A OUTPUT -p tcp --syn -j REDIRECT --to-ports 9040
     '';
+
+    environment.variables = {
+      TOR_SOCKS_PORT = "9050";
+      TOR_CONTROL_PORT = "9051";
+      TOR_SKIP_LAUNCH = "1";
+    };
   };
 }
