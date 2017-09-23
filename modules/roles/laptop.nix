@@ -23,6 +23,11 @@ with lib;
       HandleLidSwitch=ignore
     '';
 
+    # redshift
+    services.redshift.enable = true;
+    services.redshift.latitude = "46";
+    services.redshift.longitude = "14";
+
     environment.systemPackages = with pkgs; [
       wirelesstools
     ];
