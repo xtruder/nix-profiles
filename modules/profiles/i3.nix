@@ -348,27 +348,6 @@ in {
       serviceConfig.Type = "forking";
     };
 
-    systemd.services.check-battery = {
-      description = "Shutdown on low battery";
-      script = ''
-        ${pkgs.acpi}/bin/acpi -b | ${pkgs.gawk}/bin/awk -F'[,:%]' '{print $2, $3}' | (
-          read -r status capacity
-	        if [ "$status" = Discharging ] && [ "$capacity" -lt 5 ]; then
-          	${pkgs.systemd}/bin/systemctl shutdown
-  	      fi
-        )
-      '';
-    };
-
-    systemd.timers.check-battery = {
-      timerConfig = {
-        OnUnitInactiveSec = "60s";
-        OnBootSec = "1min";
-        Unit = "check-battery.service";
-      };
-      wantedBy = [ "multi-user.target" ];
-    };
-
     environment.systemPackages = with pkgs; [
       i3status acpi rofi rofi-pass st xterm
     ];
