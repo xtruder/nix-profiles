@@ -30,6 +30,7 @@ with lib;
 
     environment.systemPackages = with pkgs; [
       wirelesstools
+      iw
     ];
 
     # check battery every 60s
