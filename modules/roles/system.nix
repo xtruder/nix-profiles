@@ -6,6 +6,8 @@ with lib;
   options.roles.system.enable = mkEnableOption "system role";
 
   config = mkIf config.roles.system.enable {
+    services.udev.packages = with pkgs; [ usb-modeswitch-data  ];
+
     environment.systemPackages = with pkgs; [
       sysdig # System call analyzer
       htop
