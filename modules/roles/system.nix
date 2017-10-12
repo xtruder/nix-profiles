@@ -37,6 +37,7 @@ with lib;
       jnettop
       ethtool
       arp-scan
+      iw
     ];
   };
 }
