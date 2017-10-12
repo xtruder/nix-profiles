@@ -140,7 +140,10 @@ au BufNewFile,BufRead *.html setlocal filetype=html
 " go
 au BufNewFile,BufRead *.go setlocal filetype=go
 au BufNewFile,BufRead *.nix setlocal filetype=nix
+
+" javascript
 au BufNewFile,BufRead *.js setlocal filetype=javascript
+au BufNewFile,BufRead *.mjs setlocal filetype=javascript
 au BufNewFile,BufRead *.ts setlocal filetype=typescript
 " }}} END: filetypes
 
