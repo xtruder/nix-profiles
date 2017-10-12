@@ -9,7 +9,7 @@ in {
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      nodejs-7_x
+      nodejs-8_x
       flow
 
       #vim-jsdoc
