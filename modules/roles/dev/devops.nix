@@ -24,7 +24,7 @@ in {
       azure-cli
       nixops
       ansible
-      heketi
+      telepresence
     ];
   };
 }
