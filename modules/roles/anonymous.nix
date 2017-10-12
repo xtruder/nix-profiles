@@ -73,5 +73,8 @@ in {
       TOR_CONTROL_PORT = "9051";
       TOR_SKIP_LAUNCH = "1";
     };
+
+    # add user to tor group
+    users.groups.tor.members = ["${config.users.users.admin.name}"];
   };
 }
