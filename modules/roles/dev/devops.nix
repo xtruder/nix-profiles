@@ -26,6 +26,7 @@ in {
       nixops
       ansible
       telepresence
+      remarshal
     ];
   };
 }
