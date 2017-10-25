@@ -14,6 +14,7 @@ in {
       packer
       vagrant
       kubernetes
+      kubernetes-helm
       awscli
       ec2_ami_tools
       ec2_api_tools
