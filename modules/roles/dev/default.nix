@@ -134,6 +134,7 @@ in {
         gnumake
         gcc
         patchelf
+        binutils
 
         # networking
         ngrok
