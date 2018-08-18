@@ -31,6 +31,7 @@ with lib;
     services.redshift.enable = true;
     services.redshift.latitude = "46";
     services.redshift.longitude = "14";
+    services.redshift.brightness.night = "0.8";
 
     environment.systemPackages = with pkgs; [
       wirelesstools
