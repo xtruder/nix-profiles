@@ -11,6 +11,7 @@ in {
     environment.systemPackages = with pkgs; [
       nodejs-8_x
       flow
+      yarn
 
       #vim-jsdoc
     ];
