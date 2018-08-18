@@ -31,6 +31,7 @@
   ./roles/dev/python.nix
   ./roles/dev/go.nix
   ./roles/dev/devops.nix
+  ./roles/dev/elm.nix
   ./roles/desktop.nix
   ./roles/vm.nix
   ./roles/system.nix
