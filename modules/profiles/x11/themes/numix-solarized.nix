@@ -16,8 +16,8 @@ with lib;
     programs.chromium.extensions = ["eimadpbcbfnmbkopoojfekhnkhdbieeh"]; # dark reader
 
     profiles.x11 = {
-      gtk2.theme = "NumixSolarizedDark";
-      gtk3.theme = "NumixSolarizedDark";
+      gtk2.theme = "NumixSolarizedDarkGreen";
+      gtk3.theme = "NumixSolarizedDarkGreen";
 
       qt = {
         theme = "Breeze";
