@@ -15,6 +15,7 @@ in {
       dpkg
       nix-prefetch-scripts
       bundix
+      pypi2nix
     ];
 
     nix = {
