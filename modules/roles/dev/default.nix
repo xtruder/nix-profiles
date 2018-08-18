@@ -159,7 +159,15 @@ in {
         git-crypt
 
         # required by tmux
-        pkgs.xsel
+        xsel
+
+        # encryption
+        keybase
+        gnupg
+
+        # task sync
+        pythonPackages.bugwarrior
+        super-productivity
       ];
     }
     
