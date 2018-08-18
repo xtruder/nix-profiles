@@ -13,6 +13,9 @@ with lib;
     profiles.i3.enable = mkDefault true;
     profiles.dunst.enable = mkDefault true;
 
+    # enable libvirt profile by default on all work machines
+    profiles.libvirt.enable = mkDefault true;
+
     # firmware config
     hardware.enableAllFirmware = mkDefault true;
 
