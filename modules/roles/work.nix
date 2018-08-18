@@ -25,6 +25,7 @@ in {
         "mbniclmhobmnbdlbpiphghaielnnpgdp" # lightshot
         "gcbommkclmclpchllfjekcdonpmejbdp" # https everywhere
         "naepdomgkenhinolocfifgehidddafch" # browserpass
+        "kajibbejlbohfaggdiogboambcijhkke" # mailvelope
       ];
     };
 
