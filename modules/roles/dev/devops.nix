@@ -27,6 +27,10 @@ in {
       ansible
       telepresence
       remarshal
+      proot
+      cfssl
+      confluent
+      kail
     ];
   };
 }
