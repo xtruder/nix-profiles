@@ -111,6 +111,7 @@ with lib;
       p7zip
       gnutar
       gzip
+      zip
       xz
       which
       readline
