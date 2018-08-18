@@ -15,6 +15,10 @@ in {
       gotags
       glide
       vimPlugins.vim-go
+      dep
+      dep2nix
+      go2nix
+      gotools
     ];
 
     environment.variables = {
