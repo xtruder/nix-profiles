@@ -9,7 +9,7 @@ in {
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      go
+      go_1_11
       golint
       gocode
       gotags
