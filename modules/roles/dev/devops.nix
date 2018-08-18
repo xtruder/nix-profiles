@@ -31,6 +31,15 @@ in {
       cfssl
       confluent
       kail
+
+      (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "terraform";
+          publisher = "mauve";
+          version = "1.2.0";
+          sha256 = "04jk9ydzz8rwv8y3bphl2v5h9a73qjgs2bs22m0glh4wsq8d7h55";
+        };
+      })
     ];
   };
 }

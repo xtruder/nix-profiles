@@ -19,6 +19,15 @@ in {
       dep2nix
       go2nix
       gotools
+
+      (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "go";
+          publisher = "ms-vscode";
+          version = "0.6.83";
+          sha256 = "1gkgpml1x6b5xr4qgp77b44nv8gfzsbd2cb5hlbh14b7n36sh8xh";
+        };
+      })
     ];
 
     environment.variables = {

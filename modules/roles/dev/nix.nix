@@ -15,6 +15,7 @@ in {
       dpkg
       nix-prefetch-scripts
       bundix
+      vscode-extensions.bbenoist.Nix
       pypi2nix
     ];
 
