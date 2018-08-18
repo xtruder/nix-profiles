@@ -5,6 +5,7 @@
   ./profiles/vim
   ./profiles/tmux
   ./profiles/st
+  ./profiles/xterm.nix
   ./profiles/x11
   ./profiles/x11/themes/numix-solarized.nix
   ./profiles/docker.nix
