@@ -10,7 +10,12 @@ in {
   };
 
   config = mkIf config.roles.vm.enable {
-    profiles.i3.enable = true;
+    profiles.i3 = {
+      enable = true;
+      primaryMonitor = "Virtual-1";
+      secondaryMonitor = "Virtual-2";
+      screenLock.enable = false;
+    };
     roles.work.enable = true;
     roles.system.enable = true;
 
