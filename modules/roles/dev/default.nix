@@ -120,6 +120,7 @@ in {
         "fhbjgbiflinjbdggehcddcbncdddomop" # postman
         "aicmkgpgakddgnaphhhpliifpcfhicfo" # postman interceptor
         "ihlenndgcmojhcghmfjfneahoeklbjjh" # cvim
+        "edacconmaakjimmfgnblocblbcdcpbko" # session buddy
       ];
 
       environment.systemPackages = with pkgs; [
