@@ -10,6 +10,10 @@ in {
   config = mkIf cfg.enable {
     profiles.vbox.enable = mkDefault true;
 
+    profiles.xonsh.pythonPackages = with pkgs.python3Packages; [
+      kubernetes
+    ];
+
     environment.systemPackages = with pkgs; [
       packer
       vagrant

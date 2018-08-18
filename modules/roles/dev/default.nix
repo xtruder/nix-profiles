@@ -9,6 +9,14 @@ in {
 
   config = mkIf cfg.enable (mkMerge [
     {
+      profiles.xonsh.enable = true;
+      profiles.xonsh.pythonPackages = with pkgs.python3Packages; [
+        numpy
+        requests
+      ];
+
+      users.defaultUserShell = pkgs.xonsh;
+
       # save bash history
       programs.bash.loginShellInit = ''
         shopt -s histappend

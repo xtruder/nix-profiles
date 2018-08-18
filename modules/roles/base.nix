@@ -15,9 +15,6 @@ with lib;
     # Recovery key, for times when you lock yourself out of system
     users.extraUsers.root.openssh.authorizedKeys.keys = [ config.attributes.recoveryKey ];
 
-    # by default use bash
-    users.defaultUserShell = pkgs.bashInteractive;
-
     # root shell is allways bash shell
     users.extraUsers.root.shell = mkOverride 50 "${pkgs.bashInteractive}/bin/bash";
 
