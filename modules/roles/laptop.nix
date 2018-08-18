@@ -11,6 +11,7 @@ with lib;
 
     profiles.x11.enable = mkDefault true;
     profiles.i3.enable = mkDefault true;
+    profiles.dunst.enable = mkDefault true;
 
     # by default enable bluetooth on laptops
     hardware.bluetooth.enable = mkDefault true;
