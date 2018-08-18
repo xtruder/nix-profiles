@@ -10,6 +10,8 @@ in {
 
     compositor = mkEnableOption "compositor";
 
+    headless = mkEnableOption "headless display manager (i3)";
+
     displayManager = mkEnableOption "display manager";
 
     gtk2 = {
