@@ -27,6 +27,13 @@ in {
       ];
     };
 
+    programs.gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+      enableExtraSocket = false;
+      enableBrowserSocket = false;
+    };
+
     # enable tmux on work environments
     profiles.tmux.enable = mkDefault true;
 
