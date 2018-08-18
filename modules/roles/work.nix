@@ -2,7 +2,12 @@
 
 with lib;
 
-{
+let
+  proxsign = (import (builtins.fetchTarball {
+    url = "https://github.com/domenkozar/proxsign-nix/archive/cc26bee496facdb61c2cbb2bcfef55e167d4a85b.tar.gz";
+    sha256 = "0smhpz7hw382mlin79v681nws4pna5bdg0w8cjb4iq23frnb5dw6";
+  }));
+in {
   options.roles.work.enable = mkEnableOption "work role";
 
   config = mkIf config.roles.work.enable {
@@ -123,6 +128,9 @@ with lib;
       gnome3.dconf
 
       pavucontrol
+
+      # crypto
+      proxsign
     ];
   };
 }
