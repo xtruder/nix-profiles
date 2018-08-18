@@ -123,6 +123,9 @@ in {
         "edacconmaakjimmfgnblocblbcdcpbko" # session buddy
       ];
 
+      # fix for git
+      environment.variables.PERL5LIB = ["${pkgs.git}/share/perl5"];
+
       environment.systemPackages = with pkgs; [
         # browsers
         chromium
