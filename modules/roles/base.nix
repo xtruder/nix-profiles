@@ -122,7 +122,6 @@ with lib;
       openssl
       jq
       zsh
-      gnupg
       autojump
       nano
       pass
