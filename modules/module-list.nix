@@ -15,6 +15,7 @@
   ./profiles/wireshark.nix
   ./profiles/libvirt.nix
   ./profiles/qemu.nix
+  ./profiles/taskwarrior.nix
   ./profiles/xonsh.nix
   ./profiles/dunst.nix
 
