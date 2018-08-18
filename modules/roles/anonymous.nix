@@ -44,6 +44,8 @@ in {
       enable = true;
       controlPort = 9051;
       client.enable = true;
+      client.dns.enable = true;
+      client.transparentProxy.enable = true;
     };
 
     networking.firewall.extraCommands = mkIf cfg.routeTraffic ''
