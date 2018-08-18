@@ -1,3 +1,4 @@
+set shell=/bin/sh
 set nocompatible
 set cpoptions+=J
 
