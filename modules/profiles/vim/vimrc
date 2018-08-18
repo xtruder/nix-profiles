@@ -212,12 +212,12 @@ packadd vim-airline " status line
 packadd vim-airline-themes
 
 " ==== dev ===
-packadd Syntastic " syntax checker
+packadd syntastic " syntax checker
 packadd youcompleteme " autocomplete
 packadd vim-gitgutter
-packadd The_NERD_Commenter " for commenting lines
+packadd nerdcommenter " for commenting lines
 packadd auto-pairs " close tags
-packadd Tagbar " show ctashow ctagss
+packadd tagbar " show ctashow ctagss
 packadd ctrlp-vim " fuzzy file finder
 packadd editorconfig-vim " for autosettings indents
 
