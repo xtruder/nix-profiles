@@ -210,7 +210,6 @@ au FileType rst
 " === visual ==
 packadd vim-airline " status line
 packadd vim-airline-themes
-packadd Solarized
 
 " ==== dev ===
 packadd Syntastic " syntax checker
