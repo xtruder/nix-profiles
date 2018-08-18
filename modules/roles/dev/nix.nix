@@ -24,5 +24,7 @@ in {
       maxJobs = config.attributes.cpu.cores;
       distributedBuilds = true;
     };
+
+    systemd.services.nix-daemon.serviceConfig.EnvironmentFile = "-/home/${config.users.users.admin.name}/.nix-daemon.env";
   };
 }
