@@ -24,8 +24,11 @@ in {
         "chlffgpmiacpedhhbkiomidkjlcfhogd" # pushbullet
         "mbniclmhobmnbdlbpiphghaielnnpgdp" # lightshot
         "gcbommkclmclpchllfjekcdonpmejbdp" # https everywhere
+        "naepdomgkenhinolocfifgehidddafch" # browserpass
       ];
     };
+
+    programs.browserpass.enable = true;
 
     programs.gnupg.agent = {
       enable = true;
