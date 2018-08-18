@@ -87,6 +87,15 @@ in {
     services.dbus.packages = [ pkgs.gnome3.gconf ] ++ 
       optionals config.hardware.bluetooth.enable [pkgs.blueman];
 
+    services.xserver.displayManager.sessionCommands = mkIf config.profiles.x11.headless ''
+      ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
+      ${pkgs.rambox}/bin/rambox &
+      ${optionalString config.networking.networkmanager.enable "${pkgs.networkmanagerapplet}/bin/nm-applet &"}
+      ${optionalString config.hardware.bluetooth.enable "${pkgs.blueman}/bin/blueman-applet &"}
+      ${optionalString config.services.udisks2.enable "${pkgs.udiskie}/bin/udiskie -t -A &"}
+      ${optionalString config.virtualisation.libvirtd.enable "${pkgs.virtmanager}/bin/virt-manager --spice-disable-auto-usbredir &"}
+    '';
+
     environment.systemPackages = with pkgs; [
       mupdf
       libreoffice
