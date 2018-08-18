@@ -36,6 +36,7 @@ with lib;
     environment.systemPackages = with pkgs; [
       wirelesstools
       iw
+      libguestfs
     ];
 
     # check battery every 60s
