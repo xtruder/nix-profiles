@@ -247,10 +247,17 @@ in {
               interval = 5
             }
 
+            net_rate {
+              interfaces = "ens3,ens4,wlan0,eth0"
+              all_interfaces = false
+              si_units = true
+            }
+
             order += "online_status"
             order += "disk /"
             ${optionalString config.roles.laptop.enable ''order += "battery 0"''}
             order += "load"
+            order += "net_rate"
             order += "volume master"
             ${optionalString (!config.roles.vm.enable) ''
             order += "tztime local"
