@@ -9,7 +9,7 @@ in {
 
   config = mkIf cfg.enable {
     environment.systemPackages = [
-      (pkgs.python2Full.withPackages (ps: with ps; [
+      (pkgs.python3Full.withPackages (ps: with ps; [
         virtualenv pip
       ]))
     ];
