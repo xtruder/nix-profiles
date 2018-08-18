@@ -97,6 +97,7 @@ in {
     '';
 
     environment.systemPackages = with pkgs; [
+      patchelf
       mupdf
       libreoffice
       feh
@@ -104,14 +105,15 @@ in {
 
       # browsers
       chromium
+      rambox
 
       # distro tools
       cdrkit
       unetbootin
 
       # cloud storage
-      dropbox
-      dropbox-cli
+      #dropbox
+      #dropbox-cli
 
       # windows emulation
       wine
@@ -120,9 +122,6 @@ in {
 
       # p2p stuff
       transmission_gtk
-
-      # telephony
-      skype
 
       # docs/images
       mupdf
@@ -137,20 +136,31 @@ in {
       # remote
       rdesktop
       gtkvnc
+      virtmanager
+      virtviewer
 
       # task managment
       taskwarrior
       pythonPackages.bugwarrior
 
       # journaling
-      python27Packages.jrnl
+      jrnl
 
       gnome3.dconf
 
       pavucontrol
 
       # crypto
+      gnupg
       proxsign
+
+      libnotify
+
+      update-resolv-conf
+    ];
+
+    environment.pathsToLink = [
+      "/libexec/openvpn"
     ];
   };
 }
