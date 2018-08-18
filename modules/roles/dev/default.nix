@@ -120,6 +120,9 @@ in {
         [user]
           email = jakahudoklin@gmail.com
           name = Jaka Hudoklin
+
+        [rebase]
+          autoStash = true
       '';
 
       # additional chromium extensions
