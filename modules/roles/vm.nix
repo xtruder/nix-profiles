@@ -2,8 +2,12 @@
 
 with lib;
 
-{
-  options.roles.vm.enable = mkEnableOption "vm role";
+let
+  cfg = config.roles.vm;
+in {
+  options.roles.vm = {
+    enable = mkEnableOption "vm role";
+  };
 
   config = mkIf config.roles.vm.enable {
     profiles.i3.enable = true;
