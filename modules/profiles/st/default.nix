@@ -2,16 +2,17 @@
 
 with lib;
 
-{
+let
+  cfg = config.profiles.st;
+in {
   options.profiles.st = {
     enable = mkEnableOption "suckless terminal";
   };
 
-  config = {
+  config = mkIf cfg.enable {
     nixpkgs.config.st ={
       patches = [
-        ./st-alpha-20160727-308bfbf.diff
-        ./st-solarized-both-20160727-308bfbf.diff
+        ./st-solarized-both-0.8.1.diff
       ];
 
       conf = builtins.readFile ./st.conf;
