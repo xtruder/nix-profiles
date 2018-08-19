@@ -79,7 +79,7 @@ in {
           postString += ' {BOLD_WHITE}[{BOLD_RED}' + str(rtn) + '↵{BOLD_WHITE}]{NO_COLOR}'
 
 
-        return "{BOLD_GREEN}{user}@{hostname}{BOLD_BLUE}{cwd: {}}" + postString
+        return "{BOLD_RED}{gitstatus} {BOLD_BLUE}{cwd: {}}" + postString
 
       def title(cmd = "{current_job}"):
         line = "{short_cwd}"
