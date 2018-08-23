@@ -252,6 +252,16 @@ in {
           };
         })
 
+        # avro
+        (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+          mktplcRef = {
+            name = "avro";
+            publisher = "streetsidesoftware";
+            version = "0.4.0";
+            sha256 = "0ak7rxraiafgnrmbzzdf96ihg1rkx1srhawr6yy6qcvnxr7b2pj6";
+          };
+        })
+
         # Automatically insert license headers
         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
           mktplcRef = {
