@@ -132,6 +132,7 @@ in {
         "aicmkgpgakddgnaphhhpliifpcfhicfo" # postman interceptor
         "ihlenndgcmojhcghmfjfneahoeklbjjh" # cvim
         "edacconmaakjimmfgnblocblbcdcpbko" # session buddy
+        "ogcgkffhplmphkaahpmffcafajaocjbd" # zenhub
       ];
 
       # fix for git
