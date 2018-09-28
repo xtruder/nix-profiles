@@ -19,7 +19,8 @@ in {
     roles.work.enable = true;
     roles.system.enable = true;
 
-    profiles.x11.compositor = false;
+    attributes.networking.primaryInterface = mkDefault "ens4";
+
     services.xserver.displayManager.slim = {
         defaultUser = "offlinehacker";
         autoLogin = true;
