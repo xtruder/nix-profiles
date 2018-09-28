@@ -89,7 +89,6 @@ in {
 
     services.xserver.displayManager.sessionCommands = mkIf config.profiles.x11.headless ''
       ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
-      ${pkgs.rambox}/bin/rambox &
       ${optionalString config.networking.networkmanager.enable "${pkgs.networkmanagerapplet}/bin/nm-applet &"}
       ${optionalString config.hardware.bluetooth.enable "${pkgs.blueman}/bin/blueman-applet &"}
       ${optionalString config.services.udisks2.enable "${pkgs.udiskie}/bin/udiskie -t -A &"}

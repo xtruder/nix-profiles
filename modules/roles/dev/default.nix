@@ -135,6 +135,10 @@ in {
         "ogcgkffhplmphkaahpmffcafajaocjbd" # zenhub
       ];
 
+      services.xserver.displayManager.sessionCommands = mkIf config.profiles.x11.headless ''
+        ${pkgs.rambox}/bin/rambox &
+      '';
+
       # fix for git
       environment.variables.PERL5LIB = ["${pkgs.git}/share/perl5"];
 
