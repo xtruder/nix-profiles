@@ -84,7 +84,7 @@ in {
     services.gnome3.gnome-keyring.enable = true;
 
     # dbus packages
-    services.dbus.packages = [ pkgs.gnome3.gconf ] ++ 
+    services.dbus.packages = [  ] ++ 
       optionals config.hardware.bluetooth.enable [pkgs.blueman];
 
     services.xserver.displayManager.sessionCommands = mkIf config.profiles.x11.headless ''
@@ -134,13 +134,12 @@ in {
 
       # remote
       rdesktop
-      gtkvnc
+      gtk-vnc
       virtmanager
       virtviewer
 
       # task managment
       taskwarrior
-      pythonPackages.bugwarrior
 
       # journaling
       jrnl
