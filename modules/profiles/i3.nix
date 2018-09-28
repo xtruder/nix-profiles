@@ -16,7 +16,6 @@ let
         --ringvercolor=002b36ff \
         --ringwrongcolor=002b36ff \
         --ringcolor=002b36ff \
-        --textcolor=ffffffff \
         --linecolor=1B465100 \
         --keyhlcolor=2AA198FF \
         --bshlcolor=2AA198FF
