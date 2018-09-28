@@ -21,16 +21,11 @@ with lib;
       };
     };
 
-    privateIPv4 = mkOption {
-      description = "Private networking address.";
-      default = "127.0.0.1";
-      type = types.str;
-    };
-
-    publicIPv4 = mkOption {
-      description = "Public networking address.";
-      default = "";
-      type = types.str;
+    networking = {
+      primaryInterface = mkOption {
+        description = "Primary network interface";
+        type = types.str;
+      };
     };
 
     recoveryKey = mkOption {
