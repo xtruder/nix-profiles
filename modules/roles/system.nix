@@ -3,9 +3,22 @@
 with lib;
 
 {
-  options.roles.system.enable = mkEnableOption "system role";
+  options.roles.system = {
+    enable = mkEnableOption "system role";
+
+    enableHibernate = mkOption {
+      description = "Whether to enable machine hibernation";
+      type = types.bool;
+      default = true;
+    };
+  };
 
   config = mkIf config.roles.system.enable {
+    # hibernate on power key
+    services.logind.extraConfig = ''
+      HandlePowerKey=${if config.roles.system.enableHibernate then "hibernate" else "shutdown"}
+    '';
+
     services.udev.packages = with pkgs; [ usb-modeswitch-data  ];
 
     environment.systemPackages = with pkgs; [
