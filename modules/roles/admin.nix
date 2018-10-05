@@ -46,7 +46,7 @@ with lib;
       # remote
       libvirt
       rdesktop
-      gtkvnc
+      gtk-vnc
       openvpn
 
       wireshark
