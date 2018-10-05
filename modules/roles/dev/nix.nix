@@ -10,7 +10,6 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       nixUnstable
-      nix-repl
       vimPlugins.vim-nix
       dpkg
       nix-prefetch-scripts
