@@ -118,11 +118,14 @@ in {
           rmdir = true
 
         [user]
-          email = jakahudoklin@gmail.com
-          name = Jaka Hudoklin
+          email = ${config.attributes.admin.email}
+          name = ${config.attributes.admin.fullname}
 
         [rebase]
           autoStash = true
+
+        [commit]
+          gpgsign = true
       '';
 
       # additional chromium extensions
