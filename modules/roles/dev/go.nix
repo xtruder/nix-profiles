@@ -25,8 +25,8 @@ in {
         mktplcRef = {
           name = "go";
           publisher = "ms-vscode";
-          version = "0.6.83";
-          sha256 = "1gkgpml1x6b5xr4qgp77b44nv8gfzsbd2cb5hlbh14b7n36sh8xh";
+          version = "0.6.90";
+          sha256 = "00l6mh97k7smy3dnj6dn6qlssjdzfna9nd6h4d7y31830n1mm13l";
         };
       })
     ];
