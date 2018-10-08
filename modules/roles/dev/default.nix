@@ -157,6 +157,7 @@ in {
         gcc
         patchelf
         binutils
+        protobuf
 
         # networking
         ngrok
