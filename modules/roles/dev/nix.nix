@@ -16,6 +16,7 @@ in {
       bundix
       vscode-extensions.bbenoist.Nix
       pypi2nix
+      yarn2nix
     ];
 
     nix = {
