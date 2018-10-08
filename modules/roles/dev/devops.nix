@@ -35,6 +35,9 @@ in {
       cfssl
       confluent
       kail
+      skopeo
+      kind.bin
+      minikube.bin
 
       (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
         mktplcRef = {
