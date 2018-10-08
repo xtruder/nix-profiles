@@ -19,6 +19,7 @@ in {
       dep2nix
       go2nix
       gotools
+      go-protobuf
 
       (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
         mktplcRef = {
