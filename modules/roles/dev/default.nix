@@ -126,6 +126,9 @@ in {
 
         [commit]
           gpgsign = true
+
+        [gpg]
+          program = gpg2
       '';
 
       # additional chromium extensions
