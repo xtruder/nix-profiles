@@ -38,6 +38,11 @@ in {
       skopeo
       kind.bin
       minikube.bin
+      minio-client
+      kubicorn
+      kubectx
+      hetzner-kube
+      kube-prompt
 
       (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
         mktplcRef = {
