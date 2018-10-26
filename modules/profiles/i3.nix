@@ -324,12 +324,13 @@ in {
       }
 
       for_window [window_role="pop-up"] floating enable
+      for_window [instance="rambox"] move window to scratchpad
 
       # Make the currently focused window a scratchpad
       bindsym $mod+Ctrl+BackSpace move scratchpad
 
       # Show the first scratchpad window
-      bindsym $mod+BackSpace scratchpad show
+      bindsym $mod+BackSpace [instance="rambox"] scratchpad show, resize set 1440 900
 
       # Volume controle
       bindsym XF86AudioRaiseVolume exec --no-startup-id ${pkgs.alsaUtils}/bin/amixer set Master 5%+ && killall -SIGUSR1 i3status
