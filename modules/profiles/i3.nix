@@ -21,6 +21,23 @@ let
         --bshlcolor=2AA198FF
   '';
 
+  renameWorkspace = pkgs.writeScript "i3-rename-workspace.sh" ''
+	#!${pkgs.bash}/bin/bash
+    PATH=$PATH:${pkgs.jq}/bin:${pkgs.i3}/bin
+
+	set -e
+
+	num=`i3-msg -t get_workspaces | jq 'map(select(.focused == true))[0].num'`
+	i3-input -F "rename workspace to \"$num:%s\"" -P 'New name: '
+
+	name=`i3-msg -t get_workspaces | jq 'map(select(.focused == true))[0].name'`
+	# If empty name was set
+	if [[ "$name" =~ ^\"[0-9]+:\"$ ]]
+	then
+	  # Remove trailing colon and whitespace
+	  i3-msg "rename workspace to \"$num\""
+	fi
+  '';
 in {
   options.profiles.i3 = {
     enable = mkOption {
@@ -150,6 +167,7 @@ in {
       bindsym $mod+8 workspace number 8
       bindsym $mod+9 workspace number 9
       bindsym $mod+0 workspace number 10
+      bindsym $mod+n exec ${renameWorkspace}
 
       # move focused container to workspace
       bindsym $mod+Shift+1 move container to workspace number 1
