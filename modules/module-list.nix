@@ -1,7 +1,7 @@
 [
   ./attributes.nix
-  ./terminal.nix
 
+  ./profiles/terminal.nix
   ./profiles/vim
   ./profiles/tmux
   ./profiles/st
