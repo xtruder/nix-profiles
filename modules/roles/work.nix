@@ -35,13 +35,7 @@ with lib;
 
     # enable tmux on work environments
     profiles.tmux.enable = mkDefault true;
-
-    # yubikey support
-    services.udev.packages = with pkgs; [ libu2f-host  ];
-    users.extraGroups.yubikey = {};
-    services.udev.extraRules = ''
-      ATTRS{idVendor}=="1050", ATTRS{idProduct}=="0111", MODE="664", GROUP="yubikey"
-    '';
+    profiles.yubikey.enable = mkDefault true;
 
     environment.systemPackages = with pkgs; [
       mupdf
@@ -91,10 +85,6 @@ with lib;
       gnupg
       libnotify
       update-resolv-conf
-
-      # yubikey
-      yubikey-personalization
-      yubikey-personalization-gui
     ];
 
     environment.pathsToLink = [

@@ -22,6 +22,7 @@
   ./profiles/pulseaudio.nix
   ./profiles/udisks.nix
   ./profiles/networkmanager.nix
+  ./profiles/yubikey.nix
 
   ./roles/base.nix
   ./roles/admin.nix
