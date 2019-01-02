@@ -11,6 +11,7 @@ with lib;
 
     profiles.libvirt.enable = mkDefault true;
     profiles.bluetooth.enable = mkDefault true;
+    profiles.udisks.enable = false;
 
     # enable suspend
     powerManagement.enable = mkDefault true;
