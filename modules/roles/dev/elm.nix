@@ -16,8 +16,8 @@ in {
         mktplcRef = {
           name = "elm";
           publisher = "sbrink";
-          version = "0.18.0";
-          sha256 = "10xmsd96rjk1h3sgbabw1h9b8fpma97gl1iq2rydqj389pg3wiac";
+          version = "0.24.0";
+          sha256 = "0864iyxyind7i4vdkdr264ync0wvq1z22km8iz1ybsx6537443aa";
         };
       })
 

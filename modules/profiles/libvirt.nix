@@ -16,10 +16,10 @@ in {
     #networking.nat.externalInterface = "eth0";
 
     users.groups.libvirtd.members = ["${config.users.users.admin.name}"];    
-    users.groups.spice.members = ["${config.users.users.admin.name}"];    
 
     virtualisation.libvirtd.qemuVerbatimConfig = ''
       nvram = ["${pkgs.OVMF}/FV/OVMF_CODE.fd:${pkgs.OVMF}/FV/OVMF_VARS.fd"]
+      hugetlbfs_mount = "/dev/hubepages"
     '';
 
     services.dnsmasq.extraConfig = ''
@@ -29,9 +29,18 @@ in {
 
     boot.kernelParams = ["kvm.allow_unsafe_assigned_interrupts=1" "kvm.ignore_msrs=1" "kvm-intel.nested=1"];
 
-    services.udev.extraRules = ''
-      SUBSYSTEM=="usb", GROUP="spice", MODE="0660"
-      SUBSYSTEM=="usb_device", GROUP="spice", MODE="0660"
+    # required for usb redirection to work
+    security.wrappers.spice-client-glib-usb-acl-helper.source =
+      "${pkgs.spice_gtk}/bin/spice-client-glib-usb-acl-helper";
+
+    services.xserver.displayManager.sessionCommands = ''
+      ${pkgs.virtmanager}/bin/virt-manager &
     '';
+
+    environment.systemPackages = with pkgs; [
+      spice-gtk # required for usb redirection to work
+      libguestfs
+      virtmanager
+    ];
   };
 }

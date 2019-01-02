@@ -14,13 +14,6 @@ with lib;
       type = types.str;
     };
 
-    cpu = {
-      cores = mkOption {
-        description = "Number of CPU cores";
-        type = types.int;
-      };
-    };
-
     networking = {
       primaryInterface = mkOption {
         description = "Primary network interface";
@@ -77,6 +70,21 @@ with lib;
       from = mkOption {
         description = "Email to send mails from";
         type = types.str;
+      };
+    };
+
+    hardware = {
+      cpu = {
+        cores = mkOption {
+          description = "Number of CPU cores";
+          type = types.int;
+        };
+      };
+
+      hasBattery = mkOption {
+        description = "Whether system has a battery";
+        type = types.bool;
+        default = false;
       };
     };
   };

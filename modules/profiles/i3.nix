@@ -5,6 +5,20 @@ with lib;
 let
   cfg = config.profiles.i3;
 
+  toStr = val:
+    if isString val then ''"${val}"''
+    else if isBool val then (if val then "true" else "false")
+    else toString val;
+
+  blockToConfig = block: ''${block.type} ${optionalString (block.name != null) ''"${block.name}"''} {
+    ${concatStringsSep "\n" (mapAttrsToList (k: v: "${k} = ${toStr v}") block.opts)}
+  }'';
+
+  i3StatusConfig = ''
+    ${concatMapStringsSep "\n" (o: ''order += "${o}"'') cfg.i3Status.enableBlocks}
+    ${concatMapStringsSep "\n" blockToConfig (attrValues cfg.i3Status.blocks)}
+  '';
+
   i3Lock = pkgs.writeScript "i3-lock.sh" ''
     #!${pkgs.bash}/bin/bash
     ${pkgs.scrot}/bin/scrot /tmp/screen_locked.png
@@ -79,6 +93,51 @@ in {
       type = types.bool;
     };
 
+    statusCommand = mkOption {
+      description = "I3 status command";
+      type = types.nullOr types.str;
+      default = null;
+    };
+
+    i3Status = {
+      enable = mkOption {
+        description = "Whether to enable i3status";
+        type = types.bool;
+        default = true;
+      };
+
+      enableBlocks = mkOption {
+        description = "List of blocks to enable";
+        type = types.listOf types.str;
+        default = [];
+      };
+
+      blocks = mkOption {
+        description = "Enabled i3status blocks";
+        type = types.attrsOf (types.submodule ({name, config, ...}: {
+          options = {
+            name = mkOption {
+              description = "Block name";
+              type = types.nullOr types.str;
+              default = null;
+            };
+
+            type = mkOption {
+              description = "Block type";
+              type = types.str;
+              default = name;
+            };
+
+            opts = mkOption {
+              description = "Block configuration";
+              type = types.attrs;
+              default = {};
+            };
+          };
+        }));
+      };
+    };
+
     extraConfig = mkOption {
       description = "I3 extra config";
       type = types.lines;
@@ -97,7 +156,7 @@ in {
       enable = true;
       compositor = mkDefault false;
       displayManager = true;
-      headless = mkDefault true;
+      desktopless = mkDefault true;
     };
 
     environment.etc."i3/config".text = ''
@@ -257,67 +316,8 @@ in {
       # Start i3bar to display a workspace bar (plus the system information i3status
       # finds out, if available)
       bar {
-          status_command ${pkgs.pythonPackages.py3status}/bin/py3status -c ${pkgs.writeText "i3status.conf" ''
-            general {
-              output_format = "i3bar"
-              colors = true
-              interval = 5
-            }
-
-            net_rate {
-              interfaces = "ens3,ens4,wlan0,eth0"
-              all_interfaces = false
-              si_units = true
-            }
-
-            order += "online_status"
-            order += "disk /"
-            ${optionalString config.roles.laptop.enable ''order += "battery 0"''}
-            order += "load"
-            order += "net_rate"
-            order += "volume master"
-            ${optionalString (!config.roles.vm.enable) ''
-            order += "tztime local"
-            order += "tztime pst"
-            ''}
-
-            ${optionalString config.roles.laptop.enable ''
-            battery 0 {
-              format = "%status %percentage %remaining"
-              low_threshold = 10
-              last_full_capacity = true
-            }
-            ''}
-
-            ${optionalString (!config.roles.vm.enable) ''
-            tztime local {
-              format = "%Y-%m-%d ⌚ %H:%M:%S"
-            }
-
-            tztime pst {
-              format = "⌚ %H:%M"
-              timezone = "America/Los_Angeles"
-            }
-            ''}
-
-            load {
-              format = "↺ %1min"
-            }
-
-            disk "/" {
-              format = "√ %free"
-            }
-
-            volume master {
-              format = "♪ %volume"
-              device = "default"
-              mixer = "Master"
-              mixer_idx = 0
-            }
-
-            online_status {
-            }
-
+          ${optionalString cfg.i3Status.enable ''
+          status_command ${pkgs.pythonPackages.py3status}/bin/py3status -c /etc/xdg/i3status/config
           ''}
 
           ${cfg.extraBarConfig}
@@ -365,6 +365,10 @@ in {
       serviceConfig.User = config.users.users.admin.name;  
       serviceConfig.ExecStart = i3Lock;
       serviceConfig.Type = "forking";
+    };
+
+    environment.etc."xdg/i3status/config" = mkIf cfg.i3Status.enable {
+      text = i3StatusConfig;
     };
 
     environment.systemPackages = with pkgs; [

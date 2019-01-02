@@ -35,8 +35,8 @@ in {
         mktplcRef = {
           name = "vscode-eslint";
           publisher = "dbaeumer";
-          version = "1.4.12";
-          sha256 = "0ka5ypdz14w3dpmc49i776cirzwl3550klssycvzw813zazxim0f";
+          version = "1.7.2";
+          sha256 = "1czq88rb7db8j7xzv1dsx8cp42cbsg7xwbwc68waq5md14wx0ggr";
         };
       })
 
@@ -44,8 +44,8 @@ in {
         mktplcRef = {
           name = "vscode-mocha-sidebar";
           publisher = "maty";
-          version = "0.20.11";
-          sha256 = "1sil25s4371ps381zck4wlvjdzhnq2x1kdp41k48jigq358qz6sd";
+          version = "0.20.22";
+          sha256 = "114fn8scmp1xxmz56k6z0q0g61liy0flx54n0gxj90df85ygd2ib";
         };
       })
     ];

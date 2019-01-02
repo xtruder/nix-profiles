@@ -21,14 +21,6 @@ with lib;
     # by default enable all completions
     programs.bash.enableCompletion = mkDefault true;
 
-    # Create /bin/bash symlink
-    system.activationScripts.binbash = stringAfter [ "binsh" ]
-      ''
-        mkdir -m 0755 -p /bin
-        ln -sfn "${config.system.build.binsh}/bin/sh" /bin/.bash.tmp
-        mv /bin/.bash.tmp /bin/bash # atomically replace /bin/sh
-      '';
-
     # nix config
     nix = {
       binaryCachePublicKeys = [ "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=" ];
@@ -52,6 +44,7 @@ with lib;
       allowUnfree = true;
 
       firefox.icedtea = true;
+      android_sdk.accept_license = true;
     };
 
     # because nixos does not need it's own containers

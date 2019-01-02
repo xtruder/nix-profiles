@@ -13,6 +13,6 @@ with lib;
       terminal = "screen-256color";
     };
 
-    profiles.terminal.run = mkDefault "tmux attach";
+    profiles.terminal.run = mkDefault "tmux";
   };
 }

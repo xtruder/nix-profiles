@@ -55,7 +55,7 @@ in {
 
   config = mkIf cfg.enable {
     environment.systemPackages =
-    with pkgs; [taskwarrior] ++ optional cfg.enable pythonPackages.bugwarrior;
+    with pkgs; [taskwarrior] ++ optional cfg.enable python36Packages.bugwarrior;
 
     environment.etc."xdg/bugwarrior/bugwarriorrc" = mkIf cfg.bugwarrior.enable {
       text = bugwarriorConfig;

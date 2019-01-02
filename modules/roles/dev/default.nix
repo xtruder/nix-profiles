@@ -9,13 +9,13 @@ in {
 
   config = mkIf cfg.enable (mkMerge [
     {
-      profiles.xonsh.enable = true;
+      profiles.xonsh.enable = false;
       profiles.xonsh.pythonPackages = with pkgs.python3Packages; [
         numpy
         requests
       ];
 
-      users.defaultUserShell = pkgs.xonsh;
+      users.defaultUserShell = pkgs.bashInteractive;
 
       # save bash history
       programs.bash.loginShellInit = ''
@@ -141,9 +141,17 @@ in {
         "ogcgkffhplmphkaahpmffcafajaocjbd" # zenhub
       ];
 
-      services.xserver.displayManager.sessionCommands = mkIf config.profiles.x11.headless ''
+      services.xserver.displayManager.sessionCommands = ''
         ${pkgs.rambox}/bin/rambox &
       '';
+
+      # Create /bin/bash symlink
+      system.activationScripts.binbash = stringAfter [ "binsh" ]
+        ''
+          mkdir -m 0755 -p /bin
+          ln -sfn "${config.system.build.binsh}/bin/sh" /bin/.bash.tmp
+          mv /bin/.bash.tmp /bin/bash # atomically replace /bin/sh
+        '';
 
       # fix for git
       environment.variables.PERL5LIB = ["${pkgs.git}/share/perl5"];
@@ -166,6 +174,11 @@ in {
         docker
 
         # docs
+        pencil # mockups
+
+        # messaging
+        zoom-us
+
         (python.withPackages (ps: [
           ps.sphinx
           ps.sphinxcontrib-blockdiag
@@ -176,6 +189,7 @@ in {
           buildInputs = [pkgs.makeWrapper];
           preFixup = ''
             wrapProgram $out/bin/code \
+              --add-flags "--disable-gpu" \
               --add-flags "--extensions-dir /var/run/current-system/sw/share/vscode/extensions"
           '';
         }))
@@ -195,7 +209,7 @@ in {
         gnupg
 
         # task sync
-        pythonPackages.bugwarrior
+        python36Packages.bugwarrior
         super-productivity
 
         # vscode extensions
@@ -203,8 +217,8 @@ in {
           mktplcRef = {
             name = "editorconfig";
             publisher = "EditorConfig";
-            version = "0.12.4";
-            sha256 = "067mxkzjmgz9lv5443ig7jc4dpgml4pz0dac0xmqrdmiwml6j4k4";
+            version = "0.12.6";
+            sha256 = "01x6fa7n3f8c1hwah23i4wzjcl5xdk1wrpg9y9k34n5xbsn2l6q5";
           };
         })
 
@@ -212,7 +226,7 @@ in {
           mktplcRef = {
             name = "vim";
             publisher = "vscodevim";
-            version = "0.13.1";
+            version = "0.17.2";
             sha256 = "18n3qpgv0m79aycjmd55iyzb851hqpdlay0p1k7bypygxaiqnnpv";
           };
         })
@@ -221,8 +235,8 @@ in {
           mktplcRef = {
             name = "vscode-icons";
             publisher = "robertohuertasm";
-            version = "7.24.0";
-            sha256 = "1lnqxky6wc0yf03zdfsjq7ysv1q32wpcm7ihdl0vb3iqwlhbvl2p";
+            version = "8.0.0";
+            sha256 = "0kccniigfy3pr5mjsfp6hyfblg41imhbiws4509li31di2s2ja2d";
           };
         })
 
@@ -230,8 +244,8 @@ in {
           mktplcRef = {
             name = "path-autocomplete";
             publisher = "ionutvmi";
-            version = "1.10.0";
-            sha256 = "1vg483sdaxjlzs47ixmhnf6c21kl13flm4lcp7pby98mj8qc1h64";
+            version = "1.13.1";
+            sha256 = "0583k0b9l453b8xf86g1ba7gzxqab2m1ca0dsk5p81flrg77815d";
           };
         })
 
@@ -248,8 +262,8 @@ in {
           mktplcRef = {
             name = "all-autocomplete";
             publisher = "Atishay-Jain";
-            version = "0.0.16";
-            sha256 = "0nklv9fhckpanm9whdk4yx1amc3lg6fv7s2hhl4w1wyrhmp7v955";
+            version = "0.0.18";
+            sha256 = "03nsx8hvid1pqvya1xjfmz4p0yj243a8xx9l7yvjz9y72c75qlzc";
           };
         })
 
@@ -258,8 +272,8 @@ in {
           mktplcRef = {
             name = "vscode-proto3";
             publisher = "zxh404";
-            version = "0.2.1";
-            sha256 = "12yf66a9ws5hlyj38nmn91y8a1jrq8696fnmgk60w9anyfalbn4q";
+            version = "0.2.2";
+            sha256 = "1gasx3ay31dy663fcnhpvbys5p7xjvv30skpsqajyi9x2j04akaq";
           };
         })
 
@@ -270,16 +284,6 @@ in {
             publisher = "streetsidesoftware";
             version = "0.4.0";
             sha256 = "0ak7rxraiafgnrmbzzdf96ihg1rkx1srhawr6yy6qcvnxr7b2pj6";
-          };
-        })
-
-        # Automatically insert license headers
-        (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
-          mktplcRef = {
-            name = "licenser";
-            publisher = "ymotongpoo";
-            version = "1.1.2";
-            sha256 = "0icbpbr30d4xayhdhms2fy1hmw3rh7jkp8v46nnnrxcg0z9wc6lz";
           };
         })
       ];

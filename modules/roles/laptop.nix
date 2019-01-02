@@ -6,40 +6,68 @@ with lib;
   options.roles.laptop.enable = mkEnableOption "laptop role";
 
   config = mkIf config.roles.laptop.enable {
-    roles.work.enable = true;
     roles.system.enable = true;
+    roles.workstation.enable = true;
 
-    profiles.x11.enable = mkDefault true;
-    profiles.i3.enable = mkDefault true;
-    profiles.dunst.enable = mkDefault true;
-
-    # enable libvirt profile by default on all work machines
     profiles.libvirt.enable = mkDefault true;
+    profiles.bluetooth.enable = mkDefault true;
 
-    # by default enable bluetooth on laptops
-    hardware.bluetooth.enable = mkDefault true;
+    # enable suspend
+    powerManagement.enable = mkDefault true;
 
-    # by default enable audio on laptops
-    hardware.pulseaudio.enable = mkDefault true;
+    # show battery status
+    profiles.i3.i3Status = {
+      enableBlocks = [
+        (mkOrder 511 "battery 0")
+        (mkOrder 550 "tztime local")
+        (mkOrder 551 "tztime pst")
+      ];
+
+      blocks.battery_0 = {
+        type = "battery";
+        name = "0";
+        opts = {
+          format = "%status %percentage %remaining";
+          low_threshold = 10;
+          last_full_capacity = true;
+        };
+      };
+
+      blocks.tztime_local = {
+        type = "tztime";
+        name = "local";
+        opts.format = "%Y-%m-%d ⌚ %H:%M:%S";
+      };
+
+      blocks.tztime_pst = {
+        type = "tztime";
+        name = "pst";
+
+        opts = {
+          format = "PST⌚ %H:%M";
+          timezone = "America/Los_Angeles";
+        };
+      };
+    };
+
+    # enable redshift on workstation machines
+    services.redshift = {
+      enable = mkDefault true;
+      latitude = mkDefault "46";
+      longitude = mkDefault "14";
+      brightness.night = mkDefault "0.8";
+    };
 
     # Do not turn off when clousing laptop lid
     services.logind.extraConfig = ''
       HandleLidSwitch=ignore
     '';
 
-    # redshift
-    services.redshift.enable = true;
-    services.redshift.latitude = "46";
-    services.redshift.longitude = "14";
-    services.redshift.brightness.night = "0.8";
-
     environment.systemPackages = with pkgs; [
       wirelesstools
-      iw
-      libguestfs
     ];
 
-    # check battery every 60s
+    # check battery every 60s and shutdown if below 5%
     systemd.services.check-battery = {
       description = "Shutdown on low battery";
       script = ''

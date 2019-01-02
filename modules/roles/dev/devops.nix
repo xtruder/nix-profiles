@@ -43,6 +43,7 @@ in {
       kubectx
       hetzner-kube
       kube-prompt
+      helmfile
 
       (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
         mktplcRef = {

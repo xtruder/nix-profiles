@@ -10,22 +10,24 @@ in {
   };
 
   config = mkIf config.roles.vm.enable {
+    roles.workstation.enable = true;
+    roles.work.enable = true;
+    roles.system.enable = true;
+
     profiles.i3 = {
-      enable = true;
       primaryMonitor = "Virtual-1";
       secondaryMonitor = "Virtual-2";
       screenLock.enable = false;
     };
-    roles.work.enable = true;
-    roles.system.enable = true;
 
     attributes.networking.primaryInterface = mkDefault "ens4";
 
     services.xserver.displayManager.slim = {
-        defaultUser = "offlinehacker";
-        autoLogin = true;
+      defaultUser = config.users.users.admin.name;
+      autoLogin = true;
     };
 
+    # enable openssh on servers
     services.openssh.enable = true;
 
     # security lies elsewhere

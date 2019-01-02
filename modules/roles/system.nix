@@ -22,8 +22,8 @@ with lib;
     services.udev.packages = with pkgs; [ usb-modeswitch-data  ];
 
     environment.systemPackages = with pkgs; [
-      sysdig # System call analyzer
       htop
+      config.boot.kernelPackages.bcc
 
       # fs
       parted

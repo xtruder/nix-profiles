@@ -18,12 +18,17 @@
   ./profiles/taskwarrior.nix
   ./profiles/xonsh.nix
   ./profiles/dunst.nix
+  ./profiles/bluetooth.nix
+  ./profiles/pulseaudio.nix
+  ./profiles/udisks.nix
+  ./profiles/networkmanager.nix
 
   ./roles/base.nix
   ./roles/admin.nix
   ./roles/server.nix
   ./roles/headless.nix
   ./roles/work.nix
+  ./roles/workstation.nix
   ./roles/multimedia.nix
   ./roles/anonymous.nix
   ./roles/office.nix

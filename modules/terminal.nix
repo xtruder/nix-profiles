@@ -15,7 +15,7 @@ in {
     run = mkOption {
       description = "Command to run to start terminal";
       type = types.str;
-      default = "tmux attach";
+      default = "$SHELL";
     };
 
     term = mkOption {

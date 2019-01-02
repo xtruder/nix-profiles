@@ -21,7 +21,7 @@ in {
 
     nix = {
       nixPath = ["nixpkgs=$HOME/projects/nixpkgs"];
-      maxJobs = config.attributes.cpu.cores;
+      maxJobs = config.attributes.hardware.cpu.cores;
       distributedBuilds = true;
     };
 

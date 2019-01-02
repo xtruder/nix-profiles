@@ -18,6 +18,7 @@ in {
       XTerm*faceSize: 10
       XTerm*dynamicColors: true
       XTerm*metaSendsEscape: true
+      XTerm*selectToClipboard: true
     '';
   };
 }
