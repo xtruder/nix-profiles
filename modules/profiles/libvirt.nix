@@ -17,11 +17,6 @@ in {
 
     users.groups.libvirtd.members = ["${config.users.users.admin.name}"];    
 
-    virtualisation.libvirtd.qemuVerbatimConfig = ''
-      nvram = ["${pkgs.OVMF}/FV/OVMF_CODE.fd:${pkgs.OVMF}/FV/OVMF_VARS.fd"]
-      hugetlbfs_mount = "/dev/hubepages"
-    '';
-
     services.dnsmasq.extraConfig = ''
       # ignore virbr0 as libvirtd listens here
       except-interface=virbr0
