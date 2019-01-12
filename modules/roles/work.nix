@@ -33,6 +33,8 @@ with lib;
       enableBrowserSocket = false;
     };
 
+    services.earlyoom.enable = mkDefault true;
+
     # enable tmux on work environments
     profiles.tmux.enable = mkDefault true;
     profiles.yubikey.enable = mkDefault true;
