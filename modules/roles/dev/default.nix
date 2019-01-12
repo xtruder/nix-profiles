@@ -141,10 +141,6 @@ in {
         "ogcgkffhplmphkaahpmffcafajaocjbd" # zenhub
       ];
 
-      services.xserver.displayManager.sessionCommands = ''
-        ${pkgs.rambox}/bin/rambox &
-      '';
-
       # Create /bin/bash symlink
       system.activationScripts.binbash = stringAfter [ "binsh" ]
         ''

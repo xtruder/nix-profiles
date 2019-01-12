@@ -40,6 +40,10 @@ with lib;
     profiles.yubikey.enable = mkDefault true;
     profiles.xsuspender.enable = mkDefault true;
 
+    services.xserver.displayManager.sessionCommands = ''
+      ${pkgs.rambox}/bin/rambox &
+    '';
+
     environment.systemPackages = with pkgs; [
       mupdf
       libreoffice
@@ -48,7 +52,6 @@ with lib;
 
       # browsers
       chromium
-      rambox
 
       # distro tools
       cdrkit
