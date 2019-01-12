@@ -37,6 +37,9 @@ in {
             cscope.*
             tags
             .hg
+            .notes.md
+            result
+            telepresence.log
           ''}
 
         [color]
