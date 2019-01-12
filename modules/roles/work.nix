@@ -36,6 +36,7 @@ with lib;
     # enable tmux on work environments
     profiles.tmux.enable = mkDefault true;
     profiles.yubikey.enable = mkDefault true;
+    profiles.xsuspender.enable = mkDefault true;
 
     environment.systemPackages = with pkgs; [
       mupdf

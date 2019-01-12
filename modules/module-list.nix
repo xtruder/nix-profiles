@@ -23,6 +23,7 @@
   ./profiles/udisks.nix
   ./profiles/networkmanager.nix
   ./profiles/yubikey.nix
+  ./profiles/xsuspender.nix
 
   ./roles/base.nix
   ./roles/admin.nix
