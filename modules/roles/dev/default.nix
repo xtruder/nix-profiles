@@ -39,6 +39,7 @@ in {
             .hg
             .notes.md
             result
+            result-*
             telepresence.log
           ''}
 
