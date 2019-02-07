@@ -35,10 +35,10 @@ with lib;
 
     services.earlyoom.enable = mkDefault true;
 
-    # enable tmux on work environments
     profiles.tmux.enable = mkDefault true;
     profiles.yubikey.enable = mkDefault true;
     profiles.xsuspender.enable = mkDefault true;
+    profiles.printingAndScanning.enable = mkDefault true;
 
     services.xserver.displayManager.sessionCommands = ''
       ${pkgs.rambox}/bin/rambox &

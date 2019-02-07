@@ -24,6 +24,7 @@
   ./profiles/networkmanager.nix
   ./profiles/yubikey.nix
   ./profiles/xsuspender.nix
+  ./profiles/printingAndScanning.nix
 
   ./roles/base.nix
   ./roles/admin.nix
@@ -33,7 +34,6 @@
   ./roles/workstation.nix
   ./roles/multimedia.nix
   ./roles/anonymous.nix
-  ./roles/office.nix
   ./roles/dev
   ./roles/dev/node.nix
   ./roles/dev/android.nix
