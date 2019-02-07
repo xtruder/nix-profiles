@@ -18,6 +18,7 @@ in {
       dep
       dep2nix
       go2nix
+      vgo2nix
       gotools
       go-protobuf
 
