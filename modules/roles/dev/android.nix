@@ -9,7 +9,7 @@ in {
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      androidsdk
+      androidsdk_9_0
       apktool
     ];
 
