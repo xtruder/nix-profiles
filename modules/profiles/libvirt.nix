@@ -12,6 +12,12 @@ in {
   config = mkIf cfg.enable {
     virtualisation.libvirtd = {
       enable = true;
+      qemuPackage = pkgs.qemu_kvm.overrideDerivation (p: {
+        patches = p.patches ++ [
+          ./nested_svm_disable_blockers.patch
+          ./nested_svm_disable_blockers2.patch
+        ];
+      });
       qemuVerbatimConfig = ''
         namespaces = [];
 
@@ -48,14 +54,5 @@ in {
       virtmanager
       virtviewer
     ];
-
-    nixpkgs.overlays = [(self: super: {
-      qemu = super.qemu.overrideDerivation (p: {
-        patches = [
-          ./nested_svm_disable_blockers.patch
-          ./nested_svm_disable_blockers2.patch
-        ];
-      });
-    })];
   };
 }
