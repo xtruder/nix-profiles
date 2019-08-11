@@ -128,6 +128,12 @@ in {
   options.profiles.i3 = {
     enable = mkEnableOption "i3";
 
+    backgroundImage = mkOption {
+      description = "Background image";
+      type = types.nullOr types.path;
+      default = null;
+    };
+
     extraBarConfig = mkOption {
       description = "Extra bar configuration";
       type = types.attrs;
@@ -195,7 +201,10 @@ in {
         }) {
           command = "env WORKSPACE=scratch ${reclassAppWindow} scratchterm i3-sensible-terminal";
           notification = false;
-        }];
+        } (mkIf (cfg.backgroundImage != null) {
+          command = "${pkgs.feh}/bin/feh --bg-scale ${cfg.backgroundImage}";
+          notification = false;
+        })];
 
         keybindings = mkOptionDefault {
           "${modifier}+Return" = "exec ${exposeWorkspace} i3-sensible-terminal";
