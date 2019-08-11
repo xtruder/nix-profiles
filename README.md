@@ -16,6 +16,15 @@ in {
 }
 ```
 
+## Building images
+
+iso:
+
+```
+cd images
+nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=iso.nix
+```
+
 ## Defined options
 
 Look into [options.md](options.md) file.

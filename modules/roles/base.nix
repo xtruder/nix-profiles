@@ -12,22 +12,38 @@ with lib;
     # clean tmp on boot
     boot.cleanTmpDir = mkDefault true;
 
-    # Recovery key, for times when you lock yourself out of system
-    users.extraUsers.root.openssh.authorizedKeys.keys = [ config.attributes.recoveryKey ];
+    users.extraUsers = {
+      # default admin user
+      admin = {};
 
-    # root shell is allways bash shell
-    users.extraUsers.root.shell = mkOverride 50 "${pkgs.bashInteractive}/bin/bash";
+      # Deploy ssh key
+      root.openssh.authorizedKeys.keys = [ config.attributes.deployKey ];
+
+      # root shell is allways bash shell
+      root.shell = mkOverride 50 "${pkgs.bashInteractive}/bin/bash";
+    };
 
     # by default enable all completions
     programs.bash.enableCompletion = mkDefault true;
 
     # nix config
     nix = {
-      binaryCachePublicKeys = [ "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=" ];
-      binaryCaches = [ "https://cache.nixos.org/" ];
-      useSandbox = true; # yes, some security please
+      binaryCaches = [
+        "https://cache.nixos.org/"
+        "https://xtruder-public.cachix.org"
+      ];
+      binaryCachePublicKeys = [
+        "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
+        "xtruder-public.cachix.org-1:kys+/sTbpYWiTLR9FPSrs70d33lUJCO+OvJoSTZdU0o="
+      ];
+      useSandbox = "relaxed"; # yes, some security please
       distributedBuilds = true;
+      extraOptions = ''
+        builders-use-substitutes = true
+      '';
     };
+
+    services.fstrim.enable = true;
 
     # sane dnsmasq defaults
     services.dnsmasq.extraConfig = ''
@@ -40,12 +56,7 @@ with lib;
     '';
 
     # our nixpkgs config
-    nixpkgs.config = {
-      allowUnfree = true;
-
-      firefox.icedtea = true;
-      android_sdk.accept_license = true;
-    };
+    nixpkgs.config.allowUnfree = true;
 
     # because nixos does not need it's own containers
     boot.enableContainers = mkDefault false;
@@ -76,6 +87,8 @@ with lib;
       "nixos-config=/etc/nixos/configuration.nix"
       "/nix/var/nix/profiles/per-user/root/channels"
     ];
+
+    home-manager.users.admin.attributes = config.attributes;
 
     environment.systemPackages = with pkgs; [
       coreutils
@@ -112,7 +125,6 @@ with lib;
       openssl
       jq
       zsh
-      autojump
       nano
       pass
       netcat

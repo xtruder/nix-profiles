@@ -13,10 +13,13 @@ in {
       vimPlugins.vim-nix
       dpkg
       nix-prefetch-scripts
+      nix-prefetch-github
       bundix
-      vscode-extensions.bbenoist.Nix
       pypi2nix
-      yarn2nix
+    ];
+
+    profiles.vscode.extensions = [
+      pkgs.vscode-extensions.bbenoist.Nix
     ];
 
     nix = {
@@ -26,5 +29,15 @@ in {
     };
 
     systemd.services.nix-daemon.serviceConfig.EnvironmentFile = "-/home/${config.users.users.admin.name}/.nix-daemon.env";
+
+    programs.bash.loginShellInit = ''
+      function nix-path() {
+        readlink -f $(which $1)
+      }
+
+      function remove_home_roots() {
+        nix-store --gc --print-roots | grep -i /home/offlinehacker | cut -d ' ' -f 1 | xargs rm
+      }
+    '';
   };
 }

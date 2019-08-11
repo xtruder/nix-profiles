@@ -7,7 +7,7 @@ let
 in {
   options.profiles.vbox.enable = mkEnableOption "docker profile";
 
-  config = mkIf config.profiles.docker.enable {
+  config = mkIf config.profiles.vbox.enable {
     # virtualbox
     virtualisation.virtualbox.host.enable = true;
 

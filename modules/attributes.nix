@@ -21,7 +21,7 @@ with lib;
       };
     };
 
-    recoveryKey = mkOption {
+    deployKey = mkOption {
       description = "SSH recovery key";
       type = types.str;
     };
@@ -86,6 +86,31 @@ with lib;
         type = types.bool;
         default = false;
       };
+
+      hasBluetooth = mkOption {
+        description = "Whether system has bluetooth";
+        type = types.bool;
+        default = false;
+      };
+
+      isVM = mkOption {
+        description = "Whether system is a virtual machine";
+        type = types.bool;
+        default = false;
+      };
+    };
+
+    services = {
+      enable = mkOption {
+        description = "List of required enabled system features";
+        type = types.listOf types.str;
+        default = [];
+      };
+    };
+
+    hasGui = mkOption {
+      description = "whether computer has graphics";
+      type = types.bool;
     };
   };
 }

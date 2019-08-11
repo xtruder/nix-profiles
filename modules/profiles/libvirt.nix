@@ -10,10 +10,20 @@ in {
   };
 
   config = mkIf cfg.enable {
-    virtualisation.libvirtd.enable = true;
+    virtualisation.libvirtd = {
+      enable = true;
+      qemuVerbatimConfig = ''
+        namespaces = [];
+
+        # if having virgl gpu issues uncomment
+        #seccomp_sandbox = 0
+      '';
+    };
+
     networking.firewall.trustedInterfaces = ["virbr0"];
     networking.nat.internalInterfaces = ["virbr0"];
     #networking.nat.externalInterface = "eth0";
+    networking.firewall.allowedTCPPortRanges = [{ from = 49152; to = 49215; }];
 
     users.groups.libvirtd.members = ["${config.users.users.admin.name}"];    
 
@@ -36,6 +46,16 @@ in {
       spice-gtk # required for usb redirection to work
       libguestfs
       virtmanager
+      virtviewer
     ];
+
+    nixpkgs.overlays = [(self: super: {
+      qemu = super.qemu.overrideDerivation (p: {
+        patches = [
+          ./nested_svm_disable_blockers.patch
+          ./nested_svm_disable_blockers2.patch
+        ];
+      });
+    })];
   };
 }

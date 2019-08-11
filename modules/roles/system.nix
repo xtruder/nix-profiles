@@ -21,6 +21,9 @@ with lib;
 
     services.udev.packages = with pkgs; [ usb-modeswitch-data  ];
 
+    # firmware update service
+    services.fwupd.enable = true;
+
     environment.systemPackages = with pkgs; [
       htop
       config.boot.kernelPackages.bcc
@@ -35,11 +38,14 @@ with lib;
       encfs
       smartmontools
       hdparm
+      winusb
+      sysstat
 
       # devices
       pciutils
       usbutils
       cpufrequtils
+      nvme-cli
 
       # networking
       dhcp

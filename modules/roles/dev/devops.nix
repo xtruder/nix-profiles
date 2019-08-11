@@ -14,6 +14,17 @@ in {
       kubernetes
     ];
 
+    profiles.vscode.extensions = [
+      (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "terraform";
+          publisher = "mauve";
+          version = "1.2.0";
+          sha256 = "04jk9ydzz8rwv8y3bphl2v5h9a73qjgs2bs22m0glh4wsq8d7h55";
+        };
+      })
+    ];
+
     environment.systemPackages = with pkgs; [
       packer
       vagrant
@@ -29,7 +40,7 @@ in {
       azure-cli
       nixops
       ansible
-      telepresence
+      #telepresence
       remarshal
       proot
       cfssl
@@ -41,18 +52,8 @@ in {
       minio-client
       kubicorn
       kubectx
-      hetzner-kube
-      kube-prompt
+      #hetzner-kube
       helmfile
-
-      (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
-        mktplcRef = {
-          name = "terraform";
-          publisher = "mauve";
-          version = "1.2.0";
-          sha256 = "04jk9ydzz8rwv8y3bphl2v5h9a73qjgs2bs22m0glh4wsq8d7h55";
-        };
-      })
     ];
   };
 }

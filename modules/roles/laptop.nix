@@ -6,58 +6,21 @@ with lib;
   options.roles.laptop.enable = mkEnableOption "laptop role";
 
   config = mkIf config.roles.laptop.enable {
+    attributes.hardware.hasBattery = true;
+
     roles.system.enable = true;
     roles.workstation.enable = true;
 
     profiles.libvirt.enable = mkDefault true;
-    profiles.bluetooth.enable = mkDefault true;
-    profiles.udisks.enable = false;
 
     # enable suspend
     powerManagement.enable = mkDefault true;
+    # for power optimizations
+    powerManagement.powertop.enable = true;
+    # enable TLP daemon for power saving
+    services.tlp.enable = true;
 
-    # show battery status
-    profiles.i3.i3Status = {
-      enableBlocks = [
-        (mkOrder 511 "battery 0")
-        (mkOrder 550 "tztime local")
-        (mkOrder 551 "tztime pst")
-      ];
-
-      blocks.battery_0 = {
-        type = "battery";
-        name = "0";
-        opts = {
-          format = "%status %percentage %remaining";
-          low_threshold = 10;
-          last_full_capacity = true;
-        };
-      };
-
-      blocks.tztime_local = {
-        type = "tztime";
-        name = "local";
-        opts.format = "%Y-%m-%d ⌚ %H:%M:%S";
-      };
-
-      blocks.tztime_pst = {
-        type = "tztime";
-        name = "pst";
-
-        opts = {
-          format = "PST⌚ %H:%M";
-          timezone = "America/Los_Angeles";
-        };
-      };
-    };
-
-    # enable redshift on workstation machines
-    services.redshift = {
-      enable = mkDefault true;
-      latitude = mkDefault "46";
-      longitude = mkDefault "14";
-      brightness.night = mkDefault "0.8";
-    };
+    home-manager.users.admin.profiles.redshift.enable = true;
 
     # Do not turn off when clousing laptop lid
     services.logind.extraConfig = ''

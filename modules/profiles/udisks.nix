@@ -7,9 +7,5 @@ with lib;
 
   config = mkIf config.profiles.udisks.enable {
     services.udisks2.enable = true;
-
-    services.xserver.displayManager.sessionCommands = ''
-      ${pkgs.udiskie}/bin/udiskie -t -A &
-    '';
   };
 }

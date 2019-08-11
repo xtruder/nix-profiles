@@ -1,0 +1,32 @@
+--- b/migration/savevm.c
++++ a/migration/savevm.c
+@@ -2455,10 +2455,6 @@
+     struct tm tm;
+     AioContext *aio_context;
+ 
+-    if (migration_is_blocked(errp)) {
+-        return false;
+-    }
+-
+     if (!replay_can_snapshot()) {
+         error_setg(errp, "Record/replay does not allow making snapshot "
+                    "right now. Try once more later.");
+--- b/target/i386/kvm.c
++++ a/target/i386/kvm.c
+@@ -1266,6 +1266,7 @@
+     if (!env->user_tsc_khz) {
+         if ((env->features[FEAT_8000_0007_EDX] & CPUID_APM_INVTSC) &&
+             invtsc_mig_blocker == NULL) {
++            /* for migration */
+             error_setg(&invtsc_mig_blocker,
+                        "State blocked by non-migratable CPU device"
+                        " (invtsc flag)");
+@@ -1275,6 +1276,8 @@
+                 error_free(invtsc_mig_blocker);
+                 return r;
+             }
++            /* for savevm */
++            vmstate_x86_cpu.unmigratable = 1;
+         }
+     }
+ 

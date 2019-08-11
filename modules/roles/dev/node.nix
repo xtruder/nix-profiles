@@ -8,11 +8,7 @@ in {
   options.roles.dev.node.enable = mkEnableOption "node language";
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      nodejs-8_x
-      flow
-      yarn
-
+    profiles.vscode.extensions = [
       (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "node-module-intellisense";
@@ -48,6 +44,12 @@ in {
           sha256 = "114fn8scmp1xxmz56k6z0q0g61liy0flx54n0gxj90df85ygd2ib";
         };
       })
+    ];
+
+    environment.systemPackages = with pkgs; [
+      nodejs-10_x
+      flow
+      yarn
     ];
 
     programs.npm.enable = true;

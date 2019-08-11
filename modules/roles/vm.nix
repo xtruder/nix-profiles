@@ -14,13 +14,8 @@ in {
     roles.work.enable = true;
     roles.system.enable = true;
 
-    profiles.i3 = {
-      primaryMonitor = "Virtual-1";
-      secondaryMonitor = "Virtual-2";
-      screenLock.enable = false;
-    };
-
     attributes.networking.primaryInterface = mkDefault "ens4";
+    attributes.hardware.isVM = true;
 
     services.xserver.displayManager.slim = {
       defaultUser = config.users.users.admin.name;

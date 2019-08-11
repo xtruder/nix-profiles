@@ -10,7 +10,7 @@ in {
 
     routeTraffic = mkOption {
       description = "Whether route traffic through tor";
-      default = true;
+      default = false;
       type = types.bool;
     };
 
@@ -44,7 +44,9 @@ in {
       enable = true;
       controlPort = 9051;
       client.enable = true;
+      client.socksListenAddress = "0.0.0.0:9053";
       client.dns.enable = true;
+      client.dns.listenAddress = "0.0.0.0:9053";
       client.transparentProxy.enable = true;
     };
 
@@ -53,6 +55,8 @@ in {
       iptables -t nat -A PREROUTING -d 10.192.0.0/10  -p tcp --syn -j REDIRECT --to-ports 9040
       iptables -t nat -A PREROUTING -p udp --dport 5353 -j REDIRECT --to-ports 9053
       iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 9053
+      iptables -t nat -A PREROUTING -p tcp --dport 5353 -j REDIRECT --to-ports 9053
+      iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 9053
 
       #*nat OUTPUT (For local redirection)
       iptables -t nat -A OUTPUT -d 10.192.0.0/10 -p tcp --syn -j REDIRECT --to-ports 9040
