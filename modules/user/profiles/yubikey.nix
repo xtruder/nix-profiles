@@ -17,7 +17,7 @@ with lib;
     ]);
 
     nixos.passthru = {
-      services.udev.packages = with pkgs; [ libu2fa-host yubikey-personalization ];
+      services.udev.packages = with pkgs; [ libu2f-host yubikey-personalization ];
       users.extraGroups.yubikey = {};
       users.groups.yubikey.members = [ config.home.username ];
     };

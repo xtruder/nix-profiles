@@ -6,6 +6,7 @@ let
   passthruPrefixes = [
     "attributes.services"
     "services.dbus"
+    "services.udev"
     "services.geoclue2"
     "users.groups"
     "users.extraGroups"
