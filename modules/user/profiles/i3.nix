@@ -104,6 +104,7 @@ let
     # Wait for the window to open and grab its window ID
     winid=""
     while : ; do
+      ps --pid $pid &>/dev/null || exit 1
       winid="`${pkgs.wmctrl}/bin/wmctrl -lp | ${pkgs.gawk}/bin/awk -vpid=$pid '$3==pid {print $1; exit}'`"
       [[ -z "$winid"  ]] || break
     done
@@ -188,11 +189,11 @@ in {
           hideEdgeBorders = "smart";
         };
 
-        startup = [{
+        startup = [(mkIf config.profiles.firefox.enable {
           command = "${reclassAppWindow} ffscratch firefox -P scratchpad ${toString config.profiles.firefox.startup.pages}";
           notification = false;
-        } {
-          command = "env WORKSPACE=scratch ${reclassAppWindow} scratchterm i3-sensible-terminal htop";
+        }) {
+          command = "env WORKSPACE=scratch ${reclassAppWindow} scratchterm i3-sensible-terminal";
           notification = false;
         }];
 
