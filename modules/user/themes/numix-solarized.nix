@@ -22,18 +22,21 @@ in {
   };
 
   config = mkIf cfg.enable {
-    profiles.i3.extraBarConfig = {
-      fonts = ["Source Code Pro 8"];
-      position = "bottom";
-      colors = {
-        background = "#073642";
-        statusline = "#ffffff";
-        separator = "#2aa198";
+    profiles.i3 = {
+      backgroundImage = ./solarized_by_kaypooma_dbphxbv-pre.jpg; 
+      extraBarConfig = {
+        fonts = ["Source Code Pro 8"];
+        position = "bottom";
+        colors = {
+          background = "#073642";
+          statusline = "#ffffff";
+          separator = "#2aa198";
 
-        focusedWorkspace = { border = "#167AC6"; background = "#167AC6"; text = "#CCCCCC"; };
-        activeWorkspace = { border = "#073642"; background = "#5f676a"; text = "#dedede"; };
-        inactiveWorkspace = { border = "#073642"; background = "#073642"; text = "#888888"; };
-        urgentWorkspace = { border = "#333333"; background = "#900000"; text = "#ffffff"; };
+          focusedWorkspace = { border = "#167AC6"; background = "#167AC6"; text = "#CCCCCC"; };
+          activeWorkspace = { border = "#073642"; background = "#5f676a"; text = "#dedede"; };
+          inactiveWorkspace = { border = "#073642"; background = "#073642"; text = "#888888"; };
+          urgentWorkspace = { border = "#333333"; background = "#900000"; text = "#ffffff"; };
+        };
       };
     };
 
