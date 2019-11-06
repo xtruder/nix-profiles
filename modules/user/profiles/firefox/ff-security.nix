@@ -509,6 +509,9 @@
   "privacy.trackingprotection.enabled" =   true;
   "privacy.trackingprotection.pbmode.enabled" =  true;
 
+  # PREF: Enable Firefox Crypto Mining Protection
+  "privacy.trackingprotection.cryptomining.enabled" = true;
+
   # PREF: Enable contextual identity Containers feature (Firefox >= 52)
   # NOTICE: Containers are not available in Private Browsing mode
   # https://wiki.mozilla.org/Security/Contextual_Identity_Project/Containers
@@ -519,7 +522,7 @@
   # https://bugzilla.mozilla.org/show_bug.cgi?id=1333933
   # https://wiki.mozilla.org/Security/Fingerprinting
   # NOTICE: RFP breaks some keyboard shortcuts used in certain websites (see #443)
-  "privacy.resistFingerprinting" =   true;
+  "privacy.trackingprotection.fingerprinting.enabled" = true;
 
   # PREF: Disable the built-in PDF viewer
   # https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2015-2743
@@ -583,8 +586,8 @@
   # PREF: Disable Pocket
   # https://support.mozilla.org/en-US/kb/save-web-pages-later-pocket-firefox
   # https://github.com/pyllyukko/user.js/issues/143
-  "browser.pocket.enabled" =    true;
-  "extensions.pocket.enabled" =    true;
+  "browser.pocket.enabled" =    false;
+  "extensions.pocket.enabled" =    false;
 
   # PREF: Disable SHIELD
   # https://support.mozilla.org/en-US/kb/shield
@@ -728,9 +731,9 @@
   "network.cookie.thirdparty.sessionOnly" =  true;
 
   # PREF: Spoof User-agent (disabled)
-  "general.useragent.override" =    "Mozilla/5.0 (Windows NT 6.1; rv:45.0 Gecko/20100101 Firefox/45.0";
+  "general.useragent.override" =    "Mozilla/5.0 (Windows NT 6.1; rv:60.0) Gecko/20100101 Firefox/60.0";
   "general.appname.override" =    "Netscape";
-  "general.appversion.override" =   "5.0 (Windows";
+  "general.appversion.override" =   "5.0 (Windows)";
   "general.platform.override" =    "Win32";
   "general.oscpu.override" =    "Windows NT 6.1";
 
@@ -763,7 +766,7 @@
   "privacy.clearOnShutdown.downloads" =   true;
   "privacy.clearOnShutdown.formdata" =   true;
   "privacy.clearOnShutdown.history" =   true;
-  "privacy.clearOnShutdown.offlineApps" =  true;
+  "privacy.clearOnShutdown.offlineApps" =  false;
   "privacy.clearOnShutdown.sessions" =   false;
   "privacy.clearOnShutdown.openWindows" =  false;
 
@@ -1154,4 +1157,6 @@
   "security.ssl3.rsa_aes_256_sha" =   true; # 0x35
   "security.ssl3.rsa_aes_128_sha" =   true; # 0x2f
 
+  # support for userChrome.css
+  "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
 }

@@ -13,6 +13,7 @@ let
     "programs.adb"
     "programs.wireshark"
     "networking.networkmanager"
+    "security.wrappers"
   ];
 
   passthru = map (prefix: let

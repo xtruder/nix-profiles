@@ -7,6 +7,7 @@ with lib;
 
   config = mkIf config.roles.admin.enable {
     profiles.wireshark.enable = true;
+	profiles.firejail.enable = true;
 
     home.packages = with pkgs; (mkMerge [
       [

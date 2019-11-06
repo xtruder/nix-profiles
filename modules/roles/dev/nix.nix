@@ -16,6 +16,7 @@ in {
       nix-prefetch-github
       bundix
       pypi2nix
+      haskellPackages.niv
     ];
 
     profiles.vscode.extensions = [

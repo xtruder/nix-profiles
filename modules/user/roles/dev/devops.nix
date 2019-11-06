@@ -9,14 +9,7 @@ in {
 
   config = mkIf cfg.enable {
     programs.vscode.extensions = [
-      (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
-        mktplcRef = {
-          name = "terraform";
-          publisher = "mauve";
-          version = "1.2.0";
-          sha256 = "04jk9ydzz8rwv8y3bphl2v5h9a73qjgs2bs22m0glh4wsq8d7h55";
-        };
-      })
+      pkgs.vscode-extensions'.terraform
     ];
 
     home.packages = with pkgs; [
@@ -25,7 +18,7 @@ in {
       ec2_ami_tools
       ec2_api_tools
       google-cloud-sdk
-      azure-cli
+      #azure-cli
 
       # provisioning
       nixops
@@ -49,7 +42,7 @@ in {
       kubicorn
       kubectx
       kind.bin
-      minikube.bin
+      minikube
 
       # container tools
       skopeo

@@ -27,6 +27,7 @@ in {
   config = mkIf cfg.enable {
     programs.firefox = {
       enable = true;
+
       extensions = with pkgs.firefox-addons; [
         disabled-add-on-fix-61-65
         https-everywhere
@@ -38,6 +39,7 @@ in {
         mailvelope
         pushbullet
       ];
+
       profiles.default = {
         id = 0;
         path = "wj54vnqp.default";
@@ -47,22 +49,25 @@ in {
         settings = mkMerge [
           (import ./ff-security.nix)
           {
-            "browser.statup.homepage" = "https://searx.be";
+            "browser.statup.homepage" = "https://duckduckgo.com";
           }
         ];
       };
 
+      # firefox scratchpad profile
       profiles.scratchpad = {
         id = 1;
         path = "scratchpad";
         userChrome = ''
-          ${builtins.readFile ./hide-tabs.css}
           ${builtins.readFile ./auto-hide.css}
         '';
-        settings = {
-          # always do a clean start
-          "browser.sessionstore.resume_from_crash" = false;
-        };
+        settings = mkMerge [
+          (import ./ff-security.nix)
+          {
+            # always do a clean start
+            "browser.sessionstore.resume_from_crash" = false;
+          }
+        ];
       };
     };
 

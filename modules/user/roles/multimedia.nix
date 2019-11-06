@@ -34,7 +34,7 @@ with lib;
         dia # diagraming tool
         yed # better diagraming tool
         picard # Music id3 analyzer
-        tuxguitar # For my guitar tunes
+        #tuxguitar # For my guitar tunes
         audacity # for music editing and recording
       ])
     ]);

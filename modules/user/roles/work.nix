@@ -30,6 +30,10 @@ with lib;
         # distro tools
         cdrkit
 
+        # shell tools
+        pet
+        fzf
+
         # cloud storage
         #dropbox
         #dropbox-cli
@@ -41,7 +45,12 @@ with lib;
         # crypto
         gnupg
 
+        # vpn
+        protonvpn-cli
+
         jrnl
+
+        google-drive-ocamlfuse
       ]
 
       (mkIf config.attributes.hasGui [

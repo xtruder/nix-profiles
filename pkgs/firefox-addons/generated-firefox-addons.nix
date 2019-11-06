@@ -2,10 +2,10 @@
   {
     "clearurls" = buildFirefoxXpiAddon {
       pname = "clearurls";
-      version = "1.7.3";
+      version = "1.9.1";
       addonId = "{74145f27-f039-47ce-a470-a662b129930a}";
-      url = "https://addons.mozilla.org/firefox/downloads/file/3374823/clearurls-1.7.3-an+fx.xpi?src=";
-      sha256 = "ae0ff5e58646b850d28e43dc42afeb6505fc91f486d411d87b86c837bbd1e2c9";
+      url = "https://addons.mozilla.org/firefox/downloads/file/3431654/clearurls-1.9.1-an+fx.xpi?src=";
+      sha256 = "1e30fcd11ddfa85e3cd48701660274f8cdb440459b076232ac7feee64978797a";
       meta = with stdenv.lib;
       {
         homepage = "https://gitlab.com/KevinRoebert/ClearUrls";
@@ -30,10 +30,10 @@
       };
     "decentraleyes" = buildFirefoxXpiAddon {
       pname = "decentraleyes";
-      version = "2.0.12";
+      version = "2.0.13";
       addonId = "jid1-BoFifL9Vbdl2zQ@jetpack";
-      url = "https://addons.mozilla.org/firefox/downloads/file/3048828/decentraleyes-2.0.12-an+fx.xpi?src=";
-      sha256 = "99e10c581e372ccf884f463954d5f1f4885d29c3a74a3fb4095140024e87200d";
+      url = "https://addons.mozilla.org/firefox/downloads/file/3423038/decentraleyes-2.0.13-an+fx.xpi?src=";
+      sha256 = "9dd1aa4e752166fb13ddc06068cf4c1aacc7e2789128fa103cf81285818943ea";
       meta = with stdenv.lib;
       {
         homepage = "https://decentraleyes.org";
@@ -85,10 +85,10 @@
       };
     "mailvelope" = buildFirefoxXpiAddon {
       pname = "mailvelope";
-      version = "4.0.1";
+      version = "4.1.1";
       addonId = "jid1-AQqSMBYb0a8ADg@jetpack";
-      url = "https://addons.mozilla.org/firefox/downloads/file/3375518/mailvelope-4.0.1-fx.xpi?src=";
-      sha256 = "791a03aa96fe066980c3fbf4852aa6b97ed340feb3a779848b5103e28592d981";
+      url = "https://addons.mozilla.org/firefox/downloads/file/3390582/mailvelope-4.1.1-fx.xpi?src=";
+      sha256 = "01bd5583931278079d1abc4295176795d2a1d0007498ccdf54703083bc9c1055";
       meta = with stdenv.lib;
       {
         homepage = "https://www.mailvelope.com/";
@@ -113,10 +113,10 @@
       };
     "privacy-badger" = buildFirefoxXpiAddon {
       pname = "privacy-badger";
-      version = "2019.7.1.1";
+      version = "2019.10.28";
       addonId = "jid1-MnnxcxisBPnSXQ@jetpack";
-      url = "https://addons.mozilla.org/firefox/downloads/file/3285452/privacy_badger-2019.7.1.1-an+fx.xpi?src=";
-      sha256 = "7bf4f0a7f527ac3d55f5917b994b2cbe2f4c907d57463f9bd8d04ffa82dc8dad";
+      url = "https://addons.mozilla.org/firefox/downloads/file/3434057/privacy_badger-2019.10.28-an+fx.xpi?src=";
+      sha256 = "c701b5b6b67fc2c11f39f61ebe90075826e1c6158aa5cf1e052ebedad2cdcc66";
       meta = with stdenv.lib;
       {
         homepage = "https://www.eff.org/privacybadger";
@@ -127,10 +127,10 @@
       };
     "pushbullet" = buildFirefoxXpiAddon {
       pname = "pushbullet";
-      version = "344";
+      version = "347";
       addonId = "jid1-BYcQOfYfmBMd9A@jetpack";
-      url = "https://addons.mozilla.org/firefox/downloads/file/1695606/pushbullet-344-fx.xpi?src=";
-      sha256 = "ddfcc3df208b3e70c10cd9c0b667562459eaf3ecc7de0ba14d972401cf345aa5";
+      url = "https://addons.mozilla.org/firefox/downloads/file/3408174/pushbullet-347-fx.xpi?src=";
+      sha256 = "2f8e6d5c2f2ac11a29a158d90e6405cf8c1558eeaea897b7282c7dc602e6b8a0";
       meta = with stdenv.lib;
       {
         homepage = "https://www.pushbullet.com";
@@ -141,10 +141,10 @@
       };
     "save-page-we" = buildFirefoxXpiAddon {
       pname = "save-page-we";
-      version = "15.1";
+      version = "16.2";
       addonId = "savepage-we@DW-dev";
-      url = "https://addons.mozilla.org/firefox/downloads/file/3158778/save_page_we-15.1-fx.xpi?src=";
-      sha256 = "25e5c70a6c1cb12596fd5ca6c4544d49af8a745d35f7d07e8c8accc74f9a9a4e";
+      url = "https://addons.mozilla.org/firefox/downloads/file/3421167/save_page_we-16.2-fx.xpi?src=";
+      sha256 = "0a2227ebf2d65776a7c568a3fbd3bdeaf66aa5459298e56ed109b9eba4151d09";
       meta = with stdenv.lib;
       {
         description = "Save a complete web page (as curently displayed) as a single HTML file that can be opened in any browser. Choose which items to save. Define the format of the saved filename. Enter user comments.";
@@ -154,10 +154,10 @@
       };
     "stylus" = buildFirefoxXpiAddon {
       pname = "stylus";
-      version = "1.5.4";
+      version = "1.5.6";
       addonId = "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}";
-      url = "https://addons.mozilla.org/firefox/downloads/file/3333853/stylus-1.5.4-fx.xpi?src=";
-      sha256 = "664d4290e739905cc9f3c2842e2e4096622c9d1023e58c67fd98cabfb8a0a082";
+      url = "https://addons.mozilla.org/firefox/downloads/file/3401561/stylus-1.5.6-fx.xpi?src=";
+      sha256 = "4ac675d1b5e2edb837bef2bed6044b9be3a7af24201080728f194e46b1ed025f";
       meta = with stdenv.lib;
       {
         homepage = "https://add0n.com/stylus.html";
@@ -168,10 +168,10 @@
       };
     "ublock-origin" = buildFirefoxXpiAddon {
       pname = "ublock-origin";
-      version = "1.21.2";
+      version = "1.23.0";
       addonId = "uBlock0@raymondhill.net";
-      url = "https://addons.mozilla.org/firefox/downloads/file/3361355/ublock_origin-1.21.2-an+fx.xpi?src=";
-      sha256 = "6c7ecdb7704963b83e03f9ada79d70a9af7486c1149f41edac3ed760fec0ed7a";
+      url = "https://addons.mozilla.org/firefox/downloads/file/3428595/ublock_origin-1.23.0-an+fx.xpi?src=";
+      sha256 = "b72c8bf1038d18e2d8badd0accd20f9d6938efe2f45303e99aaab189a66dbbc1";
       meta = with stdenv.lib;
       {
         homepage = "https://github.com/gorhill/uBlock#ublock-origin";

@@ -81,6 +81,10 @@ with lib;
     programs.vim.defaultEditor = true;
 
     boot.kernelModules = [ "tun" "fuse" ];
+    boot.kernelParams = [
+      # disable usb autosuspend
+      "usbcore.autosuspend=-1"
+    ];
 
     nix.nixPath = [
       "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs"

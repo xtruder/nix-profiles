@@ -37,10 +37,10 @@ in {
       terraform
       kops
       kops.out
-      azure-cli
+      #azure-cli
       nixops
       ansible
-      #telepresence
+      telepresence
       remarshal
       proot
       cfssl

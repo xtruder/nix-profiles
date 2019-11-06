@@ -47,6 +47,9 @@ in {
     ];
 
     # workaround for dconf to work
-    home.sessionVariables.GIO_EXTRA_MODULES = "${getLib pkgs.gnome3.dconf}/lib/gio/modules";
+    home.sessionVariables = {
+      GIO_EXTRA_MODULES = "${getLib pkgs.gnome3.dconf}/lib/gio/modules";
+      GTK_USE_PORTAL = "0";
+    };
   };
 }

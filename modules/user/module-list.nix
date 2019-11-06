@@ -21,12 +21,15 @@
   ./profiles/xterm.nix
   ./profiles/wireshark.nix
   ./profiles/yubikey.nix
+  ./profiles/firejail.nix
 
   ./roles/work.nix
   ./roles/workstation.nix
   ./roles/multimedia.nix
   ./roles/pentest.nix
   ./roles/admin.nix
+  ./roles/crypto.nix
+  ./roles/forensics.nix
   ./roles/dev/default.nix
   ./roles/dev/android.nix
   ./roles/dev/devops.nix
