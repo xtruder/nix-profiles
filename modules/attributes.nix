@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 with lib;
-  
+
 {
   options.attributes = {
     name = mkOption {
@@ -9,7 +9,7 @@ with lib;
       type = types.str;
     };
 
-    projectName = mkOption {
+    project = mkOption {
       description = "Name of the project";
       type = types.str;
     };
@@ -21,8 +21,8 @@ with lib;
       };
     };
 
-    deployKey = mkOption {
-      description = "SSH recovery key";
+    recoveryKey = mkOption {
+      description = "SSH recovery public key";
       type = types.str;
     };
 
@@ -95,6 +95,12 @@ with lib;
 
       isVM = mkOption {
         description = "Whether system is a virtual machine";
+        type = types.bool;
+        default = false;
+      };
+
+      isContainer = mkOption {
+        description = "Whether system is a container";
         type = types.bool;
         default = false;
       };

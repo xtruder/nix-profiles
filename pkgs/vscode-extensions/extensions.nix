@@ -2,14 +2,14 @@
   {
     name = "EditorConfig";
     publisher = "editorconfig";
-    version = "0.14.2";
-    sha256 = "19vqwhxqbxarswj3x2ghwk1b09bslmyw8aarnvjy6zz1jsigchl5";
+    version = "0.14.4";
+    sha256 = "0580dsxhw78qgds9ljvzsqqkd2ndksppk7l9s5gnrddirn6fdk5i";
   }
   {
     name = "vim";
     publisher = "vscodevim";
-    version = "1.11.3";
-    sha256 = "1smzsgcrkhghbnpy51gp28kh74l7y4s2m8pfxabb4ffb751254j0";
+    version = "1.12.4";
+    sha256 = "1l8ich2w3hjnwl3ihgr4cr00lwvas4zrsdh2f8gv3vi0aa40vc9n";
   }
   {
     name = "path-autocomplete";
@@ -26,14 +26,14 @@
   {
     name = "all-autocomplete";
     publisher = "Atishay-Jain";
-    version = "0.0.20";
-    sha256 = "1lcdzimn0kzch0i4spcd68ngvf95cpy47lxpg6filvyq813l17yk";
+    version = "0.0.23";
+    sha256 = "1ixvh3rrkfr6kvrnj7wvq0skwfjsh9whf4k1rm20wgcibfg1dpj6";
   }
   {
     name = "vscode-proto3";
     publisher = "zxh404";
-    version = "0.3.0";
-    sha256 = "1iylw9hihqz0pab4iisykgrq20141v5f1r6l4cif1z4237nd3z60";
+    version = "0.4.2";
+    sha256 = "05da62iahnnjxkgdav14c1gn90lkgyk9gc5rardsqijx2x6dgjn0";
   }
   {
     name = "avro";
@@ -50,8 +50,8 @@
   {
     name = "go";
     publisher = "ms-vscode";
-    version = "0.11.8";
-    sha256 = "0bfvajk7hfpa094bw8ln0p9n64blvvisaw1grla7jf780rm7x2jq";
+    version = "0.13.0";
+    sha256 = "03rl3nzywxnjw3653dj4z0fh8w52q5d0xf3rrg948pm3x6k9aljf";
   }
   {
     name = "node-module-intellisense";
@@ -68,8 +68,8 @@
   {
     name = "vscode-eslint";
     publisher = "dbaeumer";
-    version = "1.9.1";
-    sha256 = "0q3vnqmik1228zsy7favzsr3xpaci3z1zh38m79cpy5rac5bcr62";
+    version = "2.1.1";
+    sha256 = "11ybn0hrarp1v06zjql9lcbvr70ryhij8v2v23q45gm0qgmpk5ib";
   }
   {
     name = "vscode-mocha-sidebar";
@@ -80,13 +80,25 @@
   {
     name = "elm";
     publisher = "sbrink";
-    version = "0.25.0";
-    sha256 = "1djsif15s13k762f1yyffiprlsm18p4b8fmc8cxs5w5z8xfb2wp8";
+    version = "0.26.0";
+    sha256 = "0lcjjq710lrarzswidi7yhiyfa96byi9qd146pzjmpxggkj2jmw5";
   }
   {
     name = "vscode-elm-jump";
     publisher = "joeandaverde";
     version = "0.0.1";
     sha256 = "1l63b7ly8hjb9rrsh0ay5akk0hh48875cv34wpqd248nxdps1bac";
+  }
+  {
+    name = "vscode-kubernetes-tools";
+    publisher = "ms-kubernetes-tools";
+    version = "1.0.9";
+    sha256 = "1mn39nqfb772fwgma7zgq4jz87s43bw85mixbvawndrh9k4xwna6";
+  }
+  {
+    name = "nixfmt-vscode";
+    publisher = "brettm12345";
+    version = "0.0.1";
+    sha256 = "07w35c69vk1l6vipnq3qfack36qcszqxn8j3v332bl0w6m02aa7k";
   }
 ]

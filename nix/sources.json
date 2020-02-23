@@ -1,0 +1,26 @@
+{
+    "home-manager": {
+        "branch": "nix-profiles-2-0",
+        "description": "Manage a user environment using Nix",
+        "homepage": "",
+        "owner": "xtruder",
+        "repo": "home-manager",
+        "rev": "54647560d0833b6b5d1febdafc34706e8cf836a2",
+        "sha256": "0miyqx8vdk7ddg33107mrx8s5d1mim317yv5ln6mzla6cf0mh8cz",
+        "type": "tarball",
+        "url": "https://github.com/xtruder/home-manager/archive/54647560d0833b6b5d1febdafc34706e8cf836a2.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs": {
+        "branch": "nixpkgs-unstable",
+        "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
+        "homepage": "https://github.com/NixOS/nixpkgs",
+        "owner": "NixOS",
+        "repo": "nixpkgs-channels",
+        "rev": "cc1ae9f21b9e0ce998e706a3de1bad0b5259f22d",
+        "sha256": "0zjafww05h50ncapw51b5qxgbv9prjyag0j22jnfc3kcs5xr4ap0",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/cc1ae9f21b9e0ce998e706a3de1bad0b5259f22d.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    }
+}

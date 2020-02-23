@@ -1,56 +1,38 @@
+{ sources ? import ./nix/sources.nix
+, pkgs ? import sources.nixpkgs {}
+, lib ? import ./lib { inherit pkgs; inherit (pkgs) lib; }}:
+
+with lib;
+
 let
-  pkgs = import <nixpkgs> {};
+  extraPkgs = import ./pkgs/all-packages.nix { inherit pkgs; };
 
-  profiles = import ./modules/module-list.nix;
-  options = (import <nixpkgs/nixos/lib/eval-config.nix> {
-    modules = profiles;
-  }).options;
-  optionsList = with pkgs.lib;
-    filter (opt: opt.visible && !opt.internal) (optionAttrSetToDocList options);
-  # Replace functions by the string <function>
-  substFunction = with pkgs.lib; x:
-    if builtins.isAttrs x then mapAttrs (name: substFunction) x
-    else if builtins.isList x then map substFunction x
-    else if builtins.isFunction x then "<function>"
-    else x;
-  optionsList' = with pkgs.lib; flip map optionsList (opt: opt // {
-    declarations = opt.declarations;
-  }
-  // optionalAttrs (opt ? description) { example = substFunction opt.description; }
-  // optionalAttrs (opt ? example) { example = substFunction opt.example; }
-  // optionalAttrs (opt ? default) { default = substFunction opt.default; }
-  // optionalAttrs (opt ? type) { type = substFunction opt.type; });
-  prefixes = ["profiles" "attributes" "roles"];
+  evalConfig = import (loadPath <np-nixpkgs/nixos/lib/eval-config.nix> "${sources.nixpkgs}/nixos/lib/eval-config.nix");
 
-in with pkgs.lib; {
-  inherit profiles;
+  modules = import ./modules;
 
-  options = pkgs.stdenv.mkDerivation {
-    name = "options-json";
+  evalNixOSConfig = { ... }@args: evalConfig (args // {
+    inherit lib;
+    modules = (args.modules or []) ++ [modules.nixos.base];
+    specialArgs = args.specialArgs or {} // {
+      # pass sources so they can be imported in modules and overriden
+      inherit sources nix-profiles;
+    };
+  });
 
-    buildCommand = ''
-      mkdir -p $out
-      cp ${pkgs.writeText "options.json" (concatMapStringsSep "\n" (v: ''
-        * `${v.name}`:
+  buildIsoImage = configuration: _: (evalNixOSConfig {
+    modules = [ configuration ];
+  }).config.system.build.isoImage;
 
-          ${v.value.description or "No description"}
+  nix-profiles =  {
+    inherit evalNixOSConfig modules;
 
-          **Default:** ${builtins.toJSON v.value.default or "..."}
-          **Example:** ${if v.value.description == v.value.example then "..." else (builtins.toJSON v.value.example)}
-      '')
-        (filter (v: any (p: hasPrefix p v.name) prefixes)
-          (map (o: {
-              name = o.name;
-              value = removeAttrs o ["name" "visible" "internal"];
-            }) optionsList'
-          )
-        )
-      )} $out/options.md
-    ''; # */
+    pkgs = extraPkgs;
 
-    meta.description = "List of NixOS options in JSON format";
+    images = {
+      iso = buildIsoImage ./images/iso.nix {};
+      iso-dev = buildIsoImage ./images/iso-dev.nix {};
+    };
   };
 
-  configurations.dev = import ./configurations/dev.nix;
-  configurations.sec = import ./configurations/sec.nix;
-}
+in nix-profiles

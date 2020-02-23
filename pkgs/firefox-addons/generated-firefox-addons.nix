@@ -2,24 +2,24 @@
   {
     "clearurls" = buildFirefoxXpiAddon {
       pname = "clearurls";
-      version = "1.9.1";
+      version = "1.15.0";
       addonId = "{74145f27-f039-47ce-a470-a662b129930a}";
-      url = "https://addons.mozilla.org/firefox/downloads/file/3431654/clearurls-1.9.1-an+fx.xpi?src=";
-      sha256 = "1e30fcd11ddfa85e3cd48701660274f8cdb440459b076232ac7feee64978797a";
+      url = "https://addons.mozilla.org/firefox/downloads/file/3507273/clearurls-1.15.0-an+fx.xpi?src=";
+      sha256 = "533307f9f81deb605e9943ed8509f68477bdb53313e8c33745e3db5aceaddcff";
       meta = with stdenv.lib;
       {
         homepage = "https://gitlab.com/KevinRoebert/ClearUrls";
-        description = "Remove tracking elements form URLs.";
+        description = "Remove tracking elements from URLs.";
         license = licenses.lgpl3;
         platforms = platforms.all;
         };
       };
     "cookie-autodelete" = buildFirefoxXpiAddon {
       pname = "cookie-autodelete";
-      version = "3.0.2";
+      version = "3.0.3";
       addonId = "CookieAutoDelete@kennydo.com";
-      url = "https://addons.mozilla.org/firefox/downloads/file/1906813/cookie_autodelete-3.0.2-an+fx.xpi?src=";
-      sha256 = "ec1abb6ae918a1ad63d3e878cf402dc02dde1e4470b0f4b32a3de29bc8eb003a";
+      url = "https://addons.mozilla.org/firefox/downloads/file/3496777/cookie_autodelete-3.0.3-an+fx.xpi?src=";
+      sha256 = "f1d45073817e94e6473272d98c8d2652df9e510ad5f71e2c4202b8cc50fc76e1";
       meta = with stdenv.lib;
       {
         homepage = "https://github.com/mrdokenny/Cookie-AutoDelete";
@@ -72,10 +72,10 @@
       };
     "https-everywhere" = buildFirefoxXpiAddon {
       pname = "https-everywhere";
-      version = "2019.6.27";
+      version = "2019.11.7";
       addonId = "https-everywhere@eff.org";
-      url = "https://addons.mozilla.org/firefox/downloads/file/3060290/https_everywhere-2019.6.27-an+fx.xpi?src=";
-      sha256 = "37bb2155496910fdcf093c6f40d7871bd9605b4bd0200498b1c7c29b2ca4831c";
+      url = "https://addons.mozilla.org/firefox/downloads/file/3442258/https_everywhere-2019.11.7-an+fx.xpi?src=";
+      sha256 = "b4c33fcc43f9da395ff0b139cec005afa43f007c45a991d6089402c0b78288e6";
       meta = with stdenv.lib;
       {
         homepage = "https://www.eff.org/https-everywhere";
@@ -85,10 +85,10 @@
       };
     "mailvelope" = buildFirefoxXpiAddon {
       pname = "mailvelope";
-      version = "4.1.1";
+      version = "4.2.1";
       addonId = "jid1-AQqSMBYb0a8ADg@jetpack";
-      url = "https://addons.mozilla.org/firefox/downloads/file/3390582/mailvelope-4.1.1-fx.xpi?src=";
-      sha256 = "01bd5583931278079d1abc4295176795d2a1d0007498ccdf54703083bc9c1055";
+      url = "https://addons.mozilla.org/firefox/downloads/file/3482061/mailvelope-4.2.1-fx.xpi?src=";
+      sha256 = "4a8ab01ddc2808414da8711d2c0b0a34eb43f3a00e1638ea1ebbbb0bf5d73944";
       meta = with stdenv.lib;
       {
         homepage = "https://www.mailvelope.com/";
@@ -99,24 +99,23 @@
       };
     "octotree" = buildFirefoxXpiAddon {
       pname = "octotree";
-      version = "3.0.8";
+      version = "4.1.6";
       addonId = "jid1-Om7eJGwA1U8Akg@jetpack";
-      url = "https://addons.mozilla.org/firefox/downloads/file/2988920/octotree-3.0.8-fx.xpi?src=";
-      sha256 = "1db1fe9336d2e1fc6ac3bd86a73f8500963b1e70e27d855d0c64ab06790f8a8b";
+      url = "https://addons.mozilla.org/firefox/downloads/file/3510077/octotree-4.1.6-fx.xpi?src=";
+      sha256 = "41ecb69dc9bbfa12af7779cb74e7dc194450f7ca73542305c757f70f3a4d5697";
       meta = with stdenv.lib;
       {
         homepage = "https://github.com/buunguyen/octotree/";
-        description = "Add-on to display GitHub code in tree format";
-        license = licenses.mit;
+        description = "GitHub on steroids";
         platforms = platforms.all;
         };
       };
     "privacy-badger" = buildFirefoxXpiAddon {
       pname = "privacy-badger";
-      version = "2019.10.28";
+      version = "2020.2.19";
       addonId = "jid1-MnnxcxisBPnSXQ@jetpack";
-      url = "https://addons.mozilla.org/firefox/downloads/file/3434057/privacy_badger-2019.10.28-an+fx.xpi?src=";
-      sha256 = "c701b5b6b67fc2c11f39f61ebe90075826e1c6158aa5cf1e052ebedad2cdcc66";
+      url = "https://addons.mozilla.org/firefox/downloads/file/3509922/privacy_badger-2020.2.19-an+fx.xpi?src=";
+      sha256 = "4030aebff2e538e3cd637a7d2c5cea4d3f3817cc10e171891abd505ef67b5ac7";
       meta = with stdenv.lib;
       {
         homepage = "https://www.eff.org/privacybadger";
@@ -127,10 +126,10 @@
       };
     "pushbullet" = buildFirefoxXpiAddon {
       pname = "pushbullet";
-      version = "347";
+      version = "353";
       addonId = "jid1-BYcQOfYfmBMd9A@jetpack";
-      url = "https://addons.mozilla.org/firefox/downloads/file/3408174/pushbullet-347-fx.xpi?src=";
-      sha256 = "2f8e6d5c2f2ac11a29a158d90e6405cf8c1558eeaea897b7282c7dc602e6b8a0";
+      url = "https://addons.mozilla.org/firefox/downloads/file/3475863/pushbullet-353-fx.xpi?src=";
+      sha256 = "254c55ee80201a70e9ea120fc29f71a816735f81a011827a39b4d5be78a8db7c";
       meta = with stdenv.lib;
       {
         homepage = "https://www.pushbullet.com";
@@ -141,10 +140,10 @@
       };
     "save-page-we" = buildFirefoxXpiAddon {
       pname = "save-page-we";
-      version = "16.2";
+      version = "16.7";
       addonId = "savepage-we@DW-dev";
-      url = "https://addons.mozilla.org/firefox/downloads/file/3421167/save_page_we-16.2-fx.xpi?src=";
-      sha256 = "0a2227ebf2d65776a7c568a3fbd3bdeaf66aa5459298e56ed109b9eba4151d09";
+      url = "https://addons.mozilla.org/firefox/downloads/file/3506897/save_page_we-16.7-fx.xpi?src=";
+      sha256 = "338ec05773d97523c8f34f65994ea32a960ac2b71ef48e04abcba716cded69e3";
       meta = with stdenv.lib;
       {
         description = "Save a complete web page (as curently displayed) as a single HTML file that can be opened in any browser. Choose which items to save. Define the format of the saved filename. Enter user comments.";
@@ -168,10 +167,10 @@
       };
     "ublock-origin" = buildFirefoxXpiAddon {
       pname = "ublock-origin";
-      version = "1.23.0";
+      version = "1.24.4";
       addonId = "uBlock0@raymondhill.net";
-      url = "https://addons.mozilla.org/firefox/downloads/file/3428595/ublock_origin-1.23.0-an+fx.xpi?src=";
-      sha256 = "b72c8bf1038d18e2d8badd0accd20f9d6938efe2f45303e99aaab189a66dbbc1";
+      url = "https://addons.mozilla.org/firefox/downloads/file/3498086/ublock_origin-1.24.4-an+fx.xpi?src=";
+      sha256 = "062a8dd4044e3cd7d96b189758de576e1a0fbd1c01833fb44b4efc05ccf0320e";
       meta = with stdenv.lib;
       {
         homepage = "https://github.com/gorhill/uBlock#ublock-origin";
@@ -196,10 +195,10 @@
       };
     "vimium-ff" = buildFirefoxXpiAddon {
       pname = "vimium-ff";
-      version = "1.64.6";
+      version = "1.65.1";
       addonId = "{d7742d87-e61d-4b78-b8a1-b469842139fa}";
-      url = "https://addons.mozilla.org/firefox/downloads/file/2985278/vimium_ff-1.64.6-fx.xpi?src=";
-      sha256 = "7044bd3983e541faf2e56c117048fdc281c4c52e4196472fc4f9e4af42c5e1da";
+      url = "https://addons.mozilla.org/firefox/downloads/file/3502765/vimium_ff-1.65.1-fx.xpi?src=";
+      sha256 = "10afafcdb0e4ec64b8ccc96f9142a664807efc66fdafe83e2692fd7c7750b87c";
       meta = with stdenv.lib;
       {
         homepage = "https://github.com/philc/vimium";
