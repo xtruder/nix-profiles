@@ -52,7 +52,6 @@ in {
 
     # set gtk theme options
     gtk = {
-      enable = true;
       iconTheme = {
         name = "Papirus-Dark";
         package = pkgs.papirus-icon-theme;
@@ -67,6 +66,8 @@ in {
       };
       gtk3.extraConfig.gtk-cursor-theme-name = "breeze";
     };
+
+    programs.rofi.theme = "materia";
 
     # additional theme env variables needed for some apps
     home.sessionVariables = {
