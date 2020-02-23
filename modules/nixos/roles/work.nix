@@ -60,5 +60,30 @@ with lib;
 
     # enable tun and fuse on work machines
     boot.kernelModules = [ "tun" "fuse" ];
+
+    # install a set of fonts i use
+    fonts = {
+      fonts = with pkgs; [
+        terminus_font
+        opensans-ttf
+        roboto
+        roboto-mono
+        roboto-slab
+        noto-fonts
+        noto-fonts-emoji
+        hasklig
+        material-design-icons
+        material-icons
+      ];
+      fontconfig = {
+        enable = mkForce true;
+        defaultFonts = {
+          monospace = ["Roboto Mono 13"];
+          sansSerif = ["Roboto 13"];
+          serif = ["Roboto Slab 13"];
+        };
+      };
+      enableDefaultFonts = true;
+    };
   };
 }

@@ -74,6 +74,11 @@ in {
 
     programs.rofi.theme = toString materiaRofiTheme;
 
+    xsession.windowManager.i3 = {
+      #defaultBarConfig.font = "pango:Material Icons 11, Roboto Mono 11";
+      config.fonts = ["RobotoMono 9"];
+    };
+
     # additional theme env variables needed for some apps
     home.sessionVariables = {
       GTK_THEME = "materia-irblack";
