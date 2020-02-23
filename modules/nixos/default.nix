@@ -14,6 +14,7 @@
   # hw profiles
   hw = {
     qemu-vm = ./hw/qemu-vm.nix;
+    hyperv-vm = ./hw/hyperv-vm.nix;
   };
 
   # application profiles
