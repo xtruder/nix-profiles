@@ -26,7 +26,7 @@ let
   # exposes name of the workspace via environment variable
   exposeWorkspace = pkgs.writeScript "i3-expose-workspace.sh" ''
     #!${pkgs.runtimeShell} -el
-    PATH=${with pkgs; makeBinPath [ jq i3 ]}
+    PATH=${with pkgs; makeBinPath [ jq i3 ]}:$PATH
 
     export WORKSPACE=''${WORKSPACE:-$(i3-msg -t get_workspaces  | jq '.[] | select(.focused==true).name | split(":") | .[1]' -r)}
 
@@ -40,7 +40,7 @@ let
   # changes the class of the window
   reclassAppWindow = pkgs.writeScript "reclass-app-window.sh" ''
     #!${pkgs.runtimeShell} -el
-    PATH=${with pkgs; makeBinPath [ wmctrl gawk xdotool ]}
+    PATH=${with pkgs; makeBinPath [ wmctrl gawk xdotool ]}:$PATH
 
     new_class=$1
     shift
