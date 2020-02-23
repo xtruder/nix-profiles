@@ -74,6 +74,8 @@ with lib;
         hasklig
         material-design-icons
         material-icons
+        source-code-pro
+        source-sans-pro
       ];
       fontconfig = {
         enable = mkForce true;
