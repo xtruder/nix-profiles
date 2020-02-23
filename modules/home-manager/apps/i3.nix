@@ -83,8 +83,8 @@ in {
     xsession.windowManager.i3 = {
       enable = true;
 
-      defaultBarConfig.statusCommand = mkDefault
-        "${pkgs.pythonPackages.py3status}/bin/py3status -c ~/.config/i3status/config";
+      #defaultBarConfig.statusCommand = mkDefault
+      #  "${pkgs.pythonPackages.py3status}/bin/py3status -c ~/.config/i3status/config";
 
       config = {
         inherit modifier;

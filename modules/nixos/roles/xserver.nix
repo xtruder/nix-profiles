@@ -17,7 +17,7 @@ with lib;
 
       layout = "us";
 
-      desktopManager.xterm.enable = false;
+      desktopManager.xterm.enable = true;
       displayManager.lightdm.enable = true;
     };
   };

@@ -4,17 +4,18 @@ with lib;
 
 {
   imports = [
-    ../apps/dunst.nix
     ../apps/gpg.nix
-    ../apps/i3.nix
-    ../apps/i3status.nix
     ../apps/tmux.nix
     ../apps/udiskie.nix
     ../apps/xterm.nix
     ../apps/firefox
+
+    ./graphics.nix
   ];
 
   config = {
+    dconf.enable = true;
+
     home.packages = with pkgs; (mkMerge [
       [
         # fetch tools

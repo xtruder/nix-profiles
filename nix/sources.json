@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "xtruder",
         "repo": "home-manager",
-        "rev": "54647560d0833b6b5d1febdafc34706e8cf836a2",
-        "sha256": "0miyqx8vdk7ddg33107mrx8s5d1mim317yv5ln6mzla6cf0mh8cz",
+        "rev": "9499bbf4bef6a908f4740c19abfea084f7ed4eb0",
+        "sha256": "0xz211mj4a0hijv1804v4fikfpchbjffr3rjm87kb8dnkcsfckfx",
         "type": "tarball",
-        "url": "https://github.com/xtruder/home-manager/archive/54647560d0833b6b5d1febdafc34706e8cf836a2.tar.gz",
+        "url": "https://github.com/xtruder/home-manager/archive/9499bbf4bef6a908f4740c19abfea084f7ed4eb0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
