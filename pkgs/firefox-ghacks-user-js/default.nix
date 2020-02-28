@@ -10,6 +10,10 @@ let
       rev = "72.0";
       sha256 = "043ydzj4llndhx7lhl5yf6hvcj7ci186myyfiakrl2k43imnzknc";
     };
+    "73.0" = {
+      rev = "v73.0-beta";
+      sha256 = "1z6ybi8x5b57jahalxrjsm6k61gz2lnic1d1w939jscz7z2ydd3c";
+    };
   };
 
   version =
