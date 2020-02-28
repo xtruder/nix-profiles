@@ -12,15 +12,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
-        "branch": "nixpkgs-unstable",
+        "branch": "xrdp-improvements",
         "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
         "homepage": "https://github.com/NixOS/nixpkgs",
-        "owner": "NixOS",
-        "repo": "nixpkgs-channels",
-        "rev": "cc1ae9f21b9e0ce998e706a3de1bad0b5259f22d",
-        "sha256": "0zjafww05h50ncapw51b5qxgbv9prjyag0j22jnfc3kcs5xr4ap0",
+        "owner": "xtruder",
+        "repo": "nixpkgs",
+        "rev": "531b2a9279f9069294d63072af91261bcdb8d08b",
+        "sha256": "136rjlg4a0m75gnifm3l5vcgj12anvdyxzraykg2w7v4rk19nybl",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs-channels/archive/cc1ae9f21b9e0ce998e706a3de1bad0b5259f22d.tar.gz",
+        "url": "https://github.com/xtruder/nixpkgs/archive/531b2a9279f9069294d63072af91261bcdb8d08b.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
