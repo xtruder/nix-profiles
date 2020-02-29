@@ -9,6 +9,7 @@
     vm = ./roles/vm.nix;
     iso = ./roles/iso.nix;
     laptop = ./roles/laptop.nix;
+    privacy = ./roles/privacy.nix;
   };
 
   # hw profiles
@@ -21,6 +22,7 @@
   apps = {
     docker = ./apps/docker.nix;
     libvirt = ./apps/libvirt.nix;
+    tor = ./apps/tor.nix;
   };
 
   home-manager = ./home-manager.nix;
