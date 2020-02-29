@@ -93,7 +93,7 @@ with lib;
         highlight NonText ctermbg=NONE guibg=NONE
 
         " themes
-        colorscheme solarized
+        colorscheme ir_black
         set background=dark
         highlight Pmenu ctermfg=2 ctermbg=3 guifg=#ffffff guibg=#0000ff
 
@@ -248,7 +248,7 @@ with lib;
         let g:solarized_termtrans=1
 
         " airline
-        let g:airline_theme='solarized'
+        let g:airline_theme='dark_minimal'
         let g:airline_powerline_fonts = 1
         let g:airline#extensions#tabline#enabled = 1
         let g:airline#extensions#tabline#left_sep = ' '
