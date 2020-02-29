@@ -53,7 +53,12 @@ in {
     themes.colorScheme = "irblack";
 
     # install customized theme package
-    home.packages = [ materiaIrBlack ];
+    home.packages = with pkgs; [
+      materiaIrBlack
+      breeze-qt5
+      breeze-icons
+      papirus-icon-theme
+    ];
 
     # set gtk theme options
     gtk = {
