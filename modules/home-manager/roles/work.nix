@@ -9,6 +9,7 @@ with lib;
     ../apps/udiskie.nix
     ../apps/xterm.nix
     ../apps/firefox
+    ../apps/vim.nix
 
     ./graphics.nix
   ];

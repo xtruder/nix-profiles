@@ -8,7 +8,7 @@ with lib;
       pkgs.vscode-extensions.ms-python.python
     ];
 
-    programs.vim.plugins = [ "python-mode" ];
+    programs.vim.plugins = with pkgs.vimPlugins; [ python-mode ];
 
     home.packages = with pkgs; [
       (python3Full.withPackages (ps: with ps; [

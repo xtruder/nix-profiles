@@ -25,7 +25,7 @@ in {
       fi
     '';
 
-    programs.vim.plugins = [ "typescript-vim" ];
+    programs.vim.plugins = with pkgs.vimPlugins; [ typescript-vim ];
 
     home.packages = with pkgs; with nodePackages; [
       nodejs

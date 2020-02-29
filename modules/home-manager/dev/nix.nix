@@ -13,7 +13,7 @@ with lib;
       nixfmt
     ];
 
-    programs.vim.plugins = [ "vim-nix" ];
+    programs.vim.plugins = with pkgs.vimPlugins; [ vim-nix ];
 
     programs.vscode.extensions = [
       pkgs.vscode-extensions.bbenoist.Nix
