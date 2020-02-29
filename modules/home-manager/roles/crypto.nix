@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -6,7 +6,7 @@
   ];
 
   config = {
-    home.packages = [
+    home.packages = with pkgs; [
       rippled
       monero-gui
       bitcoin
