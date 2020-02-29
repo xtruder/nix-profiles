@@ -27,7 +27,7 @@ in {
   imports = [ ../apps/tor.nix ];
 
   config = {
-    networking.firewall.extraCommands = mkIf cfg.routeTraffic ''
+    networking.firewall.extraCommands = ''
       #*nat PREROUTING (For middlebox)
       iptables -t nat -A PREROUTING -d 10.192.0.0/10  -p tcp --syn -j REDIRECT --to-ports 9040
       iptables -t nat -A PREROUTING -p udp --dport 5353 -j REDIRECT --to-ports 9053
