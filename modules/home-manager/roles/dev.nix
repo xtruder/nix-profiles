@@ -64,11 +64,6 @@
       # messaging
       #zoom-us
 
-      (python.withPackages (ps: [
-        ps.sphinx
-        ps.sphinxcontrib-blockdiag
-      ]))
-
       # source code managment
       gitAndTools.gitflow
       gitAndTools.hub
