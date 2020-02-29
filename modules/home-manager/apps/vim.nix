@@ -10,7 +10,7 @@ with lib;
       plugins = with pkgs.vimPlugins; [
         vim-airline
         vim-airline-themes
-        Solarized
+        ir_black
 
         vim-gitgutter
         syntastic
