@@ -49,9 +49,9 @@ in {
           ${builtins.readFile ./hide-tabs.css}
         '';
         settings = mkMerge [
-          user-js
+          (mapAttrs (_: mkDefault) user-js)
           {
-            "browser.statup.homepage" = "https://duckduckgo.com";
+            "browser.startup.homepage" = "https://duckduckgo.com";
           }
         ];
       };
