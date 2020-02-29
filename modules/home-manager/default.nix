@@ -32,6 +32,7 @@
   roles = {
     work = ./roles/work.nix;
     crypto = ./roles/crypto.nix;
+    dev = ./roles/dev.nix;
   };
   themes = {
     materia-irblack = ./themes/materia-irblack.nix;

@@ -20,8 +20,9 @@
 
   home-manager.users.default = {config, ...}: {
     imports = with nix-profiles.modules.home-manager; [
-      roles.work
       themes.materia-irblack
+
+      roles.dev
 
       dev.devops.all
       dev.android
