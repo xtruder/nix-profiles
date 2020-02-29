@@ -39,4 +39,7 @@
 
   # disable gamepad API
   "dom.gamepad.enabled" = false;
+
+  # enable gfx font rendering
+  "gfx.downloadable_fonts.enabled" = true;
 }
