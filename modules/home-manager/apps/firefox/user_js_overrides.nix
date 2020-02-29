@@ -1,4 +1,7 @@
 {
+  # start homepage at startup
+  "browser.startup.page" = 1;
+
   "browser.library.activity-stream.enabled" = false;
 
   # geo logging to console
