@@ -42,4 +42,7 @@
 
   # enable gfx font rendering
   "gfx.downloadable_fonts.enabled" = true;
+
+  # disable letterboxing protection
+  "privacy.resistFingerprinting.letterboxing" = false;
 }
