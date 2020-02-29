@@ -8,10 +8,11 @@
 
     xresources.properties = {
       "XTerm*eightBitInput" = false;
-      "XTerm*faceSize" = 10;
       "XTerm*dynamicColors" = true;
       "XTerm*metaSendsEscape" = true;
       "XTerm*selectToClipboard" = true;
+      "XTerm*renderFont" = true;
+      "XTerm*faceSize" = 10;
     };
   };
 }
