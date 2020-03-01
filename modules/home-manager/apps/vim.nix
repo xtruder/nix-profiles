@@ -10,7 +10,6 @@ with lib;
       plugins = with pkgs.vimPlugins; [
         vim-airline
         vim-airline-themes
-        ir_black
 
         vim-gitgutter
         syntastic
@@ -93,8 +92,6 @@ with lib;
         highlight NonText ctermbg=NONE guibg=NONE
 
         " themes
-        colorscheme ir_black
-        set background=dark
         highlight Pmenu ctermfg=2 ctermbg=3 guifg=#ffffff guibg=#0000ff
 
         " syntax higlightning
@@ -248,7 +245,6 @@ with lib;
         let g:solarized_termtrans=1
 
         " airline
-        let g:airline_theme='dark_minimal'
         let g:airline_powerline_fonts = 1
         let g:airline#extensions#tabline#enabled = 1
         let g:airline#extensions#tabline#left_sep = ' '

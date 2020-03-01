@@ -51,12 +51,6 @@ in {
   ];
 
   config = {
-    # set default theme colors to google-dark
-    themes = {
-      colorScheme = mkDefault "google-dark";
-      colorVariant = mkDefault "dark";
-    };
-
     # install customized theme package
     home.packages = with pkgs; [
       materia

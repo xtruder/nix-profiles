@@ -36,5 +36,6 @@
   };
   themes = {
     materia = ./themes/materia.nix;
+    colorscheme.google-dark = ./themes/colorschemes/google-dark.nix;
   };
 }
