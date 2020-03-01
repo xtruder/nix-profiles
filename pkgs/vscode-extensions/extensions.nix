@@ -8,8 +8,8 @@
   {
     name = "vim";
     publisher = "vscodevim";
-    version = "1.12.4";
-    sha256 = "1l8ich2w3hjnwl3ihgr4cr00lwvas4zrsdh2f8gv3vi0aa40vc9n";
+    version = "1.13.0";
+    sha256 = "07i8p0grc238h3xqh1yyxh95231pvf6m7pbdfz9002rhj5mav87k";
   }
   {
     name = "path-autocomplete";
@@ -50,8 +50,8 @@
   {
     name = "go";
     publisher = "ms-vscode";
-    version = "0.13.0";
-    sha256 = "03rl3nzywxnjw3653dj4z0fh8w52q5d0xf3rrg948pm3x6k9aljf";
+    version = "0.13.1";
+    sha256 = "18x89g4b085crfm1wnfnsznwlvc30xqcivzf5nw9d1z5rg2dva5h";
   }
   {
     name = "node-module-intellisense";
@@ -92,13 +92,19 @@
   {
     name = "vscode-kubernetes-tools";
     publisher = "ms-kubernetes-tools";
-    version = "1.0.9";
-    sha256 = "1mn39nqfb772fwgma7zgq4jz87s43bw85mixbvawndrh9k4xwna6";
+    version = "1.1.0";
+    sha256 = "0yaw6rkig2h0vnad30h22r80gr0l890yah23xh66pa25wvc9f88v";
   }
   {
     name = "nixfmt-vscode";
     publisher = "brettm12345";
     version = "0.0.1";
     sha256 = "07w35c69vk1l6vipnq3qfack36qcszqxn8j3v332bl0w6m02aa7k";
+  }
+  {
+    name = "base16-themes";
+    publisher = "AndrsDC";
+    version = "1.4.5";
+    sha256 = "0qxxhhjr2hj60spy7cv995m1px5z6m2syhxsnfl1wj2aqkwp32cs";
   }
 ]

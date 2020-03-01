@@ -21,5 +21,14 @@ with lib;
         let g:airline_theme='base16_google'
       '';
     };
+
+    programs.vscode = {
+      userSettings = {
+        "workbench.colorTheme" = "Base16 Dark Google";
+      };
+      extensions = [
+        pkgs.my-vscode-extensions.base16-themes
+      ];
+    };
   };
 }
