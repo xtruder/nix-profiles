@@ -32,7 +32,7 @@ in {
         focused = unfocused // {
           childBorder = mkDefault thm.blue;
           border = mkDefault thm.blue;
-          background = mkDefault thm.dark;
+          background = mkDefault thm.gray;
           text = mkDefault thm.fg;
         };
       };
