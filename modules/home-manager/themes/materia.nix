@@ -8,7 +8,7 @@ let
   colorScheme = mapAttrs (name: value: substring 1 7 value) config.themes.colors;
 
   # override default materia theme
-  materiaIrBlack = pkgs.materia-theme.override {
+  materia = pkgs.materia-theme.override {
     themeName = "materia-custom";
 
     # set colors for theme
@@ -59,7 +59,7 @@ in {
 
     # install customized theme package
     home.packages = with pkgs; [
-      materiaIrBlack
+      materia
       breeze-qt5
       breeze-icons
       papirus-icon-theme
@@ -73,7 +73,7 @@ in {
       };
       theme = {
         name = "materia-custom";
-        package = materiaIrBlack;
+        package = materia;
       };
       font = {
         package = pkgs.roboto;
