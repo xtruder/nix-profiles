@@ -13,6 +13,7 @@
       "XTerm*selectToClipboard" = true;
       "XTerm*renderFont" = true;
       "XTerm*faceSize" = 10;
+      "XTerm*termName" = "xterm-256color";
     };
   };
 }

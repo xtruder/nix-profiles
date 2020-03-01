@@ -9,6 +9,6 @@
   config = {
     xresources.properties = {
       "XTerm*faceName" = "Source Code Pro,Source Code Pro Semibold";
-    };
+   };
   };
 }
