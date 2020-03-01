@@ -3,11 +3,13 @@
 with lib;
 
 let
+  cfg = config.themes;
+
   colorScheme = mapAttrs (name: value: substring 1 7 value) config.themes.colors;
 
   # override default materia theme
   materiaIrBlack = pkgs.materia-theme.override {
-    themeName = "materia-irblack";
+    themeName = "materia-custom";
 
     # set colors for theme
     colors = {
@@ -27,7 +29,7 @@ let
       WM_BORDER_FOCUS = colorScheme.blue;
       WM_BORDER_UNFOCUS = colorScheme.alt;
       MATERIA_STYLE_COMPACT = true;
-      MATERIA_COLOR_VARIANT = "dark";
+      MATERIA_COLOR_VARIANT = cfg.colorVariant;
       UNITY_DEFAULT_LAUNCHER_STYLE = false;
     };
   };
@@ -49,8 +51,11 @@ in {
   ];
 
   config = {
-    # set theme colors to irblack
-    themes.colorScheme = "irblack";
+    # set default theme colors to google-dark
+    themes = {
+      colorScheme = mkDefault "google-dark";
+      colorVariant = mkDefault "dark";
+    };
 
     # install customized theme package
     home.packages = with pkgs; [
@@ -67,7 +72,7 @@ in {
         package = pkgs.papirus-icon-theme;
       };
       theme = {
-        name = "materia-irblack";
+        name = "materia-custom";
         package = materiaIrBlack;
       };
       font = {
@@ -86,7 +91,7 @@ in {
 
     # additional theme env variables needed for some apps
     home.sessionVariables = {
-      GTK_THEME = "materia-irblack";
+      GTK_THEME = "materia-custom";
       GDK_BACKEND = "x11";
     };
   };

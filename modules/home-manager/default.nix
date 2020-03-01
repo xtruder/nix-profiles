@@ -35,6 +35,6 @@
     dev = ./roles/dev.nix;
   };
   themes = {
-    materia-irblack = ./themes/materia-irblack.nix;
+    materia = ./themes/materia.nix;
   };
 }

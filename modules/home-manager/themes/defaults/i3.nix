@@ -17,7 +17,7 @@ in {
       colors = rec {
         background = mkDefault thm.bg;
         unfocused = {
-          text = mkDefault thm.alt;
+          text = mkDefault thm.gray;
           border = mkDefault thm.dark;
           background = mkDefault thm.bg;
           childBorder = mkDefault thm.dark;

@@ -48,6 +48,12 @@ in {
         example = "irblack";
       };
 
+      colorVariant = mkOption {
+        description = "Variant of color scheme to use";
+        type = types.enum [ "dark" "light" ];
+        default = "dark";
+      };
+
       colors = mkOption {
         description = "Set of colors from which the themes for various applications will be generated";
         type = types.submodule {
