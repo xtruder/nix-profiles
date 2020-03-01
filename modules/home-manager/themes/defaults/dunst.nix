@@ -11,7 +11,7 @@ in {
       geometry = mkDefault "500x5-30+50";
       transparency = mkDefault 10;
       frame_color = thm.blue;
-      font = mkDefault "Roboto 13";
+      font = mkDefault "Roboto 10";
       padding = mkDefault 15;
       horizontal_padding = mkDefault 17;
       word_wrap = mkDefault true;
