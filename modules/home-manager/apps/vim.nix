@@ -86,13 +86,13 @@ with lib;
         set ruler      " show ruler
 
         " terminal options
-        " set termguicolors " 24bit terminal colors
+        set termguicolors " 24bit terminal colors
         set ttyfast       " because we use fast ttys today
         highlight Normal ctermbg=NONE guibg=NONE " transaparent terminal
         highlight NonText ctermbg=NONE guibg=NONE
 
         " themes
-        highlight Pmenu ctermfg=2 ctermbg=3 guifg=#ffffff guibg=#0000ff
+        " highlight Pmenu ctermfg=2 ctermbg=3 guifg=#ffffff guibg=#0000ff
 
         " syntax higlightning
         syntax on
