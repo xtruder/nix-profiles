@@ -64,13 +64,29 @@ let
   '';
 
 in {
-  imports = [ ./i3-options.nix ];
+  # add additional options for i3
+  options.xsession.windowManager.i3 = {
+    backgroundImage = mkOption {
+      description = "Background image";
+      type = types.nullOr types.path;
+      default = null;
+    };
+
+    defaultBarConfig = mkOption {
+      description = "Configuration for default i3 bar";
+      type = types.attrs;
+      default = {};
+    };
+  };
 
   config = {
     home.packages = with pkgs; [ file ];
 
     xsession.windowManager.i3 = {
       enable = true;
+
+      defaultBarConfig.statusCommand = mkDefault
+        "${pkgs.pythonPackages.py3status}/bin/py3status -c ~/.config/i3status/config";
 
       config = {
         inherit modifier;
