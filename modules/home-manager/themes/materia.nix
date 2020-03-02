@@ -43,6 +43,7 @@ in {
     ./defaults/dunst.nix
     ./defaults/xresources.nix
     ./defaults/xterm.nix
+    ./defaults/i3lock.nix
   ];
 
   config = {
