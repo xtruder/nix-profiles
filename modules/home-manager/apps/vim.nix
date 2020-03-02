@@ -14,7 +14,7 @@ with lib;
 
         vim-gitgutter
         syntastic
-        YouCompleteMe
+        youcompleteme
         nerdcommenter
         auto-pairs
         vim-closetag
