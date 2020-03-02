@@ -7,6 +7,7 @@
     programs.ssh.enable = true;
 
     programs.bash = {
+      enable = true;
       enableAutojump = true;
       initExtra = ''
         . ${pkgs.git}/share/git/contrib/completion/git-prompt.sh
