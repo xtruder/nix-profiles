@@ -137,7 +137,9 @@ with lib;
 
         " enable mouse
         set mouse=a
-        set ttymouse=xterm2
+        if !has('nvim')
+          set ttymouse=xterm2
+        endif
 
         " Make sure Vim returns to the same line when you reopen a file.
         au BufReadPost *
