@@ -80,6 +80,8 @@ in {
   };
 
   config = {
+    home.packages = with pkgs; [ file ];
+
     xsession.windowManager.i3 = {
       enable = true;
 
