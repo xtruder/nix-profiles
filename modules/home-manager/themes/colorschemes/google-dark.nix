@@ -10,6 +10,11 @@ with lib;
       colorVariant = "dark";
     };
 
+    programs.rofi = {
+      extraConfig = builtins.readFile "${pkgs.base16-rofi}/base16-google-dark.config";
+      theme = "${pkgs.base16-rofi}/base16-google-dark.rasi";
+    };
+
     programs.vim = {
       plugins = with pkgs.vimPlugins; [
         base16-vim

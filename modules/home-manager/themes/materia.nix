@@ -36,11 +36,6 @@ let
 
   i3 = config.xsession.windowManager.i3;
 
-  materiaRofiTheme = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/DefunctLizard/materia-rofi-theme/a547ad27e9ef6c3172f7be007b98e515cffcc556/materia.rasi";
-    sha256 = "b46d60521107a507732115703231f22ec4766f89708e84fccb49524c5af883ab";
-  };
-
 in {
   imports = [
     ./colors.nix
@@ -75,8 +70,6 @@ in {
       };
       gtk3.extraConfig.gtk-cursor-theme-name = "breeze";
     };
-
-    programs.rofi.theme = toString materiaRofiTheme;
 
     xsession.windowManager.i3 = {
       #defaultBarConfig.font = "pango:Material Icons 11, Roboto Mono 11";
