@@ -64,20 +64,7 @@ let
   '';
 
 in {
-  # add additional options for i3
-  options.xsession.windowManager.i3 = {
-    backgroundImage = mkOption {
-      description = "Background image";
-      type = types.nullOr types.path;
-      default = null;
-    };
-
-    defaultBarConfig = mkOption {
-      description = "Configuration for default i3 bar";
-      type = types.attrs;
-      default = {};
-    };
-  };
+  imports = [ ./i3-options.nix ];
 
   config = {
     home.packages = with pkgs; [ file ];
@@ -231,8 +218,6 @@ in {
           # toggle synaptics touchpad
           "XF86TouchpadToggle" = "exec --no-startup-id ${pkgs.xorg.xf86inputsynaptics.out}/bin/synclient TouchpadOff=$(${pkgs.xorg.xf86inputsynaptics.out}/bin/synclient -l | grep -c 'TouchpadOff.*=.*0')";
         };
-
-        bars = [ cfg.defaultBarConfig ];
       };
     };
   };

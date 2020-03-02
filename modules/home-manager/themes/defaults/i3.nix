@@ -8,10 +8,35 @@ let
   thm = config.themes.colors;
 
 in {
-  imports = [ ../colors.nix ];
+  imports = [
+    ../colors.nix
+    ../../apps/i3-options.nix
+  ];
 
   xsession.windowManager.i3 = {
     package = pkgs.i3-gaps;
+
+    defaultBarConfig = {
+      colors = rec {
+        background = mkDefault thm.bg;
+        statusline = mkDefault thm.fg;
+        focusedWorkspace = {
+          border = mkDefault thm.blue;
+          background = mkDefault thm.blue;
+          text = mkDefault thm.fg;
+        };
+        activeWorkspace = focusedWorkspace;
+        inactiveWorkspace = {
+          border = mkDefault thm.dark;
+          background = mkDefault thm.bg;
+          text = mkDefault thm.gray;
+        };
+        urgentWorkspace = focusedWorkspace // {
+          background = mkDefault thm.orange;
+        };
+        bindingMode = urgentWorkspace;
+      };
+    };
 
     config = {
       colors = rec {
