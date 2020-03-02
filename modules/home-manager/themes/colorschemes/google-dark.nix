@@ -15,7 +15,7 @@ with lib;
       theme = "${pkgs.base16-rofi}/base16-google-dark.rasi";
     };
 
-    programs.vim = {
+    programs.neovim = {
       plugins = with pkgs.vimPlugins; [
         base16-vim
       ];

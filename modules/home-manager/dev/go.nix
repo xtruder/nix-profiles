@@ -18,7 +18,7 @@ with lib;
       go-protobuf
     ];
 
-    programs.vim.plugins = with pkgs.vimPlugins; [ vim-go ];
+    programs.neovim.plugins = with pkgs.vimPlugins; [ vim-go ];
 
     programs.vscode.extensions = with pkgs.my-vscode-extensions; [
       go
