@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 
@@ -12,6 +12,10 @@ with lib;
       aggressiveResize = true;
       keyMode = "vi";
       terminal = "screen-256color";
+      plugins = with pkgs.tmuxPlugins; [
+        logging
+        fzf-tmux-url
+      ];
       extraConfig = ''
         # Vi copypaste mode
         bind-key Escape copy-mode
@@ -40,25 +44,60 @@ with lib;
         set -g set-titles on
 
         # powerline
-        set -g status-left-length 20
-        set -g status-justify "left"
-        set -g status-left-length "100"
-        set -g status "on"
-        set -g pane-active-border-style fg=colour23
-        set -g message-style bg=colour13
-        set -g status-right-length "100"
-        set -g status-right-style "none"
-        set -g message-command-style fg=colour255,bg=colour236
-        set -g status-style fg=colour231,bg=colour234,bg=colour234,"none"
-        set -g pane-border-style fg=colour236
-        set -g status-left-style "none"
-        setw -g window-status-activity-style bg=colour234,"none",fg=colour190
-        setw -g window-status-separator ""
-        setw -g window-status-style fg=colour85,"none",bg=colour234
-        set -g status-left "#[fg=colour255,bg=colour23]#S #[fg=colour23,bg=colour234,nobold,nounderscore,noitalics]"
-        set -g status-right "#[fg=colour234,bg=colour236,nobold,nounderscore,noitalics]#[fg=colour247,bg=colour236,nobold,nounderscore,noitalics]#{pane_current_path}"
-        setw -g window-status-format "#[fg=colour85,bg=colour234] #I:#[fg=colour85,bg=colour239] #W "
-        setw -g window-status-current-format "#[fg=colour234,bg=colour23,nobold,nounderscore,noitalics]#[fg=colour247,bg=colour23] #I:#[fg=colour247,bg=colour23] #W #[fg=colour23,bg=colour234,nobold,nounderscore,noitalics]"
+        # Status update interval
+        set -g status-interval 1
+
+        # Basic status bar colors
+        set -g status-style 'fg=colour21,bg=colour18'
+
+        # Left side of status bar
+        set -g status-left-style 'bg=default,fg=default'
+        set -g status-left-length 150
+        set -g status-left "#[fg=colour18,bg=colour2,bold] #S #[fg=colour2,bg=colour19,nobold]#[fg=colour21,bg=colour19] #(whoami) #[fg=colour19,bg=colour20]#[fg=colour15,bg=colour20] #I:#P #[fg=colour20,bg=default,nobold] #{pane_current_command} #{simple_git_status}"
+
+        # Right side of status bar
+        set -g status-right-style 'bg=default,fg=default'
+        set -g status-right-length 150
+        set -g status-right "#[fg=colour06]#{pane_current_path} #[fg=colour20,bg=default]#[fg=colour15,bg=colour20] %H:%M:%S #[fg=colour19,bg=colour20]#[fg=colour21,bg=colour19] %d-%b-%y #[fg=colour06,bg=colour19]#[fg=colour18,bg=colour06,bold] #H "
+
+        # Window status
+        set -g window-status-format " #I:#W#F "
+        set -g window-status-current-format " #[fg=colour18,bg=colour02] #I:#W#F "
+
+        # Current window status
+        set -g window-status-current-style 'bg=default,fg=default'
+
+        # Window with activity status
+        set -g window-status-activity-style 'bg=default,fg=default'
+
+        # Window separator
+        set -g window-status-separator ""
+
+        # Window status alignment
+        set -g status-justify centre
+
+        # Pane border
+        set -g pane-border-style 'bg=default,fg=colour18'
+
+        # Active pane border
+        set -g pane-active-border-style 'bg=default,fg=colour04'
+
+        # Pane number indicator
+        set -g display-panes-colour default
+        set -g display-panes-active-colour default
+
+        # Clock mode
+        set -g clock-mode-colour colour04
+        set -g clock-mode-style 12
+
+        # Message
+        set -g message-style 'bg=colour16,fg=colour18'
+
+        # Command message
+        set -g message-command-style 'bg=colour16,fg=colour18'
+
+        # Mode
+        set -g mode-style 'bg=colour19,fg=colour18'
 
         bind-key -n C-y send-prefix
 
