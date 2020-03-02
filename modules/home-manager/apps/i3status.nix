@@ -3,7 +3,12 @@
 with lib;
 
 {
+  imports = [ ./i3-options.nix ];
+
   config = {
+    xsession.windowManager.i3.defaultBarConfig.statusCommand = mkDefault
+      "${pkgs.pythonPackages.py3status}/bin/py3status -c ~/.config/i3status/config";
+
     programs.i3status = {
       enable = true;
 
