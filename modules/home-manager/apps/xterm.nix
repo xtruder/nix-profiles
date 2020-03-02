@@ -6,6 +6,11 @@
   config = {
     programs.terminal.command = "xterm -e ";
 
+    programs.tmux.extraConfig = ''
+      set -g terminal-overrides ',xterm-256color:Tc'
+      set -as terminal-overrides ',xterm*:sitm=\E[3m'
+    '';
+
     xresources.properties = {
       "XTerm*eightBitInput" = false;
       "XTerm*dynamicColors" = true;
