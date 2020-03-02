@@ -11,6 +11,7 @@ with lib;
       shortcut = "a";
       aggressiveResize = true;
       keyMode = "vi";
+      terminal = "screen-256color";
       extraConfig = ''
         # Vi copypaste mode
         bind-key Escape copy-mode
