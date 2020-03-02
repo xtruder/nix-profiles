@@ -2,12 +2,7 @@
 
 with lib;
 
-let
-  cfg = config.programs.i3status;
-
-in {
-  imports = [ ./i3.nix ];
-
+{
   config = {
     programs.i3status = {
       enable = true;

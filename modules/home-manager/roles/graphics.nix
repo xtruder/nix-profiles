@@ -4,7 +4,7 @@
   imports = [
     ../apps/dunst.nix
     ../apps/i3.nix
-    #../apps/i3status.nix
+    ../apps/i3status.nix
   ];
 
   config = {
