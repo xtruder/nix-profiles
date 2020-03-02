@@ -5,5 +5,6 @@
   my-vscode-extensions = pkgs.callPackage ./vscode-extensions { };
   base16-unclaimed-schemes = pkgs.callPackage ./base16-unclaimed-schemes { };
   base16-rofi = pkgs.callPackage ./base16-rofi { };
+  base16-shell = pkgs.callPackage ./base16-shell { };
   materia-theme = pkgs.callPackage ./materia-theme { };
 }
