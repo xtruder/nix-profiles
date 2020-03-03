@@ -12,17 +12,12 @@
       initExtra = ''
         . ${pkgs.git}/share/git/contrib/completion/git-prompt.sh
 
-        export GIT_PS1_SHOWDIRTYSTATE=1
+        export GIT_PS1_SHOWDIRTY  STATE=1
         export PS1=$PS1'$(__git_ps1 "(%s)") '
 
         if [ -f ~/.secrets ]; then
           source ~/.secrets
         fi
-
-        BASE16_SHELL=${pkgs.base16-shell}
-        [ -n "$PS1" ] && \
-          [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-            eval "$("$BASE16_SHELL/profile_helper.sh")"
       '';
     };
 
