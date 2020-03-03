@@ -12,7 +12,7 @@
       bitcoin
       electrum
       wagyu
-      tor-browser-bundle-bin
+      tor-browser-bundle
     ];
   };
 }
