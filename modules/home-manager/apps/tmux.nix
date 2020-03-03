@@ -104,6 +104,6 @@ with lib;
       '';
     };
 
-    programs.terminal.run = mkDefault ''tmux new-session -A -s ''${WORKSPACE:-main}'';
+    programs.terminal.run = mkDefault ''bash -i -c "tmux new-session -A -s ''${WORKSPACE:-main}"'';
   };
 }
