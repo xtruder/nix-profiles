@@ -3,5 +3,5 @@
 {
   virtualisation.hypervGuest.enable = true;
 
-  attributes.isVM = true;
+  attributes.hardware.isVM = true;
 }
