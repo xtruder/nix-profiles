@@ -21,9 +21,5 @@ with lib;
     programs.vscode.userSettings = {
       "workbench.colorTheme" = "Base16 Dark Google";
     };
-
-    programs.bash.initExtra = ''
-
-    '';
   };
 }
