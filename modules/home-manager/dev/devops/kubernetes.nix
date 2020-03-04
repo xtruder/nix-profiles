@@ -3,6 +3,8 @@
 with lib;
 
 {
+  imports = [ ../base.nix ];
+
   config = {
     programs.vscode.extensions = [
       pkgs.my-vscode-extensions.vscode-kubernetes-tools

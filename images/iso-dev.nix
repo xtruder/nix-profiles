@@ -20,10 +20,12 @@
 
   home-manager.users.default = {config, ...}: {
     imports = with nix-profiles.modules.home-manager; [
+      workspace.i3
+
       themes.materia
       themes.colorscheme.google-dark
 
-      roles.dev
+      roles.desktop.dev
 
       dev.devops.all
       dev.android

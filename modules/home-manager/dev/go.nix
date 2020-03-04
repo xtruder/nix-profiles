@@ -3,6 +3,8 @@
 with lib;
 
 {
+  imports = [ ./base.nix ];
+
   config = {
     home.packages = with pkgs; [
       go_1_12
@@ -20,9 +22,15 @@ with lib;
 
     programs.neovim.plugins = with pkgs.vimPlugins; [ vim-go ];
 
-    programs.vscode.extensions = with pkgs.my-vscode-extensions; [
-      go
-    ];
+    programs.vscode = {
+      userSettings = {
+        "go.docsTool" = "godoc";
+        "go.formatTool" = "goimports";
+      };
+      extensions = with pkgs.my-vscode-extensions; [
+        go
+      ];
+    };
 
     home.sessionVariables = {
       GOPATH = "$HOME/projects/go";

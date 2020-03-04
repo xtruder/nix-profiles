@@ -23,29 +23,8 @@
 
     programs.direnv.enable = true;
 
-    programs.vscode = {
-      enable = true;
-      userSettings = {
-        "javascript.validate.enable" = false;
-        "window.zoomLevel" = 0;
-        "terminal.integrated.rendererType" = "dom";
-        "terminal.integrated.shell.linux" = "/run/current-system/sw/bin/bash";
-        "go.docsTool" = "godoc";
-        "go.formatTool" = "goimports";
-        "breadcrumbs.enabled" = true;
-      };
-      extensions = [
-        pkgs.my-vscode-extensions.EditorConfig
-        pkgs.my-vscode-extensions.vim
-        pkgs.my-vscode-extensions.path-autocomplete
-        pkgs.my-vscode-extensions.json-schema-validator
-        pkgs.my-vscode-extensions.all-autocomplete
-        pkgs.my-vscode-extensions.vscode-proto3
-        pkgs.my-vscode-extensions.avro
-      ];
-    };
-
     home.packages = with pkgs; [
+      # parsing tools
       jq
       jshon
 
@@ -61,9 +40,6 @@
       # networking
       protobuf
       ngrok
-
-      # messaging
-      #zoom-us
 
       # source code managment
       gitAndTools.gitflow

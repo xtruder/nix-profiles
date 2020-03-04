@@ -6,6 +6,8 @@ let
   nodePackages = pkgs.nodePackages_10_x;
   nodejs = pkgs.nodejs-10_x;
 in {
+  imports = [ ./base.nix ];
+
   config = {
     programs.vscode.extensions = with pkgs.my-vscode-extensions; [
       node-module-intellisense

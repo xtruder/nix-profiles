@@ -3,6 +3,8 @@
 { config, pkgs, ... }:
 
 {
+  imports = [ ../base.nix ];
+
   config = {
     home.packages = with pkgs; [
       libvirt

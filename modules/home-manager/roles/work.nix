@@ -6,58 +6,24 @@ with lib;
   imports = [
     ../apps/gpg.nix
     ../apps/tmux.nix
-    ../apps/udiskie.nix
-    ../apps/xterm.nix
-    ../apps/firefox
     ../apps/vim.nix
-
-    ./graphics.nix
   ];
 
   config = {
-    dconf.enable = true;
+    home.packages = with pkgs; [
+      # fetch tools
+      aria
 
-    home.packages = with pkgs; (mkMerge [
-      [
-        # fetch tools
-        aria
+      # shell tools
+      pet
+      fzf
 
-        # distro tools
-        cdrkit
+      # vpn
+      protonvpn-cli
 
-        # shell tools
-        pet
-        fzf
-
-        # cloud storage
-        #dropbox
-        #dropbox-cli
-
-        # windows emulation
-        wine
-        winetricks
-
-        # crypto
-        gnupg
-
-        # vpn
-        protonvpn-cli
-
-        jrnl
-
-        google-drive-ocamlfuse
-      ]
-
-      (mkIf config.attributes.hasGui [
-        # docs/images
-        mupdf
-        libreoffice
-        feh
-        gimp
-
-        # distro tools
-        unetbootin
-      ])
-    ]);
+      # cloud storage
+      google-drive-ocamlfuse
+      dropbox-cli
+    ];
   };
 }

@@ -9,6 +9,9 @@
     tmux = ./apps/tmux.nix;
     firefox = ./apps/firefox.nix;
   };
+  workspace = {
+    i3 = ./workspace/i3.nix;
+  };
   dev = {
     android = ./dev/android.nix;
     elm = ./dev/elm.nix;
@@ -31,8 +34,15 @@
   };
   roles = {
     work = ./roles/work.nix;
-    crypto = ./roles/crypto.nix;
     dev = ./roles/dev.nix;
+    crypto = ./roles/crypto.nix;
+    windows = ./roles/windows.nix;
+
+    desktop = {
+      work = ./roles/desktop/work.nix;
+      dev = ./roles/desktop/dev.nix;
+      crypto = ./roles/desktop/crypto.nix;
+    };
   };
   themes = {
     materia = ./themes/materia.nix;

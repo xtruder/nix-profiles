@@ -3,6 +3,8 @@
 with lib;
 
 {
+  imports = [ ./base.nix ];
+
   config = {
     programs.vscode.extensions = [
       pkgs.vscode-extensions.ms-python.python
