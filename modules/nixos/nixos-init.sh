@@ -34,7 +34,7 @@ done
 
 shift $((OPTIND-1))
 
-if [ -z "$repo"]; then
+if [ -z "$repo" ]; then
     repo="${1:-}"
 fi
 
