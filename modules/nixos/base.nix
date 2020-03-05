@@ -12,6 +12,7 @@ in {
   imports = [
     ./home-manager.nix
     ./nix-path.nix
+    ./nixos-init.nix
     ../attributes.nix
   ];
 
