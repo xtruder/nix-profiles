@@ -38,7 +38,7 @@ in {
       dev.go
       dev.node
       #dev.elm
-      dev.haskell
+      #dev.haskell
       dev.python
       dev.ruby
       dev.nix

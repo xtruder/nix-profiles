@@ -1,7 +1,11 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./work.nix ];
+  imports = [
+    ./work.nix
+
+    ../apps/git.nix
+  ];
 
   config = {
     programs.ssh.enable = true;

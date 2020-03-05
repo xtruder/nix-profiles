@@ -9,7 +9,6 @@
     home.packages = with pkgs; [
       # database
       sqlite
-      mongodb
       mysql57
       #mysql-workbench
       postgresql
