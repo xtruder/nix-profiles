@@ -11,7 +11,7 @@ let
   nixos-init = makeProg {
     name = "nixos-init";
     src = ./nixos-init.sh;
-    path = with pkgs; makeBinPath [ coreutils openssh git ];
+    path = with pkgs; makeBinPath [ coreutils openssh git netcat-gnu ];
   };
 in {
   config = {
