@@ -33,13 +33,9 @@ in {
     ];
 
     programs.bash.initExtra = ''
-      shopt -s expand_aliases
       BASE16_SHELL=${pkgs.base16-shell}
-      [ -n "$PS1" ] && \
-        [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-          eval "$("$BASE16_SHELL/profile_helper.sh")"
-
-      _base16 "$BASE16_SHELL/scripts/base16-${thm.colorScheme}" ${thm.colorScheme}
+      eval "$("$BASE16_SHELL/profile_helper.sh")"
+      _base16 "$BASE16_SHELL/scripts/base16-${thm.colorScheme}.sh" ${thm.colorScheme}
     '';
   };
 }
