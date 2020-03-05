@@ -52,17 +52,15 @@ if [[ "$paste" == 1 ]]; then
     read -n 1 -s -r -p "Press any key when ssh key is deployed to github"
 fi
 
-echo "Configuraing git"
-git config --global user.name "X-Truder Deploy User"
-git config --global user.email "deploy@x-truder.net"
-git config --global.sshCommand "ssh -i /etc/ssh/ssh_host_ed25519_key"
-
 if [[ "$init_repo" == 1 ]]; then
     echo "Creating initial repo"
 
     (
         cd /etc/nixos
         git init
+        git config core.sshCommand "ssh -i /etc/ssh/ssh_host_ed25519_key"
+        git config user.name "X-Truder Deploy User"
+        git config user.email "deploy@x-truder.net"
         git remote add origin "$repo"
         git add configuration.nix
         git commit -m "first commit"
@@ -79,6 +77,10 @@ else
 
         cd /etc
         git clone "$repo" nixos
+        cd nixos
+        git config core.sshCommand "ssh -i /etc/ssh/ssh_host_ed25519_key"
+        git config user.name "X-Truder Deploy User"
+        git config user.email "deploy@x-truder.net"
     )
 fi
 
