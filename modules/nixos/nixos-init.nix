@@ -15,6 +15,6 @@ let
   };
 in {
   config = {
-    environment.systemPackages = [ nixos-init ];
+    environment.systemPackages = [ nixos-init pkgs.git ];
   };
 }
