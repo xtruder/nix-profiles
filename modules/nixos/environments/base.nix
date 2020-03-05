@@ -5,7 +5,12 @@
 with lib;
 
 {
-  imports = [ ../../attributes.nix ../base.nix ];
+  imports = [
+    ../base.nix
+    ../../attributes.nix
+
+    ../profiles/recovery.nix
+  ];
 
   config = {
     # use UTC by default, do not leak location
@@ -13,18 +18,6 @@ with lib;
 
     # You are not allowed to manage users manually by default
     users.mutableUsers = mkDefault false;
-
-    users.users = {
-      root = {
-        # password for logging into root
-        hashedPassword = config.attributes.recoveryPasswordHash;
-
-        # add deploy ssh key
-        openssh.authorizedKeys.keys = [
-          config.attributes.recoverySSHKey
-        ];
-      };
-    };
 
     # clean tmp on boot and remove all residuals there
     boot.cleanTmpDir = mkDefault true;

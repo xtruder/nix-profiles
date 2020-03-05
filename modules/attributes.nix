@@ -23,16 +23,6 @@ with lib;
       };
     };
 
-    recoverySSHKey = mkOption {
-      description = "SSH recovery public key";
-      type = types.str;
-    };
-
-    recoveryPasswordHash = mkOption {
-      description = "Recovery password";
-      type = types.str;
-    };
-
     admin = {
       email = mkOption {
         description = "Admin email";
