@@ -13,7 +13,9 @@ in {
   };
 
   config = {
-    nix.nixPathAttrs = nixPath;
+    nix.nixPathAttrs = nixPath // {
+      nixos-config = "/etc/nixos/configuration.nix";
+    };
     nix.nixPath = mapAttrsToList (n: v: "${n}=${v}") config.nix.nixPathAttrs;
   };
 }
