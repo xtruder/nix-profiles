@@ -1,12 +1,9 @@
 # This module defines development NixOS installation ISO
 
-{config, pkgs, lib, ...}:
+{config, pkgs, lib, nix-profiles, ...}:
 
-let
-  nix-profiles = import ../. { inherit pkgs lib; };
-
-in {
-  imports = with nix-profiles.modules.nixos; [
+{
+  imports = with nix-profiles.nixosModules; [
     # define system as iso
     system.iso
 
@@ -21,7 +18,7 @@ in {
   ];
 
   home-manager.users.user = {config, ...}: {
-    imports = with nix-profiles.modules.home-manager; [
+    imports = with nix-profiles.homeManagerModules; [
       # use i3 workspace
       workspaces.i3
 

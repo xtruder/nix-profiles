@@ -1,0 +1,43 @@
+{
+  "inputs": {
+    "home-manager": {
+      "info": {
+        "lastModified": 1583448750,
+        "narHash": "sha256-ExUlDHJRhkdX91tMvmrEuALS3LSwXzif8WCc5gBqHT0="
+      },
+      "inputs": {},
+      "locked": {
+        "owner": "xtruder",
+        "repo": "home-manager",
+        "rev": "e9e1504932ac1026da4997c2c8ec4a4e67aa300e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "xtruder",
+        "ref": "nix-profiles-2-0",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "info": {
+        "lastModified": 1583424666,
+        "narHash": "sha256-TyJafDqvjMbGL92DyI1HhdLV+a+2iJjufV4sI5jYIkY="
+      },
+      "inputs": {},
+      "locked": {
+        "owner": "xtruder",
+        "repo": "nixpkgs",
+        "rev": "1d8231e866b36cf20bfed3f32ef0f18662293dc7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "xtruder",
+        "ref": "xtruder-nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    }
+  },
+  "version": 4
+}
