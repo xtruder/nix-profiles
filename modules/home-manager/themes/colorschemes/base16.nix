@@ -33,7 +33,7 @@ in {
         [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
           eval "$("$BASE16_SHELL/profile_helper.sh")"
 
-      base16_${thm.colorScheme}
+      _base16 "$BASE16_SHELL/scripts/base16-${thm.colorScheme}" ${thm.colorScheme}
     '';
   };
 }
