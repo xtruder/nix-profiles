@@ -47,7 +47,7 @@ echo "Using repo: $repo"
 
 if [[ "$paste" == 1 ]]; then
     echo -n "Pasting public key to termbin.com: "
-    nc $(cat /etc/ssh/ssh_host_ed25519_key.pub) | nc termbin.com 9999
+    cat /etc/ssh/ssh_host_ed25519_key.pub | nc termbin.com 9999
     echo
     read -n 1 -s -r -p "Press any key when ssh key is deployed to github"
 fi
