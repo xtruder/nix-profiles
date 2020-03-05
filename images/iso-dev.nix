@@ -20,8 +20,6 @@ in {
     profiles.openssh
   ];
 
-  attributes.hasGui = true;
-
   home-manager.users.user = {config, ...}: {
     imports = with nix-profiles.modules.home-manager; [
       # use i3 workspace

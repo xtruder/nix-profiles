@@ -11,6 +11,6 @@
     enableExtraSocket = true;
 
     # if environment has gui
-    pinentryFlavor = if config.attributes.hasGui then "gtk2" else "curses";
+    pinentryFlavor = if config.xsession.enable then "gtk2" else "curses";
   };
 }

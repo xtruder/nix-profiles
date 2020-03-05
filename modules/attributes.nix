@@ -105,10 +105,5 @@ with lib;
         default = [];
       };
     };
-
-    hasGui = mkOption {
-      description = "whether computer has graphics";
-      type = types.bool;
-    };
   };
 }
