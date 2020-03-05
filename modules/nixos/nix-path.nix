@@ -4,7 +4,11 @@ with lib;
 
 let
   sources = import ../../nix/sources.nix;
-  nixPath = mapAttrs (_: v: mkDefault (toString v)) (filterAttrs (n: _: n != "__functor") sources);
+  convertSrc = src:
+    if src.type == "tarball" && hasPrefix "https://github.com" src.url
+    then "https://github.com/${src.owner}/${src.repo}/archive/${src.branch}.tar.gz"
+    else src;
+  nixPath = mapAttrs (_: s: mkDefault (convertSrc s)) (filterAttrs (n: _: n != "__functor") sources);
 
 in {
   options.nix.nixPathAttrs = mkOption {
