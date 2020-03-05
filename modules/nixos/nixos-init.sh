@@ -76,7 +76,7 @@ else
         fi
 
         cd /etc
-        git clone -i /etc/ssh/ssh_host_ed25519_key "$repo" nixos
+        GIT_SSH_COMMAND="ssh -i /etc/ssh/ssh_host_ed25519_key" git clone "$repo" nixos
         cd nixos
         git config core.sshCommand "ssh -i /etc/ssh/ssh_host_ed25519_key"
         git config user.name "X-Truder Deploy User"
