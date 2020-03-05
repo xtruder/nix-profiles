@@ -11,7 +11,7 @@ with lib;
       dpkg
       nix-prefetch-scripts
       nix-prefetch-github
-      nix-firefox-addons-generator
+      #nix-firefox-addons-generator
       nixfmt
     ];
 
