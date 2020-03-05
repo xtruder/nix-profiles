@@ -20,11 +20,5 @@ with lib;
       desktopManager.xterm.enable = true;
       displayManager.lightdm.enable = true;
     };
-
-    # enable x11 and enchanchedSessionMode on hyperv
-    virtualisation.hypervGuest = {
-      x11 = mkDefault true;
-      enchanchedSesionMode = mkDefault true;
-    };
   };
 }

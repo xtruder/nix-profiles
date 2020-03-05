@@ -17,6 +17,7 @@
   hw = {
     qemu-vm = ./hw/qemu-vm.nix;
     hyperv-vm = ./hw/hyperv-vm.nix;
+    hyperv-vm-gui = ./hw/hyperv-vm-gui.nix;
   };
 
   # nixos profiles

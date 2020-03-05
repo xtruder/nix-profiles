@@ -5,7 +5,7 @@ let
 
 in {
   imports = with nix-profiles.modules.nixos; [
-    hw.hyperv-vm
+    hw.hyperv-vm # hw.hyperv-vm-gui for gui support
 
     # import base environment
     environments.base
