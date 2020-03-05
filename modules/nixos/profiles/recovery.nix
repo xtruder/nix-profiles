@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.recovery;
+  cfg = config.system.recovery;
 
 in {
-  options.recovery = {
+  options.system.recovery = {
     passwordHash = mkOption {
       description = "Recovery password";
       type = types.str;
@@ -39,7 +39,5 @@ in {
         group = "users";
       };
     };
-
-
   };
 }
