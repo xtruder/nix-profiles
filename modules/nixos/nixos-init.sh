@@ -64,7 +64,7 @@ if [[ "$init_repo" == 1 ]]; then
         git remote add origin "$repo"
         git add configuration.nix
         git commit -m "first commit"
-        git push origin master
+        git push --set-upstream origin master
     )
 else
     echo "Cloning configuration repo"
