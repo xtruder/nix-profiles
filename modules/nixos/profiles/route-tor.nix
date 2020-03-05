@@ -1,4 +1,6 @@
-{ config, lib, ... }:
+# profile that configures system to route all trafic through tor
+
+{ lib, ... }:
 
 with lib;
 
@@ -24,7 +26,7 @@ let
   ];
 
 in {
-  imports = [ ../apps/tor.nix ];
+  imports = [ ./tor.nix ];
 
   config = {
     networking.firewall.extraCommands = ''
@@ -42,7 +44,7 @@ in {
       iptables -t nat -A OUTPUT -m owner --uid-owner tor -j RETURN
       iptables -t nat -A OUTPUT -o lo -j RETURN
 
-      #whitelist addresses
+      # whitelist addresses
       ${concatMapStrings (address: ''
         iptables -t nat -A OUTPUT -d ${address} -j RETURN
       '') whitelistAddresses}
@@ -50,5 +52,6 @@ in {
       #redirect all other pre-routing and output to Tor
       iptables -t nat -A OUTPUT -p tcp --syn -j REDIRECT --to-ports 9040
     '';
+
   };
 }

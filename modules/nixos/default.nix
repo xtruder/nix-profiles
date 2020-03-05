@@ -1,15 +1,16 @@
 {
   base = ./base.nix;
 
-  # exposed system roles
-  roles = {
-    base = ./roles/base.nix;
-    work = ./roles/work.nix;
-    dev = ./roles/dev.nix;
-    vm = ./roles/vm.nix;
-    iso = ./roles/iso.nix;
-    laptop = ./roles/laptop.nix;
-    privacy = ./roles/privacy.nix;
+  environments = {
+    base = ./environments/base.nix;
+    dev = ./environments/dev.nix;
+    work = ./environments/work.nix;
+  };
+
+  system = {
+    laptop = ./system/laptop.nix;
+    vm = ./system/vm.nix;
+    iso = ./system/iso.nix;
   };
 
   # hw profiles
@@ -18,11 +19,20 @@
     hyperv-vm = ./hw/hyperv-vm.nix;
   };
 
-  # application profiles
-  apps = {
-    docker = ./apps/docker.nix;
-    libvirt = ./apps/libvirt.nix;
-    tor = ./apps/tor.nix;
+  # nixos profiles
+  profiles = {
+    android = ./profiles/android.nix;
+    bluetooth = ./profiles/bluetooth.nix;
+    docker = ./profiles/docker.nix;
+    firmware = ./profiles/firmware.nix;
+    libvirt = ./profiles/libvirt.nix;
+    network-manager = ./profiles/network-manager.nix;
+    pulseaudio = ./profiles/pulseaudio.nix;
+    tor = ./profiles/tor.nix;
+    xserver = ./profiles/xserver.nix;
+    user = ./profiles/user.nix;
+    openssh = ./profiles/openssh.nix;
+    route-tor = ./profiles/route-tor.nix;
   };
 
   home-manager = ./home-manager.nix;

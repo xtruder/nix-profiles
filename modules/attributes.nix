@@ -7,11 +7,13 @@ with lib;
     name = mkOption {
       description = "Name of the server";
       type = types.str;
+      default = "nixos";
     };
 
     project = mkOption {
       description = "Name of the project";
       type = types.str;
+      default = "x-truder.net";
     };
 
     networking = {
@@ -21,12 +23,12 @@ with lib;
       };
     };
 
-    recoveryKey = mkOption {
+    recoverySSHKey = mkOption {
       description = "SSH recovery public key";
       type = types.str;
     };
 
-    recoveryPassword = mkOption {
+    recoveryPasswordHash = mkOption {
       description = "Recovery password";
       type = types.str;
     };

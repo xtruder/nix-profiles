@@ -1,7 +1,10 @@
-{ pkgs, ... }:
+{ modulesPath, ... }:
 
 {
-  virtualisation.hypervGuest.enable = true;
+  imports = [
+    "${modulesPath}/virtualisation/hyperv-common.nix"
+    ../system/vm.nix
+  ];
 
-  attributes.hardware.isVM = true;
+  virtualisation.hypervGuest.enable = true;
 }

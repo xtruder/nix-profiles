@@ -1,19 +1,20 @@
 # This module defines a small NixOS installation CD.  It does not
 # contain any graphical stuff.
-{config, pkgs, nix-profiles, sources, ...}:
+{ config, pkgs, lib, ... }:
 
-{
+let
+  nix-profiles = import ../. { inherit pkgs lib; };
+
+in {
   imports = with nix-profiles.modules.nixos; [
-    home-manager
-
-    roles.iso
+    environment.base
+    profiles.user
+    hw.iso
   ];
 
-  home-manager = {
-    users.root = {
-      programs = {
-        gpg.enable = true;
-      };
+  home-manager.users.user = {
+    programs = {
+      gpg.enable = true;
     };
   };
 

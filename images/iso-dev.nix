@@ -1,32 +1,40 @@
 # This module defines development NixOS installation ISO
 
-{config, pkgs, nix-profiles, ...}:
+{config, pkgs, lib, ...}:
 
-{
+let
+  nix-profiles = import ../. { inherit pkgs lib; };
+
+in {
   imports = with nix-profiles.modules.nixos; [
-    home-manager
+    # define system as iso
+    system.iso
 
-    roles.iso
-    roles.dev
+    # enable dev environment
+    environments.dev
+
+    # create default user
+    profiles.user
+
+    # enable openssh
+    profiles.openssh
   ];
 
   attributes.hasGui = true;
 
-  users.extraUsers = {
-    default = {
-      name = "dev";
-    };
-  };
-
-  home-manager.users.default = {config, ...}: {
+  home-manager.users.user = {config, ...}: {
     imports = with nix-profiles.modules.home-manager; [
-      workspace.i3
+      # use i3 workspace
+      workspaces.i3
 
+      # set themes and colorschemes
       themes.materia
       themes.colorscheme.google-dark
 
-      roles.desktop.dev
+      # set dev desktop environment
+      environments.desktop.dev
 
+      # enable development profiles
       dev.devops.all
       dev.android
       dev.go

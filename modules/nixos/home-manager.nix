@@ -1,13 +1,11 @@
 { config, lib, pkgs, ... }:
 
 with lib;
-with (import ../../lib/util.nix { inherit lib pkgs; });
-with (import ../../nix/sources.nix);
 
 {
   # import home manager
   imports = [
-    (loadPath <home-manager/nixos> "${home-manager}/nixos")
+    <home-manager/nixos>
   ];
 
   options = {
@@ -29,7 +27,7 @@ with (import ../../nix/sources.nix);
   config = {
     home-manager = {
       # installation of user packages through the users.users.<name>.packages
-      useUserPackages = mkDefault false;
+      useUserPackages = mkDefault true;
     };
   };
 }

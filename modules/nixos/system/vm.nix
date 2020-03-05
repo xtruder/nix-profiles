@@ -3,9 +3,10 @@
 with lib;
 
 {
-  imports = [ ./base.nix ];
 
   config = {
+    attributes.hardware.isVM = true;
+
     # enable openssh on server in vm
     services.openssh.enable = mkDefault true;
 

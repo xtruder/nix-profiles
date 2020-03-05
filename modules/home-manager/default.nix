@@ -9,8 +9,8 @@
     tmux = ./apps/tmux.nix;
     firefox = ./apps/firefox.nix;
   };
-  workspace = {
-    i3 = ./workspace/i3.nix;
+  workspaces = {
+    i3 = ./workspaces/i3.nix;
   };
   dev = {
     android = ./dev/android.nix;
@@ -32,16 +32,16 @@
       tools = ./dev/devops/tools.nix;
     };
   };
-  roles = {
-    work = ./roles/work.nix;
-    dev = ./roles/dev.nix;
-    crypto = ./roles/crypto.nix;
-    windows = ./roles/windows.nix;
+  environments = {
+    work = ./environments/work.nix;
+    dev = ./environments/dev.nix;
+    crypto = ./environments/crypto.nix;
+    windows = ./environments/windows.nix;
 
     desktop = {
-      work = ./roles/desktop/work.nix;
-      dev = ./roles/desktop/dev.nix;
-      crypto = ./roles/desktop/crypto.nix;
+      work = ./environments/desktop/work.nix;
+      dev = ./environments/desktop/dev.nix;
+      crypto = ./environments/desktop/crypto.nix;
     };
   };
   themes = {

@@ -5,7 +5,7 @@
 with lib;
 
 {
-  imports = [ ../../attributes.nix ];
+  imports = [ ../../attributes.nix ../base.nix ];
 
   config = {
     # use UTC by default, do not leak location
@@ -13,6 +13,18 @@ with lib;
 
     # You are not allowed to manage users manually by default
     users.mutableUsers = mkDefault false;
+
+    users.users = {
+      root = {
+        # password for logging into root
+        hashedPassword = config.attributes.recoveryPasswordHash;
+
+        # add deploy ssh key
+        openssh.authorizedKeys.keys = [
+          config.attributes.recoverySSHKey
+        ];
+      };
+    };
 
     # clean tmp on boot and remove all residuals there
     boot.cleanTmpDir = mkDefault true;
@@ -60,5 +72,8 @@ with lib;
 
     # enable fstrim on all systems, running fstrim weekly is a good practice
     services.fstrim.enable = mkDefault true;
+
+    # replace ntpd by timesyncd
+    services.timesyncd.enable = mkDefault true;
   };
 }

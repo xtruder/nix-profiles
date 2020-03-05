@@ -1,31 +1,9 @@
-# laptop role is used on all portable laptop machines
-
-{ config, lib, ... }:
-
-with lib;
+{ config, ... }:
 
 {
-  imports = [
-    ./base.nix
-  ];
-
   config = {
-    # enable suspend
-    powerManagement.enable = mkDefault true;
-
-    # for power optimizations
-    powerManagement.powertop.enable = true;
-
-    # enable TLP daemon for power saving
-    services.tlp.enable = true;
-
-    # Do not turn off when closing laptop lid
-    services.logind.extraConfig = ''
-      HandleLidSwitch=ignore
-    '';
-
     # check battery every 60s and shutdown if below 5%
-    systemd.services.check-battery = {
+    systemd.services.check-low-battery = {
       description = "Shutdown on low battery";
       path = with pkgs; [ gawk acpi systemd ];
       script = ''
@@ -38,7 +16,7 @@ with lib;
       '';
     };
 
-    systemd.timers.check-battery = {
+    systemd.timers.check-low-battery = {
       timerConfig = {
         OnUnitInactiveSec = "60s";
         OnBootSec = "1min";

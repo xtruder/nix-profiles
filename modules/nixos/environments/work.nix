@@ -8,12 +8,12 @@ with lib;
   imports = [
     ./base.nix
 
-    ./networking.nix
-    ./audio.nix
-    ./bluetooth.nix
-    ./android.nix
-    ./xserver.nix
-    ./firmware.nix
+    ../profiles/network-manager.nix
+    ../profiles/pulseaudio.nix
+    ../profiles/bluetooth.nix
+    ../profiles/android.nix
+    ../profiles/xserver.nix
+    ../profiles/firmware.nix
   ];
 
   config = {
