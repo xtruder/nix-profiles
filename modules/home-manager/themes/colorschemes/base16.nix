@@ -17,8 +17,14 @@ in {
         base16-vim
       ];
       extraConfig = mkAfter ''
-        colorscheme base16-${thm.colorScheme}
-        set background=${thm.colorVariant}
+        let base16colorspace=256
+
+        if filereadable(expand("~/.vimrc_background"))
+          source ~/.vimrc_background
+        else
+          colorscheme base16-${thm.colorScheme}
+          set background=${thm.colorVariant}
+        endif
       '';
     };
 
