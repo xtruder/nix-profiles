@@ -12,21 +12,24 @@ in {
 
     # create user
     profiles.user
+
+    # enable openssh
+    profiles.openssh
   ];
 
   home-manager.users.user = { config, ... }: {
     imports = with nix-profiles.modules.home-manager; [
-      # workspace.i3
+      # workspaces.i3
       # themes.materia
       # themes.colorscheme.google-dark
 
-      # roles.desktop.dev
+      # environments.desktop.dev
     ];
   };
 
-  # attributes = {
-  #   recoverySSHKey = "<my-ssh-key>";
-  #   recoveryPasswordHash = "<my-password-hash>";
+  # recovery = {
+  #   sshKey = "<my-ssh-key>";
+  #   passwordHash = "<my-password-hash>";
   # };
 
   nix.nixPathAttrs.nix-profiles = "https://github.com/xtruder/nix-profiles/archive/nix-profiles-2-0.tar.gz";
