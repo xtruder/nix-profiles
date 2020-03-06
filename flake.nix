@@ -18,6 +18,7 @@
 
     system = "x86_64-linux";
     nixpkgs' = nixpkgs;
+    pkgs = nixpkgs.legacyPackages.${system};
 
     nixosSystem' = {nixpkgs ? nixpkgs', ...}@args:
       nixpkgs.lib.nixosSystem ({
@@ -40,12 +41,16 @@
     homeManagerModules = modules.home-manager;
 
     # images to build
-    images = {
+    images = rec {
       iso = buildIsoImage ./images/iso.nix;
       iso-dev = buildIsoImage ./images/iso-dev.nix;
       hyperv-image = (nixosSystem' {
         modules = [ ./images/hyperv-image.nix ];
       }).config.system.build.hypervImage;
+      all = pkgs.linkFarm "nix-profile-images" [{
+        path = "${hyperv-image}/disk.vhdx";
+        name = "nixos-hyperv-image.vhdx";
+      }];
     };
   };
 }
