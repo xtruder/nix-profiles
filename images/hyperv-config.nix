@@ -28,6 +28,4 @@
   #   sshKey = "<my-ssh-key>";
   #   passwordHash = "<my-password-hash>";
   # };
-
-  nix.nixPathAttrs.nix-profiles = "https://github.com/xtruder/nix-profiles/archive/nix-profiles-2-0.tar.gz";
 }
