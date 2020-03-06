@@ -7,6 +7,7 @@ jobs:
     include:
         - stage: Build
           env: TARGET=images.hyperv-image
+        - env: TARGET=images.iso-dev
 
 install:
     - sudo chmod o+rw /dev/kvm
