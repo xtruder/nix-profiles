@@ -8,6 +8,18 @@ jobs:
         - stage: Build
           env: TARGET=images.hyperv-image
         - env: TARGET=images.iso-dev
+        - stage: Release
+          if: tag IS present
+          env: TARGET=images.all
+          deploy:
+            provider: releases
+            api_key:
+                secure: CxAUzq1W9xOc4s5Ca2TovyPoXxXQytkx/++FIx4HCXYvrJVvNZv+w9e4CHLvTMDfUfC0FuFs4EAyy9WARcjELdD1RYkseX6C33jEm5g1lzwq4lFfEUVKoTEOoZWh47ykt1kUjlfK/joHOjnEoZCm5hIyil2JBql94v3AwozJcmg=
+            file_glob: true
+            file: result/*
+            skip_cleanup: true
+            on:
+                tags: true
 
 install:
     - sudo chmod o+rw /dev/kvm
@@ -23,6 +35,8 @@ install:
     - cachix use xtruder-public
     - nix-env -f https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz -iA nixFlakes
 
-script:
+before_script:
     - if [ -n "$CACHIX_SIGNING_KEY" ]; then cachix push xtruder-public --watch-store; fi &
-    - nix build .#$TARGET
+
+script:
+   - nix build .#$TARGET
