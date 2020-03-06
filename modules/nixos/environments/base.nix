@@ -10,6 +10,7 @@ with lib;
     ../../attributes.nix
 
     ../profiles/recovery.nix
+    ../profiles/nix.nix
   ];
 
   config = {
@@ -35,21 +36,6 @@ with lib;
     networking = {
       domain = mkDefault config.attributes.project;
       hostName = mkDefault config.attributes.name;
-    };
-
-    nix = {
-      # do builds in sandbox by default
-      useSandbox = mkDefault true;
-
-      # set explicit binary cache and add additional binary caches
-      binaryCaches = [
-        "https://cache.nixos.org/"
-        "https://xtruder-public.cachix.org"
-      ];
-      binaryCachePublicKeys = [
-        "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
-        "xtruder-public.cachix.org-1:kys+/sTbpYWiTLR9FPSrs70d33lUJCO+OvJoSTZdU0o="
-      ];
     };
 
     system.nixos = {
