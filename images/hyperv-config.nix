@@ -1,10 +1,7 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, nix-profiles, ... }:
 
-let
-  nix-profiles = import <nix-profiles> { inherit pkgs lib; };
-
-in {
-  imports = with nix-profiles.modules.nixos; [
+{
+  imports = with nix-profiles.nixosModules; [
     hw.hyperv-vm # hw.hyperv-vm-gui for gui support
 
     # import base environment
@@ -18,7 +15,7 @@ in {
   ];
 
   home-manager.users.user = { config, ... }: {
-    imports = with nix-profiles.modules.home-manager; [
+    imports = with nix-profiles.homeManagerModules; [
       # workspaces.i3
       # themes.materia
       # themes.colorscheme.google-dark

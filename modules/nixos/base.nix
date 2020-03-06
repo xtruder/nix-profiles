@@ -1,22 +1,23 @@
 # base nixos module
 
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 
-let
-  sources = import ../../nix/sources.nix;
-  nixPath = mapAttrsToList (k: v: "${k}=${v}") (filterAttrs (n: _: n != "__functor") sources);
-
-in {
+{
   imports = [
     ./home-manager.nix
-    ./nix-path.nix
     ./nixos-init.nix
     ../attributes.nix
   ];
 
-  nix.nixPath = mkAfter nixPath;
+  # enable nix-flakes support
+  nix = {
+    package = mkDefault pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
 
   nixpkgs.overlays = [
     (super: pkgs: import ../../pkgs/all-packages.nix { inherit pkgs; })

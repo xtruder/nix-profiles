@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, home-manager, ... }:
 
 with lib;
 
 {
   # import home manager
   imports = [
-    <home-manager/nixos>
+    home-manager.nixosModules.home-manager
   ];
 
   options = {
@@ -15,7 +15,7 @@ with lib;
 
         config = {
           # passthru pkgs
-          _module.args.pkgs = pkgs;
+          _module.args.pkgs = mkForce pkgs;
 
           # passthru attributes
           attributes = config.attributes;

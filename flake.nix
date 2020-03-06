@@ -8,13 +8,44 @@
     home-manager.uri = "github:xtruder/home-manager/nix-profiles-2-0";
   };
 
-  outputs = { self, nixpkgs, home-manager }: {
-    nixosModules.nix-profiles = import ./modules;
+  outputs = { self, nixpkgs, home-manager }:
+    with nixpkgs.lib;
+  let
+    specialArgs = {
+      nix-profiles = self;
+      home-manager = home-manager;
+    };
 
-    images.iso-dev = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [ ./images/iso-dev.nix ];
-      specialArgs.nix-profiles = self.nixosModules.nix-profiles;
+    system = "x86_64-linux";
+    nixpkgs' = nixpkgs;
+
+    nixosSystem' = {nixpkgs ? nixpkgs', ...}@args:
+      nixpkgs.lib.nixosSystem ({
+        inherit specialArgs system;
+      } // (filterAttrs (n: _: n != "nixpkgs") args));
+
+    buildIsoImage = configuration: (nixosSystem' {
+      modules = [ configuration ];
+    }).config.system.build.isoImage;
+
+    modules = import ./modules;
+
+  in {
+    lib.nixosSystem = nixosSystem';
+
+    # exporter nixos modules
+    nixosModules = modules.nixos;
+
+    # exported home manager modules
+    homeManagerModules = modules.home-manager;
+
+    # images to build
+    images = {
+      iso = buildIsoImage ./images/iso.nix;
+      iso-dev = buildIsoImage ./images/iso-dev.nix;
+      hyperv-image = (nixosSystem' {
+        modules = [ ./images/hyperv-image.nix ];
+      }).config.system.build.hypervImage;
     };
   };
 }
