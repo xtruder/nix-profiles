@@ -27,7 +27,7 @@
     modules = import ./modules;
 
   in {
-    inherit nixosSystem';
+    lib.nixosSystem = nixosSystem';
 
     # exporter nixos modules
     nixosModules = modules.nixos;
