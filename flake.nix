@@ -18,7 +18,10 @@
 
     system = "x86_64-linux";
 
-    nixosSystem' = args: nixosSystem ({ inherit specialArgs system; } // args);
+    nixosSystem' = {pkgs ? nixpkgs, ...}@args:
+      pkgs.lib.nixosSystem ({
+        inherit specialArgs system;
+      } // args);
 
     buildIsoImage = configuration: (nixosSystem' {
       modules = [ configuration ];
