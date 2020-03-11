@@ -1,10 +1,16 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 with lib;
 
 {
   config = {
+    environment.systemPackages = with pkgs; [
+      cachix
+    ];
+
     nix = {
+      package = mkDefault pkgs.nixFlakes;
+
       # do builds in sandbox by default
       useSandbox = mkDefault true;
 
@@ -17,6 +23,11 @@ with lib;
         "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
         "xtruder-public.cachix.org-1:+qG/fM2195QJcE2BXmKC+sS4mX/lQHqwjBH83Rhzl14="
       ];
+
+      # enable nix command and flakes
+      extraOptions = ''
+        experimental-features = nix-command flakes
+      '';
     };
   };
 }
