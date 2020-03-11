@@ -31,6 +31,18 @@
 
     modules = import ./modules;
 
+    isRelease = (builtins.getEnv "release") != "";
+
+    version = "v2.0";
+
+    getRev = input: "${builtins.substring 0 8 input.lastModified}_${input.shortRev or "dirty"}";
+
+    versionSufix =
+      if isRelease then "${getRev nixpkgs}-${getRev home-manager}"
+      else "pre${getRev self}-${getRev nixpkgs}-${getRev home-manager}";
+
+    fullVersion = "${version}-${versionSufix}";
+
   in {
     lib.nixosSystem = nixosSystem';
 
@@ -47,9 +59,9 @@
       hyperv-image = (nixosSystem' {
         modules = [ ./images/hyperv-image.nix ];
       }).config.system.build.hypervImage;
-      all = pkgs.linkFarm "nix-profile-images" [{
+      all = pkgs.linkFarm "nix-profile-images-${fullVersion}" [{
         path = "${hyperv-image}/disk.vhdx";
-        name = "nixos-hyperv-image.vhdx";
+        name = "nixos-hyperv-image-${fullVersion}.vhdx";
       }];
     };
   };
