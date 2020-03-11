@@ -2,8 +2,7 @@
 
 {
   imports = with nix-profiles.nixosModules; [
-    # define system as iso
-    system.iso
+    hw.hyperv-vm-gui
 
     # enable dev environment
     environments.dev

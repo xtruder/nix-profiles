@@ -95,9 +95,15 @@
       hyperv-image = (nixosSystem' {
         modules = [ ./images/hyperv-image.nix ];
       }).config.system.build.hypervImage;
+      hyperv-dev-image = (nixosSystem' {
+        modules = [ ./images/hyperv-dev-image.nix ];
+      }).config.system.build.hypervImage;
       all = pkgs.linkFarm "nix-profile-images-${fullVersion}" [{
         path = "${hyperv-image}/disk.vhdx";
         name = "nixos-hyperv-image-${fullVersion}.vhdx";
+      } {
+        path = "${hyperv-image}/disk.vhdx";
+        name = "nixos-hyperv-dev-image-${fullVersion}.vhdx";
       }];
     };
   };
