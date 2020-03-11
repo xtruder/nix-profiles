@@ -4,8 +4,9 @@ dist: bionic
 
 jobs:
     include:
-        - stage: Build
-          env: TARGET=images.hyperv-image
+        - stage: Check and Build
+          env: TARGET=checks.x86_64-linux.build
+        - env: TARGET=images.hyperv-image
         - stage: Release
           if: tag IS present
           env: TARGET=images.all

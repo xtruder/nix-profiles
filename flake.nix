@@ -52,6 +52,42 @@
     # exported home manager modules
     homeManagerModules = modules.home-manager;
 
+    checks.x86_64-linux.build = (nixosSystem' {
+      modules = [{
+        imports = with self.nixosModules; [
+          self.nixosModules.system.iso
+          environments.dev
+          profiles.user
+          profiles.openssh
+        ];
+
+        home-manager.users.user = {config, ...}: {
+          imports = with self.homeManagerModules; [
+            # use i3 workspace
+            workspaces.i3
+
+            # set themes and colorschemes
+            themes.materia
+            themes.colorscheme.google-dark
+
+            # set dev desktop environment
+            environments.desktop.dev
+
+            # enable development profiles
+            dev.devops.all
+            dev.android
+            dev.go
+            dev.node
+            #dev.elm
+            #dev.haskell
+            dev.python
+            dev.ruby
+            dev.nix
+          ];
+        };
+      }];
+    }).config.system.build.toplevel;
+
     # images to build
     images = rec {
       iso = buildIsoImage ./images/iso.nix;
