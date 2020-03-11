@@ -26,7 +26,7 @@ install:
     - sudo chmod o+rw /dev/kvm
 
     # install and configure nix
-    - curl https://nixos.org/nix/install | sh
+    - curl -L https://nixos.org/nix/install | sh
     - . /home/travis/.nix-profile/etc/profile.d/nix.sh
     - sudo mkdir -p /etc/nix
     - echo "binary-caches = https://cache.nixos.org https://xtruder-public.cachix.org" | sudo tee -a /etc/nix/nix.conf > /dev/null
