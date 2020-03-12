@@ -45,4 +45,7 @@
 
   # disable letterboxing protection
   "privacy.resistFingerprinting.letterboxing" = false;
+
+  # enable website choosing fonts
+  "browser.display.use_document_fonts" = 1;
 }
