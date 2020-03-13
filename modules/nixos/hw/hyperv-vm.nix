@@ -2,9 +2,11 @@
 
 {
   imports = [
-    "${modulesPath}/virtualisation/hyperv-common.nix"
+    "${modulesPath}/virtualisation/hyperv-image.nix"
     ../system/vm.nix
   ];
 
-  virtualisation.hypervGuest.enable = true;
+  hyperv = {
+    vmFileName = "nixos.vhdx";
+  };
 }
