@@ -98,12 +98,18 @@
       hyperv-dev-image = (nixosSystem' {
         modules = [ ./images/hyperv-dev-image.nix ];
       }).config.system.build.hypervImage;
+      virtualbox-image = (nixosSystem' {
+        modules = [ ./images/virtualbox-image.nix ];
+      }).config.system.build.virtualBoxOVA;
       all = pkgs.linkFarm "nix-profile-images-${fullVersion}" [{
         path = "${hyperv-image}/disk.vhdx";
         name = "nixos-hyperv-image-${fullVersion}.vhdx";
       } {
         path = "${hyperv-image}/disk.vhdx";
         name = "nixos-hyperv-dev-image-${fullVersion}.vhdx";
+      } {
+        path = "${virtualbox-image}/nixos.ova";
+        name = "nixos-vbox-image-${fullVersion}.ova";
       }];
     };
   };
