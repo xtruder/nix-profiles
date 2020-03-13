@@ -8,6 +8,7 @@ jobs:
           env: TARGET=checks.x86_64-linux.build
         - env: TARGET=images.hyperv-image
         - env: TARGET=images.hyperv-dev-image
+        - env: TARGET=images.virtualbox-image
         - stage: Release
           if: tag IS present
           env: TARGET=images.all
