@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -11,7 +11,13 @@
   ];
 
   config = {
-    programs.i3lock.enable = true;
+    programs.i3lock = {
+      enable = true;
+      cmd = "${pkgs.i3lock-fancy}/bin/i3lock-fancy";
+    };
+
     programs.rofi.enable = true;
+
+    systemd.user.services.xss-lock.Service.Environment = "PATH=${pkgs.coreutils}/bin";
   };
 }
