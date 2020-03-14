@@ -69,7 +69,11 @@ in {
         package = pkgs.roboto;
         name = "Roboto 11";
       };
-      gtk3.extraConfig.gtk-cursor-theme-name = "breeze";
+    };
+
+    xsession.pointerCursor = {
+      name = "Vanilla-DMZ";
+      package = pkgs.vanilla-dmz;
     };
 
     xsession.windowManager.i3 = {
