@@ -21,5 +21,7 @@ with lib;
     services.logind.extraConfig = ''
       HandleLidSwitch=ignore
     '';
+
+    attributes.hardware.hasBattery = true;
   };
 }
