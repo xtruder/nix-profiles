@@ -20,7 +20,7 @@
       timerConfig = {
         OnUnitInactiveSec = "60s";
         OnBootSec = "1min";
-        Unit = "check-battery.service";
+        Unit = "check-low-battery.service";
       };
       wantedBy = [ "multi-user.target" ];
     };
