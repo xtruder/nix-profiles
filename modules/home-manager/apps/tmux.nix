@@ -22,7 +22,7 @@ with lib;
         bind-key p paste-buffer
         bind-key -Tcopy-mode-vi 'v' send -X begin-selection
         bind-key -Tcopy-mode-vi 'y' send -X copy-selection
-        bind-key e save-buffer ~/.tmux-buffer \; run-shell "xsel -i -b <~/.tmux-buffer && rm ~/.tmux-buffer"
+        bind-key e save-buffer ~/.tmux-buffer \; run-shell "${pkgs.xsel}/bin/xsel -i -b <~/.tmux-buffer && ${pkgs.coreutils}/bin/rm ~/.tmux-buffer"
 
         # split windows
         unbind %
