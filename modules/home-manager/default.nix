@@ -47,7 +47,6 @@
   };
   themes = {
     materia = ./themes/materia.nix;
-    hidpi = ./themes/hidpi.nix;
     colorscheme.google-dark = ./themes/colorschemes/google-dark.nix;
   };
 }

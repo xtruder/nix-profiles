@@ -36,6 +36,7 @@
     user = ./profiles/user.nix;
     openssh = ./profiles/openssh.nix;
     route-tor = ./profiles/route-tor.nix;
+    hidpi = ./profiles/hidpi.nix;
   };
 
   home-manager = ./home-manager.nix;
