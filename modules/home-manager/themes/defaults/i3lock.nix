@@ -9,16 +9,16 @@ let
 
 in {
   config = {
-    programs.i3lock.colors = {
-      inside = mkColor thm.blue;
-      insideVerify = mkColor thm.green;
-      insideWrong = mkColor thm.red;
-      ringVerify = mkColor thm.dark;
-      ringWrong = mkColor thm.dark;
-      ring = mkColor thm.gray;
-      line = mkColor thm.fg;
-      keyHold = mkColor thm.blue;
-      backspaceHold = mkColor thm.blue;
-    };
+    #programs.i3lock.colors = {
+      #inside = mkColor thm.blue;
+      #insideVerify = mkColor thm.green;
+      #insideWrong = mkColor thm.red;
+      #ringVerify = mkColor thm.dark;
+      #ringWrong = mkColor thm.dark;
+      #ring = mkColor thm.gray;
+      #line = mkColor thm.fg;
+      #keyHold = mkColor thm.blue;
+      #backspaceHold = mkColor thm.blue;
+    #};
   };
 }
