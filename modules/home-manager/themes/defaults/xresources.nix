@@ -23,6 +23,10 @@
       "*color13" = purple;
       "*color14" = cyan;
       "*color15" = fg;
+      "Xft.antialias" = true;
+      "Xft.rgba" = "rgb";
+      "Xft.hinting" = true;
+      "Xft.hintstyle" = "hintfull";
     };
   };
 }
