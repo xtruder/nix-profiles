@@ -12,6 +12,10 @@
     dconf.enable = true;
 
     services.network-manager-applet.enable = true;
+    services.gnome-keyring = {
+      enable = true;
+      components = ["secrets"];
+    };
 
     home.packages = with pkgs; [
       mupdf
