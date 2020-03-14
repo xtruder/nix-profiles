@@ -15,6 +15,7 @@
 
   # hw profiles
   hw = {
+    generic = ./hw/generic.nix;
     qemu-vm = ./hw/qemu-vm.nix;
     hyperv-vm = ./hw/hyperv-vm.nix;
     hyperv-vm-gui = ./hw/hyperv-vm-gui.nix;
