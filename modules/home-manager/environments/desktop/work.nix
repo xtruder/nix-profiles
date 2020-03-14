@@ -11,6 +11,8 @@
   config = {
     dconf.enable = true;
 
+    services.network-manager-applet.enable = true;
+
     home.packages = with pkgs; [
       mupdf
       libreoffice
