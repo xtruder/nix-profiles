@@ -11,8 +11,10 @@
       home = "/home/user";
       createHome = true;
       useDefaultShell = true;
-      extraGroups = ["root"];
+      extraGroups = ["wheel"];
       group = "users";
     };
+
+    security.sudo.wheelNeedsPassword = false;
   };
 }
