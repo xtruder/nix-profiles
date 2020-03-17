@@ -37,6 +37,7 @@
     openssh = ./profiles/openssh.nix;
     route-tor = ./profiles/route-tor.nix;
     hidpi = ./profiles/hidpi.nix;
+    xephyr-session = ./profiles/xephyr-session.nix;
   };
 
   home-manager = ./home-manager.nix;
