@@ -8,10 +8,7 @@
   ];
 
   config = {
-    programs.ssh.enable = true;
-
     programs.bash = {
-      enable = true;
       enableAutojump = true;
       initExtra = ''
         . ${pkgs.git}/share/git/contrib/completion/git-prompt.sh
@@ -24,8 +21,6 @@
         fi
       '';
     };
-
-    programs.direnv.enable = true;
 
     home.packages = with pkgs; [
       # parsing tools

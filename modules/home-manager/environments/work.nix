@@ -4,12 +4,17 @@ with lib;
 
 {
   imports = [
+    ./base.nix
+
     ../apps/gpg.nix
     ../apps/tmux.nix
     ../apps/vim.nix
   ];
 
   config = {
+    programs.ssh.enable = true;
+    programs.direnv.enable = true;
+
     home.packages = with pkgs; [
       # fetch tools
       aria

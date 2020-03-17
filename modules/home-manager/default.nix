@@ -34,6 +34,7 @@
     };
   };
   environments = {
+    base = ./environments/base.nix;
     work = ./environments/work.nix;
     dev = ./environments/dev.nix;
     crypto = ./environments/crypto.nix;
