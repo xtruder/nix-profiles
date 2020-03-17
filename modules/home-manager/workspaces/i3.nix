@@ -8,6 +8,7 @@
     ../apps/i3status.nix
     ../apps/udiskie.nix
     ../apps/dunst.nix
+    ../apps/xterm.nix
   ];
 
   config = {
