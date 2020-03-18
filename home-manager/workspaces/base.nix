@@ -1,6 +1,6 @@
 # base configuration for workspaces
 
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   config = {
@@ -12,5 +12,11 @@
       enable = true;
       platformTheme = "gtk";
     };
+
+    home.packages = with pkgs; [
+      xsel
+      xorg.xev
+      xdotool
+    ];
   };
 }
