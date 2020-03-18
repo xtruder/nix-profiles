@@ -16,5 +16,8 @@ with lib;
 
     # disable screen locker in environments
     services.screen-locker.enable = false;
+
+    # network is managed with host user
+    services.network-manager-applet.enable = false;
   };
 }

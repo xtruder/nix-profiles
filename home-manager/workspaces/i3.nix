@@ -1,6 +1,8 @@
 # creates a sensible i3 desktop setup
 
-{ config, pkgs, ... }:
+{ pkgs, lib, ... }:
+
+with lib;
 
 {
   imports = [
@@ -17,7 +19,8 @@
   config = {
     dconf.enable = true;
 
-    services.network-manager-applet.enable = true;
+    services.network-manager-applet.enable = mkDefault true;
+    services.pasystray.enable = mkDefault true;
 
     programs.i3lock = {
       enable = true;
