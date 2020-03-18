@@ -10,7 +10,7 @@
 
     qt = {
       enable = true;
-      platformTheme = "gnome";
+      platformTheme = "gtk";
     };
 
     home.packages = with pkgs; [
