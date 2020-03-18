@@ -7,7 +7,7 @@ with lib;
 
   config = {
     home.packages = with pkgs; [
-      (hiPrio nixUnstable)
+      (hiPrio nixFlakes)
       dpkg
       nix-prefetch-scripts
       nix-prefetch-github
