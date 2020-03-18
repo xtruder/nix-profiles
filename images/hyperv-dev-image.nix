@@ -1,11 +1,11 @@
 {config, pkgs, lib, nix-profiles, ...}:
 
 {
-  imports = with nix-profiles.nixosModules; [
+  imports = with nix-profiles.nixos; [
     hw.hyperv-vm-gui
 
     # enable dev environment
-    environments.dev
+    roles.dev
 
     # create default user
     profiles.user
@@ -15,7 +15,7 @@
   ];
 
   home-manager.users.user = {config, ...}: {
-    imports = with nix-profiles.homeManagerModules; [
+    imports = with nix-profiles.home-manager; [
       # use i3 workspace
       workspaces.i3
 
@@ -24,7 +24,7 @@
       themes.colorscheme.google-dark
 
       # set dev desktop environment
-      environments.desktop.dev
+      roles.desktop.dev
 
       # enable development profiles
       dev.devops.all
