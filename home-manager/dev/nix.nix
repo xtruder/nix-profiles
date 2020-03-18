@@ -27,8 +27,8 @@ with lib;
         readlink -f $(which $1)
       }
 
-      function remove_home_roots() {
-        nix-store --gc --print-roots | grep -i /home/offlinehacker | cut -d ' ' -f 1 | xargs rm
+      function nix-remove-home-roots() {
+        nix-store --gc --print-roots | grep -i $HOME | cut -d ' ' -f 1 | xargs rm
       }
 
       # set nixpkgs path to locally clonned nixpkgs
