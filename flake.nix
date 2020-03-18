@@ -22,8 +22,9 @@
 
     nixosSystem' = {nixpkgs ? nixpkgs', ...}@args:
       nixpkgs.lib.nixosSystem ({
+        modules = [ self.nixos.module ] ++ (args.modules or []);
         inherit specialArgs system;
-      } // (filterAttrs (n: _: n != "nixpkgs") args));
+      } // (filterAttrs (n: _: n != "nixpkgs" && n != "modules") args));
 
     buildIsoImage = configuration: (nixosSystem' {
       modules = [ configuration ];
@@ -50,8 +51,6 @@
     checks.x86_64-linux.build = (nixosSystem' {
       modules = [{
         imports = with self.nixos; [
-          module
-
           self.nixos.system.iso
           roles.dev
           profiles.user
@@ -60,8 +59,6 @@
 
         home-manager.users.user = {config, ...}: {
           imports = with self.home-manager; [
-            module
-
             # use i3 workspace
             workspaces.i3
 
