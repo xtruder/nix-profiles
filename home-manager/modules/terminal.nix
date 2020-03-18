@@ -32,6 +32,6 @@ in {
   };
 
   config = mkIf (cfg.command != null) {
-    home.sessionVariables.TERMINAL = toString terminalScriptu;
+    home.sessionVariables.TERMINAL = toString terminalScript;
   };
 }
