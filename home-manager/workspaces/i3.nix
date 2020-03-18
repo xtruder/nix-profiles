@@ -14,6 +14,7 @@ with lib;
     ../profiles/dunst.nix
     ../profiles/xterm.nix
     ../profiles/gnome-keyring.nix
+    ../profiles/redhsift.nix
   ];
 
   config = {

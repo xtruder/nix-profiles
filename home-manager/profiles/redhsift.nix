@@ -1,13 +1,14 @@
-{ config, lib, ... }:
+{ lib, ... }:
 
 with lib;
 
 {
   config = {
     services.redshift = {
-      enable = true;
+      enable = mkDefault true;
       provider = "geoclue2";
-      brightness.night = mkdefault "0.8";
+      brightness.night = mkDefault "0.8";
+      tray = true;
     };
   };
 }

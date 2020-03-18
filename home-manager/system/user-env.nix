@@ -19,5 +19,6 @@ with lib;
     services.network-manager-applet.enable = false;
     services.pasystray.enable = false;
     services.udiskie.enable = false;
+    services.redshift.enable = false;
   };
 }
