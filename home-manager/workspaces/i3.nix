@@ -57,12 +57,27 @@ in {
 
     systemd.user.services.xss-lock.Service.Environment = "PATH=${pkgs.coreutils}/bin";
 
-    xsession.windowManager.i3.config.startup = [{
-      command = "${reclassAppWindow} ffscratch firefox -P scratchpad";
-      notification = false;
-    } {
-      command = "env WORKSPACE=scratch ${reclassAppWindow} scratchterm i3-sensible-terminal";
-      notification = false;
-    }];
+    xsession.windowManager.i3.config = {
+      startup = [{
+        command = "${reclassAppWindow} scratchbrowser firefox -P scratchpad";
+        notification = false;
+      } {
+        command = "env WORKSPACE=scratch ${reclassAppWindow} scratchterm i3-sensible-terminal";
+        notification = false;
+      }];
+      window.commands = [
+        # move windows with scratchbrowser class to scratchpad and set to smaller size
+        {
+          criteria.class = "scratchbrowser";
+          command = "floating enable, resize set 3440 1876, move window to scratchpad";
+        }
+
+        # move windows with scratchterm class to scratchpad and set to smaller size
+        {
+          criteria.class = "scratchterm";
+          command = "floating enable, resize set 3440 1876, move window to scratchpad";
+        }
+      ];
+    };
   };
 }

@@ -87,18 +87,6 @@ in {
               criteria.window_role = "pop-up";
               command = "floating enable";
             }
-
-            # move windows with scratchbrowser class to scratchpad and set to smaller size
-            {
-              criteria.class = "scratchbrowser";
-              command = "floating enable, resize set 1600 900, move window to scratchpad";
-            }
-
-            # move windows with scratchterm class to scratchpad and set to smaller size
-            {
-              criteria.class = "scratchterm";
-              command = "floating enable, resize set 1600 900, move window to scratchpad";
-            }
           ];
         };
 
