@@ -13,7 +13,8 @@ in {
   options.programs.terminal = {
     command = mkOption {
       description = "Terminal command";
-      type = types.str;
+      type = types.nullOr types.str;
+      default = null;
       internal = true;
     };
 
@@ -30,7 +31,7 @@ in {
     };
   };
 
-  config = {
-    home.sessionVariables.TERMINAL = toString terminalScript;
+  config = mkIf (cfg.command != null) {
+    home.sessionVariables.TERMINAL = toString terminalScriptu;
   };
 }
