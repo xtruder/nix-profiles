@@ -1,3 +1,5 @@
+# creates a sensible i3 desktop setup
+
 { config, pkgs, ... }:
 
 {
@@ -12,6 +14,14 @@
   ];
 
   config = {
+    dconf.enable = true;
+
+    services.network-manager-applet.enable = true;
+    services.gnome-keyring = {
+      enable = true;
+      components = ["secrets"];
+    };
+
     programs.i3lock = {
       enable = true;
       cmd = "${pkgs.i3lock-fancy}/bin/i3lock-fancy";

@@ -46,6 +46,10 @@
       crypto = ./environments/desktop/crypto.nix;
     };
   };
+  system = {
+    laptop = ./system/laptop.nix;
+    env = ./system/env.nix;
+  };
   themes = {
     materia = ./themes/materia.nix;
     colorscheme.google-dark = ./themes/colorschemes/google-dark.nix;

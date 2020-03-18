@@ -7,22 +7,18 @@ with lib;
     programs.i3status = {
       enable = true;
 
-      order = mkMerge [
-        [
-          (mkOrder 500 "online_status")
-          (mkOrder 510 "disk /")
-          (mkOrder 520 "load")
-          (mkOrder 530 "net_rate")
-          (mkOrder 540 "volume master")
-        ]
-        (mkIf config.attributes.hardware.hasBattery [
-          (mkOrder 511 "battery 0")
-          (mkOrder 550 "tztime local")
-          (mkOrder 551 "tztime pst")
-        ])
+      order = mkDefault [
+        (mkOrder 500 "online_status")
+        (mkOrder 510 "disk /")
+        (mkOrder 520 "load")
+        (mkOrder 530 "net_rate")
+        (mkOrder 540 "volume master")
+        (mkOrder 511 "battery 0")
+        (mkOrder 550 "tztime local")
+        (mkOrder 551 "tztime pst")
       ];
 
-      blocks = mkMerge [{
+      blocks = {
         general.opts = {
           output_format = "i3bar";
           colors = true;
@@ -59,7 +55,7 @@ with lib;
         };
 
         online = {};
-      } (mkIf config.attributes.hardware.hasBattery {
+
         battery_0 = {
           type = "battery";
           name = "0";
@@ -85,7 +81,7 @@ with lib;
             timezone = "America/Los_Angeles";
           };
         };
-      })];
+      };
     };
   };
 }
