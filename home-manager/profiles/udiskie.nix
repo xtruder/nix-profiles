@@ -6,6 +6,7 @@
       enable = true;
       automount = false;
       notify = true;
+      tray = "always";
     };
   };
 }
