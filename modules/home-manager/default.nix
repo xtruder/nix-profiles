@@ -9,6 +9,7 @@
     tmux = ./apps/tmux.nix;
     firefox = ./apps/firefox.nix;
     git = ./apps/git.nix;
+    gnome-keyring = ./apps/gnome-keyring.nix;
   };
   workspaces = {
     i3 = ./workspaces/i3.nix;

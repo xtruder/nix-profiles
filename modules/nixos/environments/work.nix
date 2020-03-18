@@ -53,6 +53,9 @@ with lib;
     # enable dconf support on all workstations for storage of configration
     programs.dconf.enable = mkDefault true;
 
+    # add additional dbus packages
+    services.dbus.packages = [ pkgs.gcr ];
+
     # hiberante on power key by default on all workstations
     services.logind.extraConfig = ''
       HandlePowerKey=hibernate

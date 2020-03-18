@@ -11,16 +11,13 @@
     ../apps/udiskie.nix
     ../apps/dunst.nix
     ../apps/xterm.nix
+    ../apps/gnome-keyring.nix
   ];
 
   config = {
     dconf.enable = true;
 
     services.network-manager-applet.enable = true;
-    services.gnome-keyring = {
-      enable = true;
-      components = ["secrets"];
-    };
 
     programs.i3lock = {
       enable = true;
