@@ -48,4 +48,14 @@
 
   # enable website choosing fonts
   "browser.display.use_document_fonts" = 1;
+
+  # make clearOnShutdown less strict
+  "privacy.clearOnShutdown.cache" = true;
+  "privacy.clearOnShutdown.cookies" = false;
+  "privacy.clearOnShutdown.downloads" = true;
+  "privacy.clearOnShutdown.formdata" = true;
+  "privacy.clearOnShutdown.history" = false;
+  "privacy.clearOnShutdown.offlineApps" = true;
+  "privacy.clearOnShutdown.sessions" = false;
+  "privacy.clearOnShutdown.siteSettings" = false;
 }
