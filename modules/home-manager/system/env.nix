@@ -1,11 +1,15 @@
 # system specific overrides for environments
 
-{ config, ... }:
+{ lib, ... }:
+
+with lib;
 
 {
   config = {
-    # disable i3status blocks
-    programs.i3status.order = [];
+    # redefine i3status for env
+    programs.i3status.order = [
+      (mkOrder 540 "volume master")
+    ];
 
     # place default i3 bar on top
     xsession.windowManager.i3.defaultBarConfig.position = "top";
