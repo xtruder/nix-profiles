@@ -14,10 +14,9 @@ with lib;
     # place default i3 bar on top
     xsession.windowManager.i3.defaultBarConfig.position = "top";
 
-    # disable screen locker in environments
+    # disable services which only require to run on parent
     services.screen-locker.enable = false;
-
-    # network is managed with host user
     services.network-manager-applet.enable = false;
+    services.pasystray.enable = false;
   };
 }

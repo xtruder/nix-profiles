@@ -50,7 +50,7 @@
   };
   system = {
     laptop = ./system/laptop.nix;
-    env = ./system/env.nix;
+    user-env = ./system/user-env.nix;
   };
   themes = {
     materia = ./themes/materia.nix;
