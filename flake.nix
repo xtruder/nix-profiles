@@ -29,8 +29,6 @@
       modules = [ configuration ];
     }).config.system.build.isoImage;
 
-    modules = import ./modules;
-
     isRelease = (builtins.getEnv "release") != "";
 
     version = "v2.0";
@@ -44,25 +42,26 @@
     fullVersion = "${version}-${versionSufix}";
 
   in {
+    nixos = import ./nixos;
+    home-manager = import ./home-manager;
+
     lib.nixosSystem = nixosSystem';
-
-    # exporter nixos modules
-    nixosModules = modules.nixos;
-
-    # exported home manager modules
-    homeManagerModules = modules.home-manager;
 
     checks.x86_64-linux.build = (nixosSystem' {
       modules = [{
-        imports = with self.nixosModules; [
-          self.nixosModules.system.iso
-          environments.dev
+        imports = with self.nixos; [
+          module
+
+          self.nixos.system.iso
+          roles.dev
           profiles.user
           profiles.openssh
         ];
 
         home-manager.users.user = {config, ...}: {
-          imports = with self.homeManagerModules; [
+          imports = with self.home-manager; [
+            module
+
             # use i3 workspace
             workspaces.i3
 
@@ -70,8 +69,8 @@
             themes.materia
             themes.colorscheme.google-dark
 
-            # set dev desktop environment
-            environments.desktop.dev
+            # set dev desktop role
+            roles.desktop.dev
 
             # enable development profiles
             dev.devops.all
