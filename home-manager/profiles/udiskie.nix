@@ -1,9 +1,11 @@
-{ config, ... }:
+{ lib, ... }:
+
+with lib;
 
 {
   config = {
     services.udiskie = {
-      enable = true;
+      enable = mkDefault true;
       automount = false;
       notify = true;
       tray = "always";

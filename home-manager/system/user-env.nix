@@ -18,5 +18,6 @@ with lib;
     services.screen-locker.enable = false;
     services.network-manager-applet.enable = false;
     services.pasystray.enable = false;
+    services.udiskie.enable = false;
   };
 }
