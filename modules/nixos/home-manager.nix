@@ -1,4 +1,4 @@
-{ config, lib, pkgs, home-manager, ... }:
+{ config, lib, pkgs, home-manager, nix-profiles, ... }:
 
 with lib;
 
@@ -29,6 +29,8 @@ in {
     home-manager = {
       # installation of user packages through the users.users.<name>.packages
       useUserPackages = mkDefault true;
+
+      specialArgs.nix-profiles = nix-profiles;
 
       defaults = [{
         imports = [ ../attributes.nix ];
