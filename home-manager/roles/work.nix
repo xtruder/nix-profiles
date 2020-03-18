@@ -29,6 +29,9 @@ with lib;
       # cloud storage
       google-drive-ocamlfuse
       dropbox-cli
+
+      # password managment
+      pass
     ];
   };
 }
