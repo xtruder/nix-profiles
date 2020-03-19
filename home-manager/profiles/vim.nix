@@ -182,10 +182,8 @@ with lib;
 
         " copy/paste
         set pastetoggle=<F2>
-        noremap <Leader>y "*y " copy to terminal clipboard
-        noremap <Leader>p "*p " paste from terminal clipboard
-        noremap <Leader>Y "+y " copy to system clipboard
-        noremap <Leader>P "+p " paste from system clipboard
+        noremap <Leader>y "+y " copy to system clipboard
+        noremap <Leader>p "+p " paste from system clipboard
 
         " leave in visual mode when indenting
         vnoremap > >gv
@@ -256,6 +254,9 @@ with lib;
         let g:airline_right_sep = ''
         let g:airline_left_alt_sep= ''
         let g:airline_left_sep = ''
+
+        " autopairs
+        let g:AutoPairsShortcutToggle = '<leader>P'
 
         " youcompleteme
         let g:ycm_autoclose_preview_window_after_insertion = 1
