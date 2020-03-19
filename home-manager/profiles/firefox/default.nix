@@ -10,22 +10,6 @@ let
   user-js = ghacks-user-js // user-js-override;
 
 in {
-  options.programs.firefox = {
-    startup = {
-      pages = mkOption {
-        description = "List of startup pages";
-        type = types.listOf types.str;
-        default = [];
-      };
-
-      startOnBoot = mkOption {
-        description = "Whether to start firefox on boot";
-        default = false;
-        type = types.bool;
-      };
-    };
-  };
-
   config = {
     programs.firefox = {
       enable = true;
