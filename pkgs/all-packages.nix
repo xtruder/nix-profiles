@@ -7,4 +7,5 @@
   base16-rofi = pkgs.callPackage ./base16-rofi { };
   base16-shell = pkgs.callPackage ./base16-shell { };
   materia-theme = pkgs.callPackage ./materia-theme { };
+  nixfmt = pkgs.callPackage ./nixfmt { };
 }

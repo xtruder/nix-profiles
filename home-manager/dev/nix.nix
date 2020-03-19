@@ -12,7 +12,7 @@ with lib;
       nix-prefetch-scripts
       nix-prefetch-github
       #nix-firefox-addons-generator
-      #nixfmt
+      nixfmt
     ];
 
     programs.neovim.plugins = with pkgs.vimPlugins; [ vim-nix ];
