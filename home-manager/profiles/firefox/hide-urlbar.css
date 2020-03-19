@@ -1,0 +1,9 @@
+:root:not([customizing]) #navigator-toolbox {
+	margin-top: calc(-1 * var(--nav-bar-height) - var(--tab-min-height));
+	background: #232323;
+	transition: transform .15s ease-out !important;
+}
+
+:root:not([customizing]) #navigator-toolbox:-moz-any(:hover,:focus-within) {
+	transform: translateY(100%);
+}

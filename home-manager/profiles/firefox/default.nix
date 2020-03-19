@@ -45,7 +45,7 @@ in {
         id = 1;
         path = "scratchpad";
         userChrome = ''
-          ${builtins.readFile ./auto-hide.css}
+          ${builtins.readFile ./hide-urlbar.css}
         '';
         settings = mkMerge [
           user-js
