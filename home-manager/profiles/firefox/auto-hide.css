@@ -3,7 +3,6 @@
  *
  * Contributor(s): Alex Vallat
  */
-
 :root[uidensity=compact] #navigator-toolbox {
   --nav-bar-height: 33px;
   --tab-min-height: 29px;
@@ -55,7 +54,7 @@
 }
 
 #nav-bar, #PersonalToolbar {
- /* Otherwise spacers will not count as hover-able areas */
+        /* Otherwise spacers will not count as hover-able areas */
     -moz-window-dragging: default;
 }
 
@@ -69,7 +68,7 @@
   opacity: 0;
 }
 
-:root:not([customizing]) :hover > #nav-bar,
+:root:not([customizing]) :focus > #nav-bar,
 :root:not([customizing]) #nav-bar:focus-within {
   max-height: var(--nav-bar-height);
   opacity: 1;
@@ -82,7 +81,7 @@
   transition: opacity 0.15s ease-in, max-height 0.15s linear;
 }
 
-:root:not([customizing]) #navigator-toolbox:hover,
+:root:not([customizing]) #navigator-toolbox:focus
 :root:not([customizing]) #navigator-toolbox:focus-within {
   max-height: calc(var(--tabbar-height) + var(--nav-bar-height));
   margin-bottom: calc(0px - var(--nav-bar-height));
@@ -95,33 +94,60 @@
   opacity: 0;
 }
 
-:root:not([customizing]) :hover > #PersonalToolbar,
+:root:not([customizing]) :focus > #PersonalToolbar,
 :root:not([customizing]) #navigator-toolbox:focus-within #PersonalToolbar {
   max-height: 4em !important;
   opacity: 1;
   transition: opacity 0.15s ease-in !important;
 }
 
-/* Lightweight Theme Support */
-:root:-moz-lwtheme #nav-bar, 
-:root:-moz-lwtheme #PersonalToolbar {
-  background-color: var(--lwt-accent-color) !important;
-  background-image: var(--lwt-header-image), var(--lwt-additional-images) !important;
-  background-position: var(--lwt-background-alignment) !important;
-  background-repeat: var(--lwt-background-tiling) !important;
+#/* Lightweight Theme Support */
+#:root:-moz-lwtheme #nav-bar, 
+#:root:-moz-lwtheme #PersonalToolbar {
+#  background-color: var(--lwt-accent-color) !important;
+#  background-image: var(--lwt-header-image), var(--lwt-additional-images) !important;
+#  background-position: var(--lwt-background-alignment) !important;
+#  background-repeat: var(--lwt-background-tiling) !important;
+#}
+#
+##main-window[sizemode="normal"]:-moz-lwtheme #nav-bar {
+#    background-position-y: calc(-2px - var(--tabbar-height)) !important;
+#}
+##main-window[sizemode="normal"]:-moz-lwtheme #PersonalToolbar {
+#    background-position-y: calc(-2px - var(--tabbar-height) - var(--nav-bar-height)) !important;
+#}
+#
+##main-window[sizemode="maximized"]:-moz-lwtheme #nav-bar {
+#    background-position-y: calc(-8px - var(--tabbar-height)) !important;
+#}
+##main-window[sizemode="maximized"]:-moz-lwtheme #PersonalToolbar {
+#    background-position-y: calc(-8px - var(--tabbar-height) - var(--nav-bar-height)) !important;
+#}
+#
+#.tab-line[selected="true"] {
+#background-color : red; /* this sets the color of the line above the tab */
+#}
+
+##TabsToolbar .tabbrowser-tab .tab-line {
+#    display: none !important;
+#}
+
+#navigator-toolbox{ border-bottom: 0px !important }
+.hidevscroll-scrollbar {
+  display: none !important;
 }
 
-#main-window[sizemode="normal"]:-moz-lwtheme #nav-bar {
-    background-position-y: calc(-2px - var(--tabbar-height)) !important;
-}
-#main-window[sizemode="normal"]:-moz-lwtheme #PersonalToolbar {
-    background-position-y: calc(-2px - var(--tabbar-height) - var(--nav-bar-height)) !important;
-}
+#content browser{margin-right:-14px!important;margin-bottom:-14px!important;overflow-y:scroll;overflow-x:hidden;}
 
-#main-window[sizemode="maximized"]:-moz-lwtheme #nav-bar {
-    background-position-y: calc(-8px - var(--tabbar-height)) !important;
+.tabbrowser-strip *[class^="tabs-newtab-button"] {
+    /* Hide new-tab button */
+    display: none;
 }
-#main-window[sizemode="maximized"]:-moz-lwtheme #PersonalToolbar {
-    background-position-y: calc(-8px - var(--tabbar-height) - var(--nav-bar-height)) !important;
+/*
+ * #urlbar {
+ * text-align: center;
+ * } 
+ */
+#navigator-toolbox {
+  z-index: 1;
 }
-
