@@ -96,7 +96,7 @@ in {
             setxkbmap us -print  | XAUTHORITY=${cookiePath} xkbcomp - :${toString s.displayNumber}
 
             # set window name
-            xdotool search -class Xephyr set_window --name "env: ${n}"
+            xdotool search -name Xephyr set_window --name "env: ${n}"
           '';
 
           environment = {
