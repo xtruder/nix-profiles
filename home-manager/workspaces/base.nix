@@ -17,6 +17,7 @@
       xsel
       xorg.xev
       xdotool
+      glxinfo
     ];
   };
 }
