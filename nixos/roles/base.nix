@@ -28,6 +28,9 @@ with lib;
     # sory eelco some nice idea, but i will stick with go based implementations
     boot.enableContainers = mkDefault false;
 
+    # i use other means to read nixos docs
+    documentation.enable = mkDefault false;
+
     system.nixos = {
       versionSuffix = mkDefault ".latest";
       revision = mkDefault "latest";
