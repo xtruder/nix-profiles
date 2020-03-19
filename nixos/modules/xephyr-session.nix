@@ -120,7 +120,7 @@ in {
               "-resizeable"
               "-ac"
               "-reset"
-              (optionalString (s.title != null) "-title ${s.title}")
+              (optionalString (s.title != null) ''-title "${s.title}"'')
             ];
           };
         };
