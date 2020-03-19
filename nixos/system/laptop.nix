@@ -21,5 +21,9 @@ with lib;
     services.logind.extraConfig = ''
       HandleLidSwitch=ignore
     '';
+
+    # keep timezone updated to local time using geoclue
+    time.timeZone = null;
+    services.localtime.enable = true;
   };
 }
