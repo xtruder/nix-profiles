@@ -106,6 +106,7 @@ in {
 
             # set window name
             xdotool search -name Xephyr set_window --name "env: ${n}"
+            xdotool search -name Xephyr set_window --name "env: ${n}"
           '';
 
           environment = {
