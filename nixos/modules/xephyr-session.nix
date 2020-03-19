@@ -63,12 +63,21 @@ in {
         userHome = config.users.users.${s.user}.home;
         xauthorityPath = "${userHome}/.Xauthority";
         hostUserHome = config.users.users.${cfg.hostUser}.home;
+
+        # session order is defined, as windows have no pids defines, so if we
+        # want to rename we have to start sequentally
+        sessionOrder =
+          map (s: "xephyr-daemon-${s.user}.service")
+            (filter
+              (f: f.displayNumber < s.displayNumber)
+              (attrValues cfg.sessions));
       in {
         "xephyr-daemon-${n}" = {
           description = "Xephyr daemon for ${n}";
 
           path = with pkgs; [ utillinux acl sudo bash xdotool xorg.xorgserver xorg.xauth xorg.xdpyinfo xorg.setxkbmap xorg.xkbcomp ];
           bindsTo = [ "xephyr-session-${n}.service" ];
+          after = sessionOrder;
 
           preStart = ''
             # create new Xauthority cookie file and allow host user to read and write
