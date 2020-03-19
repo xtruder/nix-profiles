@@ -58,4 +58,7 @@
   "privacy.clearOnShutdown.offlineApps" = true;
   "privacy.clearOnShutdown.sessions" = false;
   "privacy.clearOnShutdown.siteSettings" = false;
+
+  # allow stylesheets
+  "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
 }
