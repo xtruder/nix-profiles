@@ -43,7 +43,12 @@ in {
   ];
 
   config = {
-    dconf.enable = true;
+    dconf = {
+      enable = true;
+      settings."org/gtk/settings/file-chooser" = {
+        window-size = "(1920,1038)";
+      };
+    };
 
     services.network-manager-applet.enable = mkDefault true;
     services.pasystray.enable = mkDefault true;
