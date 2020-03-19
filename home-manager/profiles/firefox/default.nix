@@ -44,9 +44,6 @@ in {
       profiles.scratchpad = {
         id = 1;
         path = "scratchpad";
-        userChrome = ''
-          ${builtins.readFile ./auto-hide.css}
-        '';
         settings = mkMerge [
           user-js
           {
