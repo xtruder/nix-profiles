@@ -49,6 +49,12 @@ in {
               description = "Display number to use for session";
               type = types.int;
             };
+
+            title = mkOption {
+              description = "Window title to set";
+              type = types.nullOr types.str;
+              default = null;
+            };
           };
         }));
         default = {};
@@ -63,21 +69,12 @@ in {
         userHome = config.users.users.${s.user}.home;
         xauthorityPath = "${userHome}/.Xauthority";
         hostUserHome = config.users.users.${cfg.hostUser}.home;
-
-        # session order is defined, as windows have no pids defines, so if we
-        # want to rename we have to start sequentally
-        sessionOrder =
-          map (s: "xephyr-daemon-${s.user}.service")
-            (filter
-              (f: f.displayNumber < s.displayNumber)
-              (attrValues cfg.sessions));
       in {
         "xephyr-daemon-${n}" = {
           description = "Xephyr daemon for ${n}";
 
-          path = with pkgs; [ utillinux acl sudo bash xdotool xorg.xorgserver xorg.xauth xorg.xdpyinfo xorg.setxkbmap xorg.xkbcomp ];
+          path = with pkgs; [ utillinux acl sudo bash xorg.xorgserver xorg.xauth xorg.xdpyinfo xorg.setxkbmap xorg.xkbcomp ];
           bindsTo = [ "xephyr-session-${n}.service" ];
-          after = sessionOrder;
 
           preStart = ''
             # create new Xauthority cookie file and allow host user to read and write
@@ -103,10 +100,6 @@ in {
 
             # set same keymap in child as in host
             setxkbmap us -print  | XAUTHORITY=${cookiePath} xkbcomp - :${toString s.displayNumber}
-
-            # set window name
-            sleep 1
-            xdotool search -name Xephyr set_window --name "env: ${n}"
           '';
 
           environment = {
@@ -127,6 +120,7 @@ in {
               "-resizeable"
               "-ac"
               "-reset"
+              (optionalString (s.title != null) "-title ${s.title}")
             ];
           };
         };

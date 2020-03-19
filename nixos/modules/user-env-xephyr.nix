@@ -22,6 +22,7 @@ in {
       enable = true;
       sessions = mapAttrs (n: v: {
         user = v.name;
+        title = "env: ${v.name}";
       }) user-env.environments;
     };
 
