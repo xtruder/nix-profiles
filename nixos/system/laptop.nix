@@ -25,5 +25,9 @@ with lib;
     # keep timezone updated to local time using geoclue
     time.timeZone = null;
     services.localtime.enable = true;
+
+    # enable captive-browser, so we can connect to network that are secured
+    # by captive portal
+    programs.captive-browser.enable = true;
   };
 }
