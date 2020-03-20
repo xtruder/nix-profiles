@@ -11,7 +11,7 @@
       home = "/home/user";
       createHome = true;
       useDefaultShell = true;
-      extraGroups = ["wheel"];
+      extraGroups = ["wheel" "networkmanager"];
       group = "users";
     };
 
