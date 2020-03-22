@@ -34,6 +34,7 @@
     route-tor = ./profiles/route-tor.nix;
     hidpi = ./profiles/hidpi.nix;
     xephyr-session = ./profiles/xephyr-session.nix;
+    deploy-key = ./profiles/deploy-key.nix;
   };
 
   # nixos roles
