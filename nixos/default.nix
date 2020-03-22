@@ -9,6 +9,7 @@
     hyperv-vm = ./hw/hyperv-vm.nix;
     hyperv-vm-gui = ./hw/hyperv-vm-gui.nix;
     virtualbox-vm = ./hw/virtualbox-vm.nix;
+    google-compute-vm = ./hw/google-compute-vm.nix;
   };
 
   # nixos per system type configuration
