@@ -29,7 +29,7 @@ with lib;
     boot.enableContainers = mkDefault false;
 
     # i use other means to read nixos docs
-    documentation.enable = mkDefault false;
+    documentation.doc.enable = mkDefault false;
 
     system.nixos = {
       versionSuffix = mkDefault ".latest";
