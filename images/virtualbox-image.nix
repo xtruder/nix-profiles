@@ -1,11 +1,11 @@
 { config, pkgs, lib, nix-profiles, ... }:
 
 {
-  imports = with nix-profiles.nixosModules; [
+  imports = with nix-profiles.nixos; [
     hw.virtualbox-vm
 
     # import base environment
-    environments.base
+    roles.base
 
     # create user
     profiles.user
@@ -15,7 +15,7 @@
   ];
 
   home-manager.users.user = { config, ... }: {
-    imports = with nix-profiles.homeManagerModules; [
+    imports = with nix-profiles.home-manager; [
       # workspaces.i3
       # themes.materia
       # themes.colorscheme.google-dark
