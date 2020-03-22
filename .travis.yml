@@ -48,4 +48,4 @@ before_script:
     - export NIXOS_EXTRA_MODULE_PATH=$PWD/extra-module.nix
 
 script:
-   - nix build .#$TARGET
+    - nix build --impure .#$TARGET
