@@ -97,6 +97,9 @@
       virtualbox-image = (nixosSystem' {
         modules = [ ./images/virtualbox-image.nix ];
       }).config.system.build.virtualBoxOVA;
+      google-compute-image = (nixosSystem' {
+        modules = [ ./images/google-compute-image.nix ];
+      }).config.system.build.googleComputeImage;
       all = pkgs.linkFarm "nix-profile-images-${fullVersion}" [{
         path = "${hyperv-image}/disk.vhdx";
         name = "nixos-hyperv-image-${fullVersion}.vhdx";
