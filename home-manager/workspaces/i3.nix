@@ -52,6 +52,7 @@ in {
 
     services.network-manager-applet.enable = mkDefault true;
     services.pasystray.enable = mkDefault true;
+    services.blueman-applet.enable = mkDefault true;
     services.random-background = {
       enable = mkDefault true;
       imageDirectory = mkDefault "%h/backgrounds";

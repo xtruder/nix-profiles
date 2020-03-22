@@ -20,5 +20,6 @@ with lib;
     services.pasystray.enable = false;
     services.udiskie.enable = false;
     services.redshift.enable = false;
+    services.blueman-applet.enable = false;
   };
 }
