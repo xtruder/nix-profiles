@@ -16,6 +16,7 @@
     laptop = ./system/laptop.nix;
     vm = ./system/vm.nix;
     iso = ./system/iso.nix;
+    cloud-vm = ./system/cloud-vm.nix;
   };
 
   # nixos profiles
