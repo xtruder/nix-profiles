@@ -5,6 +5,7 @@
     ../work.nix
 
     ../../profiles/firefox
+    ../../profiles/chromium.nix
   ];
 
   config = {

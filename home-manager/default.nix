@@ -9,6 +9,7 @@
     udiskie = ./profiles/udiskie.nix;
     tmux = ./profiles/tmux.nix;
     firefox = ./profiles/firefox.nix;
+    chromium = ./profiles/chromium.nix;
     git = ./profiles/git.nix;
     gnome-keyring = ./profiles/gnome-keyring.nix;
   };
