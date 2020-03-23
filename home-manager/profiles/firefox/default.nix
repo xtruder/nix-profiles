@@ -14,8 +14,6 @@ in {
     programs.firefox = {
       enable = true;
 
-      package = pkgs.wrapFirefox (pkgs.firefox-unwrapped.override { drmSupport = true; }) { };
-
       extensions = with pkgs.firefox-addons; [
         disabled-add-on-fix-61-65
         https-everywhere
