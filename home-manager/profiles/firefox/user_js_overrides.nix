@@ -61,4 +61,7 @@
 
   # allow stylesheets
   "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+
+  # no need for user gestures to play
+  "media.autoplay.enabled.user-gestures-needed" = false;
 }
