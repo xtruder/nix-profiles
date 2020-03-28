@@ -5,14 +5,17 @@
 with lib;
 
 {
-  imports = [ ../profiles/low-battery.nix ];
-
   config = {
     # enable suspend
     powerManagement.enable = mkDefault true;
 
     # for power optimizations
     powerManagement.powertop.enable = true;
+
+    services.low-battery-check = {
+      enable = true;
+      action = "hibernate";
+    };
 
     # enable TLP daemon for power saving
     services.tlp.enable = true;

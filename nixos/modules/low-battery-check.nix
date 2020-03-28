@@ -1,7 +1,22 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
-{
-  config = {
+with lib;
+
+let
+  cfg = config.services.low-battery-check;
+
+in {
+  options.services.low-battery-check = {
+    enable = mkEnableOption "low battery check service";
+
+    action = mkOption {
+      description = "Action to perform when battery is low";
+      type = types.enum ["poweroff" "hibernate"];
+      default = "poweroff";
+    };
+  };
+
+  config = mkIf cfg.enable {
     # check battery every 60s and shutdown if below 5%
     systemd.services.check-low-battery = {
       description = "Shutdown on low battery";
@@ -10,7 +25,7 @@
         acpi -b | awk -F'[,:%]' '{print $2, $3}' | (
           read -r status capacity
 	        if [ "$status" = Discharging ] && [ "$capacity" -lt 5 ]; then
-          	systemctl poweroff
+          	systemctl ${cfg.action}
   	      fi
         )
       '';
