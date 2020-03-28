@@ -64,4 +64,7 @@
 
   # no need for user gestures to play
   "media.autoplay.enabled.user-gestures-needed" = false;
+
+  # expose magnet files
+  "network.protocol-handler.expose.magnet" = true;
 }
