@@ -62,9 +62,11 @@
   # allow stylesheets
   "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
 
-  # no need for user gestures to play
-  "media.autoplay.enabled.user-gestures-needed" = false;
-
   # expose magnet files
   "network.protocol-handler.expose.magnet" = true;
+
+  # ask site by site whether to allow autoplay
+  "media.autoplay.default" = 2;
+  "media.autoplay.ask-permission" = true;
+  "media.autoplay.enabled.user-gestures-needed" = false;
 }
