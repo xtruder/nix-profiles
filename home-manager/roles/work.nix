@@ -12,8 +12,10 @@ with lib;
   ];
 
   config = {
-    programs.ssh.enable = true;
-    programs.direnv.enable = true;
+    programs = {
+      ssh.enable = true;
+      direnv.enable = true;
+    };
 
     home.packages = with pkgs; [
       # fetch tools
