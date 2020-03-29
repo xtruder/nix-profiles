@@ -90,7 +90,7 @@ in {
           ];
         };
 
-        keybindings = mkOptionDefault {
+        keybindings = {
           "${modifier}+Return" = "exec ${exposeWorkspace} i3-sensible-terminal";
           "${modifier}+Shift+q" = "kill";
 
