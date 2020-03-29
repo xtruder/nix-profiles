@@ -34,6 +34,9 @@ with lib;
 
       # password managment
       pass
+
+      # backup
+      restic
     ];
   };
 }
