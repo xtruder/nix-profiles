@@ -35,6 +35,7 @@ in {
 
     ../profiles/i3.nix
     ../profiles/i3status.nix
+    ../profiles/rofi-pass.nix
     ../profiles/udiskie.nix
     ../profiles/dunst.nix
     ../profiles/xterm.nix

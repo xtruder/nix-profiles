@@ -166,9 +166,6 @@ in {
             then "exec ${pkgs.rofi}/bin/rofi -combi-modi drun -show combi -modi combi"
             else "exec ${pkgs.dmenu}/bin/dmenu_run";
 
-          # start passmenu
-          "${modifier}+p" = "exec --no-startup-id ${pkgs.rofi-pass}/bin/rofi-pass";
-
           # print screen
           "Print" = "exec --no-startup-id ${pkgs.scrot}/bin/scrot -z -e '${pkgs.xclip}/bin/xclip -selection clipboard -t image/png -i $f'";
 
