@@ -2,14 +2,14 @@
   "inputs": {
     "home-manager": {
       "info": {
-        "lastModified": 1584520177,
-        "narHash": "sha256-gB8L2H9b/bIf6cDyHJCmwTbobk2X2POp204pPKiJXIg="
+        "lastModified": 1585717028,
+        "narHash": "sha256-i4Q4wxlUQ0OgRdG0OisCu1Bc6FdCJVND/32mLOkQFKc="
       },
       "inputs": {},
       "locked": {
         "owner": "xtruder",
         "repo": "home-manager",
-        "rev": "1596d175392aaee78f5a164733925f3f2a644f45",
+        "rev": "d4a6b084414a4bcda21d42481b1554c30ac6089a",
         "type": "github"
       },
       "original": {
@@ -21,14 +21,14 @@
     },
     "nixpkgs": {
       "info": {
-        "lastModified": 1584078941,
-        "narHash": "sha256-a+WiJyFG6c+/FOwrD7uwIX4k5AkxLZ/OseJmUfQ7dh4="
+        "lastModified": 1585715192,
+        "narHash": "sha256-YA3mThEE6CmQeBOG/CeiGMWQ3CZ3fu5KUH1frq1uuKo="
       },
       "inputs": {},
       "locked": {
         "owner": "xtruder",
         "repo": "nixpkgs",
-        "rev": "77cd2e8b5a6b2e250a7c14f8a1ddb7ec39b1ba2b",
+        "rev": "f4028360610e7c6e2c7fe1d15e20a73a55991892",
         "type": "github"
       },
       "original": {
