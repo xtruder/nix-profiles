@@ -8,6 +8,7 @@
       global = {
         follow = "keyboard";
         markup = "full";
+        dmenu = "${pkgs.rofi}/bin/rofi -dmenu -p dunst:";
       };
 
       urgency_low.timeout = 5;
