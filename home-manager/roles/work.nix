@@ -25,9 +25,6 @@ with lib;
       pet
       fzf
 
-      # vpn
-      protonvpn-cli
-
       # cloud storage
       google-drive-ocamlfuse
       dropbox-cli
