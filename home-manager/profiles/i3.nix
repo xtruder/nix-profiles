@@ -71,7 +71,7 @@ in {
       enable = true;
 
       defaultBarConfig.statusCommand = mkDefault
-        "${pkgs.pythonPackages.py3status}/bin/py3status -c ~/.config/i3status/config";
+        "${pkgs.python3Packages.py3status}/bin/py3status -c ~/.config/i3status/config";
 
       config = {
         inherit modifier;
