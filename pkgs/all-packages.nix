@@ -8,4 +8,10 @@
   base16-shell = pkgs.callPackage ./base16-shell { };
   materia-theme = pkgs.callPackage ./materia-theme { };
   nixfmt = pkgs.callPackage ./nixfmt { };
+  firejail = pkgs.firejail.overrideDerivation (d: {
+    postInstall = ''
+      rm $out/etc/firejail/firejail.config
+      ln -s /etc/firejail/firejail.config $out/etc/firejail/firejail.config
+    '';
+  });
 }
