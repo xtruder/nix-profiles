@@ -48,6 +48,8 @@
 
     lib.nixosSystem = nixosSystem';
 
+    pkgs = import ./pkgs/all-packages.nix { inherit pkgs; };
+
     checks.x86_64-linux.build = (nixosSystem' {
       modules = [{
         imports = with self.nixos; [
