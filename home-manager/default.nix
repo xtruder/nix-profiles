@@ -26,6 +26,7 @@
     python = ./dev/python.nix;
     ruby = ./dev/ruby.nix;
     nix = ./dev/nix.nix;
+    svelte = ./dev/svelte.nix;
 
     # devops tools
     devops = {

@@ -8,14 +8,14 @@
   {
     name = "vim";
     publisher = "vscodevim";
-    version = "1.13.0";
-    sha256 = "07i8p0grc238h3xqh1yyxh95231pvf6m7pbdfz9002rhj5mav87k";
+    version = "1.13.1";
+    sha256 = "04s0myx4j6ip86ic78cmaj8mb7wds4pmlj2fjy3wmyrbcyadn4h4";
   }
   {
     name = "path-autocomplete";
     publisher = "ionutvmi";
-    version = "1.13.3";
-    sha256 = "0zd4wdl26y3gg2d29sbgd5nw0fac50dfm6l51kyvmvjxmapgs3hl";
+    version = "1.13.6";
+    sha256 = "1iajr639c41j3zs7qcw6zr16spv1h99gyqsng3bbwla4dic6w0m9";
   }
   {
     name = "json-schema-validator";
@@ -68,8 +68,8 @@
   {
     name = "vscode-eslint";
     publisher = "dbaeumer";
-    version = "2.1.1";
-    sha256 = "11ybn0hrarp1v06zjql9lcbvr70ryhij8v2v23q45gm0qgmpk5ib";
+    version = "2.1.2";
+    sha256 = "0dzkl40i6611m39sxrnyn111vpi32hlpjq9ifbl7iyxqdnipwlaj";
   }
   {
     name = "vscode-mocha-sidebar";
@@ -92,8 +92,8 @@
   {
     name = "vscode-kubernetes-tools";
     publisher = "ms-kubernetes-tools";
-    version = "1.1.0";
-    sha256 = "0yaw6rkig2h0vnad30h22r80gr0l890yah23xh66pa25wvc9f88v";
+    version = "1.1.1";
+    sha256 = "1a01dr17g7kn7906ci8jybzk3acsvpvba7zrwmha2gm6bi6zr0fy";
   }
   {
     name = "nixfmt-vscode";
@@ -106,5 +106,11 @@
     publisher = "AndrsDC";
     version = "1.4.5";
     sha256 = "0qxxhhjr2hj60spy7cv995m1px5z6m2syhxsnfl1wj2aqkwp32cs";
+  }
+  {
+    name = "svelte-vscode";
+    publisher = "JamesBirtles";
+    version = "0.9.3";
+    sha256 = "0wfdp06hsx7j13k1nj63xs3pmp7zr6p96p2x45ikg3xrsvasghyn";
   }
 ]
