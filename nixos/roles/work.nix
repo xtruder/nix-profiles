@@ -14,6 +14,7 @@ with lib;
     ../profiles/android.nix
     ../profiles/xserver.nix
     ../profiles/firmware.nix
+    ../profiles/virtualbox-host.nix
   ];
 
   config = {

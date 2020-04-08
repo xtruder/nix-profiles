@@ -37,6 +37,7 @@
     hidpi = ./profiles/hidpi.nix;
     xephyr-session = ./profiles/xephyr-session.nix;
     deploy-key = ./profiles/deploy-key.nix;
+    virtualbox-host = ./profiles/virtualbox-host.nix;
   };
 
   # nixos roles
