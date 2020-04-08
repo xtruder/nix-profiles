@@ -118,7 +118,7 @@ in {
               "-screen 800x600"
               "-dpi ${toString config.services.xserver.dpi}"
               "-resizeable"
-              "-ac"
+              "-glamor"
               "-reset"
               (optionalString (s.title != null) ''-title "${s.title}"'')
             ];
