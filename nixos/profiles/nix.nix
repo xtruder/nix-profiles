@@ -19,6 +19,10 @@ with lib;
         "https://cache.nixos.org/"
         "https://xtruder-public.cachix.org"
       ];
+      trustedBinaryCaches = [
+        "https://cache.nixos.org/"
+        "https://xtruder-public.cachix.org"
+      ];
       binaryCachePublicKeys = [
         "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
         "xtruder-public.cachix.org-1:+qG/fM2195QJcE2BXmKC+sS4mX/lQHqwjBH83Rhzl14="

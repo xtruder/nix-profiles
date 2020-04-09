@@ -1,10 +1,13 @@
 # creates a sensible i3 desktop setup
 
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 with lib;
 
 let
+  cfg = config.xsession.windowManager.i3;
+  modifier = cfg.config.modifier;
+
   reclassAppWindow = pkgs.writeScript "reclass-app-window.sh" ''
     #!${pkgs.stdenv.shell}
 
@@ -33,6 +36,7 @@ in {
   imports = [
     ./base.nix
 
+    ../profiles/xserver.nix
     ../profiles/i3.nix
     ../profiles/i3status.nix
     ../profiles/rofi-pass.nix
@@ -44,13 +48,6 @@ in {
   ];
 
   config = {
-    dconf = {
-      enable = true;
-      settings."org/gtk/settings/file-chooser" = {
-        window-size = "(1920,1038)";
-      };
-    };
-
     services.network-manager-applet.enable = mkDefault true;
     services.pasystray.enable = mkDefault true;
     services.blueman-applet.enable = mkDefault true;
@@ -68,27 +65,40 @@ in {
 
     systemd.user.services.xss-lock.Service.Environment = "PATH=${pkgs.coreutils}/bin";
 
-    xsession.windowManager.i3.config = {
-      startup = [{
-        command = "${reclassAppWindow} scratchbrowser firefox -P scratchpad";
-        notification = false;
-      } {
-        command = "env WORKSPACE=scratch ${reclassAppWindow} scratchterm i3-sensible-terminal";
-        notification = false;
-      }];
-      window.commands = [
-        # move windows with scratchbrowser class to scratchpad and set to smaller size
-        {
-          criteria.class = "scratchbrowser";
-          command = "floating enable, resize set 3440 1876, move window to scratchpad";
-        }
+    xsession.windowManager.i3 = {
+      defaultBarConfig.statusCommand =
+        "${pkgs.python3Packages.py3status}/bin/py3status -c ~/.config/i3status/config";
 
-        # move windows with scratchterm class to scratchpad and set to smaller size
-        {
-          criteria.class = "scratchterm";
-          command = "floating enable, resize set 3440 1876, move window to scratchpad";
-        }
-      ];
+      config = {
+        keybindings = {
+          # Show scratchpad terminal
+          "${modifier}+t" = ''[class="scratchterm"] scratchpad show, move position center'';
+
+          # Show scratchpad browser
+          "${modifier}+b" = ''[class="scratchbrowser"] scratchpad show, move position center'';
+        };
+
+        startup = [{
+          command = "${reclassAppWindow} scratchbrowser firefox -P scratchpad";
+          notification = false;
+        } {
+          command = "env WORKSPACE=scratch ${reclassAppWindow} scratchterm ${config.programs.terminal.terminalScript}";
+          notification = false;
+        }];
+        window.commands = [
+          # move windows with scratchbrowser class to scratchpad and set to smaller size
+          {
+            criteria.class = "scratchbrowser";
+            command = "floating enable, resize set 3440 1876, move window to scratchpad";
+          }
+
+          # move windows with scratchterm class to scratchpad and set to smaller size
+          {
+            criteria.class = "scratchterm";
+            command = "floating enable, resize set 3440 1876, move window to scratchpad";
+          }
+        ];
+      };
     };
   };
 }

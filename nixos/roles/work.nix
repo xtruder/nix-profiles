@@ -15,6 +15,7 @@ with lib;
     ../profiles/xserver.nix
     ../profiles/firmware.nix
     ../profiles/virtualbox-host.nix
+    ../profiles/libvirt.nix
   ];
 
   config = {
@@ -53,6 +54,9 @@ with lib;
 
     # enable dconf support on all workstations for storage of configration
     programs.dconf.enable = mkDefault true;
+
+    # changing of light
+    programs.light.enable = mkDefault true;
 
     # add additional dbus packages
     services.dbus.packages = [ pkgs.gcr ];

@@ -14,4 +14,6 @@
       ln -s /etc/firejail/firejail.config $out/etc/firejail/firejail.config
     '';
   });
+  i3-sway-scripts = pkgs.callPackage ./i3-sway-scripts { };
+  bm-input = pkgs.callPackage ./bm-input { };
 }

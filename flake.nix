@@ -42,6 +42,15 @@
 
     fullVersion = "${version}-${versionSufix}";
 
+    testingPython = import "${nixpkgs.outPath}/nixos/lib/testing-python.nix" {
+      inherit system pkgs;
+    };
+
+    buildVms = node: (testingPython.makeTest {
+      nodes = { inherit node; };
+      testScript = "";
+    }).driver;
+
   in {
     nixos = import ./nixos;
     home-manager = import ./home-manager;
@@ -85,6 +94,28 @@
         };
       }];
     }).config.system.build.toplevel;
+
+    tests.x86_64-linux-desktop = buildVms ({ pkgs, config, ... }: {
+      imports = with self.nixos; [
+        self.nixos.system.iso
+        roles.dev
+        profiles.user
+      ];
+
+      home-manager.users.user = {config, ...}: {
+        imports = with self.home-manager; [
+          # use i3 workspace
+          workspaces.i3
+
+          # set themes and colorschemes
+          themes.materia
+          themes.colorscheme.google-dark
+
+          # set dev desktop role
+          roles.desktop.dev
+        ];
+      };
+    });
 
     # images to build
     images = rec {

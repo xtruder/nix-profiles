@@ -69,4 +69,11 @@
   "media.autoplay.default" = 2;
   "media.autoplay.ask-permission" = true;
   "media.autoplay.enabled.user-gestures-needed" = false;
+
+  "layers.acceleration.force-enabled" = true;
+
+  # enable webrender
+  "gfx.webrender.enabled" = true;
+  "gfx.gfx.font_rendering.graphite.enabled" = true;
+  "gfx.font_rendering.opentype_svg.enabled" = true;
 }

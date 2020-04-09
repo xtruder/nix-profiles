@@ -29,6 +29,13 @@ in {
       type = types.str;
       default = "secreen-256color";
     };
+
+    terminalScript = mkOption {
+      description = "Script to use to start terminal";
+      type = types.package;
+      default = terminalScript;
+      internal = true;
+    };
   };
 
   config = mkIf (cfg.command != null) {

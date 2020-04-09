@@ -31,7 +31,6 @@ in {
         path = "default";
         userChrome = ''
           ${builtins.readFile ./hide-tabs.css}
-          ${builtins.readFile ./auto-hide.css}
         '';
         settings = mkMerge [
           (mapAttrs (_: mkDefault) user-js)

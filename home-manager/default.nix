@@ -6,6 +6,7 @@
     dunst = ./profiles/dunst.nix;
     gpg = ./profiles/gpg.nix;
     xterm = ./profiles/xterm.nix;
+    kitty = ./profiles/kitty.nix;
     udiskie = ./profiles/udiskie.nix;
     tmux = ./profiles/tmux.nix;
     firefox = ./profiles/firefox.nix;
@@ -16,6 +17,7 @@
   };
   workspaces = {
     i3 = ./workspaces/i3.nix;
+    sway = ./workspaces/sway.nix;
   };
   dev = {
     android = ./dev/android.nix;

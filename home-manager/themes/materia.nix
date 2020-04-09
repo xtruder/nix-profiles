@@ -39,6 +39,7 @@ let
 in {
   imports = [
     ./defaults/i3.nix
+    ./defaults/sway.nix
     ./defaults/dunst.nix
     ./defaults/xresources.nix
     ./defaults/xterm.nix
@@ -83,7 +84,6 @@ in {
     # additional theme env variables needed for some apps
     home.sessionVariables = {
       GTK_THEME = "materia-custom";
-      GDK_BACKEND = "x11";
     };
   };
 }

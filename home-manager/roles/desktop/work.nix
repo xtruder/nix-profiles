@@ -6,7 +6,7 @@ let
   spreadsheet = ["impress.desktop"];
   torrent = ["transmission-gtk.desktop"];
   textEditor = ["nvim.desktop"];
-  imageViewer = ["org.gnome.gThumb.desktop"];
+  imageViewer = ["imv.desktop"];
   archiveTool = ["org.gnome.fileRoller.desktop"];
   documentViewer = ["org.gnome.Evince.desktop"];
 
@@ -19,6 +19,10 @@ in {
   ];
 
   config = {
+    # enable dconf for configuration
+    dconf.enable = true;
+
+    # set default mime apps
     xdg.mimeApps.defaultApplications = {
       "text/html" = browser;
       "application/x-bittorrent" = torrent;
@@ -44,7 +48,7 @@ in {
       # documents and images
       mupdf
       libreoffice
-      feh
+      imv
       gimp
       cdrkit
 
@@ -59,8 +63,6 @@ in {
       gnome3.nautilus
       gnome3.evince
       gnome3.file-roller
-      gnome3.gedit
-      gthumb
     ];
   };
 }

@@ -21,5 +21,11 @@ with lib;
     services.udiskie.enable = false;
     services.redshift.enable = false;
     services.blueman-applet.enable = false;
+
+    home.file.".config/pulse/client.conf" = {
+      text = ''
+        default-server = 127.0.0.1
+      '';
+    };
   };
 }

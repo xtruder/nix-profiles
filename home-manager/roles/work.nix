@@ -18,6 +18,9 @@ with lib;
     };
 
     home.packages = with pkgs; [
+      # cpu monitoring
+      htop
+
       # fetch tools
       aria
 

@@ -15,8 +15,12 @@ let
       sha256 = "1z6ybi8x5b57jahalxrjsm6k61gz2lnic1d1w939jscz7z2ydd3c";
     };
     "74.0" = {
-      rev = "v73.0-beta";
-      sha256 = "1z6ybi8x5b57jahalxrjsm6k61gz2lnic1d1w939jscz7z2ydd3c";
+      rev = "v74.0-beta";
+      sha256 = "ena5eo+mP1ieNq5JZB92QflQdE1aXAekHfTMcpAZruA=";
+    };
+    "75.0" = {
+      rev = "v74.0-beta";
+      sha256 = "ena5eo+mP1ieNq5JZB92QflQdE1aXAekHfTMcpAZruA=";
     };
   };
 

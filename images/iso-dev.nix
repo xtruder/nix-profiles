@@ -17,8 +17,8 @@
 
   home-manager.users.user = {config, ...}: {
     imports = with nix-profiles.home-manager; [
-      # use i3 workspace
-      workspaces.i3
+      # use sway workspace
+      workspaces.sway
 
       # set themes and colorschemes
       themes.materia
