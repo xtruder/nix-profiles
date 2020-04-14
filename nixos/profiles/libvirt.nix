@@ -16,9 +16,11 @@ with lib;
         namespaces = [];
 
         # if having virgl gpu issues uncomment
-        #seccomp_sandbox = 0
+        seccomp_sandbox = 0
       '';
     };
+
+    virtualisation.kvmgt.enable = true;
 
     networking = {
       firewall = {
