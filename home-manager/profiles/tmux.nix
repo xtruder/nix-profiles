@@ -15,13 +15,6 @@ with lib;
         fzf-tmux-url
       ];
       extraConfig = ''
-        # Vi copypaste mode
-        bind-key Escape copy-mode
-        bind-key p paste-buffer
-        bind-key -Tcopy-mode-vi 'v' send -X begin-selection
-        bind-key -Tcopy-mode-vi 'y' send -X copy-selection
-        bind-key e save-buffer ~/.tmux-buffer \; run-shell "${pkgs.xsel}/bin/xsel -i -b <~/.tmux-buffer && ${pkgs.coreutils}/bin/rm ~/.tmux-buffer"
-
         # split windows
         unbind %
         bind-key | split-window -h -c "#{pane_current_path}"
@@ -34,9 +27,6 @@ with lib;
 
         # auto window rename
         set -g automatic-rename off
-
-        # enable mouse
-        set-option -g mouse on
 
         # Set title
         set -g set-titles on
