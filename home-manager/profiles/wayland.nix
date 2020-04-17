@@ -14,5 +14,9 @@
     };
 
     programs.firefox.package = pkgs.firefox-wayland;
+
+    home.packages = with pkgs; [
+      wl-clipboard
+    ];
   };
 }
