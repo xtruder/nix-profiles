@@ -33,7 +33,7 @@ with lib;
       dropbox-cli
 
       # password managment
-      pass
+      pass-wayland
 
       # backup
       restic
