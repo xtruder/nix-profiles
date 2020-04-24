@@ -168,6 +168,7 @@ with lib;
         " go
         au BufNewFile,BufRead *.go setlocal filetype=go
         au BufNewFile,BufRead *.nix setlocal filetype=nix
+        let g:go_rename_command = "gopls"
 
         " javascript
         au BufNewFile,BufRead *.js setlocal filetype=javascript
