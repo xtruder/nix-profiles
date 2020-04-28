@@ -54,7 +54,7 @@ let
     exec ${pkgs.sockproc}/bin/sockproc "$XDG_RUNTIME_DIR/sockproc" --foreground
   '';
 
-  runInEnvironment = cmd: pkgs.writeScript "sway-run-environment.sh" ''
+  runInEnvironment = pkgs.writeScript "sway-run-environment.sh" ''
     #!${pkgs.runtimeShell} -xe
 
     PATH=/run/wrappers/bin:${with pkgs; makeBinPath [ sway jq gnugrep systemd bemenu coreutils ]}:$PATH
@@ -90,7 +90,7 @@ let
       sleep 1
     fi
 
-    sudo -u $env XDG_RUNTIME_DIR=/run/user/$(id -u $env) systemd-run --user /run/current-system/sw/bin/bash -i -c 'source ~/.profile && ${cmd}'
+    sudo -u $env sh -c "echo -e '$@\r\n0\r\n' | socat  - /run/user/$(id -u $env)/sockproc"
   '';
 
   markWindows = pkgs.writeScript "sway-mark-windows.sh" ''
@@ -119,13 +119,13 @@ in {
   config = {
     wayland.windowManager.sway.config.keybindings = {
       # run command in environment
-      "${modifier}+shift+d" = "exec ${runInEnvironment "exec $(${pkgs.dmenu}/bin/dmenu_path | ${pkgs.bemenu}/bin/bemenu -l 10)"}";
+      "${modifier}+shift+d" = "exec ${runInEnvironment} '${pkgs.dmenu}/bin/dmenu_path | ${pkgs.bemenu}/bin/bemenu -l 10'";
 
       # run x11 command in environment
-      "${modifier}+shift+x" = "exec ${runInEnvironment "GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb exec ${pkgs.cage}/bin/cage $(${pkgs.dmenu}/bin/dmenu_path | ${pkgs.bemenu}/bin/bemenu -l 10)"}";
+      "${modifier}+shift+x" = "exec ${runInEnvironment} 'GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb ${pkgs.cage}/bin/cage $(${pkgs.dmenu}/bin/dmenu_path | ${pkgs.bemenu}/bin/bemenu -l 10)'";
 
       # run terminal in environment
-      "${modifier}+shift+Return" = "exec ${runInEnvironment "exec $TERMINAL"}";
+      "${modifier}+shift+Return" = "exec ${runInEnvironment} '$TERMINAL'";
     };
 
     systemd.user.services.sway-mark-windows = {
