@@ -45,7 +45,6 @@ let
   prepareSession = pkgs.writeScript "prepare-session.sh" ''
     #!${pkgs.runtimeShell} -xe
 
-    PATH=/run/wrappers/bin:/run/current-system/sw/bin
     export XDG_RUNTIME_DIR=/run/user/$UID
 
     . "${config.home.profileDirectory}/etc/profile.d/hm-session-vars.sh"
@@ -54,7 +53,7 @@ let
       . "$HOME/.profile"
     fi
 
-    systemctl --user import-environment ${toString (unique importedVariables)}
+    ${pkgs.systemd}/bin/systemctl --user import-environment ${toString (unique importedVariables)}
 
     export HM_XPROFILE_SOURCED=1
 
