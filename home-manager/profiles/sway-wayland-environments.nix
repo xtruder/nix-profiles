@@ -58,7 +58,7 @@ let
 
     export HM_XPROFILE_SOURCED=1
 
-    tail -f /dev/null
+    exec ${pkgs.sockproc}/bin/sockproc "$XDG_RUNTIME_DIR/sockproc" --foreground
   '';
 
   runInEnvironment = cmd: pkgs.writeScript "sway-run-environment.sh" ''

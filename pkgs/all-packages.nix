@@ -16,4 +16,5 @@
   });
   i3-sway-scripts = pkgs.callPackage ./i3-sway-scripts { };
   bm-input = pkgs.callPackage ./bm-input { };
+  sockproc = pkgs.callPackage ./sockproc { };
 }
