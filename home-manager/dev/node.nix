@@ -23,7 +23,7 @@ in {
 
     programs.bash.initExtra = ''
       if [ -z $NPM_TOKEN ]; then
-        export $NPM_TOKEN=""
+        export NPM_TOKEN=""
       fi
     '';
 
