@@ -57,6 +57,8 @@ let
 
     export HM_XPROFILE_SOURCED=1
 
+    cd "$HOME"
+
     exec ${pkgs.sockproc}/bin/sockproc "$XDG_RUNTIME_DIR/sockproc" --foreground
   '';
 
