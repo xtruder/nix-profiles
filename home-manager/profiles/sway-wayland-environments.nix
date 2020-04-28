@@ -36,13 +36,9 @@ let
     fi
 
     chmod g+rw /run/user/$UID/$WAYLAND_DISPLAY /run/user/$UID/$WAYLAND_DISPLAY.lock
-
-    sleep 1
-
-    sudo -u xtruder XDG_RUNTIME_DIR=/run/user/$UID bash -c "source ~/.profile && systemctl --user import-environment"
   '';
 
-  prepareSession = pkgs.writeScript "prepare-session.sh" ''
+  startSession = pkgs.writeScript "prepare-session.sh" ''
     #!${pkgs.runtimeShell} -xe
 
     export XDG_RUNTIME_DIR=/run/user/$UID
@@ -54,8 +50,6 @@ let
     fi
 
     ${pkgs.systemd}/bin/systemctl --user import-environment ${toString (unique importedVariables)}
-
-    export HM_XPROFILE_SOURCED=1
 
     cd "$HOME"
 
@@ -93,7 +87,7 @@ let
         -E UID=$(id -u $env) \
         -E HOST_UID=$(id -u) \
         --uid=$env \
-        ${prepareSession}
+        ${startSession}
 
       sleep 1
     fi
