@@ -38,12 +38,10 @@ let
     chmod g+rw /run/user/$UID/$WAYLAND_DISPLAY /run/user/$UID/$WAYLAND_DISPLAY.lock
   '';
 
-  startSession = pkgs.writeScript "prepare-session.sh" ''
+  startSession = pkgs.writeScript "start-session.sh" ''
     #!${pkgs.runtimeShell} -xe
 
     export XDG_RUNTIME_DIR=/run/user/$UID
-
-    . "${config.home.profileDirectory}/etc/profile.d/hm-session-vars.sh"
 
     if [ -e "$HOME/.profile" ]; then
       . "$HOME/.profile"
