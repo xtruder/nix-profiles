@@ -119,13 +119,13 @@ in {
   config = {
     wayland.windowManager.sway.config.keybindings = {
       # run command in environment
-      "${modifier}+shift+d" = "exec ${runInEnvironment} '$(${pkgs.dmenu}/bin/dmenu_path | ${pkgs.bemenu}/bin/bemenu -l 10)'";
+      "${modifier}+shift+d" = "exec ${runInEnvironment} 'exec $(${pkgs.dmenu}/bin/dmenu_path | ${pkgs.bemenu}/bin/bemenu -l 10)'";
 
       # run x11 command in environment
       "${modifier}+shift+x" = "exec ${runInEnvironment} 'GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb ${pkgs.cage}/bin/cage $(${pkgs.dmenu}/bin/dmenu_path | ${pkgs.bemenu}/bin/bemenu -l 10)'";
 
       # run terminal in environment
-      "${modifier}+shift+Return" = "exec ${runInEnvironment} '$TERMINAL'";
+      "${modifier}+shift+Return" = "exec ${runInEnvironment} 'exec $TERMINAL'";
     };
 
     systemd.user.services.sway-mark-windows = {
