@@ -6,4 +6,5 @@
   ./user-env-xephyr.nix
   ./recovery.nix
   ./low-battery-check.nix
+  ./share-wayland-socket.nix
 ]
