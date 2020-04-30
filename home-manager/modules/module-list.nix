@@ -4,4 +4,5 @@
   ./sway-options.nix
   ./colors.nix
   ./gpg-import-keys.nix
+  ./shared-wayland-session.nix
 ]

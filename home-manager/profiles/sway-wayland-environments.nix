@@ -8,56 +8,10 @@ let
   cfg = config.wayland.windowManager.sway;
   modifier = cfg.config.modifier;
 
-  importedVariables = config.xsession.importedVariables ++ [
-    "WAYLAND_DISPLAY"
-  ];
-
-  mountWaylandSock = pkgs.writeScript "mount-wayland-sock.sh" ''
-    #!${pkgs.runtimeShell} -xe
-
-    PATH=/run/wrappers/bin:/run/current-system/sw/bin
-
-    while [ ! -d /run/user/$UID ]; do
-      sleep 1
-    done
-
-    touch /run/user/$UID/$WAYLAND_DISPLAY /run/user/$UID/$WAYLAND_DISPLAY.lock
-
-    if mountpoint -q /run/user/$UID/$WAYLAND_DISPLAY; then
-      echo already mounted
-    else
-      mount -o bind /run/user/$HOST_UID/$WAYLAND_DISPLAY /run/user/$UID/$WAYLAND_DISPLAY
-    fi
-
-    if mountpoint -q /run/user/$UID/$WAYLAND_DISPLAY.lock; then
-      echo already mounted
-    else
-      mount -o bind /run/user/$HOST_UID/$WAYLAND_DISPLAY.lock /run/user/$UID/$WAYLAND_DISPLAY.lock
-    fi
-
-    chmod g+rw /run/user/$UID/$WAYLAND_DISPLAY /run/user/$UID/$WAYLAND_DISPLAY.lock
-  '';
-
-  startSession = pkgs.writeScript "start-session.sh" ''
-    #!${pkgs.runtimeShell} -xe
-
-    export XDG_RUNTIME_DIR=/run/user/$UID
-
-    if [ -e "$HOME/.profile" ]; then
-      . "$HOME/.profile"
-    fi
-
-    ${pkgs.systemd}/bin/systemctl --user import-environment ${toString (unique importedVariables)}
-
-    cd "$HOME"
-
-    exec ${pkgs.sockproc}/bin/sockproc "$XDG_RUNTIME_DIR/sockproc" --foreground
-  '';
-
   runInEnvironment = pkgs.writeScript "sway-run-environment.sh" ''
     #!${pkgs.runtimeShell} -xe
 
-    PATH=/run/wrappers/bin:${with pkgs; makeBinPath [ sway jq gnugrep systemd bemenu coreutils ]}:$PATH
+    PATH=/run/wrappers/bin:${with pkgs; makeBinPath [ sway jq gnugrep bemenu coreutils ]}:$PATH
 
     workspace=$(swaymsg -t get_workspaces | jq '.[] | select(.focused==true).name | split(":") | .[1]' -r)
 
@@ -70,24 +24,6 @@ let
     if [ -z "$env" ]; then
       echo "no env selected"
       exit 0
-    fi
-
-    if loginctl | grep $env; then
-      echo "Env $env already exists"
-    else
-      sudo systemd-run \
-        --property PAMName=login \
-        --property User=$env \
-        --property ExecStartPost=${mountWaylandSock} \
-        --property PermissionsStartOnly=true \
-        -E WAYLAND_DISPLAY=$WAYLAND_DISPLAY \
-        -E XDG_SESSION_TYPE=wayland \
-        -E UID=$(id -u $env) \
-        -E HOST_UID=$(id -u) \
-        --uid=$env \
-        ${startSession}
-
-      sleep 1
     fi
 
     sudo -u $env sh -c "echo -e '$@\r\n0\r\n' | socat  - /run/user/$(id -u $env)/sockproc"
