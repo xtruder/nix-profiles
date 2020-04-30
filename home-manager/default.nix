@@ -16,6 +16,7 @@
     rofi-pass = ./profiles/rofi-pass.nix;
   };
   workspaces = {
+    base = ./workspaces/base.nix;
     i3 = ./workspaces/i3.nix;
     sway = ./workspaces/sway.nix;
   };
