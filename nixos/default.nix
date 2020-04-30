@@ -38,6 +38,7 @@
     xephyr-session = ./profiles/xephyr-session.nix;
     deploy-key = ./profiles/deploy-key.nix;
     virtualbox-host = ./profiles/virtualbox-host.nix;
+    gnome3 = ./profiles/gnome3.nix;
   };
 
   # nixos roles
