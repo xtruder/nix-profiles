@@ -7,7 +7,7 @@ with lib;
 
   config = {
     home.packages = with pkgs; [
-      go_1_12
+      go_1_14
       golint
       gocode
       gotags
@@ -18,6 +18,8 @@ with lib;
       vgo2nix
       gotools
       go-protobuf
+      gopls
+      godef
     ];
 
     programs.neovim.plugins = with pkgs.vimPlugins; [ vim-go ];
