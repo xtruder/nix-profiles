@@ -14,6 +14,7 @@
         vim
         path-autocomplete
         all-autocomplete
+        vscode-direnv
       ];
     };
   };
