@@ -14,11 +14,13 @@
     git = ./profiles/git.nix;
     gnome-keyring = ./profiles/gnome-keyring.nix;
     rofi-pass = ./profiles/rofi-pass.nix;
+    wayland = ./profiles/wayland.nix;
   };
   workspaces = {
     base = ./workspaces/base.nix;
     i3 = ./workspaces/i3.nix;
     sway = ./workspaces/sway.nix;
+    gnome3 = ./workspaces/gnome3.nix;
   };
   dev = {
     android = ./dev/android.nix;

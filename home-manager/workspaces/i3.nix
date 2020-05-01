@@ -55,6 +55,7 @@ in {
       enable = mkDefault true;
       imageDirectory = mkDefault "%h/backgrounds";
     };
+    services.gpg-agent.pinentryFlavor = "gtk2";
 
     programs.i3lock = {
       enable = true;
