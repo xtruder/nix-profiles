@@ -19,6 +19,7 @@ with lib;
       gotools
       go-protobuf
       godef
+      go-outline
     ];
 
     programs.neovim.plugins = with pkgs.vimPlugins; [ vim-go ];
