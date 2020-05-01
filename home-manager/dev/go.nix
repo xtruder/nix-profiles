@@ -18,7 +18,6 @@ with lib;
       vgo2nix
       gotools
       go-protobuf
-      gopls
       godef
     ];
 
