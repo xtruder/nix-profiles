@@ -6,7 +6,6 @@
   home-manager.defaults = [{
     xresources.properties = {
       "Xft.dpi" = 227;
-      "rofi.dpi" = 227;
     };
     xsession.pointerCursor.size = 128;
   }];
