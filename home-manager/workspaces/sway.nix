@@ -57,6 +57,7 @@ in {
 
     ../profiles/wayland.nix
     ../profiles/sway.nix
+    ../profiles/swayidle.nix
     #../profiles/waybar.nix
     ../profiles/udiskie.nix
     ../profiles/dunst.nix

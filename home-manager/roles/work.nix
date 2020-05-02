@@ -18,6 +18,9 @@ with lib;
     };
 
     home.packages = with pkgs; [
+      # utils
+      killall
+
       # cpu monitoring
       htop
 

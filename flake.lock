@@ -2,14 +2,14 @@
   "inputs": {
     "home-manager": {
       "info": {
-        "lastModified": 1588312486,
-        "narHash": "sha256-O1GGx07e7dAnVE1NPLbOt0//DnbhE/tg4Vepbe/GtHI="
+        "lastModified": 1588410216,
+        "narHash": "sha256-x+pfBbAA4/Njf4Al3P6kZ/VQhIBxiEqykPzUZYJ4lf4="
       },
       "inputs": {},
       "locked": {
         "owner": "xtruder",
         "repo": "home-manager",
-        "rev": "57a06d9882501dff12539f4378c0ecb6bd3137c7",
+        "rev": "0311f6c9bd8894bca3c4b9ea9a9d5d302752d580",
         "type": "github"
       },
       "original": {
