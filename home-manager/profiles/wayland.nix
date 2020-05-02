@@ -9,10 +9,6 @@
       SDL_VIDEODRIVER = "wayland";
     };
 
-    programs.chromium.package = pkgs.chromiumOzone.override {
-      commandLineArgs = "--ozone-platform=wayland";
-    };
-
     programs.firefox.package = pkgs.firefox-wayland;
 
     home.packages = with pkgs; [
