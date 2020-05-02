@@ -1,7 +1,7 @@
 { lib, symlinkJoin, writeScriptBin
 , runtimeShell, i3, sway, jq, bemenu
 , useSway ? false
-, promptCmd ? ''echo "" | ${bemenu}/bin/bemenu -p "New name: "''}:
+, promptCmd ? prompt: ''echo "" | ${bemenu}/bin/bemenu -p "${prompt}: "''}:
 
 with lib;
 
@@ -16,7 +16,7 @@ let
 
     name=`${msgcmd} -t get_workspaces | jq 'map(select(.focused == true))[0].name'`
     num=`${msgcmd} -t get_workspaces | jq 'map(select(.focused == true))[0].num'`
-    new_name=`${promptCmd}`
+    new_name=`${promptCmd "New name"}`
 
     # if name is not empty do rename
     if [ ! -z $new_name ]; then

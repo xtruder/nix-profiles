@@ -7,7 +7,10 @@ let
   cfg = config.wayland.windowManager.sway;
   modifier = cfg.config.modifier;
 
-  i3-sway-scripts = pkgs.i3-sway-scripts.override { useSway = true; };
+  i3-sway-scripts = pkgs.i3-sway-scripts.override {
+    useSway = true;
+    promptCmd = prompt: ''${pkgs.rofi}/bin/rofi -dmenu -P "${prompt}" -lines 0'';
+  };
   i3-sway = import ./i3-sway.nix { inherit config lib pkgs i3-sway-scripts; };
 
 in {
