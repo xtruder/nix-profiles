@@ -39,6 +39,7 @@
     deploy-key = ./profiles/deploy-key.nix;
     virtualbox-host = ./profiles/virtualbox-host.nix;
     gnome3 = ./profiles/gnome3.nix;
+    sway = ./profiles/sway.nix;
   };
 
   # nixos roles
