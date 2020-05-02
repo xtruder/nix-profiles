@@ -4,7 +4,7 @@
   config = {
     # enable wayland backends for different backend platforms
     home.sessionVariables = {
-      GDK_BACKEND = "wayland";
+      GDK_BACKEND = "wayland,x11";
       QT_QPA_PLATFORM = "wayland";
       SDL_VIDEODRIVER = "wayland";
     };
