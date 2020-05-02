@@ -65,7 +65,6 @@ in {
     ../profiles/rofi.nix
     ../profiles/gnome-keyring.nix
     ../profiles/redhsift.nix
-    ../profiles/sway-wayland-environments.nix
   ];
 
   config = {
