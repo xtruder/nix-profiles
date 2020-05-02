@@ -18,7 +18,7 @@ with lib;
       layout = "us";
 
       desktopManager.xterm.enable = true;
-      displayManager.gdm.enable = true;
+      displayManager.sddm.enable = true;
     };
   };
 }
