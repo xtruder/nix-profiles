@@ -113,4 +113,24 @@ in {
       "${modifier}+l" = "exec ${pkgs.systemd}/bin/loginctl lock-session $XDG_SESSION_ID";
     };
   };
+
+  extraConfig = ''
+    set $mode_system (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (S) shutdown
+
+    mode "$mode_system" {
+      bindsym l exec ${pkgs.systemd}/bin/loginctl lock-session $XDG_SESSION_ID, mode "default"
+      bindsym e exit
+      bindsym s exec --no-startup-id ${pkgs.systemd}/bin/systemctl suspend, mode "default"
+      bindsym h exec --no-startup-id ${pkgs.systemd}/bin/systemctl hibernate, mode "default"
+      bindsym r exec --no-startup-id ${pkgs.systemd}/bin/systemctl reboot, mode "default"
+      bindsym Shift+s exec --no-startup-id ${pkgs.systemd}/bin/systemctl poweroff -i, mode "default"
+
+      # back to normal: Enter or Escape
+      bindsym Return mode "default"
+      bindsym Escape mode "default"
+      bindsym q mode "default"
+    }
+
+    bindsym ${modifier}+Shift+l mode "$mode_system"
+  '';
 }
