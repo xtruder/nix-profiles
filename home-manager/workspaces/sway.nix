@@ -61,6 +61,7 @@ in {
     ../profiles/udiskie.nix
     ../profiles/dunst.nix
     ../profiles/kitty.nix
+    ../profiles/rofi.nix
     ../profiles/gnome-keyring.nix
     ../profiles/redhsift.nix
     ../profiles/sway-wayland-environments.nix

@@ -26,9 +26,6 @@ in {
       # rename workspace
       "${modifier}+n" = "exec ${i3-sway-scripts}/bin/i3-rename-workspace";
 
-      # dmenu alternative that works on x11 and on wayland
-      "${modifier}+d" = mkDefault "exec ${pkgs.bemenu}/bin/bemenu-run -l 20 -p 'Run:'";
-
       # run terminal
       "${modifier}+Return" = "exec ${i3-sway-scripts}/bin/i3-expose-workspace ${config.programs.terminal.terminalScript}";
 

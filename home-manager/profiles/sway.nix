@@ -20,7 +20,7 @@ in {
         "Print" = ''exec --no-startup-id ${pkgs.grim}/bin/grim - | ${pkgs.wl-clipboard}/bin/wl-copy'';
 
         # print screen select a portion of window
-        "${modifier}+Print" = ''exec --no-startup-id ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.wl-clipboard}/bin/wl-copy'';
+        "${modifier}+Print" = ''exec --no-startup-id ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.wl-clipboard}/bin/wl-copy'';
       };
     }];
   };

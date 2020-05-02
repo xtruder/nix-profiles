@@ -13,7 +13,7 @@
     chromium = ./profiles/chromium.nix;
     git = ./profiles/git.nix;
     gnome-keyring = ./profiles/gnome-keyring.nix;
-    rofi-pass = ./profiles/rofi-pass.nix;
+    rofi = ./profiles/rofi.nix;
     wayland = ./profiles/wayland.nix;
   };
   workspaces = {
