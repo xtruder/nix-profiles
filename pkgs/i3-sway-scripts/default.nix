@@ -6,16 +6,14 @@
 with lib;
 
 let
-  msgcmd = if useSway then "swaymsg" else "i3-msg";
-
-  pkg = if useSway then sway else i3;
+  msgcmd = if useSway then "${sway}/bin/swaymsg" else "${i3}/bin/i3-msg";
+  jqcmd = "${jq}/bin/jq";
 
   renameWorkspace = writeScriptBin "i3-rename-workspace" ''
 	  #!${runtimeShell} -el
-    PATH=${makeBinPath [ jq pkg ]}
 
-    name=`${msgcmd} -t get_workspaces | jq 'map(select(.focused == true))[0].name'`
-    num=`${msgcmd} -t get_workspaces | jq 'map(select(.focused == true))[0].num'`
+    name=`${msgcmd} -t get_workspaces | ${jqcmd} 'map(select(.focused == true))[0].name'`
+    num=`${msgcmd} -t get_workspaces | ${jqcmd} 'map(select(.focused == true))[0].num'`
     new_name=`${promptCmd "New name"}`
 
     # if name is not empty do rename
@@ -29,9 +27,8 @@ let
   # exposes name of the workspace via environment variable
   exposeWorkspace = writeScriptBin "i3-expose-workspace" ''
     #!${runtimeShell} -el
-    PATH=${makeBinPath [ jq pkg ]}:$PATH
 
-    export WORKSPACE=''${WORKSPACE:-$(${msgcmd} -t get_workspaces  | jq '.[] | select(.focused==true).name | split(":") | .[1]' -r)}
+    export WORKSPACE=''${WORKSPACE:-$(${msgcmd} -t get_workspaces  | ${jqcmd} '.[] | select(.focused==true).name | split(":") | .[1]' -r)}
 
     if [ "$WORKSPACE" == "null" ]; then
       unset WORKSPACE
