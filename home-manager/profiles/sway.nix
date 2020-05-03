@@ -18,6 +18,8 @@ in {
     wayland.windowManager.sway = mkMerge [i3-sway {
       enable = true;
 
+      systemdIntegration = false;
+
       config.keybindings = {
         # print screen
         "Print" = ''exec --no-startup-id ${pkgs.grim}/bin/grim - | ${pkgs.wl-clipboard}/bin/wl-copy'';
