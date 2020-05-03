@@ -61,7 +61,7 @@ in {
     #../profiles/waybar.nix
     ../profiles/udiskie.nix
     ../profiles/dunst.nix
-    ../profiles/kitty.nix
+    ../profiles/alacirtty.nix
     ../profiles/rofi.nix
     ../profiles/gnome-keyring.nix
     ../profiles/redhsift.nix

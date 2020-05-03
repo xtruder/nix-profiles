@@ -1,6 +1,7 @@
 {
   module = ./module.nix;
   profiles = {
+    alacritty = ./profiles/alacirtty.nix;
     i3 = ./profiles/i3.nix;
     i3status = ./profiles/i3status.nix;
     dunst = ./profiles/dunst.nix;
