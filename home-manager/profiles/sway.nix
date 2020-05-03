@@ -37,8 +37,6 @@ in {
         export GIO_EXTRA_MODULES=${pkgs.dconf.lib}/lib/gio/modules
 
         ${systemctl} --user import-environment ${toString importedVariables}
-        ${systemctl} --user stop graphical-session.target
-        ${systemctl} --user start graphical-session.target
       '';
 
       config.keybindings = {
@@ -48,6 +46,10 @@ in {
         # print screen select a portion of window
         "${modifier}+Print" = ''exec --no-startup-id ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.wl-clipboard}/bin/wl-copy'';
       };
+
+      config.startup = [{
+        command = "${systemctl} start --user graphical-session.target";
+      }];
     }];
   };
 }
