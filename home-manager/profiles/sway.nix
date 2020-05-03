@@ -20,6 +20,10 @@ in {
 
       systemdIntegration = false;
 
+      extraSessionCommands = ''
+        export GIO_EXTRA_MODULES=${pkgs.dconf.lib}/lib/gio/modules
+      '';
+
       config.keybindings = {
         # print screen
         "Print" = ''exec --no-startup-id ${pkgs.grim}/bin/grim - | ${pkgs.wl-clipboard}/bin/wl-copy'';
