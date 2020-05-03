@@ -15,6 +15,17 @@ let
 
   systemctl = "${pkgs.systemd}/bin/systemctl";
 
+  importedVariables = [
+    "DBUS_SESSION_BUS_ADDRESS"
+    "DISPLAY"
+    "WAYLAND_DISPLAY"
+    "SSH_AUTH_SOCK"
+    "XAUTHORITY"
+    "XDG_DATA_DIRS"
+    "XDG_RUNTIME_DIR"
+    "XDG_SESSION_ID"
+  ];
+
 in {
   config = {
     wayland.windowManager.sway = mkMerge [i3-sway {
@@ -24,6 +35,10 @@ in {
 
       extraSessionCommands = ''
         export GIO_EXTRA_MODULES=${pkgs.dconf.lib}/lib/gio/modules
+
+        ${systemctl} --user import-environment ${toString importedVariables}
+        ${systemctl} --user stop graphical-session.target
+        ${systemctl} --user start graphical-session.target
       '';
 
       config.keybindings = {
@@ -33,10 +48,6 @@ in {
         # print screen select a portion of window
         "${modifier}+Print" = ''exec --no-startup-id ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.wl-clipboard}/bin/wl-copy'';
       };
-
-      config.startup = [{
-        command = "${systemctl} stop --user graphical-session.target; ${systemctl} start --user graphical-session.target";
-      }];
     }];
   };
 }
