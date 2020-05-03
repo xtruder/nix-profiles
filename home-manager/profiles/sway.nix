@@ -13,6 +13,8 @@ let
   };
   i3-sway = import ./i3-sway.nix { inherit config lib pkgs i3-sway-scripts; };
 
+  systemctl = "${pkgs.systemd}/bin/systemctl";
+
 in {
   config = {
     wayland.windowManager.sway = mkMerge [i3-sway {
@@ -31,6 +33,10 @@ in {
         # print screen select a portion of window
         "${modifier}+Print" = ''exec --no-startup-id ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.wl-clipboard}/bin/wl-copy'';
       };
+
+      config.startup = [{
+        command = "${systemctl} stop --user graphical-session.target; ${systemctl} start --user graphical-session.target";
+      }];
     }];
   };
 }
