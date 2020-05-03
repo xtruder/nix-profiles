@@ -84,6 +84,11 @@ in {
       "${modifier}+Shift+8" = "move container to workspace number 8";
       "${modifier}+Shift+9" = "move container to workspace number 9";
 
+      # reload/restart/exit i3
+      "${modifier}+Shift+c" = "reload";
+      "${modifier}+Shift+r" = "restart";
+      "${modifier}+Shift+e" = mkDefault "exit";
+
       # resize mode for windows
       "${modifier}+r" = "mode resize";
 
