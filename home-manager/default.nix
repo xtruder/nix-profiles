@@ -63,5 +63,6 @@
   themes = {
     materia = ./themes/materia.nix;
     colorscheme.google-dark = ./themes/colorschemes/google-dark.nix;
+    colorscheme.google-light = ./themes/colorschemes/google-light.nix;
   };
 }
