@@ -16,6 +16,7 @@ with lib;
     ../profiles/firmware.nix
     ../profiles/virtualbox-host.nix
     ../profiles/libvirt.nix
+    ../profiles/docker.nix
   ];
 
   config = {
