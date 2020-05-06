@@ -9,13 +9,11 @@ with lib;
     ../profiles/gpg.nix
     ../profiles/tmux.nix
     ../profiles/vim.nix
+    ../profiles/ssh.nix
   ];
 
   config = {
-    programs = {
-      ssh.enable = true;
-      direnv.enable = true;
-    };
+    programs.direnv.enable = true;
 
     home.packages = with pkgs; [
       # utils

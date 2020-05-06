@@ -16,6 +16,7 @@
     gnome-keyring = ./profiles/gnome-keyring.nix;
     rofi = ./profiles/rofi.nix;
     wayland = ./profiles/wayland.nix;
+    ssh = ./profiles/ssh.nix;
   };
   workspaces = {
     base = ./workspaces/base.nix;
