@@ -24,10 +24,10 @@ with lib;
 
     networking = {
       firewall = {
-        trustedInterfaces = ["virbr0"];
+        trustedInterfaces = ["virbr0" "virbr1" "virbr2"];
         allowedTCPPortRanges = [{ from = 49152; to = 49215; }];
       };
-      nat.internalInterfaces = ["virbr0"];
+      nat.internalInterfaces = ["virbr0" "virbr1" "virbr2"];
     };
 
     # ignore virbr0 as libvirtd listens here
