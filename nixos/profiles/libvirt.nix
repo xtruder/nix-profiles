@@ -43,7 +43,12 @@ with lib;
       "${pkgs.spice_gtk}/bin/spice-client-glib-usb-acl-helper";
 
     # enable nfs server for vagrant
-    services.nfs.server.enable = true;
+    services.nfs.server = {
+      enable = true;
+      extraNfsdConfig = ''
+        udp=y
+      '';
+    };
 
     environment.systemPackages = with pkgs; [
       spice-gtk # required for usb redirection to work
