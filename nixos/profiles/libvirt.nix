@@ -42,6 +42,9 @@ with lib;
     security.wrappers.spice-client-glib-usb-acl-helper.source =
       "${pkgs.spice_gtk}/bin/spice-client-glib-usb-acl-helper";
 
+    # enable nfs server for vagrant
+    services.nfs.server.enable = true;
+
     environment.systemPackages = with pkgs; [
       spice-gtk # required for usb redirection to work
       libguestfs
