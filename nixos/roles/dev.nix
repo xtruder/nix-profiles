@@ -15,6 +15,7 @@
       distributedBuilds = true;
       extraOptions = ''
         builders-use-substitutes = true
+        builders = @/etc/nix/machines
       '';
     };
   };
