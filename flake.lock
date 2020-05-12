@@ -2,13 +2,13 @@
   "nodes": {
     "home-manager": {
       "info": {
-        "lastModified": 1589266910,
-        "narHash": "sha256-pGdKwBsn+E4X/YW28CjHTYqC3Ybi+k3iDbw9V8ZNAU4="
+        "lastModified": 1589294679,
+        "narHash": "sha256-TdGp9P1q6TaS2+MIPf75IPP2CeJVer0BvxtLzg84V4w="
       },
       "locked": {
         "owner": "xtruder",
         "repo": "home-manager",
-        "rev": "ad735bc1deeb1bfd04ff3375d48b287ded1cd5af",
+        "rev": "903c12495b38155a4890ec3bd8a6d3a0d9e705de",
         "type": "github"
       },
       "original": {

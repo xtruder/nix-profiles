@@ -18,6 +18,8 @@
     rofi = ./profiles/rofi.nix;
     wayland = ./profiles/wayland.nix;
     ssh = ./profiles/ssh.nix;
+    vscode = ./profiles/vscode.nix;
+    code-server = ./profiles/code-server.nix;
   };
   workspaces = {
     base = ./workspaces/base.nix;
