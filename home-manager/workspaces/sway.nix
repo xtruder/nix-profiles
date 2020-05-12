@@ -100,13 +100,13 @@ in {
           # move windows with scratchbrowser mark to scratchpad and set to smaller size
           {
             criteria.con_mark = "scratchbrowser";
-            command = "floating enable, resize set 3440 1876, move window to scratchpad";
+            command = "floating enable, resize set 80 ppt 80 ppt, move window to scratchpad";
           }
 
           # move windows with scratchterm mark to scratchpad and set to smaller size
           {
             criteria.con_mark = "scratchterm";
-            command = "floating enable, resize set 3440 1876, move window to scratchpad";
+            command = "floating enable, resize set 80 ppt 80 ppt, move window to scratchpad";
           }
 
           {
