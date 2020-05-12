@@ -5,6 +5,7 @@
     i3 = ./profiles/i3.nix;
     i3status = ./profiles/i3status.nix;
     dunst = ./profiles/dunst.nix;
+    mako = ./profiles/mako.nix;
     gpg = ./profiles/gpg.nix;
     xterm = ./profiles/xterm.nix;
     kitty = ./profiles/kitty.nix;

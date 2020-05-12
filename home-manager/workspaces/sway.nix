@@ -60,7 +60,7 @@ in {
     ../profiles/swayidle.nix
     #../profiles/waybar.nix
     ../profiles/udiskie.nix
-    ../profiles/dunst.nix
+    ../profiles/mako.nix
     ../profiles/alacirtty.nix
     ../profiles/rofi.nix
     ../profiles/gnome-keyring.nix
