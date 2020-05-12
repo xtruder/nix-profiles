@@ -16,18 +16,18 @@ with lib;
 
       modules = {
         "online_status" = {
-          position = 1;
+          position = 10;
         };
 
         load = {
-          position = 2;
+          position = 20;
           settings = {
             format = "↺ %1min";
           };
         };
 
         net_rate = {
-          position = 3;
+          position = 30;
           settings = {
             interfaces = "ens3,ens4,wlan0,eth0";
             all_interfaces = false;
@@ -36,7 +36,7 @@ with lib;
         };
 
         "volume master" = {
-          position = 5;
+          position = 40;
           settings = {
             format = "♪ %volume";
             device = "default";
@@ -45,8 +45,14 @@ with lib;
           };
         };
 
+        "disk /" = {
+          position = 50;
+        };
+
+
         "battery all" = {
-          position = 6;
+          enable = mkDefault false;
+          position = 60;
           settings = {
             format = "%status %percentage %remaining";
             low_threshold = 10;
@@ -55,14 +61,14 @@ with lib;
         };
 
         "tztime local" = {
-          position = 7;
+          position = 70;
           settings = {
             format = "%Y-%m-%d ⌚ %H:%M:%S";
           };
         };
 
         "tztime pst" = {
-          position = 8;
+          position = 80;
           settings = {
             format = "PST⌚ %H:%M";
             timezone = "America/Los_Angeles";
