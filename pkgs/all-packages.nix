@@ -17,4 +17,14 @@
   i3-sway-scripts = pkgs.callPackage ./i3-sway-scripts { };
   bm-input = pkgs.callPackage ./bm-input { };
   sockproc = pkgs.callPackage ./sockproc { };
+  rofi-pass = pkgs.rofi-pass.overrideDerivation (d: {
+    patches = [(pkgs.fetchpatch {
+      url = "https://github.com/carnager/rofi-pass/commit/4582d8f9640f6bee3141760570658a2206706ef8.patch";
+      sha256 = "/NRuexG2nYZkWwqa/BWr/1dqmOkqUNWO5SpIwNgHXms=";
+    })];
+
+    postPatch = ''
+      substituteInPlace rofi-pass --replace "wl-copy -o" "wl-copy"
+    '';
+  });
 }

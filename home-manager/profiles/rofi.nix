@@ -19,6 +19,8 @@ in {
     _pwgen() {
       pwgen -y "$@" 1
     }
+
+    clip=wayland
   '';
 
   xsession.windowManager.i3.config.keybindings = let
@@ -41,5 +43,5 @@ in {
     "${modifier}+d" = drunCmd;
   };
 
-  home.packages = [ pkgs.rofi-pass ];
+  home.packages = [ pkgs.rofi-pass pkgs.wl-clipboard ];
 }
