@@ -20,6 +20,7 @@ with lib;
     programs.vscode.extensions = [
       pkgs.vscode-extensions.bbenoist.Nix
       pkgs.my-vscode-extensions.nixfmt-vscode
+      pkgs.nix-env-selector
     ];
 
     programs.bash.profileExtra = ''

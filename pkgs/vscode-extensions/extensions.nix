@@ -8,8 +8,8 @@
   {
     name = "vim";
     publisher = "vscodevim";
-    version = "1.13.1";
-    sha256 = "04s0myx4j6ip86ic78cmaj8mb7wds4pmlj2fjy3wmyrbcyadn4h4";
+    version = "1.14.1";
+    sha256 = "179kqs6qpm57d43i02l25mga9rxk0cmmzxbl0ydgdjw7xlk2r0i1";
   }
   {
     name = "path-autocomplete";
@@ -118,5 +118,11 @@
     publisher = "Rubymaniac";
     version = "0.0.2";
     sha256 = "1gml41bc77qlydnvk1rkaiv95rwprzqgj895kxllqy4ps8ly6nsd";
+  }
+  {
+    name = "nix-env-selector";
+    publisher = "arrterian";
+    version = "0.1.2";
+    sha256 = "1n5ilw1k29km9b0yzfd32m8gvwa2xhh6156d4dys6l8sbfpp2cv9";
   }
 ]
