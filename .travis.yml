@@ -1,6 +1,8 @@
 sudo: true
 language: generic
 dist: bionic
+git:
+    depth: false
 
 jobs:
     include:
