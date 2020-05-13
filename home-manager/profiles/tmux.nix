@@ -31,6 +31,9 @@ with lib;
         # Set title
         set -g set-titles on
 
+        # Enable mouse
+        set-option -g mouse on
+
         # Status update interval
         set -g status-interval 1
 
