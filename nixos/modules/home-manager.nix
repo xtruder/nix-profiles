@@ -20,7 +20,7 @@ in {
 
     home-manager.users = mkOption {
       type = types.attrsOf (types.submodule ({...}: {
-        imports = cfg.defaults ++ [ nix-profiles.home-manager.module ];
+        imports = cfg.defaults ++ [ nix-profiles.lib.home-manager.module ];
       }));
     };
   };

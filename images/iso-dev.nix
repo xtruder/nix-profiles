@@ -1,7 +1,7 @@
 {config, pkgs, lib, nix-profiles, ...}:
 
 {
-  imports = with nix-profiles.nixos; [
+  imports = with nix-profiles.lib.nixos; [
     # define system as iso
     system.iso
 
@@ -16,7 +16,7 @@
   ];
 
   home-manager.users.user = {config, ...}: {
-    imports = with nix-profiles.home-manager; [
+    imports = with nix-profiles.lib.home-manager; [
       # use sway workspace
       workspaces.sway
 
@@ -24,19 +24,12 @@
       themes.materia
       themes.colorscheme.google-dark
 
+      profiles.code-server
+
       # set dev desktop environment
       roles.desktop.dev
 
-      # enable development profiles
-      dev.devops.all
-      dev.android
-      dev.go
-      dev.node
-      #dev.elm
-      #dev.haskell
-      dev.python
-      dev.ruby
-      dev.nix
+      dev.standard
     ];
   };
 }

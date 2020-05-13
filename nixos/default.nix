@@ -18,6 +18,7 @@
     vm = ./system/vm.nix;
     iso = ./system/iso.nix;
     cloud-vm = ./system/cloud-vm.nix;
+    minimal-part = ./system/minimal-part.nix;
   };
 
   # nixos profiles
@@ -47,5 +48,6 @@
     base = ./roles/base.nix;
     dev = ./roles/dev.nix;
     work = ./roles/work.nix;
+    desktop = ./roles/desktop.nix;
   };
 }

@@ -1,12 +1,12 @@
-{ config, lib, pkgs, i3-sway-scripts ? pkgs.i3-sway-scripts, ... }:
+{ config, cfg, lib, pkgs, i3-sway-scripts ? pkgs.i3-sway-scripts, ... }:
 
 with lib;
 
 let
-  modifier = "Mod4";
+  modifier = cfg.config.modifier;
 in {
   config = {
-    modifier = mkDefault modifier;
+    modifier = mkDefault "Mod4";
 
     workspaceLayout = "tabbed";
     defaultOrientation = "horizontal";

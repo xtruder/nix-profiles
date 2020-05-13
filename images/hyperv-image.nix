@@ -1,7 +1,7 @@
 { config, pkgs, lib, nix-profiles, ... }:
 
 {
-  imports = with nix-profiles.nixos; [
+  imports = with nix-profiles.lib.nixos; [
     hw.hyperv-vm # hw.hyperv-vm-gui for gui support
 
     # import base environment
@@ -15,7 +15,7 @@
   ];
 
   home-manager.users.user = { config, ... }: {
-    imports = with nix-profiles.home-manager; [
+    imports = with nix-profiles.lib.home-manager; [
       # workspaces.i3
       # themes.materia
       # themes.colorscheme.google-dark

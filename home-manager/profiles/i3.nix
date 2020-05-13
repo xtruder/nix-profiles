@@ -6,7 +6,7 @@ let
   cfg = config.xsession.windowManager.i3;
   modifier = config.xsession.windowManager.i3.config.modifier;
 
-  i3-sway = import ./i3-sway.nix { inherit config lib pkgs; };
+  i3-sway = import ./i3-sway.nix { inherit config cfg lib pkgs; };
 
 in {
   config = {

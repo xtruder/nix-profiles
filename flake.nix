@@ -16,17 +16,22 @@
       home-manager = home-manager;
     };
 
-    system = "x86_64-linux";
+    systems = [ "x86_64-linux" ];
+
+    forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
+
     nixpkgs' = nixpkgs;
-    pkgs = nixpkgs.legacyPackages.${system};
+    pkgsForSystem = system: nixpkgs.legacyPackages.${system};
+    pkgsDefault = pkgsForSystem "x86_64-linux";
 
     nixosSystem' = {nixpkgs ? nixpkgs', ...}@args:
       nixpkgs.lib.nixosSystem ({
-        modules = [ self.nixos.module ] ++ (args.modules or []);
-        inherit specialArgs system;
+        modules = [ self.nixosModules.nix-profiles ] ++ (args.modules or []);
+        inherit specialArgs;
       } // (filterAttrs (n: _: n != "nixpkgs" && n != "modules") args));
 
     buildIsoImage = configuration: (nixosSystem' {
+      system = "x86_64-linux";
       modules = [ configuration ];
     }).config.system.build.isoImage;
 
@@ -34,7 +39,7 @@
 
     version = "v2.0";
 
-    getRev = input: "${builtins.substring 0 8 input.lastModified}_${input.shortRev or "dirty"}";
+    getRev = input: "${toString input.lastModified}_${input.shortRev or "dirty"}";
 
     versionSufix =
       if isRelease then "${getRev nixpkgs}-${getRev home-manager}"
@@ -42,68 +47,75 @@
 
     fullVersion = "${version}-${versionSufix}";
 
-    testingPython = import "${nixpkgs.outPath}/nixos/lib/testing-python.nix" {
-      inherit system pkgs;
+    testingPython = system: import "${nixpkgs.outPath}/nixos/lib/testing-python.nix" {
+      inherit system pkgs specialArgs;
     };
 
     buildVms = node: (testingPython.makeTest {
-      nodes = { inherit node; };
+      nodes.node = {
+        imports = [ self.nixos.module node ];
+      };
       testScript = "";
     }).driver;
 
   in {
-    nixos = import ./nixos;
-    home-manager = import ./home-manager;
+    lib = {
+      nixosSystem = nixosSystem';
+      nixos = import ./nixos;
+      home-manager = import ./home-manager;
+    };
 
-    lib.nixosSystem = nixosSystem';
+    nixosModules.nix-profiles = import self.lib.nixos.module;
+    homeManagerModules.nix-profiles = import self.lib.home-manager.module;
 
-    pkgs = import ./pkgs/all-packages.nix { inherit pkgs; };
+    packages = forAllSystems (system: filterAttrs (_: isDerivation) (import ./pkgs/all-packages.nix {
+      pkgs = pkgsForSystem system;
+    }));
 
-    checks.x86_64-linux.build = (nixosSystem' {
-      modules = [{
-        imports = with self.nixos; [
-          self.nixos.system.iso
-          roles.dev
-          profiles.user
-          profiles.openssh
-        ];
-
-        home-manager.users.user = {config, ...}: {
-          imports = with self.home-manager; [
-            # use i3 workspace
-            workspaces.i3
-
-            # set themes and colorschemes
-            themes.materia
-            themes.colorscheme.google-dark
-
-            # set dev desktop role
-            roles.desktop.dev
-
-            # enable development profiles
-            dev.devops.all
-            dev.android
-            dev.go
-            dev.node
-            #dev.elm
-            #dev.haskell
-            dev.python
-            dev.ruby
-            dev.nix
+    checks = forAllSystems (sys: {
+      dev = (nixosSystem' {
+        modules = [{
+          imports = with self.lib.nixos; [
+            system.minimal-part
+            roles.dev
+            profiles.user
+            profiles.openssh
           ];
-        };
-      }];
-    }).config.system.build.toplevel;
+
+          home-manager.users.user = {config, ...}: {
+            imports = with self.lib.home-manager; [
+              # use i3 workspace
+              workspaces.sway
+
+              # set themes and colorschemes
+              themes.materia
+              themes.colorscheme.google-dark
+
+              # set dev desktop role
+              roles.desktop.dev
+              roles.server.dev
+
+              dev.standard
+            ];
+          };
+        }];
+        system = sys;
+      }).config.system.build.toplevel;
+    });
 
     tests.x86_64-linux-desktop = buildVms ({ pkgs, config, ... }: {
-      imports = with self.nixos; [
-        self.nixos.system.iso
-        roles.dev
+      imports = with self.lib.nixos; [
+        roles.desktop
         profiles.user
       ];
 
+      virtualisation.memorySize = 4096;
+      virtualisation.qemu.options = mkAfter ["-vga qxl"];
+
+      users.users.user.password = "foobar";
+
       home-manager.users.user = {config, ...}: {
-        imports = with self.home-manager; [
+        imports = with self.lib.home-manager; [
           # use i3 workspace
           workspaces.i3
 
@@ -114,6 +126,8 @@
           # set dev desktop role
           roles.desktop.dev
         ];
+
+        xsession.windowManager.i3.config.modifier = "Mod1";
       };
     });
 
@@ -122,18 +136,22 @@
       iso = buildIsoImage ./images/iso.nix;
       iso-dev = buildIsoImage ./images/iso-dev.nix;
       hyperv-image = (nixosSystem' {
+        system = "x86_64-linux";
         modules = [ ./images/hyperv-image.nix ];
       }).config.system.build.hypervImage;
       hyperv-dev-image = (nixosSystem' {
+        system = "x86_64-linux";
         modules = [ ./images/hyperv-dev-image.nix ];
       }).config.system.build.hypervImage;
       virtualbox-image = (nixosSystem' {
+        system = "x86_64-linux";
         modules = [ ./images/virtualbox-image.nix ];
       }).config.system.build.virtualBoxOVA;
       google-compute-image = (nixosSystem' {
+        system = "x86_64-linux";
         modules = [ ./images/google-compute-image.nix ];
       }).config.system.build.googleComputeImage;
-      all = pkgs.linkFarm "nix-profile-images-${fullVersion}" [{
+      all = pkgsDefault.linkFarm "nix-profile-images-${fullVersion}" [{
         path = "${hyperv-image}/disk.vhdx";
         name = "nixos-hyperv-image-${fullVersion}.vhdx";
       } {

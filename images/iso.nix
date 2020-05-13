@@ -4,7 +4,7 @@
 { config, pkgs, lib, nix-profiles, ... }:
 
 {
-  imports = with nix-profiles.nixos; [
+  imports = with nix-profiles.lib.nixos; [
     roles.base
     profiles.user
     system.iso

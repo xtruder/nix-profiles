@@ -45,9 +45,9 @@ with lib;
           };
         };
 
-        "disk /" = {
-          position = 50;
-        };
+        #"disk \"/\"" = {
+          #position = 50;
+        #};
 
 
         "battery all" = {

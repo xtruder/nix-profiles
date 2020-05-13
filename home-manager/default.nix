@@ -47,6 +47,8 @@
       virt = ./dev/devops/virt.nix;
       tools = ./dev/devops/tools.nix;
     };
+
+    standard = ./dev/standard.nix;
   };
   roles = {
     base = ./roles/base.nix;
@@ -59,6 +61,10 @@
       work = ./roles/desktop/work.nix;
       dev = ./roles/desktop/dev.nix;
       crypto = ./roles/desktop/crypto.nix;
+    };
+
+    server = {
+      dev = ./roles/server/dev.nix;
     };
   };
   system = {

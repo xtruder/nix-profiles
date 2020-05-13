@@ -88,13 +88,13 @@ in {
           # move windows with scratchbrowser class to scratchpad and set to smaller size
           {
             criteria.class = "scratchbrowser";
-            command = "floating enable, resize set 3440 1876, move window to scratchpad";
+            command = "floating enable, resize set 80 ppt 80 ppt, move window to scratchpad";
           }
 
           # move windows with scratchterm class to scratchpad and set to smaller size
           {
             criteria.class = "scratchterm";
-            command = "floating enable, resize set 3440 1876, move window to scratchpad";
+            command = "floating enable, resize set 80 ppt 80 ppt, move window to scratchpad";
           }
         ];
       };

@@ -11,7 +11,7 @@ let
     useSway = true;
     promptCmd = prompt: ''${pkgs.rofi}/bin/rofi -dmenu -P "${prompt}" -lines 0'';
   };
-  i3-sway = import ./i3-sway.nix { inherit config lib pkgs i3-sway-scripts; };
+  i3-sway = import ./i3-sway.nix { inherit config cfg lib pkgs i3-sway-scripts; };
 
   systemctl = "${pkgs.systemd}/bin/systemctl";
 
