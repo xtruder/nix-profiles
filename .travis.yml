@@ -6,9 +6,9 @@ git:
 
 jobs:
     include:
-        - stage: Check and Build
+        - stage: Check
           script:
-              - nix flake check
+              - travis_wait 60 nix flake check
         - stage: Release
           if: tag IS present
           env: TARGET=images.all
