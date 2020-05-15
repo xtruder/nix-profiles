@@ -43,5 +43,7 @@ with lib;
 
     # bootloader is by default contained on /dev/vda
     boot.loader.grub.device = mkDefault "/dev/vda";
+
+    boot.initrd.checkJournalingFS = false;
   };
 }

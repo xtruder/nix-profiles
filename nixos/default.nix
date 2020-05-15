@@ -18,6 +18,7 @@
     vm = ./system/vm.nix;
     iso = ./system/iso.nix;
     cloud-vm = ./system/cloud-vm.nix;
+    vagrant = ./system/vagrant.nix;
     minimal-part = ./system/minimal-part.nix;
   };
 

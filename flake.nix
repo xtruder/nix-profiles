@@ -151,6 +151,10 @@
         system = "x86_64-linux";
         modules = [ ./images/google-compute-image.nix ];
       }).config.system.build.googleComputeImage;
+      vagrant-qemu = (nixosSystem' {
+        system = "x86_64-linux";
+        modules = [ ./images/vagrant/qemu.nix ];
+      }).config.system.build.toplevel;
       all = pkgsDefault.linkFarm "nix-profile-images-${fullVersion}" [{
         path = "${hyperv-image}/disk.vhdx";
         name = "nixos-hyperv-image-${fullVersion}.vhdx";
