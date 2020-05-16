@@ -5,7 +5,6 @@ with lib;
 {
   imports = [
     "${modulesPath}/virtualisation/virtualbox-image.nix"
-    ../system/vm.nix
   ];
 
   # FIXME: UUID detection is currently broken

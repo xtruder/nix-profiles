@@ -56,6 +56,7 @@ in {
     ./sway-minimal.nix
 
     ../profiles/udiskie.nix
+    ../profiles/rofi.nix
     ../profiles/gnome-keyring.nix
     ../profiles/redhsift.nix
   ];
@@ -66,6 +67,12 @@ in {
     services.blueman-applet.enable = mkDefault true;
     services.gpg-agent.pinentryFlavor = "gnome3";
 
+    systemd.user.services.pasystray.Service.Restart = "on-failure";
+    systemd.user.services.network-manager-applet.Service.Restart = "on-failure";
+    systemd.user.services.blueman-applet.Service.Restart = "on-failure";
+    systemd.user.services.udiskie.Service.Restart = "on-failure";
+
+    xsession.preferStatusNotifierItems = true;
     wayland.windowManager.sway = {
       config = {
         bars = mkForce [];

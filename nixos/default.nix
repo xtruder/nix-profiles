@@ -10,16 +10,17 @@
     hyperv-vm-gui = ./hw/hyperv-vm-gui.nix;
     virtualbox-vm = ./hw/virtualbox-vm.nix;
     google-compute-vm = ./hw/google-compute-vm.nix;
+    minimal-part = ./hw/minimal-part.nix;
   };
 
   # nixos per system type configuration
-  system = {
-    laptop = ./system/laptop.nix;
-    vm = ./system/vm.nix;
-    iso = ./system/iso.nix;
-    cloud-vm = ./system/cloud-vm.nix;
-    vagrant = ./system/vagrant.nix;
-    minimal-part = ./system/minimal-part.nix;
+  environments = {
+    base = ./environments/base.nix;
+    laptop = ./environments/laptop.nix;
+    vm = ./environments/vm.nix;
+    iso = ./environments/iso.nix;
+    cloud-vm = ./environments/cloud-vm.nix;
+    vagrant = ./environments/vagrant.nix;
   };
 
   # nixos profiles
@@ -42,13 +43,15 @@
     virtualbox-host = ./profiles/virtualbox-host.nix;
     gnome3 = ./profiles/gnome3.nix;
     sway = ./profiles/sway.nix;
+    nix = ./profiles/nix.nix;
+    nix-dev = ./profiles/nix-dev.nix;
   };
 
   # nixos roles
   roles = {
     base = ./roles/base.nix;
-    dev = ./roles/dev.nix;
-    work = ./roles/work.nix;
-    desktop = ./roles/desktop.nix;
+    workstation = ./roles/workstation.nix;
+    dev-workstation = ./roles/dev-workstation.nix;
+    dev-vm = ./roles/dev-vm.nix;
   };
 }

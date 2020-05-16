@@ -4,6 +4,8 @@
   imports = with nix-profiles.lib.nixos; [
     hw.hyperv-vm # hw.hyperv-vm-gui for gui support
 
+    environments.vm
+
     # import base environment
     roles.base
 

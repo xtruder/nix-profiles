@@ -6,7 +6,7 @@
     hw.qemu-vm
 
     # make it work with vagrant
-    system.vagrant
+    environments.vagrant
 
     # enable dev environment
     roles.base

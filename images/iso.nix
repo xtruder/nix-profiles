@@ -7,7 +7,7 @@
   imports = with nix-profiles.lib.nixos; [
     roles.base
     profiles.user
-    system.iso
+    environments.iso
   ];
 
   home-manager.users.user = {

@@ -4,8 +4,10 @@
   imports = with nix-profiles.lib.nixos; [
     hw.hyperv-vm-gui
 
+    environments.vm
+
     # enable dev environment
-    roles.dev
+    roles.dev-vm
 
     # create default user
     profiles.user

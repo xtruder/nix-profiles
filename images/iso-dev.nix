@@ -3,10 +3,10 @@
 {
   imports = with nix-profiles.lib.nixos; [
     # define system as iso
-    system.iso
+    environments.iso
 
     # enable dev environment
-    roles.dev
+    roles.dev-workstation
 
     # create default user
     profiles.user
@@ -18,7 +18,7 @@
   home-manager.users.user = {config, ...}: {
     imports = with nix-profiles.lib.home-manager; [
       # use sway workspace
-      workspaces.sway
+      workspaces.sway-workstation
 
       # set themes and colorschemes
       themes.materia

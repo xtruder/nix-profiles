@@ -5,7 +5,7 @@
     hw.google-compute-vm
 
     # it's a cloud vm
-    system.cloud-vm
+    environments.cloud-vm
 
     # import base environment
     roles.base

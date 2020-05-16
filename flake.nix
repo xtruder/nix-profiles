@@ -76,8 +76,9 @@
       dev = (nixosSystem' {
         modules = [{
           imports = with self.lib.nixos; [
-            system.minimal-part
-            roles.dev
+            hw.minimal-part
+            environments.vm
+            roles.dev-vm
             profiles.user
             profiles.openssh
           ];
@@ -85,7 +86,7 @@
           home-manager.users.user = {config, ...}: {
             imports = with self.lib.home-manager; [
               # use i3 workspace
-              workspaces.sway
+              workspaces.sway-minimal
 
               # set themes and colorschemes
               themes.materia
@@ -130,7 +131,6 @@
 
     # images to build
     images = rec {
-      iso = buildIsoImage ./images/iso.nix;
       iso-dev = buildIsoImage ./images/iso-dev.nix;
       hyperv-image = (nixosSystem' {
         system = "x86_64-linux";
