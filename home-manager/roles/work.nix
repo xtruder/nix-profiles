@@ -29,15 +29,8 @@ with lib;
       pet
       fzf
 
-      # cloud storage
-      google-drive-ocamlfuse
-      dropbox-cli
-
       # password managment
       pass-wayland
-
-      # backup
-      restic
     ];
   };
 }
