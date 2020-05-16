@@ -37,7 +37,7 @@
 
     isRelease = (builtins.getEnv "release") != "";
 
-    version = "v2.0";
+    version = "2.0";
 
     getRev = input: "${toString input.lastModified}-${input.shortRev or "dirty"}";
 
