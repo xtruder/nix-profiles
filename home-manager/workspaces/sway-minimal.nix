@@ -8,7 +8,6 @@
 
     ../profiles/wayland.nix
     ../profiles/sway.nix
-    ../profiles/swayidle.nix
     #../profiles/waybar.nix
     ../profiles/mako.nix
     ../profiles/alacirtty.nix

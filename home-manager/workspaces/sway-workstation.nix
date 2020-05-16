@@ -54,6 +54,7 @@ let
 in {
   imports = [
     ./sway-minimal.nix
+    ../profiles/swayidle.nix
 
     ../profiles/udiskie.nix
     ../profiles/rofi.nix
