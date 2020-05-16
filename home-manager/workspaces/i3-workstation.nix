@@ -36,13 +36,7 @@ in {
   imports = [
     ./base.nix
 
-    ../profiles/xserver.nix
-    ../profiles/i3.nix
-    ../profiles/i3status.nix
-    ../profiles/rofi.nix
     ../profiles/udiskie.nix
-    ../profiles/dunst.nix
-    ../profiles/xterm.nix
     ../profiles/gnome-keyring.nix
     ../profiles/redhsift.nix
   ];
