@@ -7,4 +7,5 @@
   ./recovery.nix
   ./low-battery-check.nix
   ./share-wayland-socket.nix
+  ./loginctl-linger.nix
 ]
