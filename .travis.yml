@@ -42,10 +42,5 @@ install:
     # install nix with flakes support
     - nix-env -f https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz -iA nixFlakes
 
-before_script:
-    - if [ -n "$CACHIX_SIGNING_KEY" ]; then cachix push xtruder-public --watch-store; fi &
-    - if [ ! -z "$NIXOS_EXTRA_MODULE" ]; then echo "$NIXOS_EXTRA_MODULE" > extra-module.nix; else echo "{}" > extra-module.nix; fi
-    - export NIXOS_EXTRA_MODULE_PATH=$PWD/extra-module.nix
-
 script:
     - nix build --impure .#$TARGET
