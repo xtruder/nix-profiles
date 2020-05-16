@@ -93,9 +93,6 @@
 
               # set dev desktop role
               roles.desktop.dev
-              roles.server.dev
-
-              dev.standard
             ];
           };
         }];
