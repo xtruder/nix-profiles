@@ -48,5 +48,6 @@
     nfs-utils
     rsync
     bindfs
+    sshfs-fuse
   ];
 }
