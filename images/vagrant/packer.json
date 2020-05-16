@@ -1,22 +1,24 @@
 {
   "variables": {
     "disk_size": "10240",
-    "memory": "1024",
-    "iso_url": "https://channels.nixos.org/nixos-20.03/latest-nixos-minimal-x86_64-linux.iso",
-    "iso_checksum": "3ebbf9cd9bdff0c7394eaef408c5c4f816c2f1d044b6e140c7531bbd17be1c47",
+    "memory": "4096",
+    "iso_url": "https://releases.nixos.org/releases.nixos.org/nixos/20.03/nixos-20.03.1866.a7c70f2e10b/nixos-minimal-20.03.1866.a7c70f2e10b-x86_64-linux.iso",
+    "iso_checksum": "c34bebfd77091416ab3001c61ff21d3410d644d59bad6e22ee45a72a125e7e77",
     "ssh_private_key_file": "./scripts/install_rsa",
-    "ssh_username": "nixos",
-    "version": "20.03",
-    "source": "https://github.com/xtruder/nix-profiles/archive/master.tar.gz"
+    "ssh_username": "root",
+    "version": "latest",
+    "arch": "x86_64",
+    "organization": "xtruder"
   },
   "builders": [
     {
       "boot_wait": "45s",
       "boot_command": [
-        "echo http://{{ .HTTPIP }}:{{ .HTTPPort}} > .packer_http<enter>",
-        "mkdir -m 0700 .ssh<enter>",
-        "curl $(cat .packer_http)/install_rsa.pub > .ssh/authorized_keys<enter>",
-        "sudo systemctl start sshd<enter>"
+        "sudo su --<enter>",
+        "echo http://{{ .HTTPIP }}:{{ .HTTPPort}} > ~/.packer_http<enter>",
+        "mkdir -m 0700 ~/.ssh<enter>",
+        "curl $(cat ~/.packer_http)/install_rsa.pub > ~/.ssh/authorized_keys<enter>",
+        "systemctl start sshd<enter>"
       ],
       "http_directory": "scripts",
       "iso_checksum_type": "sha256",
@@ -48,10 +50,11 @@
     {
       "boot_wait": "45s",
       "boot_command": [
-        "echo http://{{ .HTTPIP }}:{{ .HTTPPort}} > .packer_http<enter>",
-        "mkdir -m 0700 .ssh<enter>",
-        "curl $(cat .packer_http)/install_rsa.pub > .ssh/authorized_keys<enter>",
-        "sudo systemctl start sshd<enter>"
+        "sudo su --<enter>",
+        "echo http://{{ .HTTPIP }}:{{ .HTTPPort}} > ~/.packer_http<enter>",
+        "mkdir -m 0700 ~/.ssh<enter>",
+        "curl $(cat ~/.packer_http)/install_rsa.pub > ~/.ssh/authorized_keys<enter>",
+        "systemctl start sshd<enter>"
       ],
       "http_directory": "scripts",
       "iso_checksum_type": "sha256",
@@ -59,27 +62,22 @@
       "ssh_private_key_file": "{{ user `ssh_private_key_file` }}",
       "ssh_port": 22,
       "ssh_username": "{{ user `ssh_username` }}",
-      "headless": true,
+      "headless": false,
       "type": "qemu",
       "iso_url": "{{ user `iso_url` }}",
       "iso_checksum": "{{ user `iso_checksum` }}",
       "disk_interface": "virtio",
       "disk_size": "{{ user `disk_size` }}",
       "format": "qcow2",
-      "qemuargs": [
-        [
-          "-m",
-          "{{ user `memory` }}"
-        ]
-      ]
+      "memory": "{{ user `memory` }}"
     },
     {
       "boot_wait": "60s",
       "boot_command": [
-        "echo http://{{ .HTTPIP }}:{{ .HTTPPort}} > .packer_http<enter>",
-        "mkdir -m 0700 .ssh<enter>",
-        "curl $(cat .packer_http)/install_rsa.pub > .ssh/authorized_keys<enter>",
         "sudo su --<enter>",
+        "echo http://{{ .HTTPIP }}:{{ .HTTPPort}} > ~/.packer_http<enter>",
+        "mkdir -m 0700 ~/.ssh<enter>",
+        "curl $(cat ~/.packer_http)/install_rsa.pub > ~/.ssh/authorized_keys<enter>",
         "nix-env -iA nixos.linuxPackages.hyperv-daemons<enter><wait10>",
         "$(find /nix/store -executable -iname 'hv_kvp_daemon' | head -n 1)<enter><wait10>",
         "systemctl start sshd<enter>"
@@ -106,10 +104,11 @@
     {
       "boot_wait": "45s",
       "boot_command": [
-        "echo http://{{ .HTTPIP }}:{{ .HTTPPort}} > .packer_http<enter>",
-        "mkdir -m 0700 .ssh<enter>",
-        "curl $(cat .packer_http)/install_rsa.pub > .ssh/authorized_keys<enter>",
-        "sudo systemctl start sshd<enter>"
+        "sudo su --<enter>",
+        "echo http://{{ .HTTPIP }}:{{ .HTTPPort}} > ~/.packer_http<enter>",
+        "mkdir -m 0700 ~/.ssh<enter>",
+        "curl $(cat ~/.packer_http)/install_rsa.pub > ~/.ssh/authorized_keys<enter>",
+        "systemctl start sshd<enter>"
       ],
       "http_directory": "scripts",
       "iso_checksum_type": "sha256",
@@ -128,18 +127,62 @@
   ],
   "provisioners": [
     {
-      "execute_command": "sudo su -c '{{ .Vars }} {{.Path}}'",
-      "type": "shell",
-      "script": "./scripts/install.sh",
-      "environment_vars": ["image=vagrant-qemu", "disk=/dev/vda", "source={{ user `source` }}"],
-      "only": ["qemu"]
+      "type": "shell-local",
+      "script": "./scripts/build-local.sh",
+      "override": {
+        "qemu": {
+          "environment_vars": [
+            "image=vagrant-qemu",
+            "target=nixos-{{ user `version` }}-libvirt-{{ user `arch` }}"
+          ]
+        },
+        "virtualbox-iso": {
+          "environment_vars": [
+            "image=vagrant-libvirt",
+            "target=nixos-{{ user `version` }}-virtualbox-{{ user `arch` }}"
+          ]
+        }
+      }
     },
     {
-      "execute_command": "sudo su -c '{{ .Vars }} {{.Path}}'",
       "type": "shell",
-      "script": "./scripts/install.sh",
-      "environment_vars": ["image=packer-virtualbox", "disk=/dev/sda", "source={{ user `source` }}"],
-      "only": ["virtualbox-iso"]
+      "script": "./scripts/prepare.sh",
+      "environment_vars": ["disk=/dev/sda"],
+      "override": {
+        "qemu": {
+          "environment_vars": ["disk=/dev/vda"]
+        }
+      }
+    },
+    {
+      "type": "file",
+      "destination": "/nixos.closure",
+      "generated": true,
+      "override": {
+        "qemu": {
+          "source": "./build/nixos-{{ user `version` }}-libvirt-{{ user `arch` }}.closure"
+        },
+        "virtualbox-iso": {
+          "source": "./build/nixos-{{ user `version` }}-virtualbox-{{ user `arch` }}.closure"
+        }
+      }
+    },
+    {
+      "type": "file",
+      "destination": "/nixos.link",
+      "generated": true,
+      "override": {
+        "qemu": {
+          "source": "./build/nixos-{{ user `version` }}-libvirt-{{ user `arch` }}.link"
+        },
+        "virtualbox-iso": {
+          "source": "./build/nixos-{{ user `version` }}-virtualbox-{{ user `arch` }}.link"
+        }
+      }
+    },
+    {
+      "type": "shell",
+      "script": "./scripts/install.sh"
     }
   ],
   "post-processors": [
@@ -152,7 +195,13 @@
           "qemu",
           "hyperv-iso"
         ],
-        "output": "nixos-{{ user `version` }}-{{.Provider}}-x86_64.box"
+        "output": "./build/nix-profiles-nixos-{{ user `version` }}-{{.Provider}}-{{ user `arch` }}.box"
+      },
+      {
+        "type": "vagrant-cloud",
+        "box_tag": "{{ user `organization` }}/nix-profiles-nixos-{{ user `arch` }}",
+        "access_token": "{{user `cloud_token`}}",
+        "version": "{{user `version`}}"
       }
     ]
   ]

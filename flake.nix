@@ -39,13 +39,11 @@
 
     version = "v2.0";
 
-    getRev = input: "${toString input.lastModified}_${input.shortRev or "dirty"}";
+    getRev = input: "${toString input.lastModified}-${input.shortRev or "dirty"}";
 
-    versionSufix =
-      if isRelease then "${getRev nixpkgs}-${getRev home-manager}"
-      else "pre${getRev self}-${getRev nixpkgs}-${getRev home-manager}";
+    versionSufix = if isRelease then "" else "-${getRev self}";
 
-    fullVersion = "${version}-${versionSufix}";
+    fullVersion = "${version}${versionSufix}";
 
     testingPython = system: import "${nixpkgs.outPath}/nixos/lib/testing-python.nix" {
       inherit system pkgs specialArgs;
@@ -59,6 +57,8 @@
     }).driver;
 
   in {
+    inherit version fullVersion;
+
     lib = {
       nixosSystem = nixosSystem';
       nixos = import ./nixos;
