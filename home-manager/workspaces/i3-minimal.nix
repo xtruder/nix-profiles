@@ -21,5 +21,10 @@ with lib;
       enable = mkDefault true;
       imageDirectory = mkDefault "%h/backgrounds";
     };
+
+    xsession.windowManager.i3 = {
+      defaultBarConfig.statusCommand =
+        "${pkgs.python3Packages.py3status}/bin/py3status -c ~/.config/i3status/config";
+    };
   };
 }

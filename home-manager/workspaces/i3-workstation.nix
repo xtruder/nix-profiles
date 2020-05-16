@@ -59,9 +59,6 @@ in {
     systemd.user.services.xss-lock.Service.Environment = "PATH=${pkgs.coreutils}/bin";
 
     xsession.windowManager.i3 = {
-      defaultBarConfig.statusCommand =
-        "${pkgs.python3Packages.py3status}/bin/py3status -c ~/.config/i3status/config";
-
       config = {
         keybindings = {
           # Show scratchpad terminal
