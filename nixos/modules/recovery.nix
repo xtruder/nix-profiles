@@ -40,6 +40,8 @@ in {
         # password for logging into root
         hashedPassword = cfg.passwordHash;
 
+        uid = 1100;
+
         # add deploy ssh key
         openssh.authorizedKeys.keys = mkIf (cfg.sshKey != null) [
           cfg.sshKey
