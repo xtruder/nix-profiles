@@ -8,7 +8,7 @@ jobs:
     include:
         - stage: Check
           script:
-              - travis_wait 60 nix flake check
+              - travis_wait 60 nix flake check -L
         - stage: Release
           if: tag IS present
           env: TARGET=images.all
@@ -34,6 +34,7 @@ install:
     - echo "binary-cache-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= xtruder-public.cachix.org-1:+qG/fM2195QJcE2BXmKC+sS4mX/lQHqwjBH83Rhzl14=" | sudo tee -a /etc/nix/nix.conf > /dev/null
     - echo "system-features = nixos-test benchmark big-parallel kvm" | sudo tee -a /etc/nix/nix.conf > /dev/null
     - echo "experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf > /dev/null
+    - echo "max-jobs = $(grep -c ^processor /proc/cpuinfo)" | sudo tee -a /etc/nix/nix.conf > /dev/null
 
     # setup caching
     - nix-env -iA cachix -f https://cachix.org/api/v1/install

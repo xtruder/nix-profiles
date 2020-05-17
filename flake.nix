@@ -93,6 +93,7 @@
               themes.colorscheme.google-dark
 
               # set dev desktop role
+              roles.server.dev
               roles.desktop.dev
             ];
           };
