@@ -21,6 +21,7 @@ in {
     }
 
     clip=wayland
+    password_length=20
   '';
 
   xsession.windowManager.i3.config.keybindings = let
