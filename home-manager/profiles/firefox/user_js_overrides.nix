@@ -76,4 +76,8 @@
   "gfx.webrender.enabled" = true;
   "gfx.gfx.font_rendering.graphite.enabled" = true;
   "gfx.font_rendering.opentype_svg.enabled" = true;
+
+  # enable webassembly and asmjs
+  "javascript.options.wasm" = true;
+  "javascript.options.asmjs" = true;
 }
