@@ -19,6 +19,8 @@ with lib;
       '';
     };
 
+    boot.growPartition = true;
+
     security.rngd.enable = false;
 
     # enable spice-vdagent for spice support
