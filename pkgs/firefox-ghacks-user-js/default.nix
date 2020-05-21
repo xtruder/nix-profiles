@@ -22,6 +22,10 @@ let
       rev = "v74.0-beta";
       sha256 = "ena5eo+mP1ieNq5JZB92QflQdE1aXAekHfTMcpAZruA=";
     };
+    "76.0" = {
+      rev = "v76.0-beta";
+      sha256 = "WIYQNiTXbJuGYprs4wOdFlgoDmTkPCJZlcmmC1wpCzk=";
+    };
   };
 
   version =
