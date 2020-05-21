@@ -12,6 +12,7 @@
   # Creates a "vagrant" group & user with password-less sudo access
   users.groups.vagrant = {
     name = "vagrant";
+    gid = 1000;
     members = [ "vagrant" ];
   };
 
