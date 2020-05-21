@@ -22,6 +22,7 @@ with lib;
       kubectx
       kind
       minikube
+      fluxctl
     ];
   };
 }
