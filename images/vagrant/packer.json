@@ -62,7 +62,7 @@
       "ssh_private_key_file": "{{ user `ssh_private_key_file` }}",
       "ssh_port": 22,
       "ssh_username": "{{ user `ssh_username` }}",
-      "headless": false,
+      "headless": true,
       "type": "qemu",
       "iso_url": "{{ user `iso_url` }}",
       "iso_checksum": "{{ user `iso_checksum` }}",
