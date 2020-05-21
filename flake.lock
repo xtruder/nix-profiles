@@ -20,13 +20,13 @@
     },
     "nixpkgs": {
       "info": {
-        "lastModified": 1589350975,
-        "narHash": "sha256-QxMBQxYUXsruZVvLUGj6WHCHcdr5KJAarWOIRm6H+go="
+        "lastModified": 1590041942,
+        "narHash": "sha256-AYC/uu75bbVx8KOEgzcGAM2HoxseyL5xohinhm4Kezk="
       },
       "locked": {
         "owner": "xtruder",
         "repo": "nixpkgs",
-        "rev": "5b38f509c1719ecf0db1e7c7e44f38edb0f14516",
+        "rev": "458c587607bc4a61d32ca0464be7215a2c69686e",
         "type": "github"
       },
       "original": {
