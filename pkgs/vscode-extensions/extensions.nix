@@ -1,5 +1,11 @@
 [
   {
+    name = "vscode-yaml";
+    publisher = "redhat";
+    version = "0.8.0";
+    sha256 = "08dy5wm24c3bga698925pjwbymdmxi00a84d6xajj750pax7grz0";
+  }
+  {
     name = "EditorConfig";
     publisher = "editorconfig";
     version = "0.14.5";
@@ -8,8 +14,8 @@
   {
     name = "vim";
     publisher = "vscodevim";
-    version = "1.14.1";
-    sha256 = "179kqs6qpm57d43i02l25mga9rxk0cmmzxbl0ydgdjw7xlk2r0i1";
+    version = "1.14.4";
+    sha256 = "1f1nbcmqird4yrbi6wirmlvzk5liam08q4g8jrq3pyyf807zh23r";
   }
   {
     name = "path-autocomplete";
@@ -50,8 +56,8 @@
   {
     name = "go";
     publisher = "ms-vscode";
-    version = "0.14.1";
-    sha256 = "1zj87m0swjnr7k9nwxj2db96h90fs1cny7w9c0q4kqnrrysh8ala";
+    version = "0.14.2";
+    sha256 = "0mphia6185ri5zdl86f8kvpf986477r0jnmbanghgcsl7y2mxwak";
   }
   {
     name = "node-module-intellisense";
