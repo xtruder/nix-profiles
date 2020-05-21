@@ -34,6 +34,7 @@ with lib;
       gomodifytags # github.com/fatih/gomodifytag
       # revieve # github.com/mgechev/revive
       delve # github.com/go-delve/delve/cmd/dlv
+      gomove
     ];
 
     programs.neovim.plugins = with pkgs.vimPlugins; [ vim-go ];
