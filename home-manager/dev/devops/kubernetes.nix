@@ -20,7 +20,7 @@ with lib;
       helmfile
       kubicorn
       kubectx
-      kind.bin
+      kind
       minikube
     ];
   };
