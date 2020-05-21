@@ -52,13 +52,6 @@ in {
       gimp
       cdrkit
 
-      # torrent
-      transmission-gtk
-
-      unetbootin
-
-      tor-browser-bundle-bin
-
       # gnome apps
       gnome3.nautilus
       gnome3.evince
