@@ -19,6 +19,7 @@
       # provisioning
       ansible
       terraform
+      pulumi
     ];
   };
 }
