@@ -8,14 +8,14 @@
   {
     name = "EditorConfig";
     publisher = "editorconfig";
-    version = "0.14.5";
-    sha256 = "1bp6x5ha6vz0y7yyk4xsylp7d4z8qv20ybfbr3qqajnf61rzdbkg";
+    version = "0.15.1";
+    sha256 = "18r19dn1an81l2nw1h8iwh9x3sy71d4ab0s5fvng5y7dcg32zajd";
   }
   {
     name = "vim";
     publisher = "vscodevim";
-    version = "1.14.4";
-    sha256 = "1f1nbcmqird4yrbi6wirmlvzk5liam08q4g8jrq3pyyf807zh23r";
+    version = "1.14.5";
+    sha256 = "013h12qhj1h1pcjns2l5dn2hb52p8j468f5n5sw62gq4vfr9yvyf";
   }
   {
     name = "path-autocomplete";
@@ -56,8 +56,8 @@
   {
     name = "go";
     publisher = "ms-vscode";
-    version = "0.14.2";
-    sha256 = "0mphia6185ri5zdl86f8kvpf986477r0jnmbanghgcsl7y2mxwak";
+    version = "0.14.3";
+    sha256 = "0kyq8jp08i8f2hvarjslqynq8i0pyg1w0d25719v4155sjkvd41j";
   }
   {
     name = "node-module-intellisense";
