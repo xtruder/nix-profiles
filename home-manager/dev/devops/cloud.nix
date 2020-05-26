@@ -19,7 +19,7 @@
       # provisioning
       ansible
       terraform
-      pulumi
+      pulumi-bin
     ];
   };
 }
