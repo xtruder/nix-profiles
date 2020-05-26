@@ -11,6 +11,11 @@
       extensions = with pkgs.my-vscode-extensions; [
         EditorConfig
         json-schema-validator
+
+        vim
+        path-autocomplete
+        all-autocomplete
+        vscode-direnv
       ];
     };
   };
