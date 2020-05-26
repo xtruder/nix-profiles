@@ -131,4 +131,10 @@
     version = "0.1.2";
     sha256 = "1n5ilw1k29km9b0yzfd32m8gvwa2xhh6156d4dys6l8sbfpp2cv9";
   }
+  {
+    name = "graphql-for-vscode";
+    publisher = "kumar-harsh";
+    version = "1.15.3";
+    sha256 = "1x4vwl4sdgxq8frh8fbyxj5ck14cjwslhb0k2kfp6hdfvbmpw2fh";
+  }
 ]

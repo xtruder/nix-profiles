@@ -39,6 +39,7 @@
     ruby = ./dev/ruby.nix;
     nix = ./dev/nix.nix;
     svelte = ./dev/svelte.nix;
+    graphql = ./dev/graphql.nix;
 
     # devops tools
     devops = {
