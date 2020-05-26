@@ -1,4 +1,6 @@
 {
+  edition = 201909;
+
   description = "A reusable collection of nix-profiles used by X-Truder Networks";
 
   inputs = {
