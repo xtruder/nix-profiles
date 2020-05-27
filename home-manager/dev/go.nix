@@ -7,7 +7,7 @@ with lib;
 
   config = {
     home.packages = with pkgs; [
-      go_1_14
+      go
       glide
       dep
       dep2nix
