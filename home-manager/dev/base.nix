@@ -9,6 +9,7 @@
         "javascript.validate.enable" = false;
       };
       extensions = with pkgs.my-vscode-extensions; [
+        vscode-yaml
         EditorConfig
         json-schema-validator
 
