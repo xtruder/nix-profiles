@@ -20,6 +20,7 @@ with lib;
       gotools # golang.org/x/tools
       golint # golang.org/x/lint
       gocode # github.com/mdempsky/gocode
+      gocode-gomod # github.com/stamblerre/gocode
       gotests # github.com/cweill/gotests
       # goplay
       # goreturns
