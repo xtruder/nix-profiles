@@ -37,7 +37,6 @@
       lldb
 
       # networking
-      protobuf
       ngrok
 
       # source code managment
