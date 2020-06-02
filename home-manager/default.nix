@@ -40,6 +40,7 @@
     nix = ./dev/nix.nix;
     svelte = ./dev/svelte.nix;
     graphql = ./dev/graphql.nix;
+    protobuf = ./dev/protobuf.nix;
 
     # devops tools
     devops = {
