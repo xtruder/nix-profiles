@@ -37,6 +37,7 @@ with lib;
       delve # github.com/go-delve/delve/cmd/dlv
       gomove
       gore # golang repl: github.com/motemen/gore
+      gopls
     ];
 
     programs.neovim.plugins = with pkgs.vimPlugins; [ vim-go ];
