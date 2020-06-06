@@ -45,6 +45,7 @@
     sway = ./profiles/sway.nix;
     nix = ./profiles/nix.nix;
     nix-dev = ./profiles/nix-dev.nix;
+    yubikey = ./profiles/yubikey.nix;
   };
 
   # nixos roles
