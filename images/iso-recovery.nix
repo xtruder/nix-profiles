@@ -5,15 +5,30 @@
 
 {
   imports = with nix-profiles.lib.nixos; [
-    roles.base
-    profiles.user
+    # import iso environment
     environments.iso
+
+    # enable base role
+    roles.base
+
+    # enable user profile
+    profiles.user
+
+    # enable several profiles
+    profiles.openssh
+    profiles.yubikey
+    profiles.nix
   ];
 
-  home-manager.users.user = {
-    programs = {
-      gpg.enable = true;
-    };
+  home-manager.users.user = {config, ...}: {
+    imports = with nix-profiles.lib.home-manager; [
+      roles.base
+
+      profiles.git
+      profiles.ssh
+      profiles.gpg
+      profiles.vim
+    ];
   };
 
   services.pcscd.enable = true;

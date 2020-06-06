@@ -132,6 +132,7 @@
 
     # images to build
     images = rec {
+      iso-recovery = buildIsoImage ./images/iso-recovery.nix;
       iso-dev = buildIsoImage ./images/iso-dev.nix;
       hyperv-image = (nixosSystem' {
         system = "x86_64-linux";
