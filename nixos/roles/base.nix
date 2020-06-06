@@ -39,9 +39,6 @@ with lib;
     # enable earlyoom on all systems
     services.earlyoom.enable = mkDefault true;
 
-    # enable sysdig on all systems
-    programs.sysdig.enable = mkDefault true;
-
     # enable fstrim on all systems, running fstrim weekly is a good practice
     services.fstrim.enable = mkDefault true;
 

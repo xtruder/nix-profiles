@@ -11,4 +11,10 @@
     ../profiles/android.nix
     ../profiles/nix-dev.nix
   ];
+
+  # enable sysdig on all systems
+  programs.sysdig.enable = true;
+
+  # enable bcc tools on all systems: https://github.com/iovisor/bcc
+  programs.bcc.enable = true;
 }
