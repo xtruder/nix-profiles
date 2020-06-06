@@ -20,6 +20,7 @@
     ssh = ./profiles/ssh.nix;
     vscode = ./profiles/vscode.nix;
     code-server = ./profiles/code-server.nix;
+    vim = ./profiles/vim.nix;
   };
   workspaces = {
     base = ./workspaces/base.nix;
