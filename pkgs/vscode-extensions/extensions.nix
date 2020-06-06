@@ -14,8 +14,8 @@
   {
     name = "vim";
     publisher = "vscodevim";
-    version = "1.12.4";
-    sha256 = "NrENiFIg7rEfcgI2nT/RanMKQGYkPxgH5VbCwQVkEdE=";
+    version = "1.14.5";
+    sha256 = "013h12qhj1h1pcjns2l5dn2hb52p8j468f5n5sw62gq4vfr9yvyf";
   }
   {
     name = "path-autocomplete";
@@ -136,5 +136,11 @@
     publisher = "kumar-harsh";
     version = "1.15.3";
     sha256 = "1x4vwl4sdgxq8frh8fbyxj5ck14cjwslhb0k2kfp6hdfvbmpw2fh";
+  }
+  {
+    name = "vscode-postgresql";
+    publisher = "ms-ossdata";
+    version = "0.3.0";
+    sha256 = "02sp5sv1sapynq4xx04b9z86jz2vmcsma1cpkbd05k2cw5g999lk";
   }
 ]
