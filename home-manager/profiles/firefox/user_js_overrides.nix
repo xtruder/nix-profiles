@@ -80,4 +80,7 @@
   # enable webassembly and asmjs
   "javascript.options.wasm" = true;
   "javascript.options.asmjs" = true;
+
+  "privacy.firstparty.isolate" = false;
+  "network.cookie.cookieBehavior" = 4;
 }
