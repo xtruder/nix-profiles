@@ -25,7 +25,7 @@
   workspaces = {
     base = ./workspaces/base.nix;
     i3-minimal = ./workspaces/i3-minimal.nix;
-    i3-workstation = ./workspaces/i3-workstationnix;
+    i3-workstation = ./workspaces/i3-workstation.nix;
     sway-minimal = ./workspaces/sway-minimal.nix;
     sway-workstation = ./workspaces/sway-workstation.nix;
     gnome3 = ./workspaces/gnome3.nix;
