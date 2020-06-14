@@ -81,6 +81,10 @@
   "javascript.options.wasm" = true;
   "javascript.options.asmjs" = true;
 
+  # disable firstparty isolate
   "privacy.firstparty.isolate" = false;
   "network.cookie.cookieBehavior" = 4;
+
+  # enable clipboard events
+  "dom.event.clipboardevents.enabled" = true;
 }
