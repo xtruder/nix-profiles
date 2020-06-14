@@ -21,7 +21,7 @@ in {
       //registry.npmjs.org/:_authToken=''${NPM_TOKEN}
     '';
 
-    programs.bash.initExtra = ''
+    programs.bash.profileExtra = ''
       if [ -z $NPM_TOKEN ]; then
         export NPM_TOKEN=""
       fi

@@ -15,7 +15,9 @@
 
         export GIT_PS1_SHOWDIRTY  STATE=1
         export PS1=$PS1'$(__git_ps1 "(%s)") '
-
+      '';
+      profileExtra = ''
+        # source secrets if avaliable
         if [ -f ~/.secrets ]; then
           source ~/.secrets
         fi
