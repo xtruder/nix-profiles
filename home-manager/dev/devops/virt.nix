@@ -12,5 +12,10 @@
       vagrant
       packer
     ];
+
+    programs.bash.profileExtra = ''
+      # sftp-server required by vagrant
+      export PATH=${pkgs.openssh}/libexec:$PATH
+    '';
   };
 }
