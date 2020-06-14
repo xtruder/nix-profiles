@@ -49,15 +49,15 @@
   }
   {
     name = "terraform";
-    publisher = "mauve";
-    version = "1.4.0";
-    sha256 = "0b3cqxaay85ab10x1cg7622rryf4di4d35zq9nqcjg584k6jjb34";
+    publisher = "hashicorp";
+    version = "2.0.1";
+    sha256 = "1jjay81pxzwcc2yxcnlpa8yp5iv9aq6735p058mpf51dpsgng4hd";
   }
   {
     name = "go";
-    publisher = "ms-vscode";
-    version = "0.14.3";
-    sha256 = "0kyq8jp08i8f2hvarjslqynq8i0pyg1w0d25719v4155sjkvd41j";
+    publisher = "golang";
+    version = "0.14.4";
+    sha256 = "1rid3vxm4j64kixlm65jibwgm4gimi9mry04lrgv0pa96q5ya4pi";
   }
   {
     name = "node-module-intellisense";
@@ -98,8 +98,8 @@
   {
     name = "vscode-kubernetes-tools";
     publisher = "ms-kubernetes-tools";
-    version = "1.2.0";
-    sha256 = "1cvh1cidqglvk5bcrwx9jgk73d64pj278wxyz4llpzfdns4hmcqr";
+    version = "1.2.1";
+    sha256 = "071p27xcq77vbpnmb83pjsnng7h97q4gai0k6qgwg3ygv086hpf4";
   }
   {
     name = "nixfmt-vscode";
