@@ -14,8 +14,8 @@
   {
     name = "vim";
     publisher = "vscodevim";
-    version = "1.14.5";
-    sha256 = "013h12qhj1h1pcjns2l5dn2hb52p8j468f5n5sw62gq4vfr9yvyf";
+    version = "1.12.4";
+    sha256 = "NrENiFIg7rEfcgI2nT/RanMKQGYkPxgH5VbCwQVkEdE=";
   }
   {
     name = "path-autocomplete";
