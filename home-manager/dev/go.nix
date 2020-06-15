@@ -46,6 +46,7 @@ with lib;
       userSettings = {
         "go.docsTool" = "godoc";
         "go.formatTool" = "goimports";
+        "go.useLanguageServer" = true;
       };
       extensions = with pkgs.my-vscode-extensions; [
         go
