@@ -53,7 +53,7 @@ with lib;
     };
 
     home.sessionVariables = {
-      GOPATH = "$HOME/projects/go";
+      GOPATH = "$HOME/.go";
     };
   };
 }
