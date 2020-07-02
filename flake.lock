@@ -1,11 +1,9 @@
 {
   "nodes": {
     "home-manager": {
-      "info": {
-        "lastModified": 1593676576,
-        "narHash": "sha256-i6eRKiPXZ0m7jtLGml37ENbURjPpRqueBCEkAjIdoaA="
-      },
       "locked": {
+        "lastModified": 1593676576,
+        "narHash": "sha256-i6eRKiPXZ0m7jtLGml37ENbURjPpRqueBCEkAjIdoaA=",
         "owner": "xtruder",
         "repo": "home-manager",
         "rev": "6d1350fbc3b5bf8c655d2fc034e592ea8fec4c5f",
@@ -19,14 +17,12 @@
       }
     },
     "nixpkgs": {
-      "info": {
-        "lastModified": 1593675621,
-        "narHash": "sha256-5xLW3LDp0ioF+O0LY9TPQ49G7WIXWNXonw7JKruTgwI="
-      },
       "locked": {
+        "lastModified": 1593691001,
+        "narHash": "sha256-4fvze4pmJoub/+pkMKLyTrqMKgslLDP/hnUeF37JqrE=",
         "owner": "xtruder",
         "repo": "nixpkgs",
-        "rev": "1fd8d35e06bca060b68d9d8abdfa627a37f91b1c",
+        "rev": "22208988aa40589c091968c40d675da61f086b7c",
         "type": "github"
       },
       "original": {
@@ -44,5 +40,5 @@
     }
   },
   "root": "root",
-  "version": 5
+  "version": 7
 }

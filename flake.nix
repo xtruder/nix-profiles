@@ -1,11 +1,9 @@
 {
-  edition = 201909;
-
   description = "A reusable collection of nix-profiles used by X-Truder Networks";
 
   inputs = {
-    nixpkgs.uri = "github:xtruder/nixpkgs/xtruder-nixos-unstable";
-    home-manager.uri = "github:xtruder/home-manager/nix-profiles-2-0";
+    nixpkgs.url = "github:xtruder/nixpkgs/xtruder-nixos-unstable";
+    home-manager.url = "github:xtruder/home-manager/nix-profiles-2-0";
   };
 
   outputs = { self, nixpkgs, home-manager }:
