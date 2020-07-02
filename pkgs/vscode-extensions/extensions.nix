@@ -50,14 +50,14 @@
   {
     name = "terraform";
     publisher = "hashicorp";
-    version = "2.0.1";
-    sha256 = "1jjay81pxzwcc2yxcnlpa8yp5iv9aq6735p058mpf51dpsgng4hd";
+    version = "2.0.2";
+    sha256 = "0dfwg5j8jm1ywiknsasrfbsrbl0ax8bbjm7pyrp9n05l6y7r29cy";
   }
   {
     name = "go";
     publisher = "golang";
-    version = "0.14.4";
-    sha256 = "1rid3vxm4j64kixlm65jibwgm4gimi9mry04lrgv0pa96q5ya4pi";
+    version = "0.15.0";
+    sha256 = "08jy921x7jph4w22q4lga12w78g33blwfmvfvqsbirlvqj9mp3jj";
   }
   {
     name = "node-module-intellisense";
