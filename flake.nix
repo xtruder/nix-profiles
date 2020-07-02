@@ -95,6 +95,10 @@
               # set dev desktop role
               roles.server.dev
               roles.desktop.dev
+
+              dev.node
+              dev.go
+              dev.python
             ];
           };
         }];
