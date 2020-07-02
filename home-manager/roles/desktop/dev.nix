@@ -7,11 +7,4 @@
 
     ../../profiles/vscode.nix
   ];
-
-  config = {
-    home.packages = with pkgs; [
-      # messaging
-      zoom-us
-    ];
-  };
 }
