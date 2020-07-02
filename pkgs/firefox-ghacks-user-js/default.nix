@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchFromGitHub, gnused, firefox }:
+{ stdenv, lib, fetchFromGitHub, nodejs, firefox }:
 
 with lib;
 
@@ -26,6 +26,10 @@ let
       rev = "v76.0-beta";
       sha256 = "WIYQNiTXbJuGYprs4wOdFlgoDmTkPCJZlcmmC1wpCzk=";
     };
+    "77.0" = {
+      rev = "v77.0-beta";
+      sha256 = "X5mH/k+gU4/K1RPyQi3JkcRHyzPW2gtaeo/Wh/4gdqM=";
+    };
   };
 
   version =
@@ -44,16 +48,16 @@ in stdenv.mkDerivation {
     sha256 = version.sha256;
   };
 
-  buildInputs = [ gnused ];
+  nativeBuildInputs = [ nodejs ];
 
   phases = [ "unpackPhase" "buildPhase" "installPhase" ];
 
   buildPhase = ''
-    sed -f ${./user_js_to_nix.sed} user.js > user.nix
+    node ${./user_js_to_json.js}
   '';
 
   installPhase = ''
     mkdir -p $out
-    cp user.{js,nix} $out
+    cp user.{js,json} $out
   '';
 }

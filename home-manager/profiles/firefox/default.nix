@@ -5,7 +5,10 @@ with lib;
 let
   cfg = config.programs.firefox;
 
-  ghacks-user-js = import "${pkgs.firefox-ghacks-user-js.override { firefox = cfg.package; }}/user.nix";
+  ghacks-user-json = builtins.readFile "${pkgs.firefox-ghacks-user-js.override {
+    firefox = cfg.package;
+  }}/user.json";
+  ghacks-user-js = builtins.fromJSON ghacks-user-json;
   user-js-override = import ./user_js_overrides.nix;
   user-js = ghacks-user-js // user-js-override;
 
