@@ -36,7 +36,6 @@
       binutils
       patchutils
       gdb
-      lldb
 
       # networking
       ngrok
