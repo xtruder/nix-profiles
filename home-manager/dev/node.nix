@@ -2,10 +2,7 @@
 
 with lib;
 
-let
-  nodePackages = pkgs.nodePackages_10_x;
-  nodejs = pkgs.nodejs-10_x;
-in {
+{
   imports = [ ./base.nix ];
 
   config = {
@@ -30,7 +27,7 @@ in {
     programs.neovim.plugins = with pkgs.vimPlugins; [ typescript-vim ];
 
     home.packages = with pkgs; with nodePackages; [
-      nodejs
+      nodejs-12_x
       typescript
       node2nix
       flow
