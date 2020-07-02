@@ -13,7 +13,6 @@ with lib;
       dep2nix
       go2nix
       vgo2nix
-      go-protobuf
 
       # editor support
       go-tools # honnef.co/go/tools/...@latest
