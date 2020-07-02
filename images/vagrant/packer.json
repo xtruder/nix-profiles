@@ -2,8 +2,8 @@
   "variables": {
     "disk_size": "10240",
     "memory": "4096",
-    "iso_url": "https://releases.nixos.org/releases.nixos.org/nixos/20.03/nixos-20.03.1866.a7c70f2e10b/nixos-minimal-20.03.1866.a7c70f2e10b-x86_64-linux.iso",
-    "iso_checksum": "c34bebfd77091416ab3001c61ff21d3410d644d59bad6e22ee45a72a125e7e77",
+    "iso_url": "https://releases.nixos.org/nixos/20.03/nixos-20.03.2417.f1a79c86358/nixos-minimal-20.03.2417.f1a79c86358-x86_64-linux.iso",
+    "iso_checksum": "778422107ab74e2ea6bef5d07743d747d9b37e4f607b6c48ca9246d44724d278",
     "ssh_private_key_file": "./scripts/install_rsa",
     "ssh_username": "root",
     "version": "latest",
@@ -21,7 +21,6 @@
         "systemctl start sshd<enter>"
       ],
       "http_directory": "scripts",
-      "iso_checksum_type": "sha256",
       "shutdown_command": "sudo shutdown -h now",
       "ssh_private_key_file": "{{ user `ssh_private_key_file` }}",
       "ssh_port": 22,
@@ -29,7 +28,7 @@
       "headless": true,
       "type": "virtualbox-iso",
       "iso_url": "{{ user `iso_url` }}",
-      "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_checksum": "sha256:{{ user `iso_checksum` }}",
       "guest_additions_mode": "disable",
       "format": "ova",
       "guest_os_type": "Linux_64",
@@ -57,7 +56,6 @@
         "systemctl start sshd<enter>"
       ],
       "http_directory": "scripts",
-      "iso_checksum_type": "sha256",
       "shutdown_command": "sudo shutdown -h now",
       "ssh_private_key_file": "{{ user `ssh_private_key_file` }}",
       "ssh_port": 22,
@@ -65,7 +63,7 @@
       "headless": true,
       "type": "qemu",
       "iso_url": "{{ user `iso_url` }}",
-      "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_checksum": "sha256:{{ user `iso_checksum` }}",
       "disk_interface": "virtio",
       "disk_size": "{{ user `disk_size` }}",
       "format": "qcow2",
@@ -83,7 +81,6 @@
         "systemctl start sshd<enter>"
       ],
       "http_directory": "scripts",
-      "iso_checksum_type": "sha256",
       "shutdown_command": "sudo shutdown -h now",
       "ssh_private_key_file": "{{ user `ssh_private_key_file` }}",
       "ssh_port": 22,
@@ -92,7 +89,7 @@
       "type": "hyperv-iso",
       "generation": 1,
       "iso_url": "{{ user `iso_url` }}",
-      "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_checksum": "sha256:{{ user `iso_checksum` }}",
       "memory": "{{ user `memory` }}",
       "disk_size": "{{ user `disk_size` }}",
       "enable_secure_boot": false,
@@ -111,7 +108,6 @@
         "systemctl start sshd<enter>"
       ],
       "http_directory": "scripts",
-      "iso_checksum_type": "sha256",
       "shutdown_command": "sudo shutdown -h now",
       "ssh_private_key_file": "{{ user `ssh_private_key_file` }}",
       "ssh_port": 22,
@@ -119,7 +115,7 @@
       "headless": true,
       "type": "vmware-iso",
       "iso_url": "{{ user `iso_url` }}",
-      "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_checksum": "sha256:{{ user `iso_checksum` }}",
       "memory": "{{ user `memory` }}",
       "disk_size": "{{ user `disk_size` }}",
       "guest_os_type": "Linux"
