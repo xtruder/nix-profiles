@@ -4,7 +4,7 @@ let
   modifier = config.xsession.windowManager.i3.config.modifier;
 
   passCmd = "exec --no-startup-id ${pkgs.rofi-pass}/bin/rofi-pass";
-  drunCmd = "exec ${pkgs.rofi}/bin/rofi -combi-modi drun -show combi -modi combi";
+  drunCmd = "exec ${pkgs.rofi}/bin/rofi -combi-modi drun -show combi -modi combi -show-icons";
 
 in {
   programs.rofi = {
