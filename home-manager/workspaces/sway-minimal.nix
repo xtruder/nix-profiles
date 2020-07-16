@@ -15,4 +15,6 @@
   ];
 
   xsession.preferStatusNotifierItems = true;
+
+  services.polkit-auth-agent.enable = true;
 }
