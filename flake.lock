@@ -18,11 +18,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1593691001,
-        "narHash": "sha256-4fvze4pmJoub/+pkMKLyTrqMKgslLDP/hnUeF37JqrE=",
+        "lastModified": 1594759563,
+        "narHash": "sha256-ciu/7zOgZTmylADJLwAh2Rpd9UuwOP/EON6N/p1qu4o=",
         "owner": "xtruder",
         "repo": "nixpkgs",
-        "rev": "22208988aa40589c091968c40d675da61f086b7c",
+        "rev": "6ef3a1b892840768b8109531e660fd2ce0424cf4",
         "type": "github"
       },
       "original": {
