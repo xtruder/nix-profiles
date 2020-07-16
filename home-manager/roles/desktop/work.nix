@@ -22,6 +22,9 @@ in {
     # enable dconf for configuration
     dconf.enable = true;
 
+    # enable protonvpn-tray service
+    services.protonvpn-tray.enable = true;
+
     # set default mime apps
     xdg.mimeApps.defaultApplications = {
       "text/html" = browser;
@@ -56,9 +59,6 @@ in {
       gnome3.nautilus
       gnome3.evince
       gnome3.file-roller
-
-      # vpn
-      protonvpn-linux-gui
     ];
   };
 }
