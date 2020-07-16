@@ -17,6 +17,9 @@
         path-autocomplete
         all-autocomplete
         vscode-direnv
+
+        # utils
+        openssl.bin
       ];
     };
   };
