@@ -56,6 +56,9 @@ in {
       gnome3.nautilus
       gnome3.evince
       gnome3.file-roller
+
+      # vpn
+      protonvpn-linux-gui
     ];
   };
 }
