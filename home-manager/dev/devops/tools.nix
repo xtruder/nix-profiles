@@ -25,6 +25,7 @@
       rdesktop
       gtk-vnc
       openvpn
+      remmina
 
       # crypto
       mkpasswd
