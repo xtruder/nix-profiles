@@ -17,10 +17,12 @@
         path-autocomplete
         all-autocomplete
         vscode-direnv
-
-        # utils
-        openssl.bin
       ];
     };
+
+    home.packages = with pkgs; [
+      # utils
+      openssl.bin
+    ];
   };
 }
