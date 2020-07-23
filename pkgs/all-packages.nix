@@ -27,4 +27,5 @@
       substituteInPlace rofi-pass --replace "wl-copy -o" "wl-copy"
     '';
   });
+  mathpix-ocr-latex = pkgs.callPackage ./mathpix-ocr-latex { };
 }
