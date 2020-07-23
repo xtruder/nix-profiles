@@ -84,6 +84,9 @@ in {
 
           # Show scratchpad browser
           "${modifier}+b" = ''[con_mark="scratchbrowser"] scratchpad show, move position center'';
+
+          # Convert equation to latex using mathpix API
+          "${modifier}+o" = ''exec --no-startup-id ${pkgs.mathpix-ocr-latex}/bin/mathpix-ocr-latex'';
         };
 
         startup = [{
