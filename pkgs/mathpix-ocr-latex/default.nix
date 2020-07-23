@@ -4,11 +4,11 @@
 stdenv.mkDerivation rec {
   pname = "mathpix-ocr-latex";
   version = builtins.substring 0 7 rev;
-  rev = "62d2504755b321643077779fd36b3d714a9c66e5";
+  rev = "3bc3aaab31c5e6de593283380f04e459017ec956";
 
   src = fetchurl {
     url = "https://gist.github.com/offlinehacker/7a91c7d423b030e96b1d32e126b175fb/archive/${rev}.tar.gz";
-    sha256 = "4fc5309eb9b63f6772dfc933993c363482ee041fa6736c9f9e5065f714c1308f";
+    sha256 = "b8e67711ef62a778d7caa7bba97699720e9b4fd6ab2324b8258a8fe8babf61ae";
   };
 
   nativeBuildInputs = [ makeWrapper ];
