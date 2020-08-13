@@ -12,13 +12,19 @@ with lib;
     # for power optimizations
     powerManagement.powertop.enable = true;
 
-    services.low-battery-check = {
-      enable = true;
-      action = "hibernate";
-    };
+    #services.low-battery-check = {
+      #enable = true;
+      #action = "hibernate";
+    #};
 
     # enable TLP daemon for power saving
     services.tlp.enable = true;
+
+    # enable upower service for battery
+    services.upower = {
+      enable = true;
+      criticalPowerAction = "Hibernate";
+    };
 
     # Do not turn off when closing laptop lid
     services.logind.extraConfig = ''
