@@ -31,6 +31,7 @@ with lib;
 
       # password managment
       pass-wayland
+      _1password-gui
     ];
   };
 }

@@ -4,14 +4,15 @@
   inputs = {
     nixpkgs.url = "github:xtruder/nixpkgs/xtruder-nixos-unstable";
     home-manager.url = "github:xtruder/home-manager/nix-profiles-2-0";
+    nur.url = "github:nix-community/NUR";
   };
 
-  outputs = { self, nixpkgs, home-manager }:
+  outputs = { self, nixpkgs, home-manager, nur }:
     with nixpkgs.lib;
   let
     specialArgs = {
       nix-profiles = self;
-      home-manager = home-manager;
+      inherit home-manager nur;
     };
 
     systems = [ "x86_64-linux" ];

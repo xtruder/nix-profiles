@@ -1,6 +1,6 @@
 # base nixos module
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, nur, ... }:
 
 with lib;
 
@@ -9,5 +9,6 @@ with lib;
 
   nixpkgs.overlays = [
     (super: pkgs: import ../pkgs/all-packages.nix { inherit pkgs; })
+    nur.overlay
   ];
 }

@@ -37,6 +37,7 @@ with lib;
       gomove
       gore # golang repl: github.com/motemen/gore
       gopls
+      nur.repos.mic92.hello-nur
     ];
 
     programs.neovim.plugins = with pkgs.vimPlugins; [ vim-go ];

@@ -75,22 +75,6 @@ in {
           };
         };
       };
-      example = literalExample {
-        bg = "#114c00";
-        fg = "#ffffff";
-
-        gray = "#9bb953";
-        alt = "#27a6a2";
-        dark = "#169300";
-
-        red = "#d12d17";
-        orange = "#cf7a02";
-        yellow = "#386c34";
-        green = "#386c34";
-        cyan = "#09d0a5";
-        blue = "#a5d048";
-        purple = "#d083be";
-      };
     };
   };
 

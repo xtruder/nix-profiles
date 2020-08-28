@@ -2,6 +2,11 @@
 
 {
   config = {
+    home.sessionVariables = {
+      GIT_USERNAME = config.programs.git.userName;
+      GIT_USEREMAIL = config.programs.git.userEmail;
+    };
+
     programs.git = {
       enable = true;
 

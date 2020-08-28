@@ -1,5 +1,5 @@
 { stdenv, fetchFromGitHub, writeTextFile
-, sassc, bc, which, inkscape, optipng
+, sassc, bc, which, inkscape_0, optipng
 , colors ? null, themeName ? null }:
 
 with stdenv.lib;
@@ -27,7 +27,7 @@ in stdenv.mkDerivation rec {
     inherit rev;
   };
 
-  buildInputs = [ sassc bc which inkscape optipng ];
+  buildInputs = [ sassc bc which inkscape_0 optipng ];
 
   installPhase = ''
     HOME=/build
